@@ -27,24 +27,33 @@ public class PhysicMovement : MonoBehaviour {
 
     }
 
+    //void TriggerButtons()
+    //{
+    //    bool p1RT = Input.GetAxis("RightTankThread") > 0.0;
+    //    bool p1LT = Input.GetAxis("LeftTankThread") > 0.0;
+    //}
+
     void KeyPresses()
     {
+        bool p1RT = Input.GetAxis("P1TankThreadRight") > 0.0;
+        bool p1LT = Input.GetAxis("P1TankThreadLeft") > 0.0;
+
         rightThrust = 0;
         leftThrust = 0;
 
-        if (Input.GetKey(KeyCode.Keypad9))
+        if (Input.GetKey(KeyCode.Keypad9) || Input.GetKey(KeyCode.Joystick1Button5))
         {
             rightThrust += 1;
         }
-        if (Input.GetKey(KeyCode.Keypad7))
+        if (Input.GetKey(KeyCode.Keypad7) || Input.GetKey(KeyCode.Joystick1Button4))
         {
             leftThrust += 1;
         }
-        if (Input.GetKey(KeyCode.Keypad6))
+        if (Input.GetKey(KeyCode.Keypad6) || p1RT)
         {
             rightThrust -= 1;
         }
-        if (Input.GetKey(KeyCode.Keypad4))
+        if (Input.GetKey(KeyCode.Keypad4) || p1LT)
         {
             leftThrust -= 1;
         }
