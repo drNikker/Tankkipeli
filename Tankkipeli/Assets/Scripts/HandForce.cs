@@ -11,6 +11,7 @@ public class HandForce : MonoBehaviour {
 
     Vector3 p1LeftHand;
     Vector3 p1RightHand;
+    public string player;
 
     // Use this for initialization
     void Start () {
@@ -43,12 +44,12 @@ public class HandForce : MonoBehaviour {
             rb.AddForce(transform.forward * thrust * -1);
         }
 
-        p1LeftHand.x = Input.GetAxis("P1LeftHandX");
-        p1LeftHand.z = Input.GetAxis("P1LeftHandZ");
+        p1LeftHand.x = Input.GetAxis(player + "LeftHandX");
+        p1LeftHand.z = Input.GetAxis(player + "LeftHandZ");
 
         
-        p1RightHand.x = Input.GetAxis("P1RightHandX");
-        p1RightHand.z = Input.GetAxis("P1RightHandZ");
+        p1RightHand.x = Input.GetAxis(player + "RightHandX");
+        p1RightHand.z = Input.GetAxis(player + "RightHandZ");
         
 
         if ((p1LeftHand.x != 0 || p1LeftHand.y != 0) && this.name == "handControllerL")
