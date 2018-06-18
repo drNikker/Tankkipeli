@@ -4,55 +4,82 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-    public float dmgMultiplier;
-    public float hitCooldown;
+    PlayerHealth health;
+    Rigidbody tankBase;
+
+
+    public float baseDamage = 5;
+    public float dmgMultiplier = 1.2f;
+    public float cooldownTime = 1;
+    public float knockback = 100;
+
+    float cooldown;
+    float finalDamage;
 
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Bodypart")
+        if(collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
         {
-           // FindHP(collision);
+            health = FindHP(collision);
+            tankBase = FindTank(collision);
+            finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude/10);       //Deal damage based on the damage values and the force of the impact
+            if (finalDamage >= 25)
+            {
+                finalDamage = 25;                                           //Damage is capped at 25 for now
+            }
+            health.TakeDamage(finalDamage);
+            Vector3 dir = collision.transform.position - transform.position;
+            dir.y = 0;
+            tankBase.AddForce(dir.normalized * (knockback * collision.relativeVelocity.magnitude));
+            cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
         }
+
     }
 
-    //https://answers.unity.com/questions/28581/traverse-up-the-hierarchy-to-find-first-parent-wit.html
 
-    /* static GameObject FindHP(Collision col)
+     static PlayerHealth FindHP(Collision col)                  //Finds the players hp
      {
          PlayerHealth hp = col.gameObject.GetComponentInParent<PlayerHealth>();
-         GameObject parentOb = col.gameObject;
+         Transform parentOb = col.gameObject.transform;
 
          while (parentOb != null)
          {
-             parentOb = col.gameObject;
+            hp = parentOb.GetComponent<PlayerHealth>();
 
              if (hp != null)
              {
                  return hp;
              }
-         }
+            parentOb = parentOb.transform.parent;
+        }
 
-         if (hp == null)
-         {
-             print("ei löytyny");
-         }
-         else
-         {
-             print("löyty");
-         }
+        Debug.LogWarning("Bodypart took a hit, but player health was not found");
+        return null;
      }
 
-     */
+    static Rigidbody FindTank(Collision col)                  //Finds the players tank
+    {
+        Transform parentOb = col.gameObject.transform;
+
+        while (parentOb != null)
+        {
+            if (parentOb.tag == "Tankbase")
+            {
+                Rigidbody rig = parentOb.GetComponent<Rigidbody>();
+                return rig;
+            }
+            parentOb = parentOb.transform.parent;
+        }
+
+        Debug.LogWarning("Bodypart took a hit, but player tankbase was not found");
+        return null;
+    }
+
 
 }
