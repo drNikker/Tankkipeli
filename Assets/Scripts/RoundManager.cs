@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
-
-    int winsNeeded = 3;
+    int winsNeeded;
     int playersAlive;
 
-    bool roundIsOver = true;
     bool randomMap = true;
     //bool mapSet = false;
 
@@ -20,17 +18,19 @@ public class RoundManager : MonoBehaviour {
         sceneLoader = gameObject.GetComponent<SceneLoader>();
         
     }
-    private void Update()
+
+    public void playerChecker()
     {
-        if (playersAlive <= 1 & roundIsOver == false)
+        playersAlive -= 1;
+        if (playersAlive <= 1)
         {
-            roundIsOver = true;
             RoundOver();
         }
     }
 
     public void newGame()
     {
+        StatHolder.HowManyPlayers = 2;
         NewRound();
         winsNeeded = 3;
     }
@@ -44,8 +44,8 @@ public class RoundManager : MonoBehaviour {
             {
                 sceneLoader.NewRandomScene();
                 RoundStart();
-            GameOver();
             }
+
         else
         {
             sceneLoader.ReloadScene();
@@ -57,8 +57,7 @@ public class RoundManager : MonoBehaviour {
 
         //    RoundStart();
         //}
-        playersAlive = 2;
-        roundIsOver = false;
+        playersAlive = StatHolder.HowManyPlayers;
     }
 
     public void RoundStart()
@@ -69,28 +68,37 @@ public class RoundManager : MonoBehaviour {
 
     public void RoundOver()
     {
-        //Freeze eveything
+        //Freeze eveything or do some other kind of ending stuff
 
-        if(StatHolder.Player1Wins >= winsNeeded || StatHolder.Player2Wins >= winsNeeded)
+
+
+        //Change this to accomodate the corresponding player
+        StatHolder.Player1Wins += 1;
+
+        if (StatHolder.Player1Wins >= winsNeeded || StatHolder.Player2Wins >= winsNeeded)
         {
-            GameOver();
+            //Game is over
+            roundWon.SetActive(true);
+            StartCoroutine(BackToMenu());
         }
         else
         {
             roundWon.SetActive(true);
-            NewRound();
+            StartCoroutine(NextRound());
         }
     }
 
-    public void GameOver()
+    IEnumerator NextRound()
     {
-        roundWon.SetActive(true);
-        StartCoroutine(BackToMenu());
+        yield return new WaitForSeconds(5);
+        roundWon.SetActive(false);
+        NewRound();
     }
 
     IEnumerator BackToMenu()
     {
         yield return new WaitForSeconds(5);
+        roundWon.SetActive(false);
         sceneLoader.MenuScene();
     }
 }

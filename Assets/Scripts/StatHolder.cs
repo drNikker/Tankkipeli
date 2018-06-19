@@ -1,6 +1,6 @@
 ﻿public static class StatHolder
 {
-    private static int player1Wins, player2Wins;
+    private static int player1Wins, player2Wins, howManyPlayers;
 
     public static int Player1Wins 
     {
@@ -24,6 +24,16 @@
             player2Wins = value;
         }
     }
-
+    public static int HowManyPlayers
+    {
+        get
+        {
+            return howManyPlayers;
+        }
+        set
+        {
+            howManyPlayers = value;
+        }
+    }
 
 }

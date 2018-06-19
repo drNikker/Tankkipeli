@@ -39,6 +39,7 @@ public class SceneLoader : MonoBehaviour
     public void MenuScene()
     {
         SceneManager.LoadScene("Menu");
+        StatHolder.HowManyPlayers = 0;
         StatHolder.Player1Wins = 0;
         StatHolder.Player2Wins = 0;
         Destroy(this.gameObject);

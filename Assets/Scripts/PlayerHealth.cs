@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
+    RoundManager roundManager;
 
-    float maxHealth = 100;
+    float maxHealth = 50;
     float currHealth = 100;
     bool lastStand = false;
 
 	// Use this for initialization
 	void Start () {
+        roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
         currHealth = maxHealth;
 	}
 	
@@ -54,6 +56,7 @@ public class PlayerHealth : MonoBehaviour {
             rag.RagdollMode();
         }
         //Game needs to recive info about player death
+        roundManager.playerChecker();
     }
 
 }
