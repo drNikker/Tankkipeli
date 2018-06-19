@@ -5,16 +5,20 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
 
-    int winsNeeded;
+    int winsNeeded = 3;
     int playersAlive;
 
-    bool roundIsOver = false;
+    bool roundIsOver = true;
     bool randomMap = true;
     //bool mapSet = false;
+
+    public GameObject roundWon;
+    
 
     private void Start()
     {
         sceneLoader = gameObject.GetComponent<SceneLoader>();
+        
     }
     private void Update()
     {
@@ -40,6 +44,7 @@ public class RoundManager : MonoBehaviour {
             {
                 sceneLoader.NewRandomScene();
                 RoundStart();
+            GameOver();
             }
         else
         {
@@ -52,7 +57,8 @@ public class RoundManager : MonoBehaviour {
 
         //    RoundStart();
         //}
-        playersAlive = 1;
+        playersAlive = 2;
+        roundIsOver = false;
     }
 
     public void RoundStart()
@@ -71,14 +77,20 @@ public class RoundManager : MonoBehaviour {
         }
         else
         {
-
+            roundWon.SetActive(true);
             NewRound();
         }
     }
 
     public void GameOver()
     {
-
+        roundWon.SetActive(true);
+        StartCoroutine(BackToMenu());
     }
 
+    IEnumerator BackToMenu()
+    {
+        yield return new WaitForSeconds(5);
+        sceneLoader.MenuScene();
+    }
 }
