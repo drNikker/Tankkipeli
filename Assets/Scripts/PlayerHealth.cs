@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour {
 
     float maxHealth = 100;
     float currHealth = 100;
+    bool lastStand = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,9 +17,21 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage(float damage)
     {
         currHealth -= damage;
+        CheckHP(currHealth);
         if (currHealth <= 0)            //If out of hp, kill player
         {
             KillPlayer();
+        }
+    }
+
+    void CheckHP(float hp)
+    {
+        if (hp <= 25 && lastStand == false)
+        {
+            lastStand = true;
+            currHealth = 25;
+            HatRemover hat = GetComponentInChildren<HatRemover>();
+            hat.RemoveHat();
         }
     }
 
