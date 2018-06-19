@@ -51,17 +51,6 @@ public class FistScript : MonoBehaviour
         }
     }
 
-    /*
-    private void FixedUpdate()
-    {
-        if (plöö)
-        {
-            movePosition = earlierPosition;
-            punchRB.MovePosition(movePosition);
-        }
-        
-    }*/
-
     private void PunchTimer()
     {
         punchTimerTime -= Time.deltaTime;
@@ -78,9 +67,9 @@ public class FistScript : MonoBehaviour
     {
         //float speed = punchSpeed * Time.deltaTime;
         
-        //punchRB.velocity = fist.transform.forward * punchSpeed;
+        punchRB.velocity = fist.transform.localPosition = new Vector3(0, 0.58f, 1 * punchSpeed);
 
-        punchRB.velocity = new Vector3(10, 0, 0) * punchSpeed;
+        //punchRB.velocity = new Vector3(10, 0, 0) * punchSpeed;
 
         fistDistanceTimer = true;
 
@@ -95,7 +84,6 @@ public class FistScript : MonoBehaviour
             punchRB.velocity = Vector3.zero;
             punchRB.angularVelocity = Vector3.zero;
 
-            //punchRB.isKinematic = true;
             holdOffTimer = true;
             fistDistanceTimer = false;
         }
@@ -116,10 +104,13 @@ public class FistScript : MonoBehaviour
 
     private void FistGoesBack()
     {
-        //plöö = true;
-        //transform.localPosition = new Vector3(-10, 0, 0);
+        //punchRB.velocity = fist.transform.position = new Vector3(-1, -0.2f, 0);
 
-        transform.position = Vector3.Lerp(transform.position, target.position, 10);
+        //punchRB.velocity = fist.transform.position = new Vector3(-1, 0.58f, -1 * punchSpeed);
+
+        //punchRB.velocity = Vector3.MoveTowards(transform.localPosition, target.position, 1) * punchSpeed;
+
+        transform.position = Vector3.Lerp(transform.position, target.position, 1);
         punchTimer = true;
     }
 }
