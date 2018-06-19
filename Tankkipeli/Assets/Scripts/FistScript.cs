@@ -7,26 +7,32 @@ public class FistScript : MonoBehaviour
     public GameObject fist;
     public Transform target;
 
-    public bool punchTimer;
+    protected bool punchTimer;
+    [Space(10)]
     public float punchTimerTime;
-    private float originalPunchTimerTime;
-    private bool hasPunched;
+    protected float originalPunchTimerTime;
 
-    public bool fistDistanceTimer;
+    protected bool fistDistanceTimer;
     public float fistDistanceTimerTime;
-    private float originalFistDistanceTimerTime;
+    protected float originalFistDistanceTimerTime;
 
-    public bool holdOffTimer;
+    protected bool holdOffTimer;
     public float holdOffTimerTime;
-    private float originalHoldOffTimerTime;
+    protected float originalHoldOffTimerTime;
 
+    [Space(10)]
     public float punchSpeed;
+
+    [Space(10)]
+    public float x;
+    public float y;
+    public float z;
 
     private Rigidbody punchRB;
 
-    void Start()
+    protected virtual void Start()
     {
-        punchRB = GetComponent<Rigidbody>();
+        punchRB = fist.GetComponent<Rigidbody>();
 
         punchTimer = true;
         originalPunchTimerTime = punchTimerTime;
@@ -35,39 +41,20 @@ public class FistScript : MonoBehaviour
 
     void Update()
     {
-        if (punchTimer)
+        /*
+        currentPos = target.transform.localPosition;
+        if (plöö)
         {
-            PunchTimer();
-        }
-
-        if (fistDistanceTimer == true)
-        {
-            FistDistanceTimer();
-        }
-
-        if (holdOffTimer == true)
-        {
-            HoldOffTimer();
-        }
+            Debug.Log(currentPos);
+            Vector3 pos = new Vector3(target.transform.localPosition.x, target.transform.localPosition.y * punchSpeed, target.transform.localPosition.z);
+            transform.position = pos;
+            plöö = false;
+        }*/
     }
 
-    private void PunchTimer()
-    {
-        punchTimerTime -= Time.deltaTime;
-
-        if (punchTimerTime <= 0)
-        {
-            Punch();
-            punchTimerTime = originalPunchTimerTime;
-            punchTimer = false;
-        }
-    }
-
-    private void Punch()
-    {
-        //float speed = punchSpeed * Time.deltaTime;
-        
-        punchRB.velocity = fist.transform.localPosition = new Vector3(0, 0.58f, 1 * punchSpeed);
+    protected void Punch(float x, float y, float z)
+    {   
+        punchRB.velocity = fist.transform.localPosition = new Vector3(x, y, z * punchSpeed);
 
         //punchRB.velocity = new Vector3(10, 0, 0) * punchSpeed;
 
@@ -75,7 +62,7 @@ public class FistScript : MonoBehaviour
 
     }
 
-    private void FistDistanceTimer()
+    protected void FistDistanceTimer()
     {
         fistDistanceTimerTime -= Time.deltaTime;
 
@@ -89,20 +76,9 @@ public class FistScript : MonoBehaviour
         }
     }
 
-    private void HoldOffTimer()
-    {
-        holdOffTimerTime -= Time.deltaTime;
+    
 
-        if (holdOffTimerTime <= 0)
-        {
-            //punchRB.isKinematic = false;
-            FistGoesBack();
-            holdOffTimerTime = originalHoldOffTimerTime;
-            holdOffTimer = false;
-        }
-    }
-
-    private void FistGoesBack()
+    protected void FistGoesBack(Transform targetPOS)
     {
         //punchRB.velocity = fist.transform.position = new Vector3(-1, -0.2f, 0);
 
@@ -110,7 +86,7 @@ public class FistScript : MonoBehaviour
 
         //punchRB.velocity = Vector3.MoveTowards(transform.localPosition, target.position, 1) * punchSpeed;
 
-        transform.position = Vector3.Lerp(transform.position, target.position, 1);
+        transform.position = Vector3.Lerp(transform.position, targetPOS.position, 1);
         punchTimer = true;
     }
 }
