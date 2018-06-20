@@ -27,16 +27,21 @@ public class SpecificFistScript : FistScript
         {
             HoldOffTimer();
         }
+
+        if (plöö == true)
+        {
+            FistGoesBack(target);
+        }
     }
 
     protected void PunchTimer()
     {
-        punchTimerTime -= Time.deltaTime;
+        startPunchTimerTime -= Time.deltaTime;
 
-        if (punchTimerTime <= 0)
+        if (startPunchTimerTime <= 0)
         {
             Punch(x, y, z);
-            punchTimerTime = originalPunchTimerTime;
+            startPunchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
         }
     }
@@ -47,7 +52,8 @@ public class SpecificFistScript : FistScript
 
         if (holdOffTimerTime <= 0)
         {
-            FistGoesBack(target);
+            plöö = true;
+            //FistGoesBack(target);
             holdOffTimerTime = originalHoldOffTimerTime;
             holdOffTimer = false;
         }
