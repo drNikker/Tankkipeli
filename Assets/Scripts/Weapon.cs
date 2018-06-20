@@ -6,12 +6,13 @@ public class Weapon : MonoBehaviour {
 
     PlayerHealth health;
     Rigidbody tankBase;
+    Rigidbody weapon;
 
 
     public float baseDamage = 5;
-    public float dmgMultiplier = 1.2f;
+    public float dmgMultiplier = 2f;
     public float cooldownTime = 1;
-    public float knockback = 100;
+    float knockback = 2000;
 
     float cooldown;
     float finalDamage;
@@ -19,6 +20,7 @@ public class Weapon : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        weapon = GetComponent<Rigidbody>();
 	}
 	
 
@@ -33,10 +35,12 @@ public class Weapon : MonoBehaviour {
             {
                 finalDamage = 25;                                           //Damage is capped at 25 for now
             }
-            health.TakeDamage(finalDamage);
+            health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
+            print(collision.relativeVelocity.magnitude + " hit str");
+            print(finalDamage + " dmg");
             Vector3 dir = collision.transform.position - transform.position;
             dir.y = 0;
-            tankBase.AddForce(dir.normalized * (knockback * collision.relativeVelocity.magnitude));
+            tankBase.AddForce(dir.normalized * (knockback * weapon.mass * collision.relativeVelocity.magnitude));
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
         }
 
