@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class PhysicMovement : MonoBehaviour {
 
-    Rigidbody rb;
+    //Rigidbody rb;
     public GameObject left;
     //public GameObject left2;
     public GameObject right;
     //public GameObject right2;
 
-    ////wheel colliders
-    //public WheelCollider leftWC1;
-    //public WheelCollider leftWC2;
-    //public WheelCollider rightWC1;
-    //public WheelCollider rightWC2;
+    //wheel colliders
+    public WheelCollider leftWC1;
+    public WheelCollider leftWC2;
+    public WheelCollider rightWC1;
+    public WheelCollider rightWC2;
 
 
     public float speed;
     public float turn;
+    public float brakeForce;
 
+    float brakeTorq;
     float rightThrust;
     float leftThrust;
+    
 
     public string player;
 
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
 
         //leftWC1 = left.GetComponent<WheelCollider>();
         //leftWC2 = left2.GetComponent<WheelCollider>();
@@ -50,7 +53,7 @@ public class PhysicMovement : MonoBehaviour {
 
         rightThrust = 0;
         leftThrust = 0;
-
+        brakeTorq = 0;
         //rightWC1.motorTorque = 0;
         //rightWC2.motorTorque = 0;
         //leftWC1.motorTorque = 0;
@@ -59,27 +62,37 @@ public class PhysicMovement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB"))
         {
-            rightThrust += 1;
+            rightThrust += speed;
             //rightWC1.motorTorque = 50;
             //rightWC2.motorTorque = 50;
         }
         if (Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB"))
         {
-            leftThrust += 1;
+            leftThrust += speed;
             //leftWC1.motorTorque = 50;
             //leftWC2.motorTorque = 50;
         }
         if (Input.GetKey(KeyCode.Keypad6) || RT)
         {
-            rightThrust -= 1;
+            rightThrust -= speed;
             //rightWC1.motorTorque = -50;
             //rightWC2.motorTorque = -50;
         }
         if (Input.GetKey(KeyCode.Keypad4) || LT)
         {
-            leftThrust -= 1;
+            leftThrust -= speed;
             //leftWC1.motorTorque = -50;
             //leftWC2.motorTorque = -50;
+        }
+
+        //if ((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB")) || (Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB")) || (Input.GetKey(KeyCode.Keypad6) || RT) || (Input.GetKey(KeyCode.Keypad4) || LT))
+        //{
+        //    brakeTorq = 1000;
+        //}
+
+        if (rightThrust == 0 && leftThrust == 0)
+        {
+            brakeTorq = brakeForce;
         }
     }
 
@@ -90,14 +103,19 @@ public class PhysicMovement : MonoBehaviour {
 
     void Move()
     {
-        Vector3 direction = rb.transform.position - transform.position;
-        rb.AddForceAtPosition(left.transform.forward * speed * leftThrust, left.transform.position);
-        rb.AddForceAtPosition(right.transform.forward * speed * rightThrust, right.transform.position);
+        //Vector3 direction = rb.transform.position - transform.position;
+        //rb.AddForceAtPosition(left.transform.forward * speed * leftThrust, left.transform.position);
+        //rb.AddForceAtPosition(right.transform.forward * speed * rightThrust, right.transform.position);
 
-        //rightWC1.motorTorque = rightThrust;
-        //rightWC2.motorTorque = rightThrust;
-        //leftWC1.motorTorque = leftThrust;
-        //leftWC2.motorTorque = leftThrust;
+        rightWC1.motorTorque = rightThrust;
+        rightWC2.motorTorque = rightThrust;
+        leftWC1.motorTorque = leftThrust;
+        leftWC2.motorTorque = leftThrust;
+
+        rightWC1.brakeTorque = brakeTorq;
+        rightWC2.brakeTorque = brakeTorq;
+        leftWC1.brakeTorque = brakeTorq;
+        leftWC2.brakeTorque = brakeTorq;
 
     }
 
