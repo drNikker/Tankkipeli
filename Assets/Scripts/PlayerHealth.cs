@@ -8,20 +8,22 @@ public class PlayerHealth : MonoBehaviour {
     float maxHealth = 26;
     float currHealth = 100;
     bool lastStand = false;
-    [HideInInspector]
-    public bool isAlive = true;
+    //[HideInInspector]
+    public PLAYER_STATE currentState;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);
-	}
+        currentState = PLAYER_STATE.ALIVE;
+        GetPlayerState();
+    }
 	
 
     public void TakeDamage(float damage)
     {
-        if (isAlive)
+        if (currentState != PLAYER_STATE.DEAD)
         {
             currHealth -= damage;
             CheckHP(currHealth);
@@ -34,7 +36,7 @@ public class PlayerHealth : MonoBehaviour {
 
     void CheckHP(float hp)
     {
-        if (isAlive)
+        if (currentState != PLAYER_STATE.DEAD)
         {
             if (hp <= 25 && lastStand == false)
             {
@@ -47,28 +49,77 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     void KillPlayer()
-    {                                                           //Disable player scripts
-        GetComponent<PhysicMovement>().enabled = false;
-        HandForce[] hands = GetComponentsInChildren<HandForce>();
-        foreach(HandForce hf in hands)
-        {
-            hf.enabled = false;
-        }
-        HeadUpright[] uprights = GetComponentsInChildren<HeadUpright>();
-        foreach (HeadUpright up in uprights)
-        {
-            up.enabled = false;
-        }
-        FullRagdollMode[] ragmode = GetComponentsInChildren<FullRagdollMode>();
-        foreach (FullRagdollMode rag in ragmode)
-        {
-            rag.RagdollMode();
-        }
+    {
+        currentState = PLAYER_STATE.DEAD;
+        GetPlayerState();
         //Game needs to recive info about player death
         roundManager.playerChecker();
-        isAlive = false;
         roundManager.alivePlayers.Remove(this.gameObject);
         
     }
 
+    public enum PLAYER_STATE
+    {
+        ALIVE,
+        STUNNED,
+        DEAD,
+    }
+    public void ValueChangeCheck()
+    {
+
+    }
+
+    public void GetPlayerState()
+    {
+        HandForce[] hands = GetComponentsInChildren<HandForce>();
+        HeadUpright[] uprights = GetComponentsInChildren<HeadUpright>();
+        FullRagdollMode[] ragmode = GetComponentsInChildren<FullRagdollMode>();
+
+        switch (currentState)
+        {
+            case PLAYER_STATE.ALIVE:
+                GetComponent<PhysicMovement>().enabled = true;
+                foreach (HandForce hf in hands)
+                {
+                    hf.enabled = true;
+                }
+                foreach (HeadUpright up in uprights)
+                {
+                    up.enabled = true;
+                }
+
+                break;
+
+            case PLAYER_STATE.STUNNED:
+
+                GetComponent<PhysicMovement>().enabled = false;
+                foreach (HandForce hf in hands)
+                {
+                    hf.enabled = false;
+                }
+                foreach (HeadUpright up in uprights)
+                {
+                    up.enabled = false;
+                }
+                break;
+
+            case PLAYER_STATE.DEAD:
+                
+                GetComponent<PhysicMovement>().enabled = false;
+                foreach (HandForce hf in hands)
+                {
+                    hf.enabled = false;
+                }
+                foreach (HeadUpright up in uprights)
+                {
+                    up.enabled = false;
+                }
+                foreach (FullRagdollMode rag in ragmode)
+                {
+                    rag.RagdollMode();
+                }
+                break;
+        }
+      
+    }
 }
