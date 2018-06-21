@@ -10,7 +10,6 @@ public class SpecificFistScript : FistScript
         base.Start();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (punchTimer == true)
@@ -28,21 +27,34 @@ public class SpecificFistScript : FistScript
             HoldOffTimer();
         }
 
-        if (plöö == true)
+        if (fistGoesBack == true)
         {
             FistGoesBack(target);
+        }
+
+        if (startPunching == true)
+        {
+            Punch(x, y, z);
         }
     }
 
     protected void PunchTimer()
     {
+        transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
         startPunchTimerTime -= Time.deltaTime;
+
+        if (startPunchTimerTime <= stopRotation)
+        {
+            transform.root.gameObject.GetComponent<CannonScrit>().rotate = false;
+        }
 
         if (startPunchTimerTime <= 0)
         {
-            Punch(x, y, z);
+            anim.SetTrigger("Punch");
+            //startPunching = true;
             startPunchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
+            holdOffTimer = true;
         }
     }
 
@@ -52,9 +64,9 @@ public class SpecificFistScript : FistScript
 
         if (holdOffTimerTime <= 0)
         {
-            plöö = true;
-            //FistGoesBack(target);
+            //fistGoesBack = true;
             holdOffTimerTime = originalHoldOffTimerTime;
+            punchTimer = true;
             holdOffTimer = false;
         }
     }

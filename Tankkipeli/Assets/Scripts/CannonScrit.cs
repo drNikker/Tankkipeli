@@ -8,15 +8,18 @@ public class CannonScrit : MonoBehaviour
     
     public float rotationSpeed;
 
-    // Use this for initialization
+    public bool rotate;
+
     void Start()
     {
-       
+        rotate = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        boneToRot.transform.Rotate(0, rotationSpeed, 0 * Time.deltaTime);
+        if (rotate == true)
+        {
+            boneToRot.transform.Rotate(0, rotationSpeed, 0 * Time.deltaTime);
+        }
     }
 }

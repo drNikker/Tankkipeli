@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FistScript : MonoBehaviour
 {
-    public bool plöö;
-
     public GameObject fist;
     public Transform target;
+
+    private Rigidbody punchRB;
 
     protected bool punchTimer;
     [Space(10)]
@@ -30,15 +30,23 @@ public class FistScript : MonoBehaviour
     public float y;
     public float z;
 
-    private Rigidbody punchRB;
+    public bool startPunching;
+    public bool fistGoesBack;
 
     public float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
+
+    private Vector3 localPos;
+
+    public Animator anim;
+
+    public float stopRotation;
 
     protected virtual void Start()
     {
         punchRB = gameObject.GetComponent<Rigidbody>();
 
+        anim = transform.root.gameObject.GetComponent<Animator>();
         punchTimer = true;
 
         originalFistDistanceTimerTime = fistDistanceTimerTime;
@@ -53,11 +61,14 @@ public class FistScript : MonoBehaviour
     protected void Punch(float x, float y, float z)
     {
         punchRB.velocity = fist.transform.localPosition = new Vector3(x, y, z * punchSpeed);
-
-        //punchRB.velocity = new Vector3(10, 0, 0) * punchSpeed;
-
         fistDistanceTimer = true;
 
+        /*
+        if (transform.position == targetPos.position)
+        {
+            startPunching = false;
+        }
+        */
     }
 
     protected void FistDistanceTimer()
@@ -71,6 +82,7 @@ public class FistScript : MonoBehaviour
 
             fistDistanceTimerTime = originalFistDistanceTimerTime;
 
+            startPunching = false;
             holdOffTimer = true;
             fistDistanceTimer = false;
         }
@@ -78,10 +90,6 @@ public class FistScript : MonoBehaviour
 
     protected void FistGoesBack(Transform targetPOS)
     {
-        //punchRB.velocity = fist.transform.position = new Vector3(-1, -0.2f, 0);
-
-        //punchRB.velocity = fist.transform.position = new Vector3(-1, 0.58f, -1 * punchSpeed);
-
         //punchRB.velocity = Vector3.MoveTowards(transform.localPosition, targetPOS.position, 1) * punchSpeed * Time.deltaTime;
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPOS.position, ref velocity, smoothTime);
@@ -90,7 +98,7 @@ public class FistScript : MonoBehaviour
 
         if (transform.position == targetPOS.position)
         {
-            plöö = false;
+            fistGoesBack = false;
         }
 
         punchTimer = true;
