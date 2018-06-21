@@ -37,16 +37,13 @@ public class RoundManager : MonoBehaviour {
     public void newGame()
     {
         StatHolder.HowManyPlayers = 2;
-        StatHolder.WinsNeeded = 4;
-        StatHolder.WitchSet = Random.Range(1, 3);
+        StatHolder.WinsNeeded = 6;
+        StatHolder.WitchSet = Random.Range(1, 4);
         NewRound();
-
     }
 
     public void NewRound()
     {
-
-        //Replace this with switch case function where cases are different mapsets or random map and default is reload?
 
         //if (randomMap == true)
         //    {
@@ -58,7 +55,6 @@ public class RoundManager : MonoBehaviour {
         //{
         //    sceneLoader.ReloadScene();
         //}
-
 
         switch (StatHolder.WitchSet)
         {
@@ -75,19 +71,10 @@ public class RoundManager : MonoBehaviour {
                 RoundStart();
                 break;
             default:
-                //sceneLoader.NewRandomScene();
-                //RoundStart();
+                sceneLoader.NewRandomScene();
+                RoundStart();
                 break;
         }
-
-
-
-                //This may be used if we have a set of maps that the players have chosen
-                //if (mapSet)
-                //{
-                //    sceneLoader.NextSetScene();
-                //    RoundStart();
-                //}
 
                 playersAlive = StatHolder.HowManyPlayers;
     }

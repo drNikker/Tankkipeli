@@ -7,34 +7,29 @@ using UnityEngine;
 public class SceneLoader : MonoBehaviour
 {
     RoundManager roundManager;
-    //List<String> mapSet1;
-    //List<Scene> mapSet2;
-    //List<Scene> mapSet3;
-    Scene[] mapSet1;
-    Scene[] mapSet2;
-    Scene[] mapSet3;
+    List<string> mapSet1 = new List<string>();
+    List<string> mapSet2 = new List<string>();
+    List<string> mapSet3 = new List<string>();
+
 
     private void Start()
     {
         roundManager = gameObject.GetComponent<RoundManager>();
         ////Map set 1
-        mapSet1[1] = SceneManager.GetSceneByBuildIndex(1);
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(1));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(2));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(3));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(4));
-        ////Map set 2
-        mapSet2[1] = SceneManager.GetSceneByBuildIndex(5);
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(5));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(6));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(7));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(8));
-        ////Map set 3
-        mapSet3[1] = SceneManager.GetSceneByBuildIndex(9);
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(9));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(10));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(11));
-        //mapSet1.Add(SceneManager.GetSceneByBuildIndex(12));
+        mapSet1.Add("GladiatorLevel1");
+        mapSet1.Add("GladiatorLevel2");
+        mapSet1.Add("GladiatorLevel3");
+        mapSet1.Add("GladiatorLevel4");
+        //Map set 2
+        mapSet2.Add("DiscoLevel1");
+        mapSet2.Add("DiscoLevel2");
+        mapSet2.Add("DiscoLevel3");
+        mapSet2.Add("DiscoLevel4");
+        //Map set 3
+        mapSet3.Add("MedievalLevel1");
+        mapSet3.Add("MedievalLevel2");
+        mapSet3.Add("MedievalLevel3");
+        mapSet3.Add("MedievalLevel4");
 
     }
 
@@ -65,9 +60,7 @@ public class SceneLoader : MonoBehaviour
         StatHolder.Player1Wins = 0;
         StatHolder.Player2Wins = 0;
         StatHolder.WinsNeeded = 0;
-        StatHolder.RoundNumber = 1;
-        //Destroy(this.gameObject);
-
+        StatHolder.RoundNumber = 0;
     }
 
     //Reloads the scene
@@ -78,10 +71,10 @@ public class SceneLoader : MonoBehaviour
     }
 
     //Assigns a random scene to load (excluding the menu scene)
-    //public void NewRandomScene()
-    //{
-    //    SceneManager.LoadScene(Random.Range(1,12));
-    //}
+    public void NewRandomScene()
+    {
+        SceneManager.LoadScene(Random.Range(1, 12));
+    }
 
     //Loads the next scene in a given set of scenes (arenas)
     public void NextSetScene(int setNumber)
@@ -89,37 +82,39 @@ public class SceneLoader : MonoBehaviour
         switch (setNumber)
         {
             case 1:
-                if (StatHolder.RoundNumber > mapSet1.Length)
+                if (StatHolder.RoundNumber > mapSet1.Count -1)
                 {
-                    StatHolder.RoundNumber = 1;
-                    SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber].name);
+                    StatHolder.RoundNumber = 0;
+                    //SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set(can be the same set)
+                    NextSetScene(Random.Range(1, 4));
                 }
                 else
                 {
-                    SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber].name);
-
+                    SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber]);   
                 }
                 break;
             case 2:
-                if (StatHolder.RoundNumber > mapSet1.Length)
+                if (StatHolder.RoundNumber > mapSet2.Count -1)
                 {
-                    StatHolder.RoundNumber = 1;
-                    SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber].name);
+                    StatHolder.RoundNumber = 0;
+                    //SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set(can be the same set)
+                    NextSetScene(Random.Range(1,4));
                 }
                 else
                 {
-                    SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber].name);
+                    SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber]);
                 }
                 break;
             case 3:
-                if (StatHolder.RoundNumber > mapSet1.Length)
+                if (StatHolder.RoundNumber > mapSet3.Count -1)
                 {
-                    StatHolder.RoundNumber = 1;
-                    SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber].name);
+                    StatHolder.RoundNumber = 0;
+                    //SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set(can be the same set)
+                    NextSetScene(Random.Range(1,4));
                 }
                 else
                 {
-                    SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber].name);
+                    SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]);
                 }
                 break;
             default:

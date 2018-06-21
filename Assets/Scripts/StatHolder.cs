@@ -1,6 +1,6 @@
 ﻿public static class StatHolder
 {
-    private static int player1Wins, player2Wins, howManyPlayers, roundNumber = 1, witchSet, winsNeeded = 3;
+    private static int player1Wins, player2Wins, howManyPlayers, roundNumber, witchSet, winsNeeded = 3;
 
     public static int Player1Wins
     {
