@@ -21,7 +21,11 @@ public class PhysicMovement : MonoBehaviour {
     public float turn;
     public float brakeForce;
 
+    [SerializeField]
     float brakeTorq;
+
+
+
     float rightThrust;
     float leftThrust;
     
@@ -90,7 +94,9 @@ public class PhysicMovement : MonoBehaviour {
         //    brakeTorq = 1000;
         //}
 
-        if (rightThrust == 0 && leftThrust == 0)
+        //@@@@@@@@@@@@@@@@@@@@@@@@@ BRAKE TORQ
+
+        if (rightThrust == 0 || leftThrust == 0)
         {
             brakeTorq = brakeForce;
         }
@@ -107,15 +113,39 @@ public class PhysicMovement : MonoBehaviour {
         //rb.AddForceAtPosition(left.transform.forward * speed * leftThrust, left.transform.position);
         //rb.AddForceAtPosition(right.transform.forward * speed * rightThrust, right.transform.position);
 
+        if (rightThrust == 0)
+        {
+            rightWC1.brakeTorque = brakeTorq;
+            rightWC2.brakeTorque = brakeTorq;
+        }
+        else
+        {
+            rightWC1.brakeTorque = 0;
+            rightWC2.brakeTorque = 0;
+        }
+
+        if (leftThrust == 0)
+        {
+            leftWC1.brakeTorque = brakeTorq;
+            leftWC2.brakeTorque = brakeTorq;
+        }
+        else
+        {
+            leftWC1.brakeTorque = 0;
+            leftWC2.brakeTorque = 0;
+        }
+        
+
         rightWC1.motorTorque = rightThrust;
         rightWC2.motorTorque = rightThrust;
         leftWC1.motorTorque = leftThrust;
         leftWC2.motorTorque = leftThrust;
+        
 
-        rightWC1.brakeTorque = brakeTorq;
-        rightWC2.brakeTorque = brakeTorq;
-        leftWC1.brakeTorque = brakeTorq;
-        leftWC2.brakeTorque = brakeTorq;
+        //rightWC1.brakeTorque = brakeTorq;
+        //rightWC2.brakeTorque = brakeTorq;
+        //leftWC1.brakeTorque = brakeTorq;
+        //leftWC2.brakeTorque = brakeTorq;
 
     }
 
