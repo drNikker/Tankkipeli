@@ -50,7 +50,12 @@ public class SpecificFistScript : FistScript
 
         if (startPunchTimerTime <= 0)
         {
-            anim.SetTrigger("Punch");
+            for (int i = 0; i < gameobjects.Length; i++)
+            {
+                animationName = gameobjects[i];
+            }
+
+            anim.SetTrigger("animationClip");
             //startPunching = true;
             startPunchTimerTime = defaultPunchTimerTime;
             punchTimer = false;

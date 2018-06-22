@@ -7,6 +7,11 @@ public class FistScript : MonoBehaviour
     public GameObject fist;
     public Transform target;
 
+    public AnimationClip animationClip;
+
+    public GameObject[] gameobjects;
+    public string animationName;
+
     private Rigidbody punchRB;
 
     protected bool punchTimer;
