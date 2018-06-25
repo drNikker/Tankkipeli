@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour {
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);
         currentState = PLAYER_STATE.ALIVE;
-        GetPlayerState();
+        SetPlayerState();
     }
 	
 
@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour {
     void KillPlayer()
     {
         currentState = PLAYER_STATE.DEAD;
-        GetPlayerState();
+        SetPlayerState();
         //Game needs to recive info about player death
         roundManager.playerChecker();
         roundManager.alivePlayers.Remove(this.gameObject);
@@ -64,12 +64,9 @@ public class PlayerHealth : MonoBehaviour {
         STUNNED,
         DEAD,
     }
-    public void ValueChangeCheck()
-    {
 
-    }
 
-    public void GetPlayerState()
+    public void SetPlayerState()
     {
         HandForce[] hands = GetComponentsInChildren<HandForce>();
         HeadUpright[] uprights = GetComponentsInChildren<HeadUpright>();
