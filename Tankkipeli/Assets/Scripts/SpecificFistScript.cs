@@ -8,6 +8,8 @@ public class SpecificFistScript : FistScript
     protected override void Start()
     {
         base.Start();
+
+        //anim.speed = punchSpeed;
     }
 
     void Update()
@@ -17,24 +19,9 @@ public class SpecificFistScript : FistScript
             PunchTimer();
         }
 
-        if (fistDistanceTimer == true)
-        {
-            FistDistanceTimer();
-        }
-
         if (holdOffTimer == true)
         {
             HoldOffTimer();
-        }
-
-        if (fistGoesBack == true)
-        {
-            FistGoesBack(target);
-        }
-
-        if (startPunching == true)
-        {
-            Punch(x, y, z);
         }
     }
 
@@ -50,13 +37,7 @@ public class SpecificFistScript : FistScript
 
         if (startPunchTimerTime <= 0)
         {
-            for (int i = 0; i < gameobjects.Length; i++)
-            {
-                animationName = gameobjects[i];
-            }
-
-            anim.SetTrigger("animationClip");
-            //startPunching = true;
+            anim.SetTrigger("Punch");
             startPunchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
             holdOffTimer = true;
@@ -69,7 +50,6 @@ public class SpecificFistScript : FistScript
 
         if (holdOffTimerTime <= 0)
         {
-            //fistGoesBack = true;
             holdOffTimerTime = originalHoldOffTimerTime;
             punchTimer = true;
             holdOffTimer = false;

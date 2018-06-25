@@ -5,12 +5,6 @@ using UnityEngine;
 public class FistScript : MonoBehaviour
 {
     public GameObject fist;
-    public Transform target;
-
-    public AnimationClip animationClip;
-
-    public GameObject[] gameobjects;
-    public string animationName;
 
     private Rigidbody punchRB;
 
@@ -19,29 +13,15 @@ public class FistScript : MonoBehaviour
     public float startPunchTimerTime;
     public float defaultPunchTimerTime;
 
-    protected bool fistDistanceTimer;
-    public float fistDistanceTimerTime;
-    protected float originalFistDistanceTimerTime;
-
     protected bool holdOffTimer;
     public float holdOffTimerTime;
     protected float originalHoldOffTimerTime;
 
     [Space(10)]
-    public float punchSpeed;
+    public float damage;
 
     [Space(10)]
-    public float x;
-    public float y;
-    public float z;
-
-    public bool startPunching;
-    public bool fistGoesBack;
-
-    public float smoothTime = 0.3F;
-    private Vector3 velocity = Vector3.zero;
-
-    private Vector3 localPos;
+    public float punchSpeed;
 
     public Animator anim;
 
@@ -54,7 +34,6 @@ public class FistScript : MonoBehaviour
         anim = transform.root.gameObject.GetComponent<Animator>();
         punchTimer = true;
 
-        originalFistDistanceTimerTime = fistDistanceTimerTime;
         originalHoldOffTimerTime = holdOffTimerTime;
     }
 
@@ -63,6 +42,8 @@ public class FistScript : MonoBehaviour
 
     }
 
+   
+    /*
     protected void Punch(float x, float y, float z)
     {
         punchRB.velocity = fist.transform.localPosition = new Vector3(x, y, z * punchSpeed);
@@ -73,26 +54,10 @@ public class FistScript : MonoBehaviour
         {
             startPunching = false;
         }
-        */
-    }
+        
+    }*/
 
-    protected void FistDistanceTimer()
-    {
-        fistDistanceTimerTime -= Time.deltaTime;
-
-        if (fistDistanceTimerTime <= 0)
-        {
-            punchRB.velocity = Vector3.zero;
-            punchRB.angularVelocity = Vector3.zero;
-
-            fistDistanceTimerTime = originalFistDistanceTimerTime;
-
-            startPunching = false;
-            holdOffTimer = true;
-            fistDistanceTimer = false;
-        }
-    }
-
+    /*
     protected void FistGoesBack(Transform targetPOS)
     {
         //punchRB.velocity = Vector3.MoveTowards(transform.localPosition, targetPOS.position, 1) * punchSpeed * Time.deltaTime;
@@ -103,9 +68,10 @@ public class FistScript : MonoBehaviour
 
         if (transform.position == targetPOS.position)
         {
-            fistGoesBack = false;
+            //fistGoesBack = false;
         }
 
         punchTimer = true;
     }
+    */
 }

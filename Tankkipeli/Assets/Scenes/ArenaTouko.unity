@@ -178,34 +178,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &187949338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 187949339}
-  m_Layer: 0
-  m_Name: Target (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &187949339
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 187949338}
-  m_LocalRotation: {x: 0.5, y: -0.49999994, z: -0.5, w: -0.50000006}
-  m_LocalPosition: {x: 1.5, y: 0.58000004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 748393082}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &210940626 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 28e111e5ff2020941a6c03d818f33145, type: 3}
@@ -631,7 +603,7 @@ GameObject:
   - component: {fileID: 324854685}
   m_Layer: 0
   m_Name: Fist (1)
-  m_TagString: Untagged
+  m_TagString: Fist2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -647,7 +619,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 1878818809}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!114 &324854685
 MonoBehaviour:
@@ -657,24 +629,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 324854683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225fb98c62532c446b51268183c4c87a, type: 3}
+  m_Script: {fileID: 11500000, guid: fb7d4f6a96a1b9346b4eea20d55752e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 324854683}
-  target: {fileID: 651688370}
-  animationClip: {fileID: 0}
-  gameobjects: []
-  startPunchTimerTime: 4
+  animation: {fileID: 0}
+  startPunchTimerTime: 5
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: -3
-  y: 0.58
-  z: 0
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
+  damage: 0
+  punchSpeed: 1
   anim: {fileID: 2100372145}
   stopRotation: 2
 --- !u!54 &324854686
@@ -910,7 +874,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 748393082}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!114 &364957520
 MonoBehaviour:
@@ -924,20 +888,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 364957518}
-  target: {fileID: 1234096939}
-  animationClip: {fileID: 0}
-  gameobjects: []
+  animation: {fileID: 0}
   startPunchTimerTime: 4
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: -3
-  y: 0.58
-  z: 0
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
+  damage: 0
+  punchSpeed: 0
   anim: {fileID: 1529432665}
   stopRotation: 2
 --- !u!54 &364957521
@@ -1191,34 +1147,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &534781219
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 534781220}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &534781220
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 534781219}
-  m_LocalRotation: {x: -0.7071068, y: 0.0000000059766734, z: 0.000000034052196, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.58, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 748393082}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540907792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1247,7 @@ GameObject:
   - component: {fileID: 603351159}
   m_Layer: 0
   m_Name: Fist (2)
-  m_TagString: Untagged
+  m_TagString: Fist3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1335,7 +1263,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1878818809}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -180}
 --- !u!114 &603351159
 MonoBehaviour:
@@ -1345,24 +1273,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 603351157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225fb98c62532c446b51268183c4c87a, type: 3}
+  m_Script: {fileID: 11500000, guid: fb7d4f6a96a1b9346b4eea20d55752e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 603351157}
-  target: {fileID: 1462082890}
-  animationClip: {fileID: 0}
-  gameobjects: []
-  startPunchTimerTime: 4
+  animation: {fileID: 0}
+  startPunchTimerTime: 6
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: 0
-  y: 0.58
-  z: -1
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
+  damage: 0
+  punchSpeed: 3
   anim: {fileID: 2100372145}
   stopRotation: 2
 --- !u!54 &603351160
@@ -1435,34 +1355,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 603351157}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &651688369
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 651688370}
-  m_Layer: 0
-  m_Name: Target (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &651688370
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 651688369}
-  m_LocalRotation: {x: -0.5, y: -0.49999997, z: -0.50000006, w: 0.5}
-  m_LocalPosition: {x: -1.5, y: 0.58000004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1878818809}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &655768508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,20 +1694,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 752022303}
-  target: {fileID: 534781220}
-  animationClip: {fileID: 0}
-  gameobjects: []
+  animation: {fileID: 0}
   startPunchTimerTime: 4
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: 0
-  y: 0.58
-  z: 1
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.1
+  damage: 0
+  punchSpeed: 0
   anim: {fileID: 1529432665}
   stopRotation: 2
 --- !u!54 &752022309
@@ -1827,40 +1711,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!1 &759154923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 759154924}
-  m_Layer: 0
-  m_Name: Target (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &759154924
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 759154923}
-  m_LocalRotation: {x: 0.0000000017504794, y: -0.7071068, z: -0.7071068, w: 0.000000034052192}
-  m_LocalPosition: {x: 0, y: 0.5799999, z: -1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 748393082}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760707955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,34 +2884,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e29efa37c013f764eabd130e3e1502ae, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1234096938
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1234096939}
-  m_Layer: 0
-  m_Name: Target (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1234096939
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1234096938}
-  m_LocalRotation: {x: -0.5, y: -0.49999997, z: -0.50000006, w: 0.5}
-  m_LocalPosition: {x: -1.5, y: 0.58000004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 748393082}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252642117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,6 +3199,10 @@ Prefab:
       propertyPath: m_Name
       value: FourCannonSeparateFists
       objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: e29efa37c013f764eabd130e3e1502ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e29efa37c013f764eabd130e3e1502ae, type: 3}
   m_IsPrefabParent: 0
@@ -3421,7 +3253,7 @@ GameObject:
   - component: {fileID: 1421615186}
   m_Layer: 0
   m_Name: Fist (3)
-  m_TagString: Untagged
+  m_TagString: Fist4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3437,7 +3269,7 @@ Transform:
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 1878818809}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -270}
 --- !u!114 &1421615186
 MonoBehaviour:
@@ -3447,24 +3279,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1421615184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225fb98c62532c446b51268183c4c87a, type: 3}
+  m_Script: {fileID: 11500000, guid: fb7d4f6a96a1b9346b4eea20d55752e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 1421615184}
-  target: {fileID: 1651304716}
-  animationClip: {fileID: 0}
-  gameobjects: []
-  startPunchTimerTime: 4
+  animation: {fileID: 0}
+  startPunchTimerTime: 7
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: 3
-  y: 0.58
-  z: 0
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
+  damage: 0
+  punchSpeed: 1
   anim: {fileID: 2100372145}
   stopRotation: 2
 --- !u!54 &1421615187
@@ -3767,34 +3591,6 @@ Transform:
   m_Father: {fileID: 431408692}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1462082889
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1462082890}
-  m_Layer: 0
-  m_Name: Target (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1462082890
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1462082889}
-  m_LocalRotation: {x: 0.0000000017504794, y: -0.7071068, z: -0.7071068, w: 0.000000034052192}
-  m_LocalPosition: {x: 0, y: 0.5799999, z: -1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1878818809}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1529432663 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100026, guid: e29efa37c013f764eabd130e3e1502ae, type: 3}
@@ -3997,7 +3793,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 748393082}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -180}
 --- !u!114 &1637491945
 MonoBehaviour:
@@ -4011,20 +3807,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 1637491943}
-  target: {fileID: 759154924}
-  animationClip: {fileID: 0}
-  gameobjects: []
+  animation: {fileID: 0}
   startPunchTimerTime: 4
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: 0
-  y: 0.58
-  z: -1
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
+  damage: 0
+  punchSpeed: 0
   anim: {fileID: 1529432665}
   stopRotation: 2
 --- !u!54 &1637491946
@@ -4097,34 +3885,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1637491943}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1651304715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1651304716}
-  m_Layer: 0
-  m_Name: Target (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1651304716
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1651304715}
-  m_LocalRotation: {x: 0.5, y: -0.49999994, z: -0.5, w: -0.50000006}
-  m_LocalPosition: {x: 1.5, y: 0.58000004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1878818809}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1686166727
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,34 +3973,6 @@ Rigidbody:
 Transform:
   m_PrefabParentObject: {fileID: 400030, guid: 28e111e5ff2020941a6c03d818f33145, type: 3}
   m_PrefabInternal: {fileID: 389906495}
---- !u!1 &1760099180
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1760099181}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1760099181
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1760099180}
-  m_LocalRotation: {x: -0.7071068, y: 0.0000000059766734, z: 0.000000034052196, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.58, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1878818809}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1769112940
 GameObject:
   m_ObjectHideFlags: 0
@@ -4491,7 +4223,7 @@ Transform:
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 748393082}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -270}
 --- !u!114 &1829326324
 MonoBehaviour:
@@ -4505,20 +4237,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 1829326322}
-  target: {fileID: 187949339}
-  animationClip: {fileID: 0}
-  gameobjects: []
+  animation: {fileID: 0}
   startPunchTimerTime: 4
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: 3
-  y: 0.58
-  z: 0
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
+  damage: 0
+  punchSpeed: 0
   anim: {fileID: 1529432665}
   stopRotation: 2
 --- !u!54 &1829326325
@@ -4618,7 +4342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1878818809}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1852004482
 MonoBehaviour:
@@ -4632,24 +4356,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 0}
-  target: {fileID: 0}
-  animationClip: {fileID: 0}
-  gameobjects:
-  - {fileID: 2026734532}
-  - {fileID: 324854683}
-  - {fileID: 603351157}
-  - {fileID: 1651304715}
+  animation: {fileID: 0}
   startPunchTimerTime: 0
   defaultPunchTimerTime: 0
-  fistDistanceTimerTime: 0
   holdOffTimerTime: 0
+  damage: 0
   punchSpeed: 0
-  x: 0
-  y: 0
-  z: 0
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
   anim: {fileID: 0}
   stopRotation: 0
 --- !u!1 &1860350519 stripped
@@ -4849,7 +4561,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 748393082}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1923216465
 MonoBehaviour:
@@ -4863,20 +4575,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 0}
-  target: {fileID: 0}
-  animationClip: {fileID: 0}
-  gameobjects: []
+  animation: {fileID: 0}
   startPunchTimerTime: 0
   defaultPunchTimerTime: 0
-  fistDistanceTimerTime: 0
   holdOffTimerTime: 0
+  damage: 0
   punchSpeed: 0
-  x: 0
-  y: 0
-  z: 0
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.3
   anim: {fileID: 0}
   stopRotation: 0
 --- !u!1 &1998247180 stripped
@@ -5055,7 +4759,7 @@ GameObject:
   - component: {fileID: 2026734534}
   m_Layer: 0
   m_Name: Fist
-  m_TagString: Untagged
+  m_TagString: Fist1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5081,24 +4785,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026734532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225fb98c62532c446b51268183c4c87a, type: 3}
+  m_Script: {fileID: 11500000, guid: fb7d4f6a96a1b9346b4eea20d55752e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 2026734532}
-  target: {fileID: 1760099181}
-  animationClip: {fileID: 0}
-  gameobjects: []
+  animation: {fileID: 0}
   startPunchTimerTime: 4
   defaultPunchTimerTime: 8
-  fistDistanceTimerTime: 1
   holdOffTimerTime: 4
-  punchSpeed: 3.5
-  x: 0
-  y: 0.58
-  z: 1
-  startPunching: 0
-  fistGoesBack: 0
-  smoothTime: 0.1
+  damage: 0
+  punchSpeed: 3
   anim: {fileID: 2100372145}
   stopRotation: 2
 --- !u!54 &2026734535
