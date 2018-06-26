@@ -11,6 +11,25 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1578141111302894}
   m_IsPrefabParent: 1
+--- !u!1 &1387371735415386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4013757216886950}
+  - component: {fileID: 54908695277748116}
+  - component: {fileID: 136688545778144210}
+  - component: {fileID: 138202734237108212}
+  - component: {fileID: 114185466598329268}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1578141111302894
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,8 +41,6 @@ GameObject:
   - component: {fileID: 33111784776789402}
   - component: {fileID: 23156178635869554}
   - component: {fileID: 54356432671975554}
-  - component: {fileID: 136779414378983184}
-  - component: {fileID: 114210661180718986}
   - component: {fileID: 153915965550409644}
   m_Layer: 0
   m_Name: BAMFhammer
@@ -32,19 +49,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4013757216886950
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387371735415386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4639419830872898}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4639419830872898
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578141111302894}
-  m_LocalRotation: {x: 0.44800714, y: -0.5470739, z: -0.44800687, w: 0.5470738}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.11, y: 0.2, z: 0}
+  m_LocalScale: {x: 0.33333343, y: 0.3333335, z: 0.33333346}
+  m_Children:
+  - {fileID: 4013757216886950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: -78.629005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!23 &23156178635869554
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -96,6 +127,21 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578141111302894}
   serializedVersion: 2
+  m_Mass: 0.01
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!54 &54908695277748116
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387371735415386}
+  serializedVersion: 2
   m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
@@ -104,12 +150,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114210661180718986
+--- !u!114 &114185466598329268
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578141111302894}
+  m_GameObject: {fileID: 1387371735415386}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
@@ -118,12 +164,12 @@ MonoBehaviour:
   baseDamage: 5
   dmgMultiplier: 2.5
   cooldownTime: 1
---- !u!136 &136779414378983184
+--- !u!136 &136688545778144210
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578141111302894}
+  m_GameObject: {fileID: 1387371735415386}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -131,6 +177,19 @@ CapsuleCollider:
   m_Height: 3.9
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 3.85}
+--- !u!138 &138202734237108212
+FixedJoint:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387371735415386}
+  m_ConnectedBody: {fileID: 54356432671975554}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!153 &153915965550409644
 ConfigurableJoint:
   m_ObjectHideFlags: 1
@@ -141,7 +200,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000048428774, y: 1.6611903, z: -0.00000003050468}
+  m_ConnectedAnchor: {x: 0.110000014, y: 0.20000044, z: 0.0000002756715}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
