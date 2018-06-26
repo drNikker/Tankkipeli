@@ -1,14 +1,14 @@
 ﻿public static class StatHolder
 {
-    private static int player1Wins, player2Wins;
+    private static int player1Wins, player2Wins, howManyPlayers, roundNumber, witchSet, winsNeeded = 3;
 
-    public static int Player1Wins 
+    public static int Player1Wins
     {
-        get 
+        get
         {
             return player1Wins;
         }
-        set 
+        set
         {
             player1Wins = value;
         }
@@ -24,6 +24,49 @@
             player2Wins = value;
         }
     }
+    public static int HowManyPlayers
+    {
+        get
+        {
+            return howManyPlayers;
+        }
+        set
+        {
+            howManyPlayers = value;
+        }
+    }
 
-
+    public static int WinsNeeded
+    {
+        get
+        {
+            return winsNeeded;
+        }
+        set
+        {
+            winsNeeded = value;
+        }
+    }
+    public static int RoundNumber
+    {
+        get
+        {
+            return roundNumber;
+        }
+        set
+        {
+            roundNumber = value;
+        }
+    }
+    public static int WitchSet
+    {
+        get
+        {
+            return witchSet;
+        }
+        set
+        {
+            witchSet = value;
+        }
+    }
 }
