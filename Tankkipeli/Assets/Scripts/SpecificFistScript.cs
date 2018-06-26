@@ -5,11 +5,13 @@ using UnityEngine;
 public class SpecificFistScript : FistScript
 {
     public float power;
+    public float range;
     protected override void Start()
     {
         base.Start();
 
         anim.SetFloat("Power", power);
+        anim.SetFloat("Range", range);
     }
 
     void Update()
@@ -41,14 +43,16 @@ public class SpecificFistScript : FistScript
     protected void PunchTimer()
     {
         startPunchTimerTime -= Time.deltaTime;
-
+        
         if (startPunchTimerTime <= stopRotation)
         {
+            anim.SetBool("Warning", true);
             transform.root.gameObject.GetComponent<CannonScrit>().rotate = false;
         }
 
         if (startPunchTimerTime <= 0)
         {
+            anim.SetBool("Warning", false);
             anim.SetBool("FB",true);
             startPunchTimerTime = defaultPunchTimerTime;
             punchTimer = false;

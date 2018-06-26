@@ -12,6 +12,7 @@ public class SingleFist : FistScript
 
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
+        
 
     }
 
@@ -31,12 +32,14 @@ public class SingleFist : FistScript
     protected void PunchTimer()
     {
 
+            anim.SetBool("Warning", true);
         startPunchTimerTime -= Time.deltaTime;
 
     
 
         if (startPunchTimerTime <= 0)
         {
+            anim.SetBool("Warning", false);
             anim.SetBool("FB",true);
             startPunchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
