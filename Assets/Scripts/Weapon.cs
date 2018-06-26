@@ -18,43 +18,59 @@ public class Weapon : MonoBehaviour {
     float cooldown;
     float finalDamage;
 
+    bool canEquip;
+
+    public WEAPON_STATE currentWeaponState;
+
 
 	// Use this for initialization
 	void Start () {
         weapon = GetComponent<Rigidbody>();
         ownHP = FindOwnHP();
+        SetWeaponState();
 	}
 	
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
-        {
-            health = FindHP(collision);
-            tankBase = FindTank(collision);
-            if (ownHP != health)
+
+
+            if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
             {
-                finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
-                if (finalDamage >= 25)
+                health = FindHP(collision);
+                tankBase = FindTank(collision);
+                if (ownHP != health)
                 {
-                    finalDamage = 25;                                           //Damage is capped at 25 for now
+                    finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
+                    if (finalDamage >= 25)
+                    {
+                        finalDamage = 25;                                           //Damage is capped at 25 for now
+                    }
+                    health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
+                    print(collision.relativeVelocity.magnitude + " hit str");
+                    print(finalDamage + " dmg");
+                    Vector3 dir = collision.transform.position - transform.position;
+                    dir.y = 0;
+                    tankBase.AddForce(dir.normalized * (knockback * weapon.mass * collision.relativeVelocity.magnitude));
+                    cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
                 }
-                health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
-                print(collision.relativeVelocity.magnitude + " hit str");
-                print(finalDamage + " dmg");
-                Vector3 dir = collision.transform.position - transform.position;
-                dir.y = 0;
-                tankBase.AddForce(dir.normalized * (knockback * weapon.mass * collision.relativeVelocity.magnitude));
-                cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
+
             }
+        
 
+    }
+    void OnTriggerEnter(Collision collision)
+    {
+        if (currentWeaponState == WEAPON_STATE.DROPPED)
+        {
+            canEquip = false;
         }
-
     }
 
 
-     static PlayerHealth FindHP(Collision col)                  //Finds the players hp
+    static PlayerHealth FindHP(Collision col)                  //Finds the players hp
      {
+
          PlayerHealth hp = col.gameObject.GetComponentInParent<PlayerHealth>();
          Transform parentOb = col.gameObject.transform;
 
@@ -111,5 +127,43 @@ public class Weapon : MonoBehaviour {
         return null;
     }
 
+
+
+    public enum WEAPON_STATE
+    {
+        DROPPED,
+        WIELDED,
+        THROWN,
+    }
+
+
+    public void SetWeaponState()
+    {
+
+        switch (currentWeaponState)
+        {
+            case WEAPON_STATE.DROPPED:
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                this.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+
+                break;
+
+            case WEAPON_STATE.WIELDED:
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                ownHP = FindOwnHP();
+
+
+                break;
+
+            case WEAPON_STATE.THROWN:
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+
+                break;
+        }
+
+    }
 
 }
