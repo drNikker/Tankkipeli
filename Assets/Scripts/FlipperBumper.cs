@@ -4,26 +4,47 @@ using UnityEngine;
 
 public class FlipperBumper : MonoBehaviour
 {
-    public float speed;
+    public float force;
+
+    public Rigidbody rb;
+    public bool move;
 
     // Use this for initialization
     void Start()
     {
-
+        //rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        if (move)
         {
-            collision.attachedRigidbody.AddForce(Vector3.forward * speed);
-            Debug.Log("Trigger Entered");
+            
+        }
+    }
+    /*
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            Debug.Log("Bumper hit");
+            collider.attachedRigidbody.AddForce(0, 0, 10 * force);
+            
+        }
+    }
+    */
+
+    void OnCollisionEnter(Collision collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            Vector3 dir = collider.contacts[0].point - transform.position;
+            dir = -dir.normalized;
+            
+            collider.gameObject.transform.GetComponent<Rigidbody>().AddForce(dir * force);
+
+            Debug.Log("Bumper hit");
         }
     }
 }
