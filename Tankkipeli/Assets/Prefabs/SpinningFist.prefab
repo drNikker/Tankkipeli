@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33132189152653006}
   - component: {fileID: 23554180284024924}
   - component: {fileID: 135018563819782704}
-  - component: {fileID: 114096907049855360}
+  - component: {fileID: 114443082716191936}
   m_Layer: 0
   m_Name: BoxingGlove
   m_TagString: Untagged
@@ -73,7 +73,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4404559167470628}
   - component: {fileID: 95297213383794560}
-  - component: {fileID: 114438895065896826}
   m_Layer: 0
   m_Name: SpinningFist
   m_TagString: Untagged
@@ -280,7 +279,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114096907049855360
+--- !u!114 &114443082716191936
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -288,35 +287,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1255806969493306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f95fb715f836b4bb19a27d021129db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseDamage: 20
-  dmgMultiplier: 2
-  cooldownTime: 1
-  knockback: 1
---- !u!114 &114438895065896826
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1912048944715626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 225fb98c62532c446b51268183c4c87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 0}
-  startPunchTimerTime: 1
-  defaultPunchTimerTime: 2
+  punchTimerTime: 2
   holdOffTimerTime: 1
-  waitTimerTime: 0.2
-  damage: 0
+  waitTimerTime: 1
+  damage: 200
   punchSpeed: 0
   anim: {fileID: 95297213383794560}
   stopRotation: 1
   power: 0.5
   range: 1
+  canDoDamage: 0
 --- !u!135 &135018563819782704
 SphereCollider:
   m_ObjectHideFlags: 1

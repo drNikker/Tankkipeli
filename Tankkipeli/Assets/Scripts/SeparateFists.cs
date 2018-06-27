@@ -25,7 +25,7 @@ public class SeparateFists : FistScript
 
     protected void PunchTimerSeparate()
     {
-        startPunchTimerTime -= Time.deltaTime;
+        punchTimerTime -= Time.deltaTime;
 
         /*
         if (startPunchTimerTime <= stopRotation)
@@ -34,9 +34,9 @@ public class SeparateFists : FistScript
         }
         */
 
-        if (startPunchTimerTime <= 0)
+        if (punchTimerTime <= 0)
         {
-            startPunchTimerTime = defaultPunchTimerTime;
+            punchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
             holdOffTimer = true;
         }

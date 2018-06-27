@@ -407,33 +407,27 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 360
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: anim
       value: 
       objectReference: {fileID: 222492067}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: stopRotation
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: waitTimerTime
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: defaultPunchTimerTime
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: startPunchTimerTime
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: holdOffTimerTime
       value: 1
       objectReference: {fileID: 0}
@@ -442,10 +436,13 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e6a62dc295addee4cb9892038de84ea5, type: 2}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: power
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: punchTimerTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 433e0ae3a6147b84ca0544e41b2a7715, type: 2}
@@ -6496,7 +6493,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000022121114, y: 0.23279113, z: -0.000000048428774}
+  m_ConnectedAnchor: {x: 0.000000017207473, y: 0.2327911, z: 0.000000067055225}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -6747,7 +6744,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000002300367, y: 0.6002105, z: -0.00000011259936}
+  m_ConnectedAnchor: {x: 0.00000020395967, y: 0.6002105, z: -1.1376944e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -7636,7 +7633,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.3999998, y: 0.2953624, z: 0.00013375282}
+  m_ConnectedAnchor: {x: -0.40000004, y: 0.2953624, z: 0.00013375282}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -7853,7 +7850,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000011691204, y: -0.11785761, z: 0.02595003}
+  m_ConnectedAnchor: {x: 0.000000002297245, y: -0.11785766, z: 0.025950167}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8237,25 +8234,33 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e6a62dc295addee4cb9892038de84ea5, type: 2}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: startPunchTimerTime
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: defaultPunchTimerTime
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: waitTimerTime
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: power
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stopRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: holdOffTimerTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: punchTimerTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 433e0ae3a6147b84ca0544e41b2a7715, type: 2}
@@ -9644,7 +9649,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000004470349, y: 0.60021025, z: -0.00000010545722}
+  m_ConnectedAnchor: {x: -0.00000011548401, y: 0.6002105, z: 0.000000019797454}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -10167,16 +10172,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 0}
-  startPunchTimerTime: 1
-  defaultPunchTimerTime: 0.06
-  holdOffTimerTime: 0.08
-  waitTimerTime: 0
+  punchTimerTime: 0
+  holdOffTimerTime: 1
+  waitTimerTime: 1
   damage: 0
   punchSpeed: 0
   anim: {fileID: 889837167}
   stopRotation: 0
-  power: 10
-  range: 5
+  power: 1
+  range: 1
 --- !u!95 &889837167 stripped
 Animator:
   m_PrefabParentObject: {fileID: 95314484821730808, guid: 26a21ca99f8c0394eabe55adc45b0d61,
@@ -10485,10 +10489,21 @@ Prefab:
       propertyPath: m_Name
       value: SpinningFist (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114438895065896826, guid: 433e0ae3a6147b84ca0544e41b2a7715,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: power
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stopRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: holdOffTimerTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: punchTimerTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 433e0ae3a6147b84ca0544e41b2a7715, type: 2}
@@ -10694,7 +10709,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000020259353, y: 0.30132473, z: 0.000000007450581}
+  m_ConnectedAnchor: {x: 0.000000035825057, y: 0.30132473, z: 0.000000007450581}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -10865,7 +10880,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000001914178, y: 0.53074914, z: 0.000000059604645}
+  m_ConnectedAnchor: {x: 0.00000004700071, y: 0.5307492, z: -0.000000059604645}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -11442,7 +11457,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.94268394, z: 0}
+  m_ConnectedAnchor: {x: 0.00000011920929, y: 0.94268394, z: -3.4816594e-13}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -12522,6 +12537,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 114185946323484674, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1329731054
@@ -13185,7 +13201,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: -0.1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000007307397, y: 0.52446175, z: 0.00000011969288}
+  m_ConnectedAnchor: {x: 0.000007272043, y: 0.5244615, z: -0.000000013651469}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -15365,7 +15381,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000071333936, y: 0.2861322, z: 0.00000007091148}
+  m_ConnectedAnchor: {x: 0.00000004787536, y: 0.2861322, z: -0.000000048297807}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -15843,7 +15859,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000019426807, y: 0.6244608, z: 0.0000001160902}
+  m_ConnectedAnchor: {x: 0.00000015329442, y: 0.6244613, z: -0.000000003771817}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -16001,7 +16017,7 @@ GameObject:
   - component: {fileID: 1918040704}
   m_Layer: 0
   m_Name: Player2.0Tired
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16092,7 +16108,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1918040703}
   m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -2.52, y: 0.20022082, z: 6.42}
+  m_LocalPosition: {x: 1.52, y: 0.20022082, z: 1.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1331688315}

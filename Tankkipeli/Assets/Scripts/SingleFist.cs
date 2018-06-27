@@ -33,15 +33,15 @@ public class SingleFist : FistScript
     {
 
             anim.SetBool("Warning", true);
-        startPunchTimerTime -= Time.deltaTime;
+        punchTimerTime -= Time.deltaTime;
 
     
 
-        if (startPunchTimerTime <= 0)
+        if (punchTimerTime <= 0)
         {
             anim.SetBool("Warning", false);
             anim.SetBool("FB",true);
-            startPunchTimerTime = defaultPunchTimerTime;
+            punchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
             holdOffTimer = true;
         }

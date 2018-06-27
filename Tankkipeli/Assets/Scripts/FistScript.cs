@@ -10,8 +10,8 @@ public class FistScript : MonoBehaviour
 
     protected bool punchTimer;
     [Space(10)]
-    public float startPunchTimerTime;
-    public float defaultPunchTimerTime;
+    public float punchTimerTime;
+    protected float defaultPunchTimerTime;
 
     protected bool holdOffTimer;
     public float holdOffTimerTime;
@@ -36,8 +36,9 @@ public class FistScript : MonoBehaviour
         punchRB = gameObject.GetComponent<Rigidbody>();
 
    
-        punchTimer = true;
+        waitTimer = true;
 
+        defaultPunchTimerTime = punchTimerTime;
         originalHoldOffTimerTime = holdOffTimerTime;
         originalWaitTimerTime = waitTimerTime;
     }

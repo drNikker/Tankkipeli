@@ -6,12 +6,18 @@ public class SpecificFistScript : FistScript
 {
     public float power;
     public float range;
+
+    public bool canDoDamage;
+
     protected override void Start()
     {
         base.Start();
 
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
+
+        transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
+        canDoDamage = false;
     }
 
     void Update()
@@ -42,21 +48,22 @@ public class SpecificFistScript : FistScript
 
     protected void PunchTimer()
     {
-        startPunchTimerTime -= Time.deltaTime;
+        punchTimerTime -= Time.deltaTime;
         
-        if (startPunchTimerTime <= stopRotation)
+        if (punchTimerTime <= stopRotation)
         {
             anim.SetBool("Warning", true);
             transform.root.gameObject.GetComponent<CannonScrit>().rotate = false;
         }
 
-        if (startPunchTimerTime <= 0)
+        if (punchTimerTime <= 0)
         {
+            canDoDamage = true;
             anim.SetBool("Warning", false);
             anim.SetBool("FB",true);
-            startPunchTimerTime = defaultPunchTimerTime;
-            punchTimer = false;
+            punchTimerTime = defaultPunchTimerTime;
             holdOffTimer = true;
+            punchTimer = false;
         }
     }
 
@@ -70,6 +77,19 @@ public class SpecificFistScript : FistScript
             holdOffTimerTime = originalHoldOffTimerTime;
             waitTimer = true;
             holdOffTimer = false;
+            canDoDamage = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (canDoDamage == true)
+        {
+            if (collision.gameObject.tag == "Bodypart")
+            {
+                Debug.Log("Jee ottaa damagee");
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            }
         }
     }
 }
