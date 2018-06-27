@@ -10,12 +10,16 @@ public class FistScript : MonoBehaviour
 
     protected bool punchTimer;
     [Space(10)]
-    public float startPunchTimerTime;
-    public float defaultPunchTimerTime;
+    public float punchTimerTime;
+    protected float defaultPunchTimerTime;
 
     protected bool holdOffTimer;
     public float holdOffTimerTime;
     protected float originalHoldOffTimerTime;
+
+    protected bool waitTimer;
+    public float waitTimerTime;
+    protected float originalWaitTimerTime;
 
     [Space(10)]
     public float damage;
@@ -31,10 +35,12 @@ public class FistScript : MonoBehaviour
     {
         punchRB = gameObject.GetComponent<Rigidbody>();
 
-        anim = transform.root.gameObject.GetComponent<Animator>();
-        punchTimer = true;
+   
+        waitTimer = true;
 
+        defaultPunchTimerTime = punchTimerTime;
         originalHoldOffTimerTime = holdOffTimerTime;
+        originalWaitTimerTime = waitTimerTime;
     }
 
     void Update()

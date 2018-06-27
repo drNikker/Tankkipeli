@@ -19,25 +19,25 @@ public class HandControls : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0.2f, Input.GetAxis(player + "LeftHandZ"));
-        p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0.2f, Input.GetAxis(player + "RightHandZ"));
+        p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0.4f, Input.GetAxis(player + "LeftHandZ"));
+        p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0.4f, Input.GetAxis(player + "RightHandZ"));
 
         if (LRHand == "R")
         {
-            if ((p1RightHand.x != 0 || p1RightHand.y != 0))
+            if ((Mathf.Abs(p1RightHand.x) > 0.2 || Mathf.Abs(p1RightHand.z) > 0.2))
             {
                 rb.MovePosition(transform.position + p1RightHand * power * Time.deltaTime);
             }
         }
         else if (LRHand == "L")
         {
-            if ((p1LeftHand.x != 0 || p1LeftHand.y != 0))
+            if ((Mathf.Abs(p1LeftHand.x) > 0.2 || Mathf.Abs(p1LeftHand.z) > 0.2))
             {
                 rb.MovePosition(transform.position + p1LeftHand * power * Time.deltaTime);
             }
         }
 
 
-        Debug.Log(Input.GetAxis("P1LeftHandX") + " " + Input.GetAxis("P1LeftHandZ") + " Right " + Input.GetAxis("P1RightHandX") + " " + Input.GetAxis("P1RightHandZ"));
+        //Debug.Log(Input.GetAxis("P1LeftHandX") + " " + Input.GetAxis("P1LeftHandZ") + " Right " + Input.GetAxis("P1RightHandX") + " " + Input.GetAxis("P1RightHandZ"));
     }
 }

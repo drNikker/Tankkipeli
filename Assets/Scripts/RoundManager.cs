@@ -15,12 +15,14 @@ public class RoundManager : MonoBehaviour {
 
     public GameObject roundWon;
 
+    public int weaponSpawnTimer;
+    [HideInInspector]
     public List<GameObject> alivePlayers;
+    public List<GameObject> weaponSpawns;
 
     private void Start()
     {
         sceneLoader = gameObject.GetComponent<SceneLoader>();
-        //whoWonText = gameObject.GetComponent<Text>();
         playersAlive = 2;
     }
 
@@ -77,6 +79,10 @@ public class RoundManager : MonoBehaviour {
         }
 
                 playersAlive = StatHolder.HowManyPlayers;
+        if (weaponSpawns.Count > 0)
+        {
+            StartCoroutine(SpawnWeapon());
+        }
     }
 
     public void RoundStart()
@@ -156,5 +162,14 @@ public class RoundManager : MonoBehaviour {
         yield return new WaitForSeconds(5);
         roundWon.SetActive(false);
         sceneLoader.MenuScene();
+    }
+
+    IEnumerator SpawnWeapon()
+    {
+        yield return new WaitForSeconds(weaponSpawnTimer);
+
+        int i = Random.Range(0, weaponSpawns.Count + 1);
+        weaponSpawns[i].GetComponent<WeaponSpawn>().CreateWeapon();
+        
     }
 }
