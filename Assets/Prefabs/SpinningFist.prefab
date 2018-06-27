@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33132189152653006}
   - component: {fileID: 23554180284024924}
   - component: {fileID: 135018563819782704}
-  - component: {fileID: 114443082716191936}
+  - component: {fileID: 114079823982982278}
   m_Layer: 0
   m_Name: BoxingGlove
   m_TagString: Untagged
@@ -99,15 +99,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1912048944715626}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 3}
-  m_LocalScale: {x: 1.4131492, y: 1.4131492, z: 1.4131492}
+  m_LocalRotation: {x: -0, y: -0.00000008940696, z: -0, w: -1}
+  m_LocalPosition: {x: -12.62, y: 0.59, z: -4.41}
+  m_LocalScale: {x: 0.8471325, y: 0.84713256, z: 0.84713256}
   m_Children:
   - {fileID: 4967572581116154}
   - {fileID: 4142412588521232}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
 --- !u!4 &4405087878675216
 Transform:
   m_ObjectHideFlags: 1
@@ -279,7 +279,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114443082716191936
+--- !u!114 &114079823982982278
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -287,18 +287,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1255806969493306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225fb98c62532c446b51268183c4c87a, type: 3}
+  m_Script: {fileID: 11500000, guid: e9de39d04b1cab74ba792fdbf4f36f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fist: {fileID: 0}
   punchTimerTime: 2
   holdOffTimerTime: 1
   waitTimerTime: 1
-  damage: 200
+  damage: 0
   punchSpeed: 0
   anim: {fileID: 95297213383794560}
   stopRotation: 1
-  power: 0.5
+  power: 1
   range: 1
   canDoDamage: 0
 --- !u!135 &135018563819782704
