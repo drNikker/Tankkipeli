@@ -86,4 +86,12 @@ public class SeparateFists : FistScript
             holdOffTimer = false;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+    }
 }
