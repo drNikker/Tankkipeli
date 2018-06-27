@@ -12,7 +12,7 @@ public class Spikes : MonoBehaviour
     public float baseDamage = 5;
     public float dmgMultiplier = 2f;
     public float cooldownTime = 1;
-    float knockback = 200;
+    public float knockback = 200;
 
     float cooldown;
     float finalDamage;
