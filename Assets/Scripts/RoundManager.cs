@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
     
+    
     int playersAlive;
 
     //bool randomMap = true;
@@ -18,7 +19,10 @@ public class RoundManager : MonoBehaviour {
     public int weaponSpawnTimer;
     [HideInInspector]
     public List<GameObject> alivePlayers;
+    [HideInInspector]
+    public List<GameObject> spawnPlayers;
     public List<GameObject> weaponSpawns;
+    public List<GameObject> playerSpawns;
 
     private void Start()
     {
