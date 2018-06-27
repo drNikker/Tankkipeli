@@ -31,6 +31,7 @@ public class EquipPull : MonoBehaviour {
             t.localEulerAngles = new Vector3(0,0,0);
 
 
+
         }
 
 

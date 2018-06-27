@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     PlayerHealth health;
     Rigidbody tankBase;
     Rigidbody weapon;
+    public Transform weaponParent;
 
 
     public float baseDamage = 5;
@@ -28,24 +29,13 @@ public class Weapon : MonoBehaviour {
     {
         weapon = GetComponent<Rigidbody>();
         ownHP = FindOwnHP();
-        currentWeaponState = WEAPON_STATE.WIELDED;
+        currentWeaponState = WEAPON_STATE.DROPPED;
         SetWeaponState();
 	}
 
     private void Update()
     {
-        if (canEquip == true && Input.GetKeyDown(KeyCode.K) /* || canEquip == true && Input.GetButton(player + "RB")*/)
-        {
-            currentWeaponState = WEAPON_STATE.WIELDED;
-            SetWeaponState();
-            //Connect weapon to left arm
-        }
-        if (canEquip == true && Input.GetKeyDown(KeyCode.L) /* || canEquip == true && Input.GetButton(player + "LB")*/)
-        {
-            currentWeaponState = WEAPON_STATE.WIELDED;
-            SetWeaponState();
-            //Connect weapon to right arm
-        }
+
         if (canEquip == false && Input.GetKeyDown(KeyCode.K) && currentWeaponState == WEAPON_STATE.WIELDED /* || canEquip == false && Input.GetButton(player + "RB") && currentWeaponState == WEAPON_STATE.WIELDED*/)
         {
             //if (transform.parent.tag == "LeftHand")
@@ -73,6 +63,12 @@ public class Weapon : MonoBehaviour {
                 transform.parent = null;
             //}
         }
+    }
+
+    public void Equip()
+    {
+        currentWeaponState = WEAPON_STATE.WIELDED;
+        SetWeaponState();
     }
 
 
@@ -111,7 +107,7 @@ public class Weapon : MonoBehaviour {
        canEquip = false;
     }
 
-    static PlayerHealth FindHP(Collision col)                  //Finds the players hp
+    static PlayerHealth FindHP(Collision col)                  //Finds the enemy players hp
      {
 
          PlayerHealth hp = col.gameObject.GetComponentInParent<PlayerHealth>();
@@ -182,24 +178,27 @@ public class Weapon : MonoBehaviour {
 
     public void SetWeaponState()
     {
-        Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider>();
+        Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
+        ConfigurableJoint[] joints = weaponParent.GetComponents<ConfigurableJoint>();
 
         switch (currentWeaponState)
         {
             case WEAPON_STATE.DROPPED:
                 for (int i = 0; i <= colliders.Length -1; i++)
                 {
-                    colliders[i].isTrigger = true;
+                    colliders[i].enabled = false;
                 }
-                ConfigurableJoint[] joints = GetComponentsInParent<ConfigurableJoint>();
-                for (int i = 0; i <= joints.Length - 1; i++)
+                for (int i = 0; i < joints.Length; i++)
                 {
-                    joints[i].breakForce = 0;
+                    joints[i].connectedBody = null;
                 }
-                transform.parent = null;
-                this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                this.gameObject.GetComponent<Rigidbody>().useGravity = false;
-                this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+
+                weaponParent.parent = null;
+                weaponParent.GetComponent<Rigidbody>().isKinematic = true;
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                weaponParent.GetComponent<Rigidbody>().useGravity = false;
+                gameObject.GetComponent<Rigidbody>().useGravity = false;
+                weaponParent.transform.eulerAngles = new Vector3(0, 0, 0);
 
                 break;
 
@@ -207,11 +206,12 @@ public class Weapon : MonoBehaviour {
                 canEquip = false;
                 for (int i = 0; i <= colliders.Length -1; i++)
                 {
-                    colliders[i].isTrigger = false;
+                    colliders[i].enabled = true;
                 }
-                this.gameObject.GetComponentInChildren<Collider>().isTrigger = false;
-                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                weaponParent.GetComponent<Rigidbody>().isKinematic = false;
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                weaponParent.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                gameObject.gameObject.GetComponent<Rigidbody>().useGravity = true;
                 ownHP = FindOwnHP();
 
                 break;
