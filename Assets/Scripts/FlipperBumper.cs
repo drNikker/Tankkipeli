@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlipperBumper : MonoBehaviour
 {
     public float force;
-
+    public Animator anim;
     private Rigidbody rb;
 
     void Start()
@@ -23,17 +23,11 @@ public class FlipperBumper : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             rb = collider.gameObject.GetComponent<Rigidbody>();
-            Debug.Log(rb);
-
+            anim.SetTrigger("Bump");
             Vector3 dir = collider.contacts[0].point - transform.position;
-            Debug.Log(collider.contacts[0].point);
             dir = dir.normalized;
 
             rb.AddForce(dir * force);
-            Debug.Log(dir);
-            Debug.Log(force);
-
-            Debug.Log("Bumper hit");
         }
     }
 }

@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class SpecificFistScript : FistScript
 {
+    public float power;
+    public float range;
+
+    public bool canDoDamage;
 
     protected override void Start()
     {
         base.Start();
 
-        //anim.speed = punchSpeed;
+        anim.SetFloat("Power", power);
+        anim.SetFloat("Range", range);
+
+        transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
+        canDoDamage = false;
     }
 
     void Update()
@@ -23,24 +31,39 @@ public class SpecificFistScript : FistScript
         {
             HoldOffTimer();
         }
+
+        if (waitTimer)
+        {
+            waitTimerTime -= Time.deltaTime;
+
+            if (waitTimerTime <= 0)
+            {
+                transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
+                waitTimerTime = originalWaitTimerTime;
+                punchTimer = true;
+                waitTimer = false;
+            }
+        }
     }
 
     protected void PunchTimer()
     {
-        transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
-        startPunchTimerTime -= Time.deltaTime;
-
-        if (startPunchTimerTime <= stopRotation)
+        punchTimerTime -= Time.deltaTime;
+        
+        if (punchTimerTime <= stopRotation)
         {
+            anim.SetBool("Warning", true);
             transform.root.gameObject.GetComponent<CannonScrit>().rotate = false;
         }
 
-        if (startPunchTimerTime <= 0)
+        if (punchTimerTime <= 0)
         {
-            anim.SetTrigger("Punch");
-            startPunchTimerTime = defaultPunchTimerTime;
-            punchTimer = false;
+            canDoDamage = true;
+            anim.SetBool("Warning", false);
+            anim.SetBool("FB",true);
+            punchTimerTime = defaultPunchTimerTime;
             holdOffTimer = true;
+            punchTimer = false;
         }
     }
 
@@ -50,9 +73,23 @@ public class SpecificFistScript : FistScript
 
         if (holdOffTimerTime <= 0)
         {
+            anim.SetBool("FB", false);
             holdOffTimerTime = originalHoldOffTimerTime;
-            punchTimer = true;
+            waitTimer = true;
             holdOffTimer = false;
+            canDoDamage = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (canDoDamage == true)
+        {
+            if (collision.gameObject.tag == "Bodypart")
+            {
+                Debug.Log("Jee ottaa damagee");
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            }
         }
     }
 }
