@@ -16,7 +16,7 @@ public class SingleFist : FistScript
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
 
-        transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
+       
         canDoDamage = false;
     }
 
