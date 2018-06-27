@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1929190938650706}
+  m_IsPrefabParent: 1
+--- !u!1 &1929190938650706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4605075930404774}
+  - component: {fileID: 114152498787001320}
+  m_Layer: 0
+  m_Name: WeaponSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4605075930404774
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929190938650706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.33, y: 0.89, z: -1.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114152498787001320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929190938650706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74d29cd56733dc4db9b0a54d10be289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTime: 10
+  independent: 1
+  startWeapon: 1
+  randomWeapon: 1
+  randomPosition: 1
+  FlailChanceWeight: 100
+  GreatAxeChanceWeight: 100
+  HammerChanceWeight: 100
+  XPositionLowerLimit: -10
+  XPositionUpperLimit: 10
+  YPositionLowerLimit: 0.1
+  YPositionUpperLimit: 0.5
+  ZPositionLowerLimit: -10
+  ZPositionUpperLimit: 10
+  weaponToSpawn: 2
+  GreatAxe: {fileID: 4103816632961970, guid: c5e31bbe84b7b9f4993de0f8fcc945a4, type: 2}
+  Hammer: {fileID: 4639419830872898, guid: 47ad9870d22b6424893b6324095c576d, type: 2}
+  Flail: {fileID: 4609459959028048, guid: 6b25096b7bfcaa144aac3991352ff8ff, type: 2}
