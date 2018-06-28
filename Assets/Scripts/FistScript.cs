@@ -8,16 +8,16 @@ public class FistScript : MonoBehaviour
 
     private Rigidbody punchRB;
 
-    protected bool punchTimer;
+    public bool punchTimer;
     [Space(10)]
     public float punchTimerTime;
     protected float defaultPunchTimerTime;
 
-    protected bool holdOffTimer;
+    public bool holdOffTimer;
     public float holdOffTimerTime;
     protected float originalHoldOffTimerTime;
 
-    protected bool waitTimer;
+    public bool waitTimer;
     public float waitTimerTime;
     protected float originalWaitTimerTime;
 

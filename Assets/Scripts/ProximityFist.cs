@@ -7,15 +7,18 @@ public class ProximityFist : FistScript
     public float power;
     public float range;
 
+    private ProximityFistCollider proximityFistCollider;
 
     protected override void Start()
     {
         base.Start();
 
+        proximityFistCollider = gameObject.GetComponentInChildren<ProximityFistCollider>();
+
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
 
-        //punchTimer = true;
+        waitTimer = false;
     }
 
     void Update()
@@ -28,6 +31,23 @@ public class ProximityFist : FistScript
         if (holdOffTimer == true)
         {
             HoldOffTimer();
+        }
+
+        if (waitTimer)
+        {
+            waitTimerTime -= Time.deltaTime;
+
+            if (waitTimerTime <= 0)
+            {
+                waitTimerTime = originalWaitTimerTime;
+                
+                if (proximityFistCollider.allowPunching == true)
+                {
+                    punchTimer = true;
+                }
+                
+                waitTimer = false;
+            }
         }
 
         //CheckPlayer();
@@ -77,16 +97,9 @@ public class ProximityFist : FistScript
         {
             anim.SetBool("FB", false);
             holdOffTimerTime = originalHoldOffTimerTime;
-            punchTimer = true;
-            holdOffTimer = false;
-        }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bodypart")
-        {
-            punchTimer = true;
+            waitTimer = true;
+            holdOffTimer = false;
         }
     }
 }
