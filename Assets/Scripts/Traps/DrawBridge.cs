@@ -5,7 +5,6 @@ using UnityEngine;
 public class DrawBridge : MonoBehaviour
 {
     public Animator anim;
-    //private BridgeList bridgeList;
 
     protected bool waitTimer;
     public float waitTimerTime;
@@ -45,7 +44,7 @@ public class DrawBridge : MonoBehaviour
 
         if (waitTimerTime <= 0)
         {
-            anim.SetBool("Open/Close", true);
+            anim.SetBool("Open/Close", false);
             waitTimerTime = originalWaitTimerTime;
             holdOffTimer = true;
             waitTimer = false;
@@ -58,7 +57,7 @@ public class DrawBridge : MonoBehaviour
 
         if (holdOffTimerTime <= 0)
         {
-            anim.SetBool("Open/Close", false);
+            anim.SetBool("Open/Close", true);
             holdOffTimerTime = originalHoldOffTimerTime;
             waitTimer = true;
             holdOffTimer = false;
