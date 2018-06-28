@@ -12,7 +12,7 @@ public class EquipPull : MonoBehaviour {
 
 
     void Start () {
-
+        print("delete this now");
 	}
 
     void Update()
