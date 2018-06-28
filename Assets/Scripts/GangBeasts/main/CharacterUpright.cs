@@ -5,7 +5,7 @@ public class CharacterUpright : MonoBehaviour
 {
 
     new protected Rigidbody rigidbody;
-    public bool keepUpright = true;
+    public bool keepUpright = false;
     public float uprightForce = 10;
     public float uprightOffset = 1.45f;
     public float additionalUpwardForce = 10;
