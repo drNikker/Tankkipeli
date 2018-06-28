@@ -54,59 +54,90 @@ public class PhysicMovement : MonoBehaviour {
     
     void KeyPresses()
     {
+        // setup triggers as buttons
         bool RT = Input.GetAxis(player + "TankThreadRight") > 0.0;
         bool LT = Input.GetAxis(player + "TankThreadLeft") > 0.0;
 
         
         brakeTorq = 0;
-        //rightWC1.motorTorque = 0;
-        //rightWC2.motorTorque = 0;
-        //leftWC1.motorTorque = 0;
-        //leftWC2.motorTorque = 0;
 
+        // Tread Speed Increases
 
-        if (Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB"))
+        if ((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB")) && !(Input.GetKey(KeyCode.Keypad6) || RT))
         {
             rightThrust += acceleration * Time.deltaTime;
-            //rightWC1.motorTorque = 50;
-            //rightWC2.motorTorque = 50;
         }
-        if (Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB"))
+        if ((Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB")) && !(Input.GetKey(KeyCode.Keypad4) || LT))
         {
             leftThrust += acceleration * Time.deltaTime;
-            //leftWC1.motorTorque = 50;
-            //leftWC2.motorTorque = 50;
         }
-        if (Input.GetKey(KeyCode.Keypad6) || RT)
+        if ((Input.GetKey(KeyCode.Keypad6) || RT) && !(Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB")))
         {
             rightThrust -= acceleration * Time.deltaTime;
-            //rightWC1.motorTorque = -50;
-            //rightWC2.motorTorque = -50;
         }
-        if (Input.GetKey(KeyCode.Keypad4) || LT)
+        if ((Input.GetKey(KeyCode.Keypad4) || LT) && !(Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB")))
         {
             leftThrust -= acceleration * Time.deltaTime;
-            //leftWC1.motorTorque = -50;
-            //leftWC2.motorTorque = -50;
         }
 
-        if (!((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB")) || (Input.GetKey(KeyCode.Keypad6) || RT)))
+        //decreasing speeds when player is holding 
+        if (!(Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB")) && !(Input.GetKey(KeyCode.Keypad6) || RT))
         {
-            rightThrust = 0;
+            brakeTorq = 100;
+            
+            //if (rightThrust > 0)
+            //{
+            //    rightThrust -= acceleration * Time.deltaTime;
+
+            //}
+
+            //if (rightThrust < 0)
+            //{
+            //    rightThrust += acceleration * Time.deltaTime;
+            //}
+
+            //if (Mathf.Abs(rightThrust) < 50 )
+            //{
+            //    rightThrust = 0;
+            //}
+
         }
-        if (!((Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB")) || (Input.GetKey(KeyCode.Keypad4) || LT)))
+
+        if (!((Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB")) && !(Input.GetKey(KeyCode.Keypad4) || LT)))
         {
-            leftThrust = 0;
+            
+            
+            //if (leftThrust > 0)
+            //{
+            //    leftThrust -= acceleration * Time.deltaTime;
+
+            //}
+
+            //if (leftThrust < 0)
+            //{
+            //    leftThrust += acceleration * Time.deltaTime;
+            //}
+
+            //if (Mathf.Abs(leftThrust) < 50)
+            //{
+            //    leftThrust = 0;
+            //}
         }
+
+         // TEEE JARRUTUS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //if (!((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB")) || (Input.GetKey(KeyCode.Keypad6) || RT)))
+        //{
+        //    rightThrust = 0;
+        //}
+        //if (!((Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB")) || (Input.GetKey(KeyCode.Keypad4) || LT)))
+        //{
+        //    leftThrust = 0;
+        //}
 
         rightThrust = Mathf.Clamp(rightThrust,-maxSpeed, maxSpeed);
         leftThrust = Mathf.Clamp(leftThrust, -maxSpeed, maxSpeed);
 
-        //if ((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(player + "RB")) || (Input.GetKey(KeyCode.Keypad7) || Input.GetButton(player + "LB")) || (Input.GetKey(KeyCode.Keypad6) || RT) || (Input.GetKey(KeyCode.Keypad4) || LT))
-        //{
-        //    brakeTorq = 1000;
-        //}
-
+       
         //@@@@@@@@@@@@@@@@@@@@@@@@@ BRAKE TORQ
 
         if (rightThrust == 0 || leftThrust == 0)

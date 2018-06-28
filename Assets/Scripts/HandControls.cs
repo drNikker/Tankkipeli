@@ -12,10 +12,21 @@ public class HandControls : MonoBehaviour {
     public string player;
     public string LRHand;
 
+    public ConfigurableJoint joint;
+    public GameObject weapon;
+    bool canEquip = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
+
+    void Update()
+    {
+        KeyPresses();
+
+    }
+
 
     private void FixedUpdate()
     {
@@ -39,5 +50,41 @@ public class HandControls : MonoBehaviour {
 
 
         //Debug.Log(Input.GetAxis("P1LeftHandX") + " " + Input.GetAxis("P1LeftHandZ") + " Right " + Input.GetAxis("P1RightHandX") + " " + Input.GetAxis("P1RightHandZ"));
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Weapon")
+        {
+            canEquip = true;
+            weapon = other.gameObject;
+            print(other);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        weapon = null;
+        canEquip = false;
+        joint = null;
+    }
+
+    void KeyPresses()
+    {
+        if (Input.GetKey(KeyCode.Joystick1Button9) && canEquip == true)
+        {
+            print("r");
+            joint = weapon.GetComponent<ConfigurableJoint>();
+            joint.connectedBody = GetComponent<Rigidbody>();
+            joint.autoConfigureConnectedAnchor = false;
+            joint.connectedAnchor = new Vector3(0.1f, 0.15f, 0);
+            Transform t = weapon.GetComponent<Transform>();
+            weapon.transform.parent = this.transform;
+            t.localEulerAngles = new Vector3(0, 0, 0);
+            Weapon script = weapon.GetComponentInChildren<Weapon>();
+            script.Equip();
+            canEquip = false;
+
+        }
     }
 }
