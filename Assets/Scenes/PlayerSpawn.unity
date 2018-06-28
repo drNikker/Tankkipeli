@@ -2830,8 +2830,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 572687167}
+  - component: {fileID: 572687168}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2844,12 +2845,23 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 572687166}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.009, y: 0.05, z: 0.944}
+  m_LocalPosition: {x: 3.81, y: 0.29, z: 0.944}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &572687168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 572687166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bdf59dd3bef4247bf842c1484fef8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &574907374
 GameObject:
   m_ObjectHideFlags: 0
@@ -4841,8 +4853,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 531684214}
   right: {fileID: 1628000337}
-  speed: 75
+  leftWC1: {fileID: 0}
+  leftWC2: {fileID: 0}
+  leftWC3: {fileID: 0}
+  leftWC4: {fileID: 0}
+  rightWC1: {fileID: 0}
+  rightWC2: {fileID: 0}
+  rightWC3: {fileID: 0}
+  rightWC4: {fileID: 0}
+  maxSpeed: 0
+  acceleration: 0
   turn: 75
+  brakeForce: 0
+  rightThrust: 0
   player: P1
 --- !u!64 &1037592683
 MeshCollider:
@@ -5231,8 +5254,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 470331490}
   right: {fileID: 41642049}
-  speed: 75
+  leftWC1: {fileID: 0}
+  leftWC2: {fileID: 0}
+  leftWC3: {fileID: 0}
+  leftWC4: {fileID: 0}
+  rightWC1: {fileID: 0}
+  rightWC2: {fileID: 0}
+  rightWC3: {fileID: 0}
+  rightWC4: {fileID: 0}
+  maxSpeed: 0
+  acceleration: 0
   turn: 75
+  brakeForce: 0
+  rightThrust: 0
   player: P1
 --- !u!64 &1082285458
 MeshCollider:
@@ -6246,8 +6280,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1447917247}
+  - component: {fileID: 1447917248}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6260,12 +6295,23 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1447917246}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.009, y: 0.05, z: 0.944}
+  m_LocalPosition: {x: -3.84, y: 0.54, z: 0.944}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1447917248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1447917246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bdf59dd3bef4247bf842c1484fef8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1468545924
 Prefab:
   m_ObjectHideFlags: 0

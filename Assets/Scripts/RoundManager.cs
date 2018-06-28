@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
-    
-    
+
+    GameObject playerPrefab;
     int playersAlive;
 
     //bool randomMap = true;
@@ -26,6 +26,7 @@ public class RoundManager : MonoBehaviour {
 
     private void Start()
     {
+        playerPrefab = (GameObject)Resources.Load("prefabs/Player2.0", typeof(GameObject));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
         playersAlive = 2;
     }
@@ -42,9 +43,18 @@ public class RoundManager : MonoBehaviour {
 
     public void newGame()
     {
-        StatHolder.HowManyPlayers = 2;
+        if (StatHolder.HowManyPlayers == 0)
+        {
+            StatHolder.HowManyPlayers = 2;
+        }
         StatHolder.WinsNeeded = 6;
         StatHolder.WitchSet = Random.Range(1, 4);
+        for (int i = 0; i < StatHolder.HowManyPlayers; i++)
+        {
+            spawnPlayers.Add(playerPrefab);
+            spawnPlayers[i].GetComponent<PhysicMovement>().player = "P" + i + 1;
+            //Color change?
+        }
         NewRound();
     }
 
@@ -82,7 +92,7 @@ public class RoundManager : MonoBehaviour {
                 break;
         }
 
-                playersAlive = StatHolder.HowManyPlayers;
+        playersAlive = StatHolder.HowManyPlayers;
         if (weaponSpawns.Count > 0)
         {
             StartCoroutine(SpawnWeapon());

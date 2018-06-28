@@ -11,16 +11,11 @@ public class SceneLoader : MonoBehaviour
     List<string> mapSet2 = new List<string>();
     List<string> mapSet3 = new List<string>();
 
-    bool joined1;
-    bool joined2;
-    bool joined3;
-    bool joined4;
 
-    GameObject playerPrefab;
 
     private void Start()
     {
-        playerPrefab = (GameObject)Resources.Load("prefabs/player", typeof(GameObject));
+
         roundManager = gameObject.GetComponent<RoundManager>();
         ////Map set 1
         mapSet1.Add("GladiatorLevel1");
@@ -56,26 +51,7 @@ public class SceneLoader : MonoBehaviour
             ReloadScene();
 
         }
-        if (!joined1 && Input.GetButtonDown(playerPrefab.GetComponent<PhysicMovement>().player + "0"))
-        {
-            joined1 = true;
-            StatHolder.HowManyPlayers += 1;
-        }
-        if (!joined2 && Input.GetButtonDown("0"))
-        {
-            joined2 = true;
-            StatHolder.HowManyPlayers += 1;
-        }
-        if (!joined3 && Input.GetButtonDown( "0"))
-        {
-            joined3 = true;
-            StatHolder.HowManyPlayers += 1;
-        }
-        if (!joined4 && Input.GetButtonDown("0"))
-        {
-            joined4 = true;
-            StatHolder.HowManyPlayers += 1;
-        }
+
     }
     
 
