@@ -6,6 +6,10 @@ public class PhysicMovement1 : MonoBehaviour {
 
     private Rigidbody rb;
     public Vector3 com;
+    CharacterUpright charUpR;
+    Quaternion upRight;
+    RaycastHit downRightRay;
+
 
     //wheel colliders
     public WheelCollider leftWheelCol1;
@@ -20,6 +24,7 @@ public class PhysicMovement1 : MonoBehaviour {
     public float topSpeed;
     public float accel;
     public float brakingForce;
+    public float upRightCounter;
     
     float brakeTorqu;
     
@@ -40,7 +45,12 @@ public class PhysicMovement1 : MonoBehaviour {
         brakeTorqu = brakingForce;
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = com;
+        upRight = Quaternion.Euler(0, 0, 0);
+        charUpR = GetComponent<CharacterUpright>();
 
+        charUpR.keepUpright = false;
+
+        //Setting wheeldamping to each wheel because its broken otherwise
         leftWheelCol1.wheelDampingRate = wheelDamp;
         leftWheelCol2.wheelDampingRate = wheelDamp;
         leftWheelCol3.wheelDampingRate = wheelDamp;
@@ -49,7 +59,6 @@ public class PhysicMovement1 : MonoBehaviour {
         rightWheelCol2.wheelDampingRate = wheelDamp;
         rightWheelCol3.wheelDampingRate = wheelDamp;
         rightWheelCol4.wheelDampingRate = wheelDamp;
-
     }
 	
 	// Update is called once per frame
@@ -109,6 +118,7 @@ public class PhysicMovement1 : MonoBehaviour {
     private void FixedUpdate()
     {
         Movement();
+        TurnUpRight();
     }
 
     void Movement()
@@ -154,9 +164,36 @@ public class PhysicMovement1 : MonoBehaviour {
         rightWheelCol4.motorTorque = rightTread;
         leftWheelCol3.motorTorque = leftTread;
         leftWheelCol4.motorTorque = leftTread;
-
         
+    }
 
+    void TurnUpRight()
+    {
+        Physics.Raycast(transform.localPosition,Vector3.down,out downRightRay, 3);
+        //Debug.DrawRay(transform.localPosition, Vector3.down, Color.red,3);
+        if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
+        {
+            upRightCounter += Time.deltaTime;
+            if (upRightCounter >= 4)
+            {
+                charUpR.keepUpright = true;
+                upRightCounter = 0;
+            }
+            for (int i = 0; i < 120; i++)
+            {
+                if (i == 0)
+                {
+
+                    Debug.Log(upRightCounter);
+                    
+                }
+            }
+        }
+        else
+        {
+            upRightCounter = 0;
+            charUpR.keepUpright = false;
+        }
     }
     
 }
