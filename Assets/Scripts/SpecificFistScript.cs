@@ -53,7 +53,7 @@ public class SpecificFistScript : FistScript
         if (punchTimerTime <= stopRotation)
         {
             anim.SetBool("Warning", true);
-            transform.root.gameObject.GetComponent<CannonScrit>().rotate = false;
+            transform.root.GetComponent<CannonScrit>().rotate = false;
         }
 
         if (punchTimerTime <= 0)
@@ -88,7 +88,9 @@ public class SpecificFistScript : FistScript
             if (collision.gameObject.tag == "Bodypart")
             {
                 Debug.Log("Jee ottaa damagee");
-                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>());
+                collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                
             }
         }
     }

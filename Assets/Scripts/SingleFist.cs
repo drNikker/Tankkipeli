@@ -6,9 +6,6 @@ public class SingleFist : FistScript
 {
     public float power;
     public float range;
-
-    public bool canDoDamage;
-
     protected override void Start()
     {
         base.Start();
@@ -16,8 +13,7 @@ public class SingleFist : FistScript
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
 
-       
-        canDoDamage = false;
+        //punchTimer = true;
     }
 
     void Update()
@@ -32,38 +28,42 @@ public class SingleFist : FistScript
             HoldOffTimer();
         }
 
-        if (waitTimer)
-        {
-            waitTimerTime -= Time.deltaTime;
+        //CheckPlayer();
+    }
+    /*
+    private void CheckPlayer()
+    {
+        RaycastHit hit;
 
-            if (waitTimerTime <= 0)
+        Physics.Raycast(transform.position, transform.right, out hit, 3);
+
+        if (hit.collider.gameObject.tag != null)
+        {
+            if (hit.collider.gameObject.tag == "Bodypart")
             {
-                
-                waitTimerTime = originalWaitTimerTime;
                 punchTimer = true;
-                waitTimer = false;
+                Debug.Log(hit.collider.gameObject.tag);
+                //gameObject.GetComponent<yourScript>().yourFunction()
             }
         }
+        else
+        {
+            Debug.Log("There's no player.");
+        }   
     }
-
+    */
     protected void PunchTimer()
     {
+        anim.SetBool("Warning", true);
         punchTimerTime -= Time.deltaTime;
-
-        if (punchTimerTime <= stopRotation)
-        {
-            anim.SetBool("Warning", true);
-           
-        }
 
         if (punchTimerTime <= 0)
         {
-            canDoDamage = true;
             anim.SetBool("Warning", false);
             anim.SetBool("FB", true);
             punchTimerTime = defaultPunchTimerTime;
-            holdOffTimer = true;
             punchTimer = false;
+            holdOffTimer = true;
         }
     }
 
@@ -75,21 +75,16 @@ public class SingleFist : FistScript
         {
             anim.SetBool("FB", false);
             holdOffTimerTime = originalHoldOffTimerTime;
-            waitTimer = true;
+            punchTimer = true;
             holdOffTimer = false;
-            canDoDamage = false;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (canDoDamage == true)
+        if (collision.gameObject.tag == "Bodypart")
         {
-            if (collision.gameObject.tag == "Bodypart")
-            {
-                Debug.Log("Jee ottaa damagee");
-                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-            }
+            punchTimer = true;
         }
     }
 }
