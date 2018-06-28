@@ -8,12 +8,18 @@ AnimatorController:
   m_Name: TipTheScales
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: GoSmall/GoBig
-    m_Type: 4
+  - m_Name: GoSmall
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
-    m_Controller: {fileID: 9100000}
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: GoBig
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -34,8 +40,8 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: GoSmall/GoBig
+  - m_ConditionMode: 1
+    m_ConditionEvent: GoBig
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102264111528385378}
@@ -59,7 +65,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: GoSmall/GoBig
+    m_ConditionEvent: GoSmall
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102472461337046488}
@@ -163,7 +169,7 @@ AnimatorStateMachine:
     m_Position: {x: 324, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102472461337046488}
-    m_Position: {x: 204, y: 24, z: 0}
+    m_Position: {x: 204, y: 36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102264111528385378}
     m_Position: {x: 504, y: 12, z: 0}
@@ -174,7 +180,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 360, y: 108, z: 0}
+  m_AnyStatePosition: {x: 360, y: 132, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
