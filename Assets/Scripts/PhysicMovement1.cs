@@ -73,7 +73,6 @@ public class PhysicMovement1 : MonoBehaviour {
         // setup triggers as buttons
         bool RT = Input.GetAxis(pelaaja + "TankThreadRight") > 0.0;
         bool LT = Input.GetAxis(pelaaja + "TankThreadLeft") > 0.0;
-        
         // Tread Speed Increases
 
         if ((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(pelaaja + "RB")) && !(Input.GetKey(KeyCode.Keypad6) || RT))

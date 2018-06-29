@@ -122,7 +122,7 @@ public class Weapon : MonoBehaviour {
 
         while (parentOb != null)
         {
-            if (parentOb.tag == "Tankbase")
+            if (parentOb.tag == "Player")
             {
                 Rigidbody rig = parentOb.GetComponent<Rigidbody>();
                 return rig;

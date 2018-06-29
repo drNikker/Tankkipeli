@@ -18,10 +18,10 @@ public class SceneLoader : MonoBehaviour
 
         roundManager = gameObject.GetComponent<RoundManager>();
         ////Map set 1
-        mapSet1.Add("PlayerSpawn");
-        mapSet1.Add("PlayerSpawn");
-        mapSet1.Add("PlayerSpawn");
-        mapSet1.Add("PlayerSpawn");
+        mapSet1.Add("2310");
+        mapSet1.Add("9999");
+        mapSet1.Add("FlipperBox");
+        mapSet1.Add("TheDefault");
         //Map set 2
         mapSet2.Add("PlayerSpawn");
         mapSet2.Add("PlayerSpawn");

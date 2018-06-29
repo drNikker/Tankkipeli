@@ -40,7 +40,7 @@ public class Spikes : MonoBehaviour
             print(finalDamage + " dmg");
             Vector3 dir = collision.transform.position - transform.position;
             dir.y = 0;
-            tankBase.AddForce(dir.normalized * (knockback * spikes.mass * collision.relativeVelocity.magnitude));
+            tankBase.AddForce(dir.normalized * (knockback * collision.relativeVelocity.magnitude));
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
 
 
@@ -75,7 +75,7 @@ public class Spikes : MonoBehaviour
 
         while (parentOb != null)
         {
-            if (parentOb.tag == "Tankbase")
+            if (parentOb.tag == "Player")
             {
                 Rigidbody rig = parentOb.GetComponent<Rigidbody>();
                 return rig;
