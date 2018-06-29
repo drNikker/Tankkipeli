@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class ProximityFist : FistScript
 {
+    private ProximityFistCollider proximityFistCollider;
+    [Space(10)]
     public float power;
     public float range;
-
+    [HideInInspector]
+    public bool canDoDamage;
 
     protected override void Start()
     {
         base.Start();
 
+        proximityFistCollider = gameObject.GetComponentInChildren<ProximityFistCollider>();
+
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
 
-        //punchTimer = true;
+        waitTimer = false;
+        canDoDamage = false;
     }
 
     void Update()
@@ -30,30 +36,24 @@ public class ProximityFist : FistScript
             HoldOffTimer();
         }
 
-        //CheckPlayer();
-    }
-    /*
-    private void CheckPlayer()
-    {
-        RaycastHit hit;
-
-        Physics.Raycast(transform.position, transform.right, out hit, 3);
-
-        if (hit.collider.gameObject.tag != null)
+        if (waitTimer)
         {
-            if (hit.collider.gameObject.tag == "Bodypart")
+            waitTimerTime -= Time.deltaTime;
+
+            if (waitTimerTime <= 0)
             {
-                punchTimer = true;
-                Debug.Log(hit.collider.gameObject.tag);
-                //gameObject.GetComponent<yourScript>().yourFunction()
+                waitTimerTime = originalWaitTimerTime;
+                
+                if (proximityFistCollider.allowPunching == true)
+                {
+                    punchTimer = true;
+                }
+                
+                waitTimer = false;
             }
         }
-        else
-        {
-            Debug.Log("There's no player.");
-        }   
     }
-    */
+
     protected void PunchTimer()
     {
         anim.SetBool("Warning", true);
@@ -61,6 +61,7 @@ public class ProximityFist : FistScript
 
         if (punchTimerTime <= 0)
         {
+            canDoDamage = true;
             anim.SetBool("Warning", false);
             anim.SetBool("FB", true);
             punchTimerTime = defaultPunchTimerTime;
@@ -77,16 +78,21 @@ public class ProximityFist : FistScript
         {
             anim.SetBool("FB", false);
             holdOffTimerTime = originalHoldOffTimerTime;
-            punchTimer = true;
+            waitTimer = true;
+            canDoDamage = false;
             holdOffTimer = false;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Bodypart")
+        if (canDoDamage == true)
         {
-            punchTimer = true;
+            if (collision.gameObject.tag == "Bodypart")
+            {
+                collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                //Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>().currHealth);
+            }
         }
     }
 }

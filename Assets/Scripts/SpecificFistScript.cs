@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpecificFistScript : FistScript
 {
+    [Space(10)]
     public float power;
     public float range;
-
+    [HideInInspector]
     public bool canDoDamage;
 
     protected override void Start()
@@ -88,9 +89,9 @@ public class SpecificFistScript : FistScript
             if (collision.gameObject.tag == "Bodypart")
             {
                 Debug.Log("Jee ottaa damagee");
-                Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>());
-                collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
                 
+                collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                //Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>().currHealth);
             }
         }
     }
