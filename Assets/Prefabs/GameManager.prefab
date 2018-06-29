@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183370193249502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7538582, y: -2.2301884, z: 0.3109131}
+  m_LocalPosition: {x: -7.9711475, y: -0.169, z: 5.244455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224781959798879914}
@@ -105,9 +105,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812e86fc903a8194b99b9620fdbeb670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab1: {fileID: 1556383237869166, guid: 1138b6c3ee6234541b9f587c256050c4,
+    type: 2}
+  playerPrefab2: {fileID: 1556383237869166, guid: 3adf4eabf2e820e4a977bb7acfab0d44,
+    type: 2}
+  playerPrefab3: {fileID: 1556383237869166, guid: 26c25fab5fff5364096a834bd18537b5,
+    type: 2}
+  playerPrefab4: {fileID: 1556383237869166, guid: b1ebfc279b0b6944480a326a2e9d9124,
+    type: 2}
   whoWonText: {fileID: 114827457270756808}
   roundWon: {fileID: 1611074844739974}
+  weaponSpawnTimer: 0
   alivePlayers: []
+  spawnPlayers: []
+  weaponSpawns: []
+  playerSpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114419499530811418
 MonoBehaviour:
   m_ObjectHideFlags: 1

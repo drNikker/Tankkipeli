@@ -5,16 +5,21 @@ using UnityEngine;
 public class HandControls : MonoBehaviour {
 
     Rigidbody rb;
+    public GameObject otherHand;
     public float power = 10;
     Vector3 p1LeftHand;
     Vector3 p1RightHand;
+    Weapon script;
 
     public string player;
     public string LRHand;
 
-    public ConfigurableJoint joint;
     public GameObject weapon;
-    bool canEquip = false;
+    GameObject equippedWeapon;
+
+    float cd;
+    bool canPress = false;
+    bool weaponInHand = false;
 
     private void Start()
     {
@@ -54,37 +59,121 @@ public class HandControls : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon" && weaponInHand == false)
         {
-            canEquip = true;
             weapon = other.gameObject;
-            print(other);
+            if (weapon.GetComponentInChildren<Weapon>().equipped == false)
+            {
+                canPress = true;
+            }
+            else
+            {
+                canPress = false;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        weapon = null;
-        canEquip = false;
-        joint = null;
+        if(weaponInHand == false)
+        {
+            canPress = false;
+            weapon = null;
+        }
     }
 
     void KeyPresses()
     {
-        if (Input.GetKey(KeyCode.Joystick1Button9) && canEquip == true)
+        if (Input.GetButton(player + "RightGrab") && LRHand == "R" && canPress == true && cd < Time.time)
         {
-            print("r");
-            joint = weapon.GetComponent<ConfigurableJoint>();
-            joint.connectedBody = GetComponent<Rigidbody>();
-            joint.autoConfigureConnectedAnchor = false;
-            joint.connectedAnchor = new Vector3(0.1f, 0.15f, 0);
+            script = weapon.GetComponentInChildren<Weapon>();
             Transform t = weapon.GetComponent<Transform>();
-            weapon.transform.parent = this.transform;
-            t.localEulerAngles = new Vector3(0, 0, 0);
-            Weapon script = weapon.GetComponentInChildren<Weapon>();
-            script.Equip();
-            canEquip = false;
+            ConfigurableJoint[] joints = weapon.GetComponents<ConfigurableJoint>();
+            if (weaponInHand == false && joints.Length == 1)
+            {
+                weapon.transform.parent = this.transform;
+                t.rotation = transform.rotation;
+                t.Rotate(90, 0, 0);
+                joints[0].connectedBody = GetComponent<Rigidbody>();
+                joints[0].autoConfigureConnectedAnchor = false;
+                joints[0].connectedAnchor = new Vector3(0.1f, 0.2f, 0);
+                script.Equip();
+                weaponInHand = true;
+                equippedWeapon = weapon;
+                cd = Time.time + 1;
+            }
+            else if (joints.Length == 2 && weaponInHand == false)
+            {
+                weapon.transform.parent = this.transform;
+                transform.eulerAngles = new Vector3(0,0,0);
+                otherHand.transform.eulerAngles = new Vector3(0,0,90);
+                t.rotation = transform.rotation;
+                t.eulerAngles = new Vector3(0, 90, 90);
+                joints[0].connectedBody = GetComponent<Rigidbody>();
+                joints[0].autoConfigureConnectedAnchor = false;
+                joints[0].connectedAnchor = new Vector3(0.1f, 0.2f, 0);
+                joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
+                joints[1].autoConfigureConnectedAnchor = false;
+                joints[1].connectedAnchor = new Vector3(-0.1f, 0.2f, 0);
+                script.Equip();
+                weaponInHand = true;
+                equippedWeapon = weapon;
+                cd = Time.time + 1;
+            }
+            else if (weaponInHand == true)
+            {
+                script.Dropped();
+                weaponInHand = false;
+                weapon = null;
+                equippedWeapon = null;
+                cd = Time.time + 1;
+            }
 
+        }
+        else if (Input.GetButton(player + "LeftGrab") && LRHand == "L" && canPress == true && cd < Time.time)
+        {
+            script = weapon.GetComponentInChildren<Weapon>();
+            Transform t = weapon.GetComponent<Transform>();
+            ConfigurableJoint[] joints = weapon.GetComponents<ConfigurableJoint>();
+            if (weaponInHand == false && joints.Length == 1)
+            {
+                weapon.transform.parent = this.transform;
+                t.rotation = transform.rotation;
+                t.Rotate(90, 0, 0);
+                joints[0].connectedBody = GetComponent<Rigidbody>();
+                joints[0].autoConfigureConnectedAnchor = false;
+                joints[0].connectedAnchor = new Vector3(-0.1f, 0.2f, 0);
+                script.Equip();
+                weaponInHand = true;
+                equippedWeapon = weapon;
+                cd = Time.time + 1;
+            }
+            else if (weaponInHand == false && joints.Length == 2)
+            {
+                weapon.transform.parent = this.transform;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
+                t.rotation = transform.rotation;
+                t.eulerAngles = new Vector3(0, 90, 90);
+                joints[0].connectedBody = GetComponent<Rigidbody>();
+                joints[0].autoConfigureConnectedAnchor = false;
+                joints[0].connectedAnchor = new Vector3(-0.1f, 0.2f, 0);
+                joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
+                joints[1].autoConfigureConnectedAnchor = false;
+                joints[1].connectedAnchor = new Vector3(0.1f, 0.2f, 0);
+                script.Equip();
+                weaponInHand = true;
+                equippedWeapon = weapon;
+                cd = Time.time + 1;
+            }
+            else if (weaponInHand == true)
+            {
+                script.Dropped();
+                weaponInHand = false;
+                weapon = null;
+                equippedWeapon = null;
+                cd = Time.time + 1;
+            }
         }
     }
 }

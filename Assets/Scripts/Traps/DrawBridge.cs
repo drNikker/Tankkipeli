@@ -16,8 +16,6 @@ public class DrawBridge : MonoBehaviour
 
     void Start()
     {
-        //anim.SetBool("Open/Close", true);
-        //bridgeList = GameObject.FindGameObjectWithTag("BridgeList").GetComponent<BridgeList>();
         waitTimer = true;
 
         originalWaitTimerTime = waitTimerTime;

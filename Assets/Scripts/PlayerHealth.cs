@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
     RoundManager roundManager;
 
-    float maxHealth = 26;
+    float maxHealth = 100;
     float currHealth = 100;
     bool lastStand = false;
     //[HideInInspector]
@@ -75,7 +75,7 @@ public class PlayerHealth : MonoBehaviour {
         switch (currentState)
         {
             case PLAYER_STATE.ALIVE:
-                GetComponent<PhysicMovement>().enabled = true;
+                GetComponent<PhysicMovement1>().enabled = true;
                 foreach (HandForce hf in hands)
                 {
                     hf.enabled = true;
@@ -89,7 +89,7 @@ public class PlayerHealth : MonoBehaviour {
 
             case PLAYER_STATE.STUNNED:
 
-                GetComponent<PhysicMovement>().enabled = false;
+                GetComponent<PhysicMovement1>().enabled = false;
                 foreach (HandForce hf in hands)
                 {
                     hf.enabled = false;
@@ -102,7 +102,7 @@ public class PlayerHealth : MonoBehaviour {
 
             case PLAYER_STATE.DEAD:
                 
-                GetComponent<PhysicMovement>().enabled = false;
+                GetComponent<PhysicMovement1>().enabled = false;
                 foreach (HandForce hf in hands)
                 {
                     hf.enabled = false;
