@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SingleFist : FistScript
 {
+    [Space(10)]
     public float power;
     public float range;
-
+    [HideInInspector]
     public bool canDoDamage;
 
     protected override void Start()
@@ -76,8 +77,8 @@ public class SingleFist : FistScript
             anim.SetBool("FB", false);
             holdOffTimerTime = originalHoldOffTimerTime;
             waitTimer = true;
-            holdOffTimer = false;
             canDoDamage = false;
+            holdOffTimer = false;
         }
     }
 
@@ -87,8 +88,8 @@ public class SingleFist : FistScript
         {
             if (collision.gameObject.tag == "Bodypart")
             {
-                Debug.Log("Jee ottaa damagee");
-                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                //Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>().currHealth);
             }
         }
     }

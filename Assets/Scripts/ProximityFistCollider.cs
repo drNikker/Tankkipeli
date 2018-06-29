@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProximityFistCollider : MonoBehaviour
 {
     private ProximityFist proximityFist;
-
+    [HideInInspector]
     public bool allowPunching;
 
     void Start()

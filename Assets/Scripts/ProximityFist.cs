@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ProximityFist : FistScript
 {
+    private ProximityFistCollider proximityFistCollider;
+    [Space(10)]
     public float power;
     public float range;
-
-    private ProximityFistCollider proximityFistCollider;
+    [HideInInspector]
+    public bool canDoDamage;
 
     protected override void Start()
     {
@@ -19,6 +21,7 @@ public class ProximityFist : FistScript
         anim.SetFloat("Range", range);
 
         waitTimer = false;
+        canDoDamage = false;
     }
 
     void Update()
@@ -49,31 +52,8 @@ public class ProximityFist : FistScript
                 waitTimer = false;
             }
         }
-
-        //CheckPlayer();
     }
-    /*
-    private void CheckPlayer()
-    {
-        RaycastHit hit;
 
-        Physics.Raycast(transform.position, transform.right, out hit, 3);
-
-        if (hit.collider.gameObject.tag != null)
-        {
-            if (hit.collider.gameObject.tag == "Bodypart")
-            {
-                punchTimer = true;
-                Debug.Log(hit.collider.gameObject.tag);
-                //gameObject.GetComponent<yourScript>().yourFunction()
-            }
-        }
-        else
-        {
-            Debug.Log("There's no player.");
-        }   
-    }
-    */
     protected void PunchTimer()
     {
         anim.SetBool("Warning", true);
@@ -81,6 +61,7 @@ public class ProximityFist : FistScript
 
         if (punchTimerTime <= 0)
         {
+            canDoDamage = true;
             anim.SetBool("Warning", false);
             anim.SetBool("FB", true);
             punchTimerTime = defaultPunchTimerTime;
@@ -97,9 +78,21 @@ public class ProximityFist : FistScript
         {
             anim.SetBool("FB", false);
             holdOffTimerTime = originalHoldOffTimerTime;
-
             waitTimer = true;
+            canDoDamage = false;
             holdOffTimer = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (canDoDamage == true)
+        {
+            if (collision.gameObject.tag == "Bodypart")
+            {
+                collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                //Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>().currHealth);
+            }
         }
     }
 }

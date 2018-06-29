@@ -5309,6 +5309,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dab764f2bfb297e4eabac5ce431defe9, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &164523976 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1556383237869166, guid: 95b02d4fdf0ea6042b15adc150f105cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 25666162}
+--- !u!114 &164523981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164523976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cb6b1a06cad5f4d9fdaae8ae539955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currHealth: 100
+  currentState: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -5604,6 +5622,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b02b348e390bc154aa4ae9796b6bb97d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &230459647 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1718301361569580, guid: 26a21ca99f8c0394eabe55adc45b0d61,
+    type: 2}
+  m_PrefabInternal: {fileID: 1531346472}
+--- !u!114 &230459649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 230459647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fde85a07a43e3148a4627a1bc19e31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1526519508}
+  punchTimer: 0
+  holdOffTimer: 0
+  waitTimer: 0
+  punchTimerTime: 2
+  holdOffTimerTime: 1
+  waitTimerTime: 1
+  stopRotation: 1
+  damage: 0
+  power: 1
+  range: 1
+  canDoDamage: 0
 --- !u!1001 &271040782
 Prefab:
   m_ObjectHideFlags: 0
@@ -7639,7 +7685,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1110869769808408, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114102848077641220, guid: 50deb1c06491efc4a82eeea16b5f9bcb,
+        type: 2}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591215773810612, guid: 50deb1c06491efc4a82eeea16b5f9bcb,
+        type: 2}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114081739499235096, guid: 50deb1c06491efc4a82eeea16b5f9bcb,
+        type: 2}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114005614180294984, guid: 50deb1c06491efc4a82eeea16b5f9bcb,
+        type: 2}
+      propertyPath: damage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
@@ -7914,6 +7980,11 @@ Prefab:
     - target: {fileID: 4528509644715992, guid: 3c134f323fa9ce144ac0b14124acf1a1, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114573218924436046, guid: 3c134f323fa9ce144ac0b14124acf1a1,
+        type: 2}
+      propertyPath: damage
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c134f323fa9ce144ac0b14124acf1a1, type: 2}
@@ -8646,6 +8717,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc39efad4daf5514ab0a6374fb3a8c24, type: 2}
   m_IsPrefabParent: 0
+--- !u!95 &1526519508 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95528755974584982, guid: 26a21ca99f8c0394eabe55adc45b0d61,
+    type: 2}
+  m_PrefabInternal: {fileID: 1531346472}
 --- !u!1001 &1531346472
 Prefab:
   m_ObjectHideFlags: 0
@@ -8655,31 +8731,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.251513
+      value: 4.17
       objectReference: {fileID: 0}
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.0000008717688
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.416458
+      value: -4.52
       objectReference: {fileID: 0}
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.9014737
       objectReference: {fileID: 0}
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.4328339
       objectReference: {fileID: 0}
     - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_RootOrder
@@ -8687,9 +8763,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1751117832422678, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4613364510203364, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -128.705
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114995373254411748, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 26a21ca99f8c0394eabe55adc45b0d61, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1536899631

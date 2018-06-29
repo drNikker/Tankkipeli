@@ -11,9 +11,18 @@ public class BridgeList : MonoBehaviour
     public float specialWaitTimerTime;
     protected float originalSpecialWaitTimerTime;
 
+    protected bool holdOffTimer;
+    public float holdOffTimerTime;
+    protected float originalHoldOffTimerTime;
+
     void Start()
     {
         specialWaitTimer = true;
+
+        for (int i = 0; i < bridgeList.Length; i++)
+        {
+            bridgeList[i].GetComponent<DrawBridge>().enabled = false;
+        }
     }
 
     void Update()
@@ -21,6 +30,11 @@ public class BridgeList : MonoBehaviour
         if (specialWaitTimer == true)
         {
             SpecialTimer();
+        }
+
+        if (holdOffTimer == true)
+        {
+            HoldOffTimer();
         }
     }
 
@@ -36,7 +50,24 @@ public class BridgeList : MonoBehaviour
             }
 
             specialWaitTimerTime = 0;
+            holdOffTimer = true;
             specialWaitTimer = false;
+        }
+    }
+
+    private void HoldOffTimer()
+    {
+        holdOffTimerTime -= Time.deltaTime;
+
+        if (holdOffTimerTime <= 0)
+        {
+            for (int i = 0; i < bridgeList.Length; i++)
+            {
+                bridgeList[i].GetComponent<Animator>().SetBool("Open/Close", true);
+            }
+
+            holdOffTimerTime = originalHoldOffTimerTime;
+            holdOffTimer = false;
         }
     }
 }
