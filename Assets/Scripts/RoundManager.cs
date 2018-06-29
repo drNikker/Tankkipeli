@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
 
-    GameObject playerPrefab;
+    public GameObject playerPrefab1;
+    public GameObject playerPrefab2;
+    public GameObject playerPrefab3;
+    public GameObject playerPrefab4;
     int playersAlive;
 
     //bool randomMap = true;
@@ -26,9 +29,56 @@ public class RoundManager : MonoBehaviour {
 
     private void Start()
     {
-        playerPrefab = (GameObject)Resources.Load("prefabs/Player2.0", typeof(GameObject));
+        
         sceneLoader = gameObject.GetComponent<SceneLoader>();
         playersAlive = 2;
+        if (StatHolder.HowManyPlayers == 0)
+        {
+            //This if statement exists for developing purposes. It ensures that the player spawns work even if you dont start at menu
+            StatHolder.HowManyPlayers = 2;
+        }
+        playersForRound();
+
+        if (weaponSpawns.Count > 0)
+        {
+            StartCoroutine(SpawnWeapon());
+        }
+    }
+
+    void playersForRound()
+    {
+        if (playerSpawns.Count > 0)
+        {
+            switch (StatHolder.HowManyPlayers)
+            {
+                case 2:
+                    spawnPlayers.Add(playerPrefab1);
+                    spawnPlayers.Add(playerPrefab2);
+                    break;
+                case 3:
+                    spawnPlayers.Add(playerPrefab1);
+                    spawnPlayers.Add(playerPrefab2);
+                    spawnPlayers.Add(playerPrefab3);
+                    break;
+                case 4:
+                    spawnPlayers.Add(playerPrefab1);
+                    spawnPlayers.Add(playerPrefab2);
+                    spawnPlayers.Add(playerPrefab3);
+                    spawnPlayers.Add(playerPrefab4);
+                    break;
+            }
+
+
+            for (int i = 0; i < StatHolder.HowManyPlayers; i++)
+            {
+                if (playerSpawns.Count > 0 && spawnPlayers.Count > 0)
+                {
+                    playerSpawns[Random.Range(0, playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+                }
+            }
+            playersAlive = StatHolder.HowManyPlayers;
+            RoundStart();
+        }
     }
 
     public void playerChecker()
@@ -49,12 +99,6 @@ public class RoundManager : MonoBehaviour {
         }
         StatHolder.WinsNeeded = 6;
         StatHolder.WitchSet = Random.Range(1, 4);
-        for (int i = 0; i < StatHolder.HowManyPlayers; i++)
-        {
-            spawnPlayers.Add(playerPrefab);
-            spawnPlayers[i].GetComponent<PhysicMovement>().player = "P" + i + 1;
-            //Color change?
-        }
         NewRound();
     }
 
@@ -92,11 +136,6 @@ public class RoundManager : MonoBehaviour {
                 break;
         }
 
-        playersAlive = StatHolder.HowManyPlayers;
-        if (weaponSpawns.Count > 0)
-        {
-            StartCoroutine(SpawnWeapon());
-        }
     }
 
     public void RoundStart()
@@ -118,25 +157,35 @@ public class RoundManager : MonoBehaviour {
             case "Player2":
                 StatHolder.Player2Wins += 1;
                 break;
+            case "Player3":
+                StatHolder.Player3Wins += 1;
+                break;
+            case "Player4":
+                StatHolder.Player4Wins += 1;
+                break;
             default:
                 print("This should never happen");
                 break;
         }
 
-        print("wins " + StatHolder.Player2Wins);
-        print("needed " + StatHolder.WinsNeeded);
         roundWon.SetActive(true);
 
-        if (StatHolder.Player1Wins >= StatHolder.WinsNeeded || StatHolder.Player2Wins >= StatHolder.WinsNeeded)
+        if (StatHolder.Player1Wins >= StatHolder.WinsNeeded || StatHolder.Player2Wins >= StatHolder.WinsNeeded || StatHolder.Player3Wins >= StatHolder.WinsNeeded || StatHolder.Player4Wins >= StatHolder.WinsNeeded)
         {
             //Game is over
             switch (alivePlayers[0].name)
             {
                 case "Player1":
-                    whoWonText.text = "Player1 won the game";
+                    whoWonText.text = "Player 1 won the game";
                     break;
                 case "Player2":
                     whoWonText.text = "Player 2 won the game";
+                    break;
+                case "Player3":
+                    whoWonText.text = "Player 3 won the game";
+                    break;
+                case "Player4":
+                    whoWonText.text = "Player 4 won the game";
                     break;
                 default:
                     print("This should never happen");
@@ -153,6 +202,12 @@ public class RoundManager : MonoBehaviour {
                     break;
                 case "Player2":
                     whoWonText.text = "Player 2 won the round";
+                    break;
+                case "Player3":
+                    whoWonText.text = "Player 3 won the round";
+                    break;
+                case "Player4":
+                    whoWonText.text = "Player 4 won the round";
                     break;
                 default:
                     print("This should never happen");
@@ -182,8 +237,9 @@ public class RoundManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(weaponSpawnTimer);
 
-        int i = Random.Range(0, weaponSpawns.Count + 1);
+        int i = Random.Range(0, weaponSpawns.Count);
         weaponSpawns[i].GetComponent<WeaponSpawn>().CreateWeapon();
-        
+        StartCoroutine(SpawnWeapon());
+
     }
 }

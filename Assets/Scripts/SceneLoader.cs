@@ -18,20 +18,20 @@ public class SceneLoader : MonoBehaviour
 
         roundManager = gameObject.GetComponent<RoundManager>();
         ////Map set 1
-        mapSet1.Add("GladiatorLevel1");
-        mapSet1.Add("GladiatorLevel2");
-        mapSet1.Add("GladiatorLevel3");
-        mapSet1.Add("GladiatorLevel4");
+        mapSet1.Add("PlayerSpawn");
+        mapSet1.Add("PlayerSpawn");
+        mapSet1.Add("PlayerSpawn");
+        mapSet1.Add("PlayerSpawn");
         //Map set 2
-        mapSet2.Add("DiscoLevel1");
-        mapSet2.Add("DiscoLevel2");
-        mapSet2.Add("DiscoLevel3");
-        mapSet2.Add("DiscoLevel4");
+        mapSet2.Add("PlayerSpawn");
+        mapSet2.Add("PlayerSpawn");
+        mapSet2.Add("PlayerSpawn");
+        mapSet2.Add("PlayerSpawn");
         //Map set 3
-        mapSet3.Add("MedievalLevel1");
-        mapSet3.Add("MedievalLevel2");
-        mapSet3.Add("MedievalLevel3");
-        mapSet3.Add("MedievalLevel4");
+        mapSet3.Add("PlayerSpawn");
+        mapSet3.Add("PlayerSpawn");
+        mapSet3.Add("PlayerSpawn");
+        mapSet3.Add("PlayerSpawn");
 
     }
 
@@ -62,6 +62,8 @@ public class SceneLoader : MonoBehaviour
         StatHolder.HowManyPlayers = 0;
         StatHolder.Player1Wins = 0;
         StatHolder.Player2Wins = 0;
+        StatHolder.Player3Wins = 0;
+        StatHolder.Player4Wins = 0;
         StatHolder.WinsNeeded = 0;
         StatHolder.RoundNumber = 0;
     }
