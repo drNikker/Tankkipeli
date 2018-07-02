@@ -178,15 +178,7 @@ public class PhysicMovement1 : MonoBehaviour {
                 charUpR.keepUpright = true;
                 upRightCounter = 0;
             }
-            for (int i = 0; i < 120; i++)
-            {
-                if (i == 0)
-                {
-
-                    Debug.Log(upRightCounter);
-                    
-                }
-            }
+            
         }
         else
         {
