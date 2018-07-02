@@ -194,5 +194,26 @@ public class PhysicMovement1 : MonoBehaviour {
             charUpR.keepUpright = false;
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Platform")
+        {
+            transform.parent = other.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Platform")
+        {
+            transform.parent = null;
+        }
+    }
+
+    void onMovingPlatforms()
+    {
+        
+    }
     
 }
