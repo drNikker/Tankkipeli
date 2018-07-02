@@ -1,6 +1,8 @@
 ﻿public static class StatHolder
 {
     private static int player1Wins, player2Wins, player3Wins, player4Wins, howManyPlayers, roundNumber, witchSet, winsNeeded = 3;
+    private static float[] player1Color, player2Color, player3Color, player4Color;
+    
 
     public static int Player1Wins
     {
@@ -89,6 +91,17 @@
         set
         {
             witchSet = value;
+        }
+    }
+    public static float[] Player1Color
+    {
+        get
+        {
+            return player1Color;
+        }
+        set
+        {
+            player1Color = value;
         }
     }
 }

@@ -53,8 +53,8 @@ public class PlayerHealth : MonoBehaviour {
         currentState = PLAYER_STATE.DEAD;
         SetPlayerState();
         //Game needs to recive info about player death
-        roundManager.playerChecker();
         roundManager.alivePlayers.Remove(this.gameObject);
+        roundManager.playerChecker();
         
     }
 
