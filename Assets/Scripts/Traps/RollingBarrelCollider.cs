@@ -17,13 +17,12 @@ public class RollingBarrelCollider : MonoBehaviour
 
     }
 
-    /*
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider collider)
     {
-        if (other.gameObject.CompareTag == "")
+        if (collider.gameObject.CompareTag ("Untagged"))
         {
-
+            Destroy(collider.gameObject);
         }
     }
-    */
 }
