@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollingBarrelCollider : MonoBehaviour
+public class CannonBallCollider : MonoBehaviour
 {
 
     void Start()
@@ -15,10 +15,9 @@ public class RollingBarrelCollider : MonoBehaviour
 
     }
 
-    
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag ("Untagged"))
+        if (collider.CompareTag("CannonBall"))
         {
             Destroy(collider.gameObject);
         }
