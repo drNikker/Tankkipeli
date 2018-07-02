@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour {
     Rigidbody weapon;
     public Transform weaponParent;
 
+    
 
     public float baseDamage = 5;
     public float dmgMultiplier = 2f;

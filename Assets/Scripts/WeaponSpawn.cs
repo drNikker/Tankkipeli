@@ -11,7 +11,8 @@ public class WeaponSpawn : MonoBehaviour {
     public bool startWeapon;
     public bool randomWeapon;
     public bool randomPosition;
-    
+
+    public GameObject WeaponSpawnEffect;
 
     [Range(0, 100)] public int FlailChanceWeight;
     [Range(0, 100)] public int GreatAxeChanceWeight;
@@ -27,9 +28,9 @@ public class WeaponSpawn : MonoBehaviour {
 
     public SPAWN_WEAPON weaponToSpawn;
 
-    public Transform GreatAxe;
-    public Transform Hammer;
-    public Transform Flail;
+    public GameObject greatAxe;
+    public GameObject hammer;
+    public GameObject flail;
 
     
 
@@ -119,20 +120,23 @@ public class WeaponSpawn : MonoBehaviour {
 
 
             case SPAWN_WEAPON.GREATAXE:
-                Instantiate(GreatAxe, this.gameObject.transform.position, Quaternion.AngleAxis(90, Vector3.right));
-
+            
+               Instantiate(greatAxe, this.gameObject.transform.position, Quaternion.AngleAxis(90, Vector3.right));
+                
 
                 break;
 
             case SPAWN_WEAPON.HAMMER:
-                Instantiate(Hammer, this.gameObject.transform.position, Quaternion.identity);
 
+                Instantiate(hammer, this.gameObject.transform.position, Quaternion.identity);
+              
 
                 break;
 
             case SPAWN_WEAPON.FLAIL:
-                Instantiate(Flail, this.gameObject.transform.position, Quaternion.identity);
-
+               
+                Instantiate(flail, this.gameObject.transform.position, Quaternion.identity);
+                
                 break;
         }
         if (independent)
