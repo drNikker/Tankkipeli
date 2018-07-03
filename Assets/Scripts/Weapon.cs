@@ -58,7 +58,7 @@ public class Weapon : MonoBehaviour {
                 if (ownHP != health)
                 {
                     finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
-                    if (finalDamage >= 25)
+                    if (finalDamage >= 2500)
                     {
                         finalDamage = 25;                                           //Damage is capped at 25 for now
                     }
@@ -161,7 +161,7 @@ public class Weapon : MonoBehaviour {
                 {
                     joints[i].connectedBody = null;
                 }
-
+                weaponParent.GetComponent<BoxCollider>().enabled = true;
                 weaponParent.parent = null;
                 foreach (Rigidbody body in bodies)
                 {
@@ -176,6 +176,7 @@ public class Weapon : MonoBehaviour {
 
             case WEAPON_STATE.WIELDED:
                 canEquip = false;
+                weaponParent.GetComponent<BoxCollider>().enabled = false;
                 for (int i = 1; i <= colliders.Length -1; i++)
                 {
                     colliders[i].enabled = true;

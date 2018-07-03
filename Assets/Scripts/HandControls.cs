@@ -26,7 +26,7 @@ public class HandControls : MonoBehaviour {
     GameObject equippedWeapon;
     GameObject playerObj;
 
-    float cd;
+    public float cd;
     bool weaponInHand = false;
     public bool guidingHand = false;
 
@@ -45,8 +45,8 @@ public class HandControls : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0.4f, Input.GetAxis(player + "LeftHandZ"));
-        p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0.4f, Input.GetAxis(player + "RightHandZ"));
+        p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
+        p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
         front = playerObj.transform.forward;
 
         if (LRHand == "R" && guidingHand == false)
@@ -87,20 +87,21 @@ public class HandControls : MonoBehaviour {
             }
             t = t.parent.transform;
         }
-        Debug.LogWarning("Player was not found! Make sure player has PLayer tag in it");
+        Debug.LogWarning("Player was not found! Make sure player has Player tag in it");
         return null;
     }
 
 
-    private void OnTriggerStay(Collider other)
+
+    public void WeaponInReach(GameObject wpn)
     {
-        if (other.tag == "Weapon" && weaponInHand == false)
+        if (weaponInHand == false)
         {
-            weapon = other.gameObject;
+            weapon = wpn;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void WeaponOutOfReach()
     {
         if (weaponInHand == false)
         {
@@ -112,7 +113,7 @@ public class HandControls : MonoBehaviour {
     IEnumerator MoveHand()
     {
         guidingHand = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         guidingHand = false;
     }
 
@@ -120,7 +121,7 @@ public class HandControls : MonoBehaviour {
     {
         guidingHand = true;
         otherHandScript.guidingHand = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         guidingHand = false;
         otherHandScript.guidingHand = false;
     }
@@ -134,12 +135,16 @@ public class HandControls : MonoBehaviour {
         joints[0].autoConfigureConnectedAnchor = false;
         joints[0].connectedAnchor = new Vector3(offset, 0.2f, 0);
         script.Equip();
-        cd = Time.time + 1;
+        otherHandScript.WeaponOutOfReach();
     }
 
     void EquipTwoHands()
     {
         equippedWeapon.transform.parent = this.transform;
+        CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
+        SoftJointLimit limit = handJoint.swing2Limit;
+        limit.limit = 90;
+        handJoint.swing2Limit = limit;
         transform.eulerAngles = new Vector3(0, 0, 0);
         otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
         t.rotation = transform.rotation;
@@ -151,13 +156,14 @@ public class HandControls : MonoBehaviour {
         joints[1].autoConfigureConnectedAnchor = false;
         joints[1].connectedAnchor = new Vector3(-offset, 0.2f, 0);
         script.Equip();
-        cd = Time.time + 1;
     }
 
     void KeyPresses()
     {
         if (Input.GetButtonDown(player + "RightGrab") && LRHand == "R" && weapon != null && cd < Time.time)
         {
+            cd = Time.time + 1;
+            otherHandScript.cd = Time.time + 1;
             equippedWeapon = weapon;
             script = weapon.GetComponentInChildren<Weapon>();
             t = weapon.GetComponent<Transform>();
@@ -167,31 +173,37 @@ public class HandControls : MonoBehaviour {
                 weaponInHand = true;
                 offset = 0.1f;
                 StartCoroutine("MoveHand");
-                Invoke("EquipOneHand", 1);
+                Invoke("EquipOneHand", 0.5f);
 
             }
-            else if (joints.Length == 2 && weaponInHand == false)
+            else if (joints.Length == 2 && weaponInHand == false && otherHandScript.weaponInHand == false)
             {
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
                 offset = 0.1f;
                 StartCoroutine("MoveBothHands");
-                Invoke("EquipTwoHands", 1);
+                Invoke("EquipTwoHands", 0.5f);
             }
             else if (weaponInHand == true)
             {
                 script.Dropped();
+                CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
+                SoftJointLimit limit = handJoint.swing2Limit;
+                limit.limit = 0;
+                handJoint.swing2Limit = limit;
                 if (joints.Length == 2)
                 { otherHandScript.weaponInHand = false; }
                 weaponInHand = false;
                 weapon = null;
                 equippedWeapon = null;
-                cd = Time.time + 1;
+
             }
 
         }
         else if (Input.GetButtonDown(player + "LeftGrab") && LRHand == "L" && weapon != null && cd < Time.time)
         {
+            cd = Time.time + 1;
+            otherHandScript.cd = Time.time + 1;
             equippedWeapon = weapon;
             script = weapon.GetComponentInChildren<Weapon>();
             t = weapon.GetComponent<Transform>();
@@ -201,25 +213,28 @@ public class HandControls : MonoBehaviour {
                 weaponInHand = true;
                 offset = -0.1f;
                 StartCoroutine("MoveHand");
-                Invoke("EquipOneHand", 1);
+                Invoke("EquipOneHand", 0.5f);
             }
-            else if (weaponInHand == false && joints.Length == 2)
+            else if (weaponInHand == false && joints.Length == 2 && otherHandScript.weaponInHand == false)
             {
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
                 offset = -0.1f;
                 StartCoroutine("MoveBothHands");
-                Invoke("EquipTwoHands", 1);
+                Invoke("EquipTwoHands", 0.5f);
             }
             else if (weaponInHand == true)
             {
                 script.Dropped();
+                CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
+                SoftJointLimit limit = handJoint.swing2Limit;
+                limit.limit = 0;
+                handJoint.swing2Limit = limit;
                 if (joints.Length == 2)
                 { otherHandScript.weaponInHand = false; }
                 weaponInHand = false;
                 weapon = null;
                 equippedWeapon = null;
-                cd = Time.time + 1;
             }
         }
     }
