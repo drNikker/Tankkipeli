@@ -33,12 +33,16 @@ public class RoundManager : MonoBehaviour {
         playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
 
-        if (SceneManager.GetActiveScene().name != "JoiningScene")
+        if (SceneManager.GetActiveScene().name != "JoiningScene" )
         {
             if (StatHolder.HowManyPlayers == 0)
             {
                 //This if statement exists for developing purposes. It ensures that the player spawns work even if you dont start at menu
                 StatHolder.HowManyPlayers = 2;
+            }
+            if(SceneManager.GetActiveScene().name == "Menu")
+            {
+                StatHolder.HowManyPlayers = 0;
             }
             playersForRound();
         }
@@ -52,37 +56,40 @@ public class RoundManager : MonoBehaviour {
 
     void playersForRound()
     {
-        if (playerSpawns.Count > 0)
+        if (StatHolder.HowManyPlayers > 0)
         {
-            switch (StatHolder.HowManyPlayers)
+            if (playerSpawns.Count > 0)
             {
-                case 2:
-                    spawnPlayers.Add(playerPrefab1);
-                    spawnPlayers.Add(playerPrefab2);
-                    break;
-                case 3:
-                    spawnPlayers.Add(playerPrefab1);
-                    spawnPlayers.Add(playerPrefab2);
-                    spawnPlayers.Add(playerPrefab3);
-                    break;
-                case 4:
-                    spawnPlayers.Add(playerPrefab1);
-                    spawnPlayers.Add(playerPrefab2);
-                    spawnPlayers.Add(playerPrefab3);
-                    spawnPlayers.Add(playerPrefab4);
-                    break;
-            }
-
-
-            for (int i = 0; i < StatHolder.HowManyPlayers; i++)
-            {
-                if (playerSpawns.Count > 0 && spawnPlayers.Count > 0)
+                switch (StatHolder.HowManyPlayers)
                 {
-                    playerSpawns[Random.Range(0, playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+                    case 2:
+                        spawnPlayers.Add(playerPrefab1);
+                        spawnPlayers.Add(playerPrefab2);
+                        break;
+                    case 3:
+                        spawnPlayers.Add(playerPrefab1);
+                        spawnPlayers.Add(playerPrefab2);
+                        spawnPlayers.Add(playerPrefab3);
+                        break;
+                    case 4:
+                        spawnPlayers.Add(playerPrefab1);
+                        spawnPlayers.Add(playerPrefab2);
+                        spawnPlayers.Add(playerPrefab3);
+                        spawnPlayers.Add(playerPrefab4);
+                        break;
                 }
+
+
+                for (int i = 0; i < StatHolder.HowManyPlayers; i++)
+                {
+                    if (playerSpawns.Count > 0 && spawnPlayers.Count > 0)
+                    {
+                        playerSpawns[Random.Range(0, playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+                    }
+                }
+                playersAlive = StatHolder.HowManyPlayers;
+                RoundStart();
             }
-            playersAlive = StatHolder.HowManyPlayers;
-            RoundStart();
         }
     }
 

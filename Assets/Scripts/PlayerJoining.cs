@@ -16,6 +16,13 @@ public class PlayerJoining : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        StatHolder.HowManyPlayers = 0;
+        StatHolder.Player1Wins = 0;
+        StatHolder.Player2Wins = 0;
+        StatHolder.Player3Wins = 0;
+        StatHolder.Player4Wins = 0;
+        StatHolder.WinsNeeded = 0;
+        StatHolder.RoundNumber = 0;
         roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
     }
 
@@ -28,10 +35,10 @@ public class PlayerJoining : MonoBehaviour {
     void keyPresses()
     {
         //Player 1 join and color change
-        if (joined1 == false && Input.GetButtonDown("P1Join"))
+        if (joined1 == false && Input.GetButtonDown("P1Join") || joined1 == false && Input.GetKeyDown("g"))
         {
             joined1 = true;
-            StatHolder.HowManyPlayers ++;
+            StatHolder.HowManyPlayers++;
             roundManager.spawnPlayers.Add(roundManager.playerPrefab1);
             if (roundManager.playerSpawns.Count == 0)
             {
@@ -39,7 +46,7 @@ public class PlayerJoining : MonoBehaviour {
             }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
-        else if (joined1 == true && Input.GetButtonDown("P1Join"))
+        else if (joined1 == true && Input.GetButtonDown("P1Join") || joined1 == true && Input.GetKeyDown("g"))
         {
             Color color = Random.ColorHSV();
             GameObject player = roundManager.alivePlayers[0];
@@ -49,14 +56,12 @@ public class PlayerJoining : MonoBehaviour {
             _propBlock.SetColor("_Color", color);
             rend[0].SetPropertyBlock(_propBlock);
             rend[1].SetPropertyBlock(_propBlock);
-            rend[2].SetPropertyBlock(_propBlock);
+            //rend[2].SetPropertyBlock(_propBlock); Player torso color
             Vector4 savedColor = color;
-            StatHolder.Player1Color[0] = savedColor[0];
-            StatHolder.Player1Color[1] = savedColor[1];
-            StatHolder.Player1Color[2] = savedColor[2];
-            StatHolder.Player1Color[3] = savedColor[3];
-
-
+            StatHolder.Player1ColorX = savedColor[0];
+            StatHolder.Player1ColorY = savedColor[1];
+            StatHolder.Player1ColorZ = savedColor[2];
+            StatHolder.Player1ColorW = savedColor[3];
 
         }
         if (joined1 == true && Input.GetButtonDown("P1B"))
@@ -69,7 +74,7 @@ public class PlayerJoining : MonoBehaviour {
 
 
         //Player 2 join and color change
-        if (joined2 == false && Input.GetButtonDown("P1Join"))
+        if (joined2 == false && Input.GetButtonDown("P1Join") || joined2 == false && Input.GetKeyDown("g"))
         {
             joined2 = true;
             StatHolder.HowManyPlayers++;
@@ -82,6 +87,7 @@ public class PlayerJoining : MonoBehaviour {
         }
         else if (joined2 == true && Input.GetButtonDown("P2Join"))
         {
+            Color color = Random.ColorHSV();
             GameObject player = roundManager.alivePlayers[1];
             MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
             Renderer[] rend = player.GetComponentsInChildren<Renderer>();
@@ -89,7 +95,12 @@ public class PlayerJoining : MonoBehaviour {
             _propBlock.SetColor("_Color", Random.ColorHSV());
             rend[0].SetPropertyBlock(_propBlock);
             rend[1].SetPropertyBlock(_propBlock);
-            rend[2].SetPropertyBlock(_propBlock);
+            //rend[2].SetPropertyBlock(_propBlock); Player torso color
+            Vector4 savedColor = color;
+            StatHolder.Player1ColorX = savedColor[0];
+            StatHolder.Player1ColorY = savedColor[1];
+            StatHolder.Player1ColorZ = savedColor[2];
+            StatHolder.Player1ColorW = savedColor[3];
         }
         if (joined2 == true && Input.GetButtonDown("P2B"))
         {
@@ -113,6 +124,7 @@ public class PlayerJoining : MonoBehaviour {
         }
         else if (joined3 == true && Input.GetButtonDown("P3Join"))
         {
+            Color color = Random.ColorHSV();
             GameObject player = roundManager.alivePlayers[2];
             MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
             Renderer[] rend = player.GetComponentsInChildren<Renderer>();
@@ -120,7 +132,12 @@ public class PlayerJoining : MonoBehaviour {
             _propBlock.SetColor("_Color", Random.ColorHSV());
             rend[0].SetPropertyBlock(_propBlock);
             rend[1].SetPropertyBlock(_propBlock);
-            rend[2].SetPropertyBlock(_propBlock);
+            //rend[2].SetPropertyBlock(_propBlock); Player torso color
+            Vector4 savedColor = color;
+            StatHolder.Player1ColorX = savedColor[0];
+            StatHolder.Player1ColorY = savedColor[1];
+            StatHolder.Player1ColorZ = savedColor[2];
+            StatHolder.Player1ColorW = savedColor[3];
         }
         if (joined3 == true && Input.GetButtonDown("P3B"))
         {
@@ -140,6 +157,7 @@ public class PlayerJoining : MonoBehaviour {
         }
         else if (joined4 == true && Input.GetButtonDown("P4Join"))
         {
+            Color color = Random.ColorHSV();
             GameObject player = roundManager.alivePlayers[3];
             MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
             Renderer[] rend = player.GetComponentsInChildren<Renderer>();
@@ -147,7 +165,12 @@ public class PlayerJoining : MonoBehaviour {
             _propBlock.SetColor("_Color", Random.ColorHSV());
             rend[0].SetPropertyBlock(_propBlock);
             rend[1].SetPropertyBlock(_propBlock);
-            rend[2].SetPropertyBlock(_propBlock);
+            //rend[2].SetPropertyBlock(_propBlock); Player torso color
+            Vector4 savedColor = color;
+            StatHolder.Player1ColorX = savedColor[0];
+            StatHolder.Player1ColorY = savedColor[1];
+            StatHolder.Player1ColorZ = savedColor[2];
+            StatHolder.Player1ColorW = savedColor[3];
         }
         if (joined4 == true && Input.GetButtonDown("P4B"))
         {
@@ -158,7 +181,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
 
-        if (StatHolder.HowManyPlayers >= 2 && Input.GetButtonDown("P1Start"))
+        if (StatHolder.HowManyPlayers >= 2 && Input.GetButtonDown("P1Start") || StatHolder.HowManyPlayers >= 2 && Input.GetKeyDown("y"))
         {
             roundManager.newGame();
         }
