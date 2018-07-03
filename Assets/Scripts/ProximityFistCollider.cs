@@ -22,9 +22,9 @@ public class ProximityFistCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag("Player"))
+        if (col.CompareTag("Bodypart"))
         {
-            Debug.Log("Koskettaa");
+            //Debug.Log("Koskettaa");
 
             if (proximityFist.holdOffTimer == false && proximityFist.waitTimer == false)
             {
@@ -35,9 +35,9 @@ public class ProximityFistCollider : MonoBehaviour
 
     private void OnTriggerStay(Collider col)
     {
-        if (col.CompareTag("Player"))
+        if (col.CompareTag("Bodypart"))
         {
-            Debug.Log("Koskettaa koko ajan");
+            //Debug.Log("Koskettaa koko ajan");
             if (proximityFist.holdOffTimer == false && proximityFist.waitTimer == false)
             {
                 proximityFist.punchTimer = true;
@@ -47,9 +47,9 @@ public class ProximityFistCollider : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.CompareTag("Player"))
+        if (col.CompareTag("Bodypart"))
         {
-            Debug.Log("heipapa");
+            //Debug.Log("heipapa");
 
             allowPunching = false;
         }

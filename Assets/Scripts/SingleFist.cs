@@ -17,7 +17,6 @@ public class SingleFist : FistScript
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
 
-       
         canDoDamage = false;
     }
 
@@ -54,7 +53,6 @@ public class SingleFist : FistScript
         if (punchTimerTime <= stopRotation)
         {
             anim.SetBool("Warning", true);
-           
         }
 
         if (punchTimerTime <= 0)
@@ -86,10 +84,11 @@ public class SingleFist : FistScript
     {
         if (canDoDamage == true)
         {
-            if (collision.gameObject.tag == "Bodypart")
+            if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
             {
                 collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-                //Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>().currHealth);
+
+                cooldown = Time.time + cooldownTime;
             }
         }
     }

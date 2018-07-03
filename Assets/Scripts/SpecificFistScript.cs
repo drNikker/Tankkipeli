@@ -14,10 +14,11 @@ public class SpecificFistScript : FistScript
     {
         base.Start();
 
+        transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
+
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
 
-        transform.root.gameObject.GetComponent<CannonScrit>().rotate = true;
         canDoDamage = false;
     }
 
@@ -86,12 +87,11 @@ public class SpecificFistScript : FistScript
     {
         if (canDoDamage == true)
         {
-            if (collision.gameObject.tag == "Bodypart")
-            {
-                Debug.Log("Jee ottaa damagee");
-                
+            if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
+            {   
                 collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-                //Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>().currHealth);
+
+                cooldown = Time.time + cooldownTime;
             }
         }
     }

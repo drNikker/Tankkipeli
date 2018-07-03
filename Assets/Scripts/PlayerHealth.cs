@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour {
     RoundManager roundManager;
 
     float maxHealth = 100;
-    float currHealth = 100;
+    public float currHealth = 100;
     bool lastStand = false;
     //[HideInInspector]
     public PLAYER_STATE currentState;
