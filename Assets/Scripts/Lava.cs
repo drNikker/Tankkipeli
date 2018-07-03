@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spikes : MonoBehaviour
+public class Lava : MonoBehaviour
 {
 
     PlayerHealth health;
@@ -23,7 +23,7 @@ public class Spikes : MonoBehaviour
     }
 
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
         {
@@ -31,10 +31,7 @@ public class Spikes : MonoBehaviour
             tankBase = FindTank(collision);
 
             finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
-         //  if (finalDamage >= 25)
-         //  {
-         //      finalDamage = 25;                                           //Damage is capped at 25 for now
-         //  }
+
             health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
             print(collision.relativeVelocity.magnitude + " hit str");
             print(finalDamage + " dmg");
