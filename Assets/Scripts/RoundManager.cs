@@ -26,6 +26,7 @@ public class RoundManager : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> spawnPlayers;
     public List<GameObject> weaponSpawns;
+    [HideInInspector]
     public List<GameObject> playerSpawns;
 
     private void Start()
