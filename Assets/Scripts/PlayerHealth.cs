@@ -79,7 +79,7 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
-    void KillPlayer()
+    public void KillPlayer()
     {
         currentState = PLAYER_STATE.DEAD;
         SetPlayerState();
