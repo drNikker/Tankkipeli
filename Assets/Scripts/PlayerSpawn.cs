@@ -6,7 +6,6 @@ public class PlayerSpawn : MonoBehaviour {
 
     GameObject player;
     RoundManager roundManager;
-    Color color;
 
     public void spawnPlayer()
     {

@@ -39,7 +39,7 @@ public class SceneLoader : MonoBehaviour
     {
         if(Input.GetKeyDown("space"))
         {
-            roundManager.newGame();
+            SceneManager.LoadScene("JoiningScene");
         }
         if (Input.GetKeyDown("h"))
         {

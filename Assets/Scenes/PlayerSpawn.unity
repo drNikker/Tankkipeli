@@ -1909,9 +1909,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponParent: {fileID: 0}
   baseDamage: 5
   dmgMultiplier: 2
   cooldownTime: 0.5
+  equipped: 0
+  currentWeaponState: 0
 --- !u!138 &711692105
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -3807,25 +3810,25 @@ Prefab:
         type: 2}
       propertyPath: playerPrefab1
       value: 
-      objectReference: {fileID: 1247411038144284, guid: aaafe6a6b4593cd449ca95709432067b,
+      objectReference: {fileID: 1556383237869166, guid: 1138b6c3ee6234541b9f587c256050c4,
         type: 2}
     - target: {fileID: 114189035889323278, guid: b1e80465154bcc44fbe769365700303c,
         type: 2}
       propertyPath: playerPrefab2
       value: 
-      objectReference: {fileID: 1247411038144284, guid: 3627eb7b987e9de43b57a11a85cce886,
+      objectReference: {fileID: 1556383237869166, guid: 3adf4eabf2e820e4a977bb7acfab0d44,
         type: 2}
     - target: {fileID: 114189035889323278, guid: b1e80465154bcc44fbe769365700303c,
         type: 2}
       propertyPath: playerPrefab3
       value: 
-      objectReference: {fileID: 1247411038144284, guid: d54556a733872ba48a855794a55feee3,
+      objectReference: {fileID: 1556383237869166, guid: 26c25fab5fff5364096a834bd18537b5,
         type: 2}
     - target: {fileID: 114189035889323278, guid: b1e80465154bcc44fbe769365700303c,
         type: 2}
       propertyPath: playerPrefab4
       value: 
-      objectReference: {fileID: 1247411038144284, guid: 19ebcdeaad220f44eb396dc3de1339df,
+      objectReference: {fileID: 1556383237869166, guid: b1ebfc279b0b6944480a326a2e9d9124,
         type: 2}
     - target: {fileID: 114189035889323278, guid: b1e80465154bcc44fbe769365700303c,
         type: 2}
@@ -4269,9 +4272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponParent: {fileID: 0}
   baseDamage: 5
   dmgMultiplier: 2
   cooldownTime: 0.5
+  equipped: 0
+  currentWeaponState: 0
 --- !u!138 &1489293139
 FixedJoint:
   m_ObjectHideFlags: 0

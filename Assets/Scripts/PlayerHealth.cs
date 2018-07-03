@@ -18,8 +18,39 @@ public class PlayerHealth : MonoBehaviour {
         roundManager.alivePlayers.Add(this.gameObject);
         currentState = PLAYER_STATE.ALIVE;
         SetPlayerState();
+        SetColor();
     }
 	
+    void SetColor()
+    {
+        GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
+        Color color;
+        switch (player.name)
+        {
+            case "Player1(Clone)":
+                color = new Vector4(StatHolder.Player1ColorX, StatHolder.Player1ColorY, StatHolder.Player1ColorZ, StatHolder.Player1ColorW);
+                break;
+            case "Player2(Clone)":
+                color = new Vector4(StatHolder.Player2ColorX, StatHolder.Player2ColorY, StatHolder.Player2ColorZ, StatHolder.Player2ColorW);
+                break;
+            case "Player3(Clone)":
+                color = new Vector4(StatHolder.Player3ColorX, StatHolder.Player3ColorY, StatHolder.Player3ColorZ, StatHolder.Player3ColorW);
+                break;
+            case "Player4(Clone)":
+                color = new Vector4(StatHolder.Player4ColorX, StatHolder.Player4ColorX, StatHolder.Player4ColorX, StatHolder.Player4ColorW);
+                break;
+            default:
+                color = Color.clear;
+                break;
+        }
+        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+        rend[0].GetPropertyBlock(_propBlock);
+        _propBlock.SetColor("_Color", color);
+        rend[0].SetPropertyBlock(_propBlock);
+        rend[1].SetPropertyBlock(_propBlock);
+        //rend[2].SetPropertyBlock(_propBlock);
+    }
 
     public void TakeDamage(float damage)
     {
@@ -53,8 +84,8 @@ public class PlayerHealth : MonoBehaviour {
         currentState = PLAYER_STATE.DEAD;
         SetPlayerState();
         //Game needs to recive info about player death
-        roundManager.playerChecker();
         roundManager.alivePlayers.Remove(this.gameObject);
+        roundManager.playerChecker();
         
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
@@ -29,66 +30,77 @@ public class RoundManager : MonoBehaviour {
 
     private void Start()
     {
-        
+        playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
-        playersAlive = 2;
-        if (StatHolder.HowManyPlayers == 0)
-        {
-            //This if statement exists for developing purposes. It ensures that the player spawns work even if you dont start at menu
-            StatHolder.HowManyPlayers = 2;
-        }
-        playersForRound();
 
+        if (SceneManager.GetActiveScene().name != "JoiningScene" )
+        {
+            if (StatHolder.HowManyPlayers == 0)
+            {
+                //This if statement exists for developing purposes. It ensures that the player spawns work even if you dont start at menu
+                StatHolder.HowManyPlayers = 2;
+            }
+            if(SceneManager.GetActiveScene().name == "Menu")
+            {
+                StatHolder.HowManyPlayers = 0;
+            }
+            playersForRound();
+        }
         if (weaponSpawns.Count > 0)
         {
             StartCoroutine(SpawnWeapon());
         }
+
+
     }
 
     void playersForRound()
     {
-        if (playerSpawns.Count > 0)
+        if (StatHolder.HowManyPlayers > 0)
         {
-            switch (StatHolder.HowManyPlayers)
+            if (playerSpawns.Count > 0)
             {
-                case 2:
-                    spawnPlayers.Add(playerPrefab1);
-                    spawnPlayers.Add(playerPrefab2);
-                    break;
-                case 3:
-                    spawnPlayers.Add(playerPrefab1);
-                    spawnPlayers.Add(playerPrefab2);
-                    spawnPlayers.Add(playerPrefab3);
-                    break;
-                case 4:
-                    spawnPlayers.Add(playerPrefab1);
-                    spawnPlayers.Add(playerPrefab2);
-                    spawnPlayers.Add(playerPrefab3);
-                    spawnPlayers.Add(playerPrefab4);
-                    break;
-            }
-
-
-            for (int i = 0; i < StatHolder.HowManyPlayers; i++)
-            {
-                if (playerSpawns.Count > 0 && spawnPlayers.Count > 0)
+                switch (StatHolder.HowManyPlayers)
                 {
-                    playerSpawns[Random.Range(0, playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+                    case 2:
+                        spawnPlayers.Add(playerPrefab1);
+                        spawnPlayers.Add(playerPrefab2);
+                        break;
+                    case 3:
+                        spawnPlayers.Add(playerPrefab1);
+                        spawnPlayers.Add(playerPrefab2);
+                        spawnPlayers.Add(playerPrefab3);
+                        break;
+                    case 4:
+                        spawnPlayers.Add(playerPrefab1);
+                        spawnPlayers.Add(playerPrefab2);
+                        spawnPlayers.Add(playerPrefab3);
+                        spawnPlayers.Add(playerPrefab4);
+                        break;
                 }
+
+
+                for (int i = 0; i < StatHolder.HowManyPlayers; i++)
+                {
+                    if (playerSpawns.Count > 0 && spawnPlayers.Count > 0)
+                    {
+                        playerSpawns[Random.Range(0, playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+                    }
+                }
+                playersAlive = StatHolder.HowManyPlayers;
+                RoundStart();
             }
-            playersAlive = StatHolder.HowManyPlayers;
-            RoundStart();
         }
     }
 
     public void playerChecker()
     {
         playersAlive -= 1;
-        print(playersAlive);
-        if (playersAlive <= 1)
+        if (playersAlive == 1)
         {
             RoundOver();
         }
+
     }
 
     public void newGame()
@@ -148,19 +160,18 @@ public class RoundManager : MonoBehaviour {
     {
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
-
-        switch(alivePlayers[0].name)
+        switch (alivePlayers[0].name)
             {
-            case "Player1":
+            case "Player1(Clone)":
                 StatHolder.Player1Wins += 1;
                 break;
-            case "Player2":
+            case "Player2(Clone)":
                 StatHolder.Player2Wins += 1;
                 break;
-            case "Player3":
+            case "Player3(Clone)":
                 StatHolder.Player3Wins += 1;
                 break;
-            case "Player4":
+            case "Player4(Clone)":
                 StatHolder.Player4Wins += 1;
                 break;
             default:
@@ -175,16 +186,16 @@ public class RoundManager : MonoBehaviour {
             //Game is over
             switch (alivePlayers[0].name)
             {
-                case "Player1":
+                case "Player1(Clone)":
                     whoWonText.text = "Player 1 won the game";
                     break;
-                case "Player2":
+                case "Player2(Clone)":
                     whoWonText.text = "Player 2 won the game";
                     break;
-                case "Player3":
+                case "Player3(Clone)":
                     whoWonText.text = "Player 3 won the game";
                     break;
-                case "Player4":
+                case "Player4(Clone)":
                     whoWonText.text = "Player 4 won the game";
                     break;
                 default:
@@ -197,16 +208,16 @@ public class RoundManager : MonoBehaviour {
         {
             switch (alivePlayers[0].name)
             {
-                case "Player1":
+                case "Player1(Clone)":
                     whoWonText.text = "Player 1 won the round";
                     break;
-                case "Player2":
+                case "Player2(Clone)":
                     whoWonText.text = "Player 2 won the round";
                     break;
-                case "Player3":
+                case "Player3(Clone)":
                     whoWonText.text = "Player 3 won the round";
                     break;
-                case "Player4":
+                case "Player4(Clone)":
                     whoWonText.text = "Player 4 won the round";
                     break;
                 default:
