@@ -23,6 +23,9 @@ public class FistScript : MonoBehaviour
     [Space(10)]
     public float damage;
 
+    protected float cooldownTime = 1;
+    protected float cooldown;
+
     protected virtual void Start()
     {
         punchRB = gameObject.GetComponent<Rigidbody>();
@@ -32,10 +35,5 @@ public class FistScript : MonoBehaviour
         defaultPunchTimerTime = punchTimerTime;
         originalHoldOffTimerTime = holdOffTimerTime;
         originalWaitTimerTime = waitTimerTime;
-    }
-
-    void Update()
-    {
-
     }
 }

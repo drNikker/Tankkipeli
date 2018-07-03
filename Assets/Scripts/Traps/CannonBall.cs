@@ -51,7 +51,7 @@ public class CannonBall : MonoBehaviour
         {
             pickRandomPositionX = Random.Range(cannonBallPositionMinX, cannonBallPositionMaxX);
 
-            if (randomedCannonBallPositionX == pickRandomPositionX)
+            if (randomedCannonBallPositionX == pickRandomPositionX || randomedCannonBallPositionX == (pickRandomPositionX + 1) || randomedCannonBallPositionX == (pickRandomPositionX -1))
             {
                 generateNewRandom = true;
 

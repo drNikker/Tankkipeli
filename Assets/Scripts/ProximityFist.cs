@@ -88,10 +88,11 @@ public class ProximityFist : FistScript
     {
         if (canDoDamage == true)
         {
-            if (collision.gameObject.tag == "Bodypart")
+            if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
             {
                 collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-                //Debug.Log(collision.transform.root.gameObject.GetComponent<PlayerHealth>().currHealth);
+
+                cooldown = Time.time + cooldownTime;
             }
         }
     }
