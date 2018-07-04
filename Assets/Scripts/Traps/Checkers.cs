@@ -9,9 +9,9 @@ public class Checkers : MonoBehaviour
     private bool waitTimerUntilDrop;
     public float waitTimerUntilDropTime;
 
-    private bool waitTimer;
+    private bool waitUntilDestroy;
     [Space(10)]
-    public float waitTimerTime;
+    public float waitUntilDestroyTime;
     [Space(10)]
     public float dropSpeed;
 
@@ -32,9 +32,9 @@ public class Checkers : MonoBehaviour
             Timer();
         }
 
-        if (waitTimer)
+        if (waitUntilDestroy)
         {
-            WaitTimer();
+            WaitUntilDestroy();
         }
     }
 
@@ -48,20 +48,20 @@ public class Checkers : MonoBehaviour
             rb.AddForce(Vector3.down * dropSpeed);
             waitTimerUntilDropTime = 0;
 
-            waitTimer = true;
+            waitUntilDestroy = true;
         }
     }
 
-    private void WaitTimer()
+    private void WaitUntilDestroy()
     {
-        waitTimerTime -= Time.deltaTime;
+        waitUntilDestroyTime -= Time.deltaTime;
 
-        if (waitTimerTime <= 0)
+        if (waitUntilDestroyTime <= 0)
         {
-            waitTimerTime = 0;
+            waitUntilDestroyTime = 0;
             rb.AddForce(Vector3.zero);
             waitTimerUntilDrop = false;
-            waitTimer = false;
+            waitUntilDestroy = false;
             Destroy(gameObject);
         }
     }
