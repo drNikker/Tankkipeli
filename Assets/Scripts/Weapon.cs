@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour {
     public bool equipped;
 
     public WEAPON_STATE currentWeaponState;
+    public Stance stance;
 
 
 	// Use this for initialization
@@ -130,7 +131,14 @@ public class Weapon : MonoBehaviour {
         return null;
     }
 
-
+    public enum Stance
+    {
+        NoStance,
+        OneHanded,
+        TwoHanded,
+        TwoHandedTwinblade,
+        FistWeapon,
+    }
 
     public enum WEAPON_STATE
     {
