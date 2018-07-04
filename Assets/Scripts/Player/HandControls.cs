@@ -113,7 +113,7 @@ public class HandControls : MonoBehaviour {
     IEnumerator MoveHand()
     {
         guidingHand = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         guidingHand = false;
     }
 
@@ -121,7 +121,7 @@ public class HandControls : MonoBehaviour {
     {
         guidingHand = true;
         otherHandScript.guidingHand = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         guidingHand = false;
         otherHandScript.guidingHand = false;
     }
@@ -129,8 +129,7 @@ public class HandControls : MonoBehaviour {
     void EquipOneHand()
     {
         equippedWeapon.transform.parent = this.transform;
-        t.rotation = transform.rotation;
-        t.Rotate(90, 0, 0);
+        SetStance(script.stance);
         joints[0].connectedBody = GetComponent<Rigidbody>();
         joints[0].autoConfigureConnectedAnchor = false;
         joints[0].connectedAnchor = new Vector3(offset, 0.2f, 0);
@@ -141,14 +140,7 @@ public class HandControls : MonoBehaviour {
     void EquipTwoHands()
     {
         equippedWeapon.transform.parent = this.transform;
-        CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
-        SoftJointLimit limit = handJoint.swing2Limit;
-        limit.limit = 90;
-        handJoint.swing2Limit = limit;
-        transform.eulerAngles = new Vector3(180, 0, 0);
-        otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
-        t.rotation = transform.rotation;
-        t.eulerAngles = new Vector3(0, 90, 90);
+        SetStance(script.stance);
         joints[0].connectedBody = GetComponent<Rigidbody>();
         joints[0].autoConfigureConnectedAnchor = false;
         joints[0].connectedAnchor = new Vector3(offset, 0.2f, 0);
@@ -158,13 +150,80 @@ public class HandControls : MonoBehaviour {
         script.Equip();
     }
 
+    void SetStance(Weapon.Stance stance)
+    {
+        switch(stance)
+        {
+
+            case Weapon.Stance.NoStance:
+                {
+                    CharacterJoint handJoint = GetComponent<CharacterJoint>();
+                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    SoftJointLimit limit = handJoint.swing2Limit;
+                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                    limit.limit = 0;
+                    handJoint.swing2Limit = limit;
+                    otherHandJoint.swing2Limit = limit;
+                    break;
+                }
+            case Weapon.Stance.OneHanded:
+                {
+                    t.rotation = transform.rotation;
+                    t.Rotate(90, 0, 0);
+                    break;
+                }
+
+            case Weapon.Stance.TwoHanded:
+                {
+                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                    otherLimit.limit = 90;
+                    otherHandJoint.swing2Limit = otherLimit;
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
+                    t.rotation = transform.rotation;
+                    t.eulerAngles = new Vector3(0, 90, 90);
+                    break;
+                }
+            case Weapon.Stance.TwoHandedTwinblade:
+                {
+                    CharacterJoint handJoint = GetComponent<CharacterJoint>();
+                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    SoftJointLimit limit = handJoint.swing2Limit;
+                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                    limit.limit = 90;
+                    handJoint.swing2Limit = limit;
+                    otherHandJoint.swing2Limit = limit;
+                    transform.eulerAngles = new Vector3(180, 0, 0);
+                    otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
+                    t.rotation = transform.rotation;
+                    t.eulerAngles = new Vector3(0, 90, 90);
+                    break;
+                }
+            case Weapon.Stance.FistWeapon:
+                {
+                    t.Rotate(90,0,0);
+                    t.Rotate(0,180,0);
+                    break;
+                }
+            default:
+                {
+                    CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
+                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    SoftJointLimit limit = handJoint.swing2Limit;
+                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                    limit.limit = 0;
+                    handJoint.swing2Limit = limit;
+                    otherHandJoint.swing2Limit = limit;
+                    break;
+                }
+        }
+    }
+
     public void DropWeapon()
     {
         script.Dropped();
-        CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
-        SoftJointLimit limit = handJoint.swing2Limit;
-        limit.limit = 0;
-        handJoint.swing2Limit = limit;
+        SetStance(Weapon.Stance.NoStance);
         if (joints.Length == 2)
         { otherHandScript.weaponInHand = false; }
         weaponInHand = false;
@@ -187,7 +246,7 @@ public class HandControls : MonoBehaviour {
                 weaponInHand = true;
                 offset = 0.1f;
                 StartCoroutine("MoveHand");
-                Invoke("EquipOneHand", 0.5f);
+                Invoke("EquipOneHand", 0.2f);
 
             }
             else if (joints.Length == 2 && weaponInHand == false)
@@ -198,7 +257,7 @@ public class HandControls : MonoBehaviour {
                 otherHandScript.weaponInHand = true;
                 offset = 0.1f;
                 StartCoroutine("MoveBothHands");
-                Invoke("EquipTwoHands", 0.5f);
+                Invoke("EquipTwoHands", 0.2f);
             }
             else if (weaponInHand == true)
             {
@@ -219,7 +278,7 @@ public class HandControls : MonoBehaviour {
                 weaponInHand = true;
                 offset = -0.1f;
                 StartCoroutine("MoveHand");
-                Invoke("EquipOneHand", 0.5f);
+                Invoke("EquipOneHand", 0.2f);
             }
             else if (weaponInHand == false && joints.Length == 2)
             {
@@ -229,7 +288,7 @@ public class HandControls : MonoBehaviour {
                 otherHandScript.weaponInHand = true;
                 offset = -0.1f;
                 StartCoroutine("MoveBothHands");
-                Invoke("EquipTwoHands", 0.5f);
+                Invoke("EquipTwoHands", 0.2f);
             }
             else if (weaponInHand == true)
             {
