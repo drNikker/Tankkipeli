@@ -28,21 +28,20 @@ public class Lava : MonoBehaviour
         if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
         {
             health = FindHP(collision);
-            tankBase = FindTank(collision);
+        tankBase = FindTank(collision);
 
-            finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
+        finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
 
-            health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
-            print(collision.relativeVelocity.magnitude + " hit str");
-            print(finalDamage + " dmg");
-            Vector3 dir = collision.transform.position - transform.position;
-            dir.y = 0;
-            tankBase.AddForce(dir.normalized * (knockback * collision.relativeVelocity.magnitude));
-            cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
+        health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
+        print(collision.relativeVelocity.magnitude + " hit str");
+        print(finalDamage + " dmg");
+        Vector3 dir = collision.transform.position - transform.position;
+        dir.y = 0;
+        tankBase.AddForce(dir.normalized * (knockback * collision.relativeVelocity.magnitude));
+        cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
 
 
         }
-
     }
 
 

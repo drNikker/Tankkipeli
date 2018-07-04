@@ -11,6 +11,8 @@ public class WeaponSpawn : MonoBehaviour {
     public bool startWeapon;
     public bool randomWeapon;
     public bool randomPosition;
+
+    bool pickedUp;
     
 
     [Range(0, 100)] public int FlailChanceWeight;
@@ -31,6 +33,7 @@ public class WeaponSpawn : MonoBehaviour {
     public Transform Hammer;
     public Transform Flail;
 
+    Transform spawnedWeapon;
     
 
     // Use this for initialization
@@ -69,6 +72,14 @@ public class WeaponSpawn : MonoBehaviour {
 
                 this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
             
+        }
+        if (spawnedWeapon.GetComponentInChildren<Weapon>().currentWeaponState == Weapon.WEAPON_STATE.WIELDED && pickedUp == false)
+        {
+            pickedUp = true;
+            if (independent)
+            {
+                StartCoroutine(SpawnWeapon());
+            }
         }
     }
 
@@ -119,31 +130,28 @@ public class WeaponSpawn : MonoBehaviour {
 
 
             case SPAWN_WEAPON.GREATAXE:
-                Instantiate(GreatAxe, this.gameObject.transform.position, Quaternion.AngleAxis(90, Vector3.right));
+                spawnedWeapon = Instantiate(GreatAxe, this.gameObject.transform.position, Quaternion.AngleAxis(90, Vector3.right));
 
 
                 break;
 
             case SPAWN_WEAPON.HAMMER:
-                Instantiate(Hammer, this.gameObject.transform.position, Quaternion.identity);
+                spawnedWeapon = Instantiate(Hammer, this.gameObject.transform.position, Quaternion.identity);
 
 
                 break;
 
             case SPAWN_WEAPON.FLAIL:
-                Instantiate(Flail, this.gameObject.transform.position, Quaternion.identity);
+                spawnedWeapon = Instantiate(Flail, this.gameObject.transform.position, Quaternion.identity);
 
                 break;
-        }
-        if (independent)
-        {
-            StartCoroutine(SpawnWeapon());
         }
 
         if (randomPosition)
         {
             this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
         }
+        pickedUp = false;
     }
 
 
