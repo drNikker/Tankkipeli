@@ -6,13 +6,14 @@ public class PlayerJoining : MonoBehaviour {
 
     RoundManager roundManager;
 
-    public Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white};
+    Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white};
     //bool teamDeathMatch = false;
 
     bool joined1;
     bool joined2;
     bool joined3;
     bool joined4;
+
 
     // Use this for initialization
     void Start ()
@@ -24,6 +25,10 @@ public class PlayerJoining : MonoBehaviour {
         StatHolder.Player4Wins = 0;
         StatHolder.WinsNeeded = 0;
         StatHolder.RoundNumber = 0;
+        StatHolder.Player1Color = 0;
+        StatHolder.Player2Color = 1;
+        StatHolder.Player3Color = 2;
+        StatHolder.Player4Color = 3;
         roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
     }
 
@@ -46,21 +51,11 @@ public class PlayerJoining : MonoBehaviour {
                 roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
             }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+            //ChangeStatHolder.Player1Color();
         }
         else if (joined1 == true && Input.GetButtonDown("P1Join") || joined1 == true && Input.GetKeyDown("g"))
         {
-            int save = Random.Range(0, 6);
-            Color color = colorSet[save];
-            GameObject player = roundManager.alivePlayers[0];
-            MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-            Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-            rend[0].GetPropertyBlock(_propBlock);
-            _propBlock.SetColor("_Color", color);
-            rend[0].SetPropertyBlock(_propBlock);
-            rend[1].SetPropertyBlock(_propBlock);
-            //rend[2].SetPropertyBlock(_propBlock); Player torso color
-            StatHolder.Player1Color = save;
-
+            ChangePlayer1Color();
         }
         if (joined1 == true && Input.GetButtonDown("P1B"))
         {
@@ -82,20 +77,11 @@ public class PlayerJoining : MonoBehaviour {
                 roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
             }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+            //ChangeStatHolder.Player2Color();
         }
         else if (joined2 == true && Input.GetButtonDown("P2Join"))
         {
-            int save = Random.Range(0, 6);
-            Color color = colorSet[save];
-            GameObject player = roundManager.alivePlayers[1];
-            MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-            Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-            rend[0].GetPropertyBlock(_propBlock);
-            _propBlock.SetColor("_Color", Random.ColorHSV());
-            rend[0].SetPropertyBlock(_propBlock);
-            rend[1].SetPropertyBlock(_propBlock);
-            //rend[2].SetPropertyBlock(_propBlock); Player torso color
-            StatHolder.Player1Color = save;
+            ChangePlayer2Color();
         }
         if (joined2 == true && Input.GetButtonDown("P2B"))
         {
@@ -116,20 +102,11 @@ public class PlayerJoining : MonoBehaviour {
                 roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
             }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+            //ChangeStatHolder.Player3Color();
         }
         else if (joined3 == true && Input.GetButtonDown("P3Join"))
         {
-            int save = Random.Range(0, 6);
-            Color color = colorSet[save];
-            GameObject player = roundManager.alivePlayers[2];
-            MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-            Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-            rend[0].GetPropertyBlock(_propBlock);
-            _propBlock.SetColor("_Color", Random.ColorHSV());
-            rend[0].SetPropertyBlock(_propBlock);
-            rend[1].SetPropertyBlock(_propBlock);
-            //rend[2].SetPropertyBlock(_propBlock); Player torso color
-            StatHolder.Player1Color = save;
+            ChangePlayer3Color();
         }
         if (joined3 == true && Input.GetButtonDown("P3B"))
         {
@@ -145,21 +122,16 @@ public class PlayerJoining : MonoBehaviour {
             joined4 = true;
             StatHolder.HowManyPlayers++;
             roundManager.spawnPlayers.Add(roundManager.playerPrefab4);
+            if (roundManager.playerSpawns.Count == 0)
+            {
+                roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
+            }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
+            //ChangeStatHolder.Player4Color();
         }
         else if (joined4 == true && Input.GetButtonDown("P4Join"))
         {
-            int save = Random.Range(0, 6);
-            Color color = colorSet[save];
-            GameObject player = roundManager.alivePlayers[3];
-            MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-            Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-            rend[0].GetPropertyBlock(_propBlock);
-            _propBlock.SetColor("_Color", Random.ColorHSV());
-            rend[0].SetPropertyBlock(_propBlock);
-            rend[1].SetPropertyBlock(_propBlock);
-            //rend[2].SetPropertyBlock(_propBlock); Player torso color
-            StatHolder.Player1Color = save;
+            ChangePlayer4Color();
         }
         if (joined4 == true && Input.GetButtonDown("P4B"))
         {
@@ -174,5 +146,80 @@ public class PlayerJoining : MonoBehaviour {
         {
             roundManager.newGame();
         }
+    }
+
+    void ChangePlayer1Color()
+    {
+        int save = Random.Range(0, 5);
+        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        {
+
+            save = Random.Range(0, 5);
+        }
+        StatHolder.Player1Color = save;
+        Color color = colorSet[save];
+        GameObject player = roundManager.alivePlayers[0];
+        print(roundManager.alivePlayers[0]);
+        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+        rend[0].GetPropertyBlock(_propBlock);
+        _propBlock.SetColor("_Color", color);
+        rend[0].SetPropertyBlock(_propBlock);
+        rend[1].SetPropertyBlock(_propBlock);
+        //rend[2].SetPropertyBlock(_propBlock); Player torso color
+    }
+    void ChangePlayer2Color()
+    {
+        int save = Random.Range(0, 5);
+        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        {
+            save = Random.Range(0, 5);
+        }
+        StatHolder.Player2Color = save;
+        Color color = colorSet[save];
+        GameObject player = roundManager.alivePlayers[1];
+        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+        rend[0].GetPropertyBlock(_propBlock);
+        _propBlock.SetColor("_Color", Random.ColorHSV());
+        rend[0].SetPropertyBlock(_propBlock);
+        rend[1].SetPropertyBlock(_propBlock);
+        //rend[2].SetPropertyBlock(_propBlock); Player torso color
+    }
+    void ChangePlayer3Color()
+    {
+        int save = Random.Range(0, 5);
+        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        {
+            save = Random.Range(0, 5);
+        }
+        StatHolder.Player3Color = save;
+        Color color = colorSet[save];
+        GameObject player = roundManager.alivePlayers[2];
+        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+        rend[0].GetPropertyBlock(_propBlock);
+        _propBlock.SetColor("_Color", Random.ColorHSV());
+        rend[0].SetPropertyBlock(_propBlock);
+        rend[1].SetPropertyBlock(_propBlock);
+        //rend[2].SetPropertyBlock(_propBlock); Player torso color
+    }
+    void ChangePlayer4Color()
+    {
+        int save = Random.Range(0, 5);
+        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        {
+            save = Random.Range(0, 5);
+        }
+        StatHolder.Player4Color = save;
+        Color color = colorSet[save];
+        GameObject player = roundManager.alivePlayers[3];
+        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+        rend[0].GetPropertyBlock(_propBlock);
+        _propBlock.SetColor("_Color", Random.ColorHSV());
+        rend[0].SetPropertyBlock(_propBlock);
+        rend[1].SetPropertyBlock(_propBlock);
+        //rend[2].SetPropertyBlock(_propBlock); Player torso color
     }
 }
