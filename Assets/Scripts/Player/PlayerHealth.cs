@@ -24,20 +24,21 @@ public class PlayerHealth : MonoBehaviour {
     void SetColor()
     {
         GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
+        Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white };
         Color color;
         switch (player.name)
         {
             case "Player1(Clone)":
-                color = new Vector4(StatHolder.Player1ColorX, StatHolder.Player1ColorY, StatHolder.Player1ColorZ, StatHolder.Player1ColorW);
+                color = colorSet[StatHolder.Player1Color];
                 break;
             case "Player2(Clone)":
-                color = new Vector4(StatHolder.Player2ColorX, StatHolder.Player2ColorY, StatHolder.Player2ColorZ, StatHolder.Player2ColorW);
+                color = colorSet[StatHolder.Player2Color];
                 break;
             case "Player3(Clone)":
-                color = new Vector4(StatHolder.Player3ColorX, StatHolder.Player3ColorY, StatHolder.Player3ColorZ, StatHolder.Player3ColorW);
+                color = colorSet[StatHolder.Player3Color];
                 break;
             case "Player4(Clone)":
-                color = new Vector4(StatHolder.Player4ColorX, StatHolder.Player4ColorX, StatHolder.Player4ColorX, StatHolder.Player4ColorW);
+                color = colorSet[StatHolder.Player4Color];
                 break;
             default:
                 color = Color.clear;
