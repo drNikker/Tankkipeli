@@ -2,6 +2,7 @@
 {
     private static int player1Wins, player2Wins, player3Wins, player4Wins, howManyPlayers, roundNumber, witchSet, winsNeeded = 3;
     private static float player1ColorX, player1ColorY, player1ColorZ, player1ColorW, player2ColorX, player2ColorY, player2ColorZ, player2ColorW, player3ColorX, player3ColorY, player3ColorZ, player3ColorW, player4ColorX, player4ColorY, player4ColorZ, player4ColorW;
+    private static int player1Color;
 
     public static int Player1Wins
     {
@@ -268,5 +269,15 @@
             player4ColorW = value;
         }
     }
-
+    public static int Player1Color
+    {
+        get
+        {
+            return player1Color;
+        }
+        set
+        {
+            player1Color = value;
+        }
+    }
 }
