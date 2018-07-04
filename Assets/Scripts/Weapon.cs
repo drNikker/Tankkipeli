@@ -11,10 +11,10 @@ public class Weapon : MonoBehaviour {
     public Transform weaponParent;
 
 
-    public float baseDamage = 5;
-    public float dmgMultiplier = 2f;
+    public float baseDamage = 16;
+    public float dmgMultiplier = 1f;
     public float cooldownTime = 1;
-    float knockback = 2000;
+    public float knockback = 50000;
 
     float cooldown;
     float finalDamage;
@@ -58,10 +58,6 @@ public class Weapon : MonoBehaviour {
                 if (ownHP != health)
                 {
                     finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
-                    if (finalDamage >= 2500)
-                    {
-                        finalDamage = 25;                                           //Damage is capped at 25 for now
-                    }
                     health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
                     print(collision.relativeVelocity.magnitude + " hit str");
                     print(finalDamage + " dmg");
