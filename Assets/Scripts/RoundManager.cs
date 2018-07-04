@@ -111,7 +111,7 @@ public class RoundManager : MonoBehaviour {
             StatHolder.HowManyPlayers = 2;
         }
         StatHolder.WinsNeeded = 6;
-        StatHolder.WitchSet = Random.Range(1, 2);
+        StatHolder.WitchSet = Random.Range(1, 4);
         NewRound();
     }
 

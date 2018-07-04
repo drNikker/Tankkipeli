@@ -23,15 +23,17 @@ public class SceneLoader : MonoBehaviour
         mapSet1.Add("FlipperBox");
         mapSet1.Add("TheDefault");
         //Map set 2
-        mapSet2.Add("PlayerSpawn");
-        mapSet2.Add("PlayerSpawn");
-        mapSet2.Add("PlayerSpawn");
-        mapSet2.Add("PlayerSpawn");
+        mapSet2.Add("BarrelRoll");
+        mapSet2.Add("CannonShuffle");
+        mapSet2.Add("QuadBridge");
+        mapSet2.Add("RotatingHoleInWall");
+        mapSet2.Add("TheSlice");
         //Map set 3
-        mapSet3.Add("PlayerSpawn");
-        mapSet3.Add("PlayerSpawn");
-        mapSet3.Add("PlayerSpawn");
-        mapSet3.Add("PlayerSpawn");
+        mapSet3.Add("Checkers");
+        mapSet3.Add("CrushingWall");
+        mapSet3.Add("HyperHexagon");
+        mapSet3.Add("Rotat-o-Maze");
+        mapSet3.Add("TipTheScales");
 
     }
 
