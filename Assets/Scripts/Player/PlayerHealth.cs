@@ -99,7 +99,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public void SetPlayerState()
     {
-        HandForce[] hands = GetComponentsInChildren<HandForce>();
+        HandControls[] hands = GetComponentsInChildren<HandControls>();
         HeadUpright[] uprights = GetComponentsInChildren<HeadUpright>();
         FullRagdollMode[] ragmode = GetComponentsInChildren<FullRagdollMode>();
 
@@ -107,7 +107,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             case PLAYER_STATE.ALIVE:
                 GetComponent<PhysicMovement1>().enabled = true;
-                foreach (HandForce hf in hands)
+                foreach (HandControls hf in hands)
                 {
                     hf.enabled = true;
                 }
@@ -121,7 +121,7 @@ public class PlayerHealth : MonoBehaviour {
             case PLAYER_STATE.STUNNED:
 
                 GetComponent<PhysicMovement1>().enabled = false;
-                foreach (HandForce hf in hands)
+                foreach (HandControls hf in hands)
                 {
                     hf.enabled = false;
                 }
@@ -134,7 +134,7 @@ public class PlayerHealth : MonoBehaviour {
             case PLAYER_STATE.DEAD:
                 
                 GetComponent<PhysicMovement1>().enabled = false;
-                foreach (HandForce hf in hands)
+                foreach (HandControls hf in hands)
                 {
                     hf.enabled = false;
                 }

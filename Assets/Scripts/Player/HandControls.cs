@@ -145,7 +145,7 @@ public class HandControls : MonoBehaviour {
         SoftJointLimit limit = handJoint.swing2Limit;
         limit.limit = 90;
         handJoint.swing2Limit = limit;
-        transform.eulerAngles = new Vector3(0, 0, 0);
+        transform.eulerAngles = new Vector3(180, 0, 0);
         otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
         t.rotation = transform.rotation;
         t.eulerAngles = new Vector3(0, 90, 90);
@@ -156,6 +156,20 @@ public class HandControls : MonoBehaviour {
         joints[1].autoConfigureConnectedAnchor = false;
         joints[1].connectedAnchor = new Vector3(-offset, 0.2f, 0);
         script.Equip();
+    }
+
+    public void DropWeapon()
+    {
+        script.Dropped();
+        CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
+        SoftJointLimit limit = handJoint.swing2Limit;
+        limit.limit = 0;
+        handJoint.swing2Limit = limit;
+        if (joints.Length == 2)
+        { otherHandScript.weaponInHand = false; }
+        weaponInHand = false;
+        weapon = null;
+        equippedWeapon = null;
     }
 
     void KeyPresses()
@@ -176,8 +190,10 @@ public class HandControls : MonoBehaviour {
                 Invoke("EquipOneHand", 0.5f);
 
             }
-            else if (joints.Length == 2 && weaponInHand == false && otherHandScript.weaponInHand == false)
+            else if (joints.Length == 2 && weaponInHand == false)
             {
+                if (otherHandScript.weaponInHand == true)
+                { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
                 offset = 0.1f;
@@ -186,17 +202,7 @@ public class HandControls : MonoBehaviour {
             }
             else if (weaponInHand == true)
             {
-                script.Dropped();
-                CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
-                SoftJointLimit limit = handJoint.swing2Limit;
-                limit.limit = 0;
-                handJoint.swing2Limit = limit;
-                if (joints.Length == 2)
-                { otherHandScript.weaponInHand = false; }
-                weaponInHand = false;
-                weapon = null;
-                equippedWeapon = null;
-
+                DropWeapon();
             }
 
         }
@@ -215,8 +221,10 @@ public class HandControls : MonoBehaviour {
                 StartCoroutine("MoveHand");
                 Invoke("EquipOneHand", 0.5f);
             }
-            else if (weaponInHand == false && joints.Length == 2 && otherHandScript.weaponInHand == false)
+            else if (weaponInHand == false && joints.Length == 2)
             {
+                if (otherHandScript.weaponInHand == true)
+                { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
                 offset = -0.1f;
@@ -225,16 +233,7 @@ public class HandControls : MonoBehaviour {
             }
             else if (weaponInHand == true)
             {
-                script.Dropped();
-                CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
-                SoftJointLimit limit = handJoint.swing2Limit;
-                limit.limit = 0;
-                handJoint.swing2Limit = limit;
-                if (joints.Length == 2)
-                { otherHandScript.weaponInHand = false; }
-                weaponInHand = false;
-                weapon = null;
-                equippedWeapon = null;
+                DropWeapon();
             }
         }
     }
