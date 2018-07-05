@@ -67,7 +67,7 @@ public class PlayerJoining : MonoBehaviour {
 
 
         //Player 2 join and color change
-        if (joined2 == false && Input.GetButtonDown("P1Join") || joined2 == false && Input.GetKeyDown("g"))
+        if (joined2 == false && Input.GetButtonDown("P2Join") || joined2 == false && Input.GetKeyDown("g"))
         {
             joined2 = true;
             StatHolder.HowManyPlayers++;

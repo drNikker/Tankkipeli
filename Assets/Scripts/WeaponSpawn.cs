@@ -18,6 +18,7 @@ public class WeaponSpawn : MonoBehaviour {
     [Range(0, 100)] public int FlailChanceWeight;
     [Range(0, 100)] public int GreatAxeChanceWeight;
     [Range(0, 100)] public int HammerChanceWeight;
+    [Range(0, 100)] public int StickChanceWeight;
 
     public int XPositionLowerLimit;
     public int XPositionUpperLimit;
@@ -32,6 +33,7 @@ public class WeaponSpawn : MonoBehaviour {
     public Transform GreatAxe;
     public Transform Hammer;
     public Transform Flail;
+    public Transform Stick;
 
     Transform spawnedWeapon;
     
@@ -67,7 +69,7 @@ public class WeaponSpawn : MonoBehaviour {
         Ray spawnRay = new Ray(this.gameObject.transform.position, Vector3.down);
         Debug.DrawRay(this.gameObject.transform.position, Vector3.down * 1);
 
-        if (!Physics.Raycast(spawnRay, out hit, 1) && randomPosition || hit.collider.tag != "Environment" && randomPosition)
+        if (!Physics.Raycast(spawnRay, out hit, 10000) && randomPosition || hit.collider.tag != "Environment" && randomPosition)
         {
 
                 this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
@@ -95,6 +97,7 @@ public class WeaponSpawn : MonoBehaviour {
         FLAIL,
         GREATAXE,
         HAMMER,
+        STICK,
     }
 
 
@@ -105,7 +108,7 @@ public class WeaponSpawn : MonoBehaviour {
         if (randomWeapon)
         {
 
-            int i = Random.Range(0, FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight);
+            int i = Random.Range(0, FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight);
 
             if (i > 0 && i < FlailChanceWeight)
             {
@@ -113,11 +116,15 @@ public class WeaponSpawn : MonoBehaviour {
             }
             else if (i > FlailChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight)
             {
-                weaponToSpawn = SPAWN_WEAPON.GREATAXE; ;
+                weaponToSpawn = SPAWN_WEAPON.GREATAXE;
             }
             else if (i > FlailChanceWeight + GreatAxeChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight)
             {
                 weaponToSpawn = SPAWN_WEAPON.HAMMER;
+            }
+            else if (i > FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight)
+            {
+                weaponToSpawn = SPAWN_WEAPON.STICK;
             }
             else
             {
@@ -143,6 +150,10 @@ public class WeaponSpawn : MonoBehaviour {
 
             case SPAWN_WEAPON.FLAIL:
                 spawnedWeapon = Instantiate(Flail, this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+            case SPAWN_WEAPON.STICK:
+                spawnedWeapon = Instantiate(Stick, this.gameObject.transform.position, Quaternion.identity);
 
                 break;
         }
