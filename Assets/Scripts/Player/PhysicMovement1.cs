@@ -16,6 +16,7 @@ public class PhysicMovement1 : MonoBehaviour
     CharacterUpright charUpR;
     Quaternion upRight;
     RaycastHit downRightRay;
+    PlayerHealth health;
 
     //wheel colliders
     public WheelCollider leftWheelCol1;
@@ -46,11 +47,11 @@ public class PhysicMovement1 : MonoBehaviour
     public string pelaaja;
 
     private bool timerUntilDizzy;
-    public float timerUntilDizzyTime;
+    public float timerUntilDizzyTime = 3;
     private float originalTimerUntilDizzyTime;
 
     private bool backToNormalTimer;
-    public float backToNormalTimerTime;
+    public float backToNormalTimerTime = 3;
     private float originalBackToNormalTimerTime;
 
     public bool canMove;
@@ -58,9 +59,10 @@ public class PhysicMovement1 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = gameObject;
         ragdollmode = player.GetComponentInChildren<FullRagdollMode>();
         characterJoint = player.GetComponentInChildren<CharacterJoint>();
+        health = GetComponent<PlayerHealth>();
 
         lowTwistLimitOriginal = characterJoint.lowTwistLimit;
         highTwistLimitOriginal = characterJoint.highTwistLimit;
@@ -268,6 +270,8 @@ public class PhysicMovement1 : MonoBehaviour
         if (timerUntilDizzyTime <= 0)
         {
             ragdollmode.RagdollMode();
+            health.currentState = PlayerHealth.PLAYER_STATE.STUNNED;
+            health.SetPlayerState();
             canMove = false;
             rightTread = 0;
             leftTread = 0;

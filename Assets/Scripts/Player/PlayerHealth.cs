@@ -117,7 +117,6 @@ public class PlayerHealth : MonoBehaviour {
 
             case PLAYER_STATE.STUNNED:
 
-                GetComponent<PhysicMovement1>().enabled = false;
                 foreach (HandControls hf in hands)
                 {
                     hf.enabled = false;
