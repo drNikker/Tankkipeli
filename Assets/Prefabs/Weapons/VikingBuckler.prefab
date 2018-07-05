@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114087623279945020}
   - component: {fileID: 54408953039500798}
   - component: {fileID: 138135944485731056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VikingBucklerCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 54738557753317130}
   - component: {fileID: 153530217580396086}
   - component: {fileID: 65862611123447956}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VikingBuckler
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423850463573134}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.002, y: 0.0025, z: 0}
+  m_LocalPosition: {x: -0.002, y: 0.0025, z: -0.0044}
   m_LocalScale: {x: 0.06, y: 0.002, z: 0.06}
   m_Children: []
   m_Father: {fileID: 4702981355906638}
@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1844679635902184}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.681, y: 1, z: 0.145}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 4202366458679926}
@@ -192,8 +192,10 @@ MonoBehaviour:
   baseDamage: 0
   dmgMultiplier: 1
   cooldownTime: 1
+  knockback: 50000
   equipped: 0
   currentWeaponState: 0
+  stance: 1
 --- !u!138 &138135944485731056
 FixedJoint:
   m_ObjectHideFlags: 1
