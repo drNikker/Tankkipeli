@@ -19,6 +19,7 @@ public class WeaponSpawn : MonoBehaviour {
     [Range(0, 100)] public int GreatAxeChanceWeight;
     [Range(0, 100)] public int HammerChanceWeight;
     [Range(0, 100)] public int StickChanceWeight;
+    [Range(0, 100)] public int ShieldChanceWeight;
 
     public int XPositionLowerLimit;
     public int XPositionUpperLimit;
@@ -34,6 +35,7 @@ public class WeaponSpawn : MonoBehaviour {
     public Transform Hammer;
     public Transform Flail;
     public Transform Stick;
+    public Transform Shield;
 
     Transform spawnedWeapon;
     
@@ -98,6 +100,7 @@ public class WeaponSpawn : MonoBehaviour {
         GREATAXE,
         HAMMER,
         STICK,
+        SHIELD,
     }
 
 
@@ -108,7 +111,7 @@ public class WeaponSpawn : MonoBehaviour {
         if (randomWeapon)
         {
 
-            int i = Random.Range(0, FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight);
+            int i = Random.Range(0, FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight + ShieldChanceWeight);
 
             if (i > 0 && i < FlailChanceWeight)
             {
@@ -126,6 +129,10 @@ public class WeaponSpawn : MonoBehaviour {
             {
                 weaponToSpawn = SPAWN_WEAPON.STICK;
             }
+            else if (i > FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + ShieldChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight + ShieldChanceWeight)
+            {
+                weaponToSpawn = SPAWN_WEAPON.SHIELD;
+            }
             else
             {
                 Debug.Log("kaikki 0");
@@ -134,7 +141,7 @@ public class WeaponSpawn : MonoBehaviour {
         }
         switch (weaponToSpawn)
         {
-
+            
 
             case SPAWN_WEAPON.GREATAXE:
                 spawnedWeapon = Instantiate(GreatAxe, this.gameObject.transform.position, Quaternion.AngleAxis(90, Vector3.right));
@@ -156,6 +163,10 @@ public class WeaponSpawn : MonoBehaviour {
                 spawnedWeapon = Instantiate(Stick, this.gameObject.transform.position, Quaternion.identity);
 
                 break;
+            case SPAWN_WEAPON.SHIELD:
+                  spawnedWeapon = Instantiate(Shield, gameObject.transform.position, Quaternion.identity);
+
+                break;
         }
 
         if (randomPosition)
@@ -163,6 +174,7 @@ public class WeaponSpawn : MonoBehaviour {
             this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
         }
         pickedUp = false;
+        print(spawnedWeapon.transform.position + "2");
     }
 
 
