@@ -112,11 +112,7 @@ public class PlayerHealth : MonoBehaviour {
                 {
                     hf.enabled = true;
                 }
-                foreach (HeadUpright up in uprights)
-                {
-                    up.enabled = true;
-                }
-
+               
                 break;
 
             case PLAYER_STATE.STUNNED:
@@ -125,10 +121,6 @@ public class PlayerHealth : MonoBehaviour {
                 foreach (HandControls hf in hands)
                 {
                     hf.enabled = false;
-                }
-                foreach (HeadUpright up in uprights)
-                {
-                    up.enabled = false;
                 }
                 break;
 
@@ -139,10 +131,7 @@ public class PlayerHealth : MonoBehaviour {
                 {
                     hf.enabled = false;
                 }
-                foreach (HeadUpright up in uprights)
-                {
-                    up.enabled = false;
-                }
+
                 foreach (FullRagdollMode rag in ragmode)
                 {
                     rag.RagdollMode();
