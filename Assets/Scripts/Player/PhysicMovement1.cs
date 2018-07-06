@@ -154,7 +154,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
 
-        if (rightTread >= topSpeed && leftTread <= 0 || leftTread >= topSpeed && rightTread <= 0 || rightTread <= -topSpeed && leftTread == 0 || leftTread <= -topSpeed && rightTread == 0)
+        if (rightTread >= topSpeed && leftTread <= -topSpeed || leftTread >= topSpeed && rightTread <= -topSpeed || rightTread <= -topSpeed && leftTread == -topSpeed || leftTread <= -topSpeed && rightTread == -topSpeed)
         {
             timerUntilDizzy = true;
         }
