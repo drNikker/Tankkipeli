@@ -1769,8 +1769,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 280713019}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 0
+  holdOffTimerTime: 5
 --- !u!4 &280713021 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -2394,8 +2395,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 335842907}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 5
+  holdOffTimerTime: 5
 --- !u!4 &335842909 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -2448,6 +2450,11 @@ Prefab:
         type: 2}
       propertyPath: randomPosition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: spawnTime
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
@@ -2687,8 +2694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 384966127}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 0
+  holdOffTimerTime: 5
 --- !u!4 &384966129 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -3000,8 +3008,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 466728593}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 0
+  holdOffTimerTime: 5
 --- !u!4 &466728595 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -3441,7 +3450,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -3461,7 +3470,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridgebotright
+      value: BridgeBottom2
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4294,13 +4303,13 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.086, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 335842909}
-  - {fileID: 466728595}
-  - {fileID: 1220471826}
-  - {fileID: 874393731}
-  - {fileID: 384966129}
-  - {fileID: 280713021}
   - {fileID: 1269159283}
+  - {fileID: 335842909}
+  - {fileID: 384966129}
+  - {fileID: 466728595}
+  - {fileID: 874393731}
+  - {fileID: 1220471826}
+  - {fileID: 280713021}
   - {fileID: 2010168051}
   - {fileID: 1568337502}
   m_Father: {fileID: 0}
@@ -5264,7 +5273,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -5284,7 +5293,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridge (6)
+      value: BridgeTop1
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6314,8 +6323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 874393729}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 5
+  holdOffTimerTime: 5
 --- !u!4 &874393731 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -7139,7 +7149,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -7167,7 +7177,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridgetopleft (1)
+      value: BridgeLeft2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
@@ -7620,7 +7630,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -7640,7 +7650,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridgetopleft (2)
+      value: BridgeLeft1
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -8086,8 +8096,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1220471824}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 5
+  holdOffTimerTime: 5
 --- !u!4 &1220471826 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -8197,7 +8208,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -8217,7 +8228,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridgebotright (2)
+      value: BridgeBottom1
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -8357,8 +8368,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1269159281}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 5
+  holdOffTimerTime: 5
 --- !u!4 &1269159283 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -9232,6 +9244,11 @@ Prefab:
       propertyPath: randomPosition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: spawnTime
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -9440,7 +9457,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridge (8)
+      value: BridgeTop2
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -9915,7 +9932,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -9935,7 +9952,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridge (7)
+      value: BridgeRight1
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -10832,6 +10849,11 @@ Prefab:
       propertyPath: randomPosition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: spawnTime
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -10954,6 +10976,11 @@ Prefab:
         type: 2}
       propertyPath: randomPosition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: spawnTime
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
@@ -11462,7 +11489,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -11482,7 +11509,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_Name
-      value: DrawBridge
+      value: BridgeRight2
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -11609,7 +11636,7 @@ Prefab:
     - target: {fileID: 114125186115347818, guid: 21624cb6a24529c4d9fdb8c7393ebc9a,
         type: 2}
       propertyPath: holdOffTimerTime
-      value: 4
+      value: 1e+9
       objectReference: {fileID: 0}
     - target: {fileID: 114125186115347818, guid: 21624cb6a24529c4d9fdb8c7393ebc9a,
         type: 2}
@@ -11643,6 +11670,15 @@ Prefab:
       propertyPath: bridgeList.Array.data[3]
       value: 
       objectReference: {fileID: 335842906}
+    - target: {fileID: 114125186115347818, guid: 21624cb6a24529c4d9fdb8c7393ebc9a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043446912030028, guid: 21624cb6a24529c4d9fdb8c7393ebc9a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21624cb6a24529c4d9fdb8c7393ebc9a, type: 2}
   m_IsPrefabParent: 0
@@ -11668,8 +11704,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2010168049}
-  waitTimerTime: 4
-  holdOffTimerTime: 4
+  waitTimerTime: 5
+  offsetTime: 0
+  holdOffTimerTime: 5
 --- !u!4 &2010168051 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40,

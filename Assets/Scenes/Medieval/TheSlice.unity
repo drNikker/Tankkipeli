@@ -326,7 +326,7 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
@@ -626,7 +626,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 79716154}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!1001 &83251744
 Prefab:
   m_ObjectHideFlags: 0
@@ -968,11 +969,16 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: FlailChanceWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: startWeapon
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1384,7 +1390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 179561416}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!1001 &179627579
 Prefab:
   m_ObjectHideFlags: 0
@@ -2620,7 +2627,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 348616710}
   m_LocalRotation: {x: -0.097991064, y: -0.5272941, z: 0.6114324, w: 0.58181554}
-  m_LocalPosition: {x: -0.21728, y: 2.4896, z: 0.0081449}
+  m_LocalPosition: {x: 0, y: 2.4896, z: 0}
   m_LocalScale: {x: 0.90455246, y: 0.9045521, z: 0.90455246}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2783,15 +2790,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4814714034160894, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.006079
+      value: -2.94
       objectReference: {fileID: 0}
     - target: {fileID: 4814714034160894, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.5418993
+      value: -2.44
       objectReference: {fileID: 0}
     - target: {fileID: 4814714034160894, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 24.24408
+      value: 23.72
       objectReference: {fileID: 0}
     - target: {fileID: 4814714034160894, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5231,7 +5238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 710132888}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!1 &710193132
 GameObject:
   m_ObjectHideFlags: 0
@@ -5538,7 +5546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 735462696}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!1001 &739339865
 Prefab:
   m_ObjectHideFlags: 0
@@ -5620,7 +5629,7 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
@@ -6793,11 +6802,16 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: FlailChanceWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: startWeapon
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7759,15 +7773,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4955377905615458, guid: 3552ce2e4c6f93243ad8554d87e74990, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.9062068
+      value: -2.8401275
       objectReference: {fileID: 0}
     - target: {fileID: 4955377905615458, guid: 3552ce2e4c6f93243ad8554d87e74990, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.15927556
+      value: -2.057376
       objectReference: {fileID: 0}
     - target: {fileID: 4955377905615458, guid: 3552ce2e4c6f93243ad8554d87e74990, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 24.349428
+      value: 23.825348
       objectReference: {fileID: 0}
     - target: {fileID: 4955377905615458, guid: 3552ce2e4c6f93243ad8554d87e74990, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8400,7 +8414,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.44
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8408,7 +8422,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.93
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8867,7 +8881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1171342173}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!4 &1181239786 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4658767510470278, guid: 9fd7e9f8200879847a88c497aeddf8a4,
@@ -10255,7 +10270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1543341318}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!4 &1554600173 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4290449420816722, guid: c0559b7adcdca674093a1a55e04a8c74,
@@ -11382,7 +11398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1766776084}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!1001 &1788313006
 Prefab:
   m_ObjectHideFlags: 0
@@ -13065,7 +13082,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 2067962917}
   waitTimerTime: 10
-  holdOffTimerTime: 4
+  offsetTime: 0
+  holdOffTimerTime: 6
 --- !u!1 &2069597935
 GameObject:
   m_ObjectHideFlags: 0
@@ -13259,7 +13277,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.015032
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13267,7 +13285,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5.0487776
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_LocalRotation.x

@@ -37,15 +37,13 @@ public class CannonBall : MonoBehaviour
         randomedCannonBallPositionX = 0;
         randomedCannonBallPositionZ = 0;
 
+        cannonBallTimer = true;
 
-        currentCannonBallTimer = 0;
+        currentCannonBallTimer = timerOffset;
     }
 
     void Update()
     {
-
-        startOffset();
-
         if (cannonBallTimer)
         {
             CannonBallTimer();
@@ -112,18 +110,6 @@ public class CannonBall : MonoBehaviour
             SpawnCannonBalls();
 
             currentCannonBallTimer = cannonBallTimerTime;
-        }
-    }
-
-    private void startOffset()
-    {
-        if (timerOffset > 0)
-        {
-            timerOffset -= Time.deltaTime;
-        }
-        else if (timerOffset <= 0)
-        {
-            cannonBallTimer = true;
         }
     }
 }
