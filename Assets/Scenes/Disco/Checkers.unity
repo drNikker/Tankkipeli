@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 129589019}
   m_Layer: 0
   m_Name: 6 (2)
-  m_TagString: Environment
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,9 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 36
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &129589020
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -474,9 +471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 2
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &204067476
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -663,9 +657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 22
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &246612354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -852,9 +843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 10
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &293964167
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1501,9 +1489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 14
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &724851873
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1556,7 +1541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4528480616774910, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_RootOrder
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 4528480616774910, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_LocalScale.x
@@ -1839,7 +1824,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4303091861736792, guid: 0331b82050febd54a8ceef7bc90a0eb3, type: 2}
       propertyPath: m_RootOrder
-      value: 30
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0331b82050febd54a8ceef7bc90a0eb3, type: 2}
@@ -2163,9 +2148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 6
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &942420385
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2352,9 +2334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 8
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1038634874
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2370,6 +2349,52 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!1 &1044300033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1044300034}
+  - component: {fileID: 1044300035}
+  m_Layer: 0
+  m_Name: CheckersManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1044300034
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1044300033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1044300035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1044300033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823fcf4f5336a754d89047810e63539e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkers: []
+  waitTimerUntilDropTime: 2
+  waitUntilDestroyTime: 4
+  dropSpeed: 10000
+  checkForNewGameObject: 0
+  checkedDroppedObjects: 0
 --- !u!1 &1114925017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2456,9 +2481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 32
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1114925023
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2560,9 +2582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 34
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1169746532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2749,9 +2768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 16
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1330542269
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2804,7 +2820,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4528480616774910, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_RootOrder
-      value: 29
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1254238109227140, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_Name
@@ -2963,7 +2979,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4528480616774910, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 1254238109227140, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_Name
@@ -3086,9 +3102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 24
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1490945265
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3203,7 +3216,7 @@ GameObject:
   - component: {fileID: 1620629296}
   m_Layer: 0
   m_Name: 1 (2)
-  m_TagString: Environment
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3275,9 +3288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 26
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1620629297
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3392,7 +3402,7 @@ GameObject:
   - component: {fileID: 1677132157}
   m_Layer: 0
   m_Name: 6
-  m_TagString: Environment
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3464,9 +3474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 12
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1677132158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3581,7 +3588,7 @@ GameObject:
   - component: {fileID: 1686947946}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Environment
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3653,9 +3660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 20
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1686947947
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3757,9 +3761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 18
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1781748500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3946,9 +3947,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 28
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1865427667
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4050,6 +4048,10 @@ Prefab:
     - target: {fileID: 4618642940971828, guid: b7f5a0086c01cef4daf5b63c5f979049, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793813081918878, guid: b7f5a0086c01cef4daf5b63c5f979049, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7f5a0086c01cef4daf5b63c5f979049, type: 2}
@@ -4160,9 +4162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 30
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &1887904841
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4264,9 +4263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88675f6687fbf6e42b3b663f70986009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimerUntilDropTime: 4
-  waitUntilDestroyTime: 4
-  dropSpeed: 100
 --- !u!54 &2074276250
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4404,7 +4400,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4528480616774910, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 1254238109227140, guid: 17895fed62e78db45a6499323ab182b1, type: 2}
       propertyPath: m_Name
