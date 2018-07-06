@@ -292,6 +292,8 @@ public class PhysicMovement1 : MonoBehaviour
             characterJoint.lowTwistLimit = lowTwistLimitOriginal;
             characterJoint.highTwistLimit = highTwistLimitOriginal;
             backToNormalTimerTime = originalBackToNormalTimerTime;
+            health.currentState = PlayerHealth.PLAYER_STATE.ALIVE;
+            health.SetPlayerState();
 
             canMove = true;
             backToNormalTimer = false;
