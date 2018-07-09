@@ -231,6 +231,22 @@ public class HandControls : MonoBehaviour {
         equippedWeapon = null;
     }
 
+    public void ThrowWeapon()
+    {
+        print("throwing");
+        //weapon removal from hand
+        SetStance(Weapon.Stance.NoStance);
+        if (joints.Length == 2)
+        { otherHandScript.weaponInHand = false; }
+        weaponInHand = false;
+        weapon = null;
+        equippedWeapon = null;
+
+        //target direction and speed (rotation?)
+        script.Thrown(front);
+        //when slow enough, drop state
+    }
+
     void KeyPresses()
     {
         if (Input.GetButtonDown(player + "RightGrab") && LRHand == "R" && weapon != null && cd < Time.time)
@@ -261,7 +277,8 @@ public class HandControls : MonoBehaviour {
             }
             else if (weaponInHand == true)
             {
-                DropWeapon();
+                print("begin throw");
+                ThrowWeapon();
             }
 
         }
