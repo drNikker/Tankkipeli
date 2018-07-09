@@ -154,7 +154,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
 
-        if (rightTread >= topSpeed && leftTread <= 0 || leftTread >= topSpeed && rightTread <= 0 || rightTread <= -topSpeed && leftTread == 0 || leftTread <= -topSpeed && rightTread == 0)
+        if (rightTread >= topSpeed && leftTread <= -topSpeed || leftTread >= topSpeed && rightTread <= -topSpeed)
         {
             timerUntilDizzy = true;
         }
@@ -292,6 +292,8 @@ public class PhysicMovement1 : MonoBehaviour
             characterJoint.lowTwistLimit = lowTwistLimitOriginal;
             characterJoint.highTwistLimit = highTwistLimitOriginal;
             backToNormalTimerTime = originalBackToNormalTimerTime;
+            health.currentState = PlayerHealth.PLAYER_STATE.ALIVE;
+            health.SetPlayerState();
 
             canMove = true;
             backToNormalTimer = false;

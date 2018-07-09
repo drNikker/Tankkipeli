@@ -10,6 +10,8 @@ public class DrawBridge : MonoBehaviour
     public float waitTimerTime;
     protected float originalWaitTimerTime;
 
+    public float offsetTime;
+
     protected bool holdOffTimer;
     public float holdOffTimerTime;
     protected float originalHoldOffTimerTime;
@@ -20,6 +22,8 @@ public class DrawBridge : MonoBehaviour
 
         originalWaitTimerTime = waitTimerTime;
         originalHoldOffTimerTime = holdOffTimerTime;
+        waitTimerTime = offsetTime;
+
     }
 
     // Update is called once per frame

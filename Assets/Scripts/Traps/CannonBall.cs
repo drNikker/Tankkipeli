@@ -14,15 +14,19 @@ public class CannonBall : MonoBehaviour
     public int cannonBallPositionMinX;
     public int cannonBallPositionMaxX;
     public float cannonBallPositionY;
-    public float cannonBallPositionZ;
+    public int cannonBallPositionMinZ;
+    public int cannonBallPositionMaxZ;
 
     private int pickRandomPositionX;
+    private int pickRandomPositionZ;
     private int randomedCannonBallPositionX;
+    private int randomedCannonBallPositionZ;
 
     private bool cannonBallTimer;
+    public float timerOffset; //Used to create alternating volleys
     [Space(10)]
-    public float cannonBallTimerTime;
-    private float defaultCannonBallTimerTime;
+    public float cannonBallTimerTime; //Max time the timer will reset to
+    private float currentCannonBallTimer; //Displays current time
 
     private bool generateNewRandom;
 
@@ -31,10 +35,11 @@ public class CannonBall : MonoBehaviour
         cannonBalls = new GameObject[sizeOfTheList];
 
         randomedCannonBallPositionX = 0;
+        randomedCannonBallPositionZ = 0;
 
         cannonBallTimer = true;
 
-        defaultCannonBallTimerTime = cannonBallTimerTime;
+        currentCannonBallTimer = timerOffset;
     }
 
     void Update()
@@ -61,7 +66,25 @@ public class CannonBall : MonoBehaviour
 
                     if (randomedCannonBallPositionX != pickRandomPositionX)
                     {
-                        Debug.Log("jou uutta randomia generatee");
+                        //Debug.Log("jou uutta randomia generatee");
+                        generateNewRandom = false;
+                    }
+                }
+            }
+
+            pickRandomPositionZ = Random.Range(cannonBallPositionMinZ, cannonBallPositionMaxZ);
+
+            if (randomedCannonBallPositionZ == pickRandomPositionZ || randomedCannonBallPositionZ == (pickRandomPositionZ + 1) || randomedCannonBallPositionZ == (pickRandomPositionZ - 1))
+            {
+                generateNewRandom = true;
+
+                while (generateNewRandom)
+                {
+                    pickRandomPositionZ = Random.Range(cannonBallPositionMinZ, cannonBallPositionMaxZ);
+
+                    if (randomedCannonBallPositionZ != pickRandomPositionZ)
+                    {
+                        //Debug.Log("jou uutta randomia generatee");
                         generateNewRandom = false;
                     }
                 }
@@ -69,7 +92,7 @@ public class CannonBall : MonoBehaviour
 
             randomedCannonBallPositionX = pickRandomPositionX;
 
-            cannonBallPosition = new Vector3(pickRandomPositionX, cannonBallPositionY, cannonBallPositionZ);
+            cannonBallPosition = new Vector3(pickRandomPositionX, cannonBallPositionY, pickRandomPositionZ);
 
             GameObject spawnedCannonBall = Instantiate(cannonBall, cannonBallPosition, Quaternion.identity);
             cannonBalls[i] = spawnedCannonBall;
@@ -80,13 +103,13 @@ public class CannonBall : MonoBehaviour
 
     private void CannonBallTimer()
     {
-        cannonBallTimerTime -= Time.deltaTime;
+        currentCannonBallTimer -= Time.deltaTime;
 
-        if (cannonBallTimerTime <= 0)
+        if (currentCannonBallTimer <= 0)
         {
             SpawnCannonBalls();
 
-            cannonBallTimerTime = defaultCannonBallTimerTime;
+            currentCannonBallTimer = cannonBallTimerTime;
         }
     }
 }
