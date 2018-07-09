@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743323542074528}
   m_LocalRotation: {x: -0.0000000973536, y: -1.110223e-16, z: 1.1102229e-16, w: 1}
-  m_LocalPosition: {x: -5.96, y: 0.374, z: -0.79}
+  m_LocalPosition: {x: -1.9, y: 0.37, z: -3.08}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4481375944582686}
@@ -129,7 +129,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431198955023180}
   serializedVersion: 2
-  m_Mass: 0.2
+  m_Mass: 0.4
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -144,7 +144,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743323542074528}
   serializedVersion: 2
-  m_Mass: 0.01
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -178,8 +178,9 @@ MonoBehaviour:
   weaponParent: {fileID: 4312464574388338}
   baseDamage: 16
   dmgMultiplier: 1
+  knockbackMultiplier: 1.5
   cooldownTime: 1
-  knockback: 50000
+  knockback: 300000
   equipped: 0
   currentWeaponState: 0
   stance: 1
@@ -193,9 +194,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.09237975
-  m_Height: 1.8763754
+  m_Height: 3.8450196
   m_Direction: 1
-  m_Center: {x: -8.7454335e-24, y: 1.770988, z: -0.009123683}
+  m_Center: {x: -3.9685794e-24, y: 0.7866658, z: -0.009123683}
 --- !u!136 &136478750947191164
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -232,7 +233,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -5.96, y: 0.374, z: -0.79}
+  m_ConnectedAnchor: {x: -1.9, y: 0.37, z: -3.08}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
