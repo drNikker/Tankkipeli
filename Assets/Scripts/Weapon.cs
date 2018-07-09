@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour {
 
     public float baseDamage = 16;
     public float dmgMultiplier = 1f;
+    public float knockbackMultiplier = 1f;
     public float cooldownTime = 1;
     public float knockback = 50000;
 
@@ -48,6 +49,15 @@ public class Weapon : MonoBehaviour {
         SetWeaponState();
     }
 
+    public void Thrown(Vector3 front)
+    {
+        currentWeaponState = WEAPON_STATE.THROWN;
+        SetWeaponState();
+        Rigidbody rb = weaponParent.GetComponent<Rigidbody>();
+        rb.AddForce((front + new Vector3(0,0.2f,0)) * 5000);
+        print(front);
+    }
+
 
     void OnCollisionEnter(Collision collision)
     {
@@ -58,13 +68,13 @@ public class Weapon : MonoBehaviour {
                 tankBase = FindTank(collision);
                 if (ownHP != health)
                 {
-                    finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
+                    finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(collision.relativeVelocity.magnitude,1,15) / 10);       //Deal damage based on the damage values and the force of the impact
                     health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
-                    print(collision.relativeVelocity.magnitude + " hit str");
+                    print(Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) + " hit str");
                     print(finalDamage + " dmg");
                     Vector3 dir = collision.transform.position - transform.position;
                     dir.y = 0;
-                    tankBase.AddForce(dir.normalized * (knockback * weapon.mass * collision.relativeVelocity.magnitude));
+                    tankBase.AddForce(dir.normalized * (knockback * weapon.mass * Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) * knockbackMultiplier));
                     cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
                 }
 
@@ -148,6 +158,7 @@ public class Weapon : MonoBehaviour {
     }
 
 
+
     public void SetWeaponState()
     {
         Collider[] colliders = weaponParent.GetComponentsInChildren<Collider>();
@@ -181,6 +192,15 @@ public class Weapon : MonoBehaviour {
             case WEAPON_STATE.WIELDED:
                 canEquip = false;
                 weaponParent.GetComponent<BoxCollider>().enabled = false;
+                for (int i = 0; i < joints.Length; i++)
+                {
+                    joints[i].xMotion = ConfigurableJointMotion.Locked;
+                    joints[i].yMotion = ConfigurableJointMotion.Locked;
+                    joints[i].zMotion = ConfigurableJointMotion.Locked;
+                    joints[i].angularXMotion = ConfigurableJointMotion.Locked;
+                    joints[i].angularYMotion = ConfigurableJointMotion.Locked;
+                    joints[i].angularZMotion = ConfigurableJointMotion.Locked;
+                }
                 for (int i = 1; i <= colliders.Length -1; i++)
                 {
                     colliders[i].enabled = true;
@@ -199,10 +219,22 @@ public class Weapon : MonoBehaviour {
                 canEquip = false;
                 for (int i = 1; i <= colliders.Length -1; i++)
                 {
-                    colliders[i].isTrigger = false;
+                    colliders[i].enabled = true;
                 }
-                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                for (int i = 0; i < joints.Length; i++)
+                {
+                    joints[i].connectedBody = null;
+                    joints[i].xMotion = ConfigurableJointMotion.Free;
+                    joints[i].yMotion = ConfigurableJointMotion.Free;
+                    joints[i].zMotion = ConfigurableJointMotion.Free;
+                    joints[i].angularXMotion = ConfigurableJointMotion.Free;
+                    joints[i].angularYMotion = ConfigurableJointMotion.Free;
+                    joints[i].angularZMotion = ConfigurableJointMotion.Free;
+                }
+                weaponParent.GetComponent<BoxCollider>().enabled = true;
+                weaponParent.parent = null;
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
 
                 break;
         }

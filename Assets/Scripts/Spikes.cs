@@ -29,7 +29,7 @@ public class Spikes : MonoBehaviour
             health = FindHP(collision);
             tankBase = FindTank(collision);
 
-            finalDamage = baseDamage * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
+            finalDamage = baseDamage * (Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
             health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
             Vector3 dir = collision.transform.position - transform.position;
             dir.y = 0;
