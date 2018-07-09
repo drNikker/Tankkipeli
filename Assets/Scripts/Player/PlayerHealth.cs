@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour {
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
-        //rend[2].SetPropertyBlock(_propBlock);
+        rend[2].SetPropertyBlock(_propBlock);
     }
 
     public void TakeDamage(float damage)
