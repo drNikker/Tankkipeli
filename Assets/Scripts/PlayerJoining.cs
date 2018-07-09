@@ -15,7 +15,6 @@ public class PlayerJoining : MonoBehaviour {
     bool joined3;
     bool joined4;
 
-
     // Use this for initialization
     void Start ()
     {

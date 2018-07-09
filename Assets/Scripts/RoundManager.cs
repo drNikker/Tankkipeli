@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
@@ -12,6 +13,8 @@ public class RoundManager : MonoBehaviour {
     public GameObject playerPrefab3;
     public GameObject playerPrefab4;
     int playersAlive;
+    int teamRedPlayersAlive;
+    int teamBluePlayersAlive;
 
     //bool randomMap = true;
     //bool mapSet = false;
@@ -29,11 +32,13 @@ public class RoundManager : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> playerSpawns;
 
+
     private void Start()
     {
+
         playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
-
+        
         if (SceneManager.GetActiveScene().name != "JoiningScene" )
         {
             if (StatHolder.HowManyPlayers == 0)
@@ -54,6 +59,7 @@ public class RoundManager : MonoBehaviour {
 
 
     }
+
 
     void playersForRound()
     {
@@ -96,12 +102,23 @@ public class RoundManager : MonoBehaviour {
 
     public void playerChecker()
     {
-        playersAlive -= 1;
-        if (playersAlive == 1)
+        switch (StatHolder.CurrentMode)
         {
-            RoundOver();
-        }
+            case StatHolder.Modes.DM:
+            playersAlive -= 1;
+            if (playersAlive == 1)
+            {
+                RoundOver();
+            }
+                break;
 
+            case StatHolder.Modes.TDM:
+                //if (alivePlayers.Except(Color.red).Any())
+                //{
+                //    RoundOver();
+                //}
+                break;
+        }
     }
 
     public void newGame()
