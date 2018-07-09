@@ -11,7 +11,7 @@ public class Checkers : MonoBehaviour
 
     void Start()
     {
-        checkersList = GameObject.Find("CheckersManager").GetComponent<CheckersList>();
+        checkersList = GameObject.FindGameObjectWithTag("CheckersManager").GetComponent<CheckersList>();
         checkersList.checkers.Add(gameObject);
 
         rb = gameObject.GetComponent<Rigidbody>();

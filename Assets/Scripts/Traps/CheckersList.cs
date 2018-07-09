@@ -13,16 +13,12 @@ public class CheckersList : MonoBehaviour
     [Space(10)]
     public float waitTimerUntilDropTime;
     private float originalWaitTimerUntilDropTime;
-
-    private bool waitUntilDestroy;
-    [Space(10)]
-    public float waitUntilDestroyTime;
     [Space(10)]
     public float dropSpeed;
 
     private int pickRandomIndex;
-    public bool checkForNewGameObject;
-    public int checkedDroppedObjects = 0;
+    private bool checkForNewGameObject;
+    private int checkedDroppedObjects = 0;
 
     void Start()
     {
@@ -37,13 +33,6 @@ public class CheckersList : MonoBehaviour
         {
             Timer();
         }
-
-        if (waitUntilDestroy)
-        {
-            WaitUntilDestroy();
-        }
-
-        checkers.RemoveAll(list_item => list_item == null);
     }
 
     private void Timer()
@@ -52,6 +41,12 @@ public class CheckersList : MonoBehaviour
 
         if (waitTimerUntilDropTime <= 0)
         {
+            if (checkers.Count <= 0)
+            {
+                waitTimerUntilDropTime = 0;
+                waitTimerUntilDrop = false;
+            }
+
             if (checkedDroppedObjects < 4)
             {
                 pickRandomIndex = Random.Range(0, checkers.Count);
@@ -87,23 +82,10 @@ public class CheckersList : MonoBehaviour
             waitTimerUntilDropTime = originalWaitTimerUntilDropTime;
 
             checkers.RemoveAt(pickRandomIndex);
+            checkers.RemoveAll(list_item => list_item == null);
             Destroy(gameObjectToDrop, 6);
 
             checkedDroppedObjects++;
-        }
-    }
-
-    private void WaitUntilDestroy()
-    {
-        waitUntilDestroyTime -= Time.deltaTime;
-
-        if (waitUntilDestroyTime <= 0)
-        {
-            waitUntilDestroyTime = 0;
-            rb.AddForce(Vector3.zero);
-            waitTimerUntilDrop = true;
-            waitUntilDestroy = false;
-            Destroy(gameObject);
         }
     }
 }
