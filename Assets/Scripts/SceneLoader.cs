@@ -11,10 +11,15 @@ public class SceneLoader : MonoBehaviour
     List<string> mapSet2 = new List<string>();
     List<string> mapSet3 = new List<string>();
 
+    public Animator anim;
+    private bool menu;
+
 
 
     private void Start()
     {
+        anim = GameObject.FindGameObjectWithTag("Menu").GetComponent<Animator>();
+  
 
         roundManager = gameObject.GetComponent<RoundManager>();
         ////Map set 1
@@ -53,6 +58,30 @@ public class SceneLoader : MonoBehaviour
             ReloadScene();
 
         }
+        if (Input.GetKeyDown("escape"))
+        {
+            if(!menu)
+            {
+                anim.SetBool("Menu", true);
+                menu = true;
+            }
+        else if(menu)
+        {
+                anim.SetBool("Menu", false);
+                menu = false;
+        
+            }
+        }
+        if (Input.GetKeyDown("a") && menu)
+        {
+            anim.SetTrigger("Left");
+        }
+        if (Input.GetKeyDown("d") && menu)
+        {
+            anim.SetTrigger("Right");
+        }
+
+
 
     }
     
