@@ -61,6 +61,7 @@ public class ProximityFist : FistScript
 
         if (punchTimerTime <= 0)
         {
+            print("hit me");
             canDoDamage = true;
             anim.SetBool("Warning", false);
             anim.SetBool("FB", true);

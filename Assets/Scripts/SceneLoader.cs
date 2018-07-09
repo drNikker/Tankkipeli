@@ -93,7 +93,9 @@ public class SceneLoader : MonoBehaviour
                 {
                     StatHolder.RoundNumber = 0;
                     //SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set(can be the same set)
-                    NextSetScene(Random.Range(1, 4));
+                    int i = Random.Range(1, 4);
+                    NextSetScene(i);
+                    StatHolder.WitchSet = i;
                 }
                 else
                 {
@@ -105,7 +107,9 @@ public class SceneLoader : MonoBehaviour
                 {
                     StatHolder.RoundNumber = 0;
                     //SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set(can be the same set)
-                    NextSetScene(Random.Range(1,4));
+                    int i = Random.Range(1, 4);
+                    NextSetScene(i);
+                    StatHolder.WitchSet = i;
                 }
                 else
                 {
@@ -117,7 +121,9 @@ public class SceneLoader : MonoBehaviour
                 {
                     StatHolder.RoundNumber = 0;
                     //SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set(can be the same set)
-                    NextSetScene(Random.Range(1,4));
+                    int i = Random.Range(1, 4);
+                    NextSetScene(i);
+                    StatHolder.WitchSet = i;
                 }
                 else
                 {

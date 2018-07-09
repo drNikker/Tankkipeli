@@ -82,11 +82,15 @@ public class PlayerHealth : MonoBehaviour {
 
     public void KillPlayer()
     {
-        currentState = PLAYER_STATE.DEAD;
-        SetPlayerState();
-        //Game needs to recive info about player death
-        roundManager.alivePlayers.Remove(this.gameObject);
-        roundManager.playerChecker();
+        if (currentState != PLAYER_STATE.DEAD)
+        {
+            currentState = PLAYER_STATE.DEAD;
+            SetPlayerState();
+            //Game needs to recive info about player death
+            roundManager.alivePlayers.Remove(this.gameObject);
+            roundManager.playerChecker();
+        }
+        
         
     }
 
@@ -112,23 +116,14 @@ public class PlayerHealth : MonoBehaviour {
                 {
                     hf.enabled = true;
                 }
-                foreach (HeadUpright up in uprights)
-                {
-                    up.enabled = true;
-                }
-
+               
                 break;
 
             case PLAYER_STATE.STUNNED:
 
-                GetComponent<PhysicMovement1>().enabled = false;
                 foreach (HandControls hf in hands)
                 {
                     hf.enabled = false;
-                }
-                foreach (HeadUpright up in uprights)
-                {
-                    up.enabled = false;
                 }
                 break;
 
@@ -139,10 +134,7 @@ public class PlayerHealth : MonoBehaviour {
                 {
                     hf.enabled = false;
                 }
-                foreach (HeadUpright up in uprights)
-                {
-                    up.enabled = false;
-                }
+
                 foreach (FullRagdollMode rag in ragmode)
                 {
                     rag.RagdollMode();

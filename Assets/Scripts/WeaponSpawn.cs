@@ -18,6 +18,8 @@ public class WeaponSpawn : MonoBehaviour {
     [Range(0, 100)] public int FlailChanceWeight;
     [Range(0, 100)] public int GreatAxeChanceWeight;
     [Range(0, 100)] public int HammerChanceWeight;
+    [Range(0, 100)] public int StickChanceWeight;
+    [Range(0, 100)] public int ShieldChanceWeight;
 
     public int XPositionLowerLimit;
     public int XPositionUpperLimit;
@@ -32,6 +34,8 @@ public class WeaponSpawn : MonoBehaviour {
     public Transform GreatAxe;
     public Transform Hammer;
     public Transform Flail;
+    public Transform Stick;
+    public Transform Shield;
 
     Transform spawnedWeapon;
     
@@ -67,7 +71,7 @@ public class WeaponSpawn : MonoBehaviour {
         Ray spawnRay = new Ray(this.gameObject.transform.position, Vector3.down);
         Debug.DrawRay(this.gameObject.transform.position, Vector3.down * 1);
 
-        if (!Physics.Raycast(spawnRay, out hit, 1) && randomPosition || hit.collider.tag != "Environment" && randomPosition)
+        if (!Physics.Raycast(spawnRay, out hit, 10000) && randomPosition || hit.collider.tag != "Environment" && randomPosition)
         {
 
                 this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
@@ -95,6 +99,8 @@ public class WeaponSpawn : MonoBehaviour {
         FLAIL,
         GREATAXE,
         HAMMER,
+        STICK,
+        SHIELD,
     }
 
 
@@ -105,7 +111,7 @@ public class WeaponSpawn : MonoBehaviour {
         if (randomWeapon)
         {
 
-            int i = Random.Range(0, FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight);
+            int i = Random.Range(0, FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight + ShieldChanceWeight);
 
             if (i > 0 && i < FlailChanceWeight)
             {
@@ -113,11 +119,19 @@ public class WeaponSpawn : MonoBehaviour {
             }
             else if (i > FlailChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight)
             {
-                weaponToSpawn = SPAWN_WEAPON.GREATAXE; ;
+                weaponToSpawn = SPAWN_WEAPON.GREATAXE;
             }
             else if (i > FlailChanceWeight + GreatAxeChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight)
             {
                 weaponToSpawn = SPAWN_WEAPON.HAMMER;
+            }
+            else if (i > FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight)
+            {
+                weaponToSpawn = SPAWN_WEAPON.STICK;
+            }
+            else if (i > FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + ShieldChanceWeight && i < FlailChanceWeight + GreatAxeChanceWeight + HammerChanceWeight + StickChanceWeight + ShieldChanceWeight)
+            {
+                weaponToSpawn = SPAWN_WEAPON.SHIELD;
             }
             else
             {
@@ -127,7 +141,7 @@ public class WeaponSpawn : MonoBehaviour {
         }
         switch (weaponToSpawn)
         {
-
+            
 
             case SPAWN_WEAPON.GREATAXE:
                 spawnedWeapon = Instantiate(GreatAxe, this.gameObject.transform.position, Quaternion.AngleAxis(90, Vector3.right));
@@ -145,6 +159,14 @@ public class WeaponSpawn : MonoBehaviour {
                 spawnedWeapon = Instantiate(Flail, this.gameObject.transform.position, Quaternion.identity);
 
                 break;
+            case SPAWN_WEAPON.STICK:
+                spawnedWeapon = Instantiate(Stick, this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+            case SPAWN_WEAPON.SHIELD:
+                  spawnedWeapon = Instantiate(Shield, gameObject.transform.position, Quaternion.identity);
+
+                break;
         }
 
         if (randomPosition)
@@ -152,6 +174,7 @@ public class WeaponSpawn : MonoBehaviour {
             this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
         }
         pickedUp = false;
+        print(spawnedWeapon.transform.position + "2");
     }
 
 

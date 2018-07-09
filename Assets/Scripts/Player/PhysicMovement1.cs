@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicMovement1 : MonoBehaviour {
+public class PhysicMovement1 : MonoBehaviour
+{
+    private GameObject player;
+    private FullRagdollMode ragdollmode;
+    private CharacterJoint characterJoint;
+
+    private SoftJointLimit lowTwistLimitOriginal;
+    private SoftJointLimit highTwistLimitOriginal;
 
     private Rigidbody rb;
     public Vector3 com;
     CharacterUpright charUpR;
     Quaternion upRight;
     RaycastHit downRightRay;
-
+    PlayerHealth health;
 
     //wheel colliders
     public WheelCollider leftWheelCol1;
@@ -25,23 +32,45 @@ public class PhysicMovement1 : MonoBehaviour {
     public float accel;
     public float brakingForce;
     public float upRightCounter;
-    
+
     float brakeTorqu;
-    
+
     [SerializeField]
     float rightTread;
+    [SerializeField]
     float leftTread;
     public float wheelDamp;
 
     bool brakeRight = true;
     bool brakeLeft = true;
 
-
     public string pelaaja;
 
-	// Use this for initialization
-	void Start ()
+    private bool timerUntilDizzy;
+    public float timerUntilDizzyTime = 3;
+    private float originalTimerUntilDizzyTime;
+
+    private bool backToNormalTimer;
+    public float backToNormalTimerTime = 3;
+    private float originalBackToNormalTimerTime;
+
+    public bool canMove;
+
+    // Use this for initialization
+    void Start()
     {
+        player = gameObject;
+        ragdollmode = player.GetComponentInChildren<FullRagdollMode>();
+        characterJoint = player.GetComponentInChildren<CharacterJoint>();
+        health = GetComponent<PlayerHealth>();
+
+        lowTwistLimitOriginal = characterJoint.lowTwistLimit;
+        highTwistLimitOriginal = characterJoint.highTwistLimit;
+        originalTimerUntilDizzyTime = timerUntilDizzyTime;
+        originalBackToNormalTimerTime = backToNormalTimerTime;
+
+        canMove = true;
+
         brakeTorqu = brakingForce;
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = com;
@@ -60,14 +89,26 @@ public class PhysicMovement1 : MonoBehaviour {
         rightWheelCol3.wheelDampingRate = wheelDamp;
         rightWheelCol4.wheelDampingRate = wheelDamp;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-        KeyPress();
+        if (canMove)
+        {
+            KeyPress();
+        }
+
+        if (timerUntilDizzy)
+        {
+            DizzyTimer();
+        }
+
+        if (backToNormalTimer)
+        {
+            BackToNormalTimer();
+        }
     }
 
-    
     void KeyPress()
     {
         // setup triggers as buttons
@@ -95,8 +136,8 @@ public class PhysicMovement1 : MonoBehaviour {
             leftTread -= accel * Time.deltaTime;
             brakeLeft = false;
         }
-        
-        rightTread = Mathf.Clamp(rightTread,-topSpeed, topSpeed);
+
+        rightTread = Mathf.Clamp(rightTread, -topSpeed, topSpeed);
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
 
 
@@ -104,13 +145,28 @@ public class PhysicMovement1 : MonoBehaviour {
         {
             rightTread = 0;
             brakeRight = true;
-
         }
 
         if (!(Input.GetKey(KeyCode.Keypad7) || Input.GetButton(pelaaja + "LB")) && !(Input.GetKey(KeyCode.Keypad4) || LT))
         {
             leftTread = 0;
             brakeLeft = true;
+        }
+
+
+        if (rightTread >= topSpeed && leftTread <= -topSpeed || leftTread >= topSpeed && rightTread <= -topSpeed)
+        {
+            timerUntilDizzy = true;
+        }
+        else
+        {
+            timerUntilDizzyTime += Time.deltaTime;
+            timerUntilDizzy = false;
+
+            if (timerUntilDizzyTime >= originalTimerUntilDizzyTime)
+            {
+                timerUntilDizzyTime = originalTimerUntilDizzyTime;
+            }
         }
     }
 
@@ -153,7 +209,7 @@ public class PhysicMovement1 : MonoBehaviour {
             leftWheelCol3.brakeTorque = 0;
             leftWheelCol4.brakeTorque = 0;
         }
-        
+
         //Apply speed
         rightWheelCol1.motorTorque = rightTread;
         rightWheelCol2.motorTorque = rightTread;
@@ -163,12 +219,12 @@ public class PhysicMovement1 : MonoBehaviour {
         rightWheelCol4.motorTorque = rightTread;
         leftWheelCol3.motorTorque = leftTread;
         leftWheelCol4.motorTorque = leftTread;
-        
+
     }
 
     void TurnUpRight()
     {
-        Physics.Raycast(transform.localPosition,Vector3.down,out downRightRay, 3);
+        Physics.Raycast(transform.localPosition, Vector3.down, out downRightRay, 3);
         //Debug.DrawRay(transform.localPosition, Vector3.down, Color.red,3);
         if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
         {
@@ -178,7 +234,6 @@ public class PhysicMovement1 : MonoBehaviour {
                 charUpR.keepUpright = true;
                 upRightCounter = 0;
             }
-            
         }
         else
         {
@@ -205,7 +260,43 @@ public class PhysicMovement1 : MonoBehaviour {
 
     void onMovingPlatforms()
     {
-        
+
     }
-    
+
+    private void DizzyTimer()
+    {
+        timerUntilDizzyTime -= Time.deltaTime;
+
+        if (timerUntilDizzyTime <= 0)
+        {
+            ragdollmode.RagdollMode();
+            health.currentState = PlayerHealth.PLAYER_STATE.STUNNED;
+            health.SetPlayerState();
+            canMove = false;
+            rightTread = 0;
+            leftTread = 0;
+
+            timerUntilDizzyTime = originalTimerUntilDizzyTime;
+
+            backToNormalTimer = true;
+            timerUntilDizzy = false;
+        }
+    }
+
+    private void BackToNormalTimer()
+    {
+        backToNormalTimerTime -= Time.deltaTime;
+
+        if (backToNormalTimerTime <= 0)
+        {
+            characterJoint.lowTwistLimit = lowTwistLimitOriginal;
+            characterJoint.highTwistLimit = highTwistLimitOriginal;
+            backToNormalTimerTime = originalBackToNormalTimerTime;
+            health.currentState = PlayerHealth.PLAYER_STATE.ALIVE;
+            health.SetPlayerState();
+
+            canMove = true;
+            backToNormalTimer = false;
+        }
+    }
 }

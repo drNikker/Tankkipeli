@@ -9,10 +9,9 @@ public class Spikes : MonoBehaviour
     Rigidbody spikes;
     Rigidbody tankBase;
 
-    public float baseDamage = 5;
-    public float dmgMultiplier = 2f;
+    public float baseDamage = 16;
     public float cooldownTime = 1;
-    public float knockback = 200;
+    public float knockback = 400000;
 
     float cooldown;
     float finalDamage;
@@ -30,17 +29,11 @@ public class Spikes : MonoBehaviour
             health = FindHP(collision);
             tankBase = FindTank(collision);
 
-            finalDamage = baseDamage * dmgMultiplier * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
-         //  if (finalDamage >= 25)
-         //  {
-         //      finalDamage = 25;                                           //Damage is capped at 25 for now
-         //  }
+            finalDamage = baseDamage * (collision.relativeVelocity.magnitude / 10);       //Deal damage based on the damage values and the force of the impact
             health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
-            print(collision.relativeVelocity.magnitude + " hit str");
-            print(finalDamage + " dmg");
             Vector3 dir = collision.transform.position - transform.position;
             dir.y = 0;
-            tankBase.AddForce(dir.normalized * (knockback * collision.relativeVelocity.magnitude));
+            tankBase.AddForce(dir.normalized * knockback);
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
 
 
