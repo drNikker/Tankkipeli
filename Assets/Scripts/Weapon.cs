@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour {
     public float dmgMultiplier = 1f;
     public float knockbackMultiplier = 1f;
     public float cooldownTime = 1;
-    public float knockback = 50000;
+    public float knockback = 400000;
 
     float cooldown;
     float finalDamage;
@@ -36,6 +36,14 @@ public class Weapon : MonoBehaviour {
         SetWeaponState();
 	}
 
+    private void Update()
+    {
+        if (currentWeaponState == WEAPON_STATE.THROWN && weapon.velocity.x < 1 && weapon.velocity.z < 1 && cooldown <= Time.time)
+        {
+            Dropped();
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        }
+    }
 
     public void Equip()
     {
@@ -51,11 +59,11 @@ public class Weapon : MonoBehaviour {
 
     public void Thrown(Vector3 front)
     {
+        cooldown = Time.time + cooldownTime;
         currentWeaponState = WEAPON_STATE.THROWN;
         SetWeaponState();
         Rigidbody rb = weaponParent.GetComponent<Rigidbody>();
-        rb.AddForce((front + new Vector3(0,0.2f,0)) * 5000);
-        print(front);
+        rb.AddForce((front + new Vector3(0,0.2f,0)) * 8000 * weapon.mass);
     }
 
 
@@ -194,12 +202,12 @@ public class Weapon : MonoBehaviour {
                 weaponParent.GetComponent<BoxCollider>().enabled = false;
                 for (int i = 0; i < joints.Length; i++)
                 {
-                    joints[i].xMotion = ConfigurableJointMotion.Locked;
-                    joints[i].yMotion = ConfigurableJointMotion.Locked;
-                    joints[i].zMotion = ConfigurableJointMotion.Locked;
-                    joints[i].angularXMotion = ConfigurableJointMotion.Locked;
-                    joints[i].angularYMotion = ConfigurableJointMotion.Locked;
-                    joints[i].angularZMotion = ConfigurableJointMotion.Locked;
+                    joints[i].xMotion = ConfigurableJointMotion.Limited;
+                    joints[i].yMotion = ConfigurableJointMotion.Limited;
+                    joints[i].zMotion = ConfigurableJointMotion.Limited;
+                    joints[i].angularXMotion = ConfigurableJointMotion.Limited;
+                    joints[i].angularYMotion = ConfigurableJointMotion.Limited;
+                    joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                 }
                 for (int i = 1; i <= colliders.Length -1; i++)
                 {

@@ -68,6 +68,7 @@ public class WeaponSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(spawnedWeapon.transform.position);
         RaycastHit hit;
         Ray spawnRay = new Ray(this.gameObject.transform.position, Vector3.down);
 
@@ -137,6 +138,7 @@ public class WeaponSpawn : MonoBehaviour
 
             case SPAWN_WEAPON.FLAIL:
                 spawnedWeapon = Instantiate(weapons[0], this.gameObject.transform.position, Quaternion.identity);
+                print(spawnedWeapon.transform.position);
 
                 break;
 
@@ -157,6 +159,7 @@ public class WeaponSpawn : MonoBehaviour
 
             case SPAWN_WEAPON.SHIELD:
                 spawnedWeapon = Instantiate(weapons[4], this.gameObject.transform.position, Quaternion.identity);
+                print(spawnedWeapon.transform.position);
 
                 break;
         }

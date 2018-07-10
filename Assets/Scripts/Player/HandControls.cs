@@ -128,6 +128,7 @@ public class HandControls : MonoBehaviour {
 
     void EquipOneHand()
     {
+        weapon.transform.position = playerObj.transform.position + front * 2;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
         joints[0].connectedBody = GetComponent<Rigidbody>();
@@ -139,6 +140,7 @@ public class HandControls : MonoBehaviour {
 
     void EquipTwoHands()
     {
+        weapon.transform.position = playerObj.transform.position + front * 2;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
         joints[0].connectedBody = GetComponent<Rigidbody>();
@@ -168,6 +170,7 @@ public class HandControls : MonoBehaviour {
                 }
             case Weapon.Stance.OneHanded:
                 {
+                    transform.eulerAngles = new Vector3(0,0,0);
                     t.rotation = transform.rotation;
                     t.Rotate(90, 0, 0);
                     break;
@@ -267,6 +270,7 @@ public class HandControls : MonoBehaviour {
             }
             else if (joints.Length == 2 && weaponInHand == false)
             {
+
                 if (otherHandScript.weaponInHand == true)
                 { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
@@ -277,7 +281,6 @@ public class HandControls : MonoBehaviour {
             }
             else if (weaponInHand == true)
             {
-                print("begin throw");
                 ThrowWeapon();
             }
 
@@ -309,7 +312,7 @@ public class HandControls : MonoBehaviour {
             }
             else if (weaponInHand == true)
             {
-                DropWeapon();
+                ThrowWeapon();
             }
         }
     }
