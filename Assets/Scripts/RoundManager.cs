@@ -13,8 +13,6 @@ public class RoundManager : MonoBehaviour {
     public GameObject playerPrefab3;
     public GameObject playerPrefab4;
     int playersAlive;
-    int teamRedPlayersAlive;
-    int teamBluePlayersAlive;
 
     //bool randomMap = true;
     //bool mapSet = false;
@@ -31,6 +29,10 @@ public class RoundManager : MonoBehaviour {
     public List<GameObject> weaponSpawns;
     [HideInInspector]
     public List<GameObject> playerSpawns;
+    [HideInInspector]
+    public List<GameObject> redPlayers;
+    [HideInInspector]
+    public List<GameObject> bluePlayers;
 
 
     private void Start()
@@ -100,28 +102,29 @@ public class RoundManager : MonoBehaviour {
         }
     }
 
-    public void playerChecker()
+    public void PlayerChecker()
     {
         switch (StatHolder.CurrentMode)
         {
             case StatHolder.Modes.DM:
-            playersAlive -= 1;
-            if (playersAlive == 1)
-            {
-                RoundOver();
-            }
+                playersAlive -= 1;
+                if (playersAlive == 1)
+                {
+                    RoundOver();
+                }
                 break;
 
             case StatHolder.Modes.TDM:
-                //if (alivePlayers.Except(Color.red).Any())
-                //{
-                //    RoundOver();
-                //}
+                if (redPlayers.Count == 0 || bluePlayers.Count == 0)
+                {
+                    RoundOver();
+                }
                 break;
         }
+
     }
 
-    public void newGame()
+    public void NewGame()
     {
         if (StatHolder.HowManyPlayers == 0)
         {
@@ -178,72 +181,99 @@ public class RoundManager : MonoBehaviour {
     {
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
-        switch (alivePlayers[0].name)
-            {
-            case "Player1(Clone)":
-                StatHolder.Player1Wins += 1;
+        //Add a win to the player/team who won the round and announce that winner
+        switch (StatHolder.CurrentMode)
+        {
+            case StatHolder.Modes.DM:
+                switch (alivePlayers[0].name)
+                {
+                    case "Player1(Clone)":
+                        StatHolder.Player1Wins += 1;
+                        whoWonText.text = "Player 1 won the round";
+                        break;
+                    case "Player2(Clone)":
+                        StatHolder.Player2Wins += 1;
+                        whoWonText.text = "Player 2 won the round";
+                        break;
+                    case "Player3(Clone)":
+                        StatHolder.Player3Wins += 1;
+                        whoWonText.text = "Player 3 won the round";
+                        break;
+                    case "Player4(Clone)":
+                        StatHolder.Player4Wins += 1;
+                        whoWonText.text = "Player 4 won the round";
+                        break;
+                    default:
+                        print("This should never happen");
+                        break;
+                }
                 break;
-            case "Player2(Clone)":
-                StatHolder.Player2Wins += 1;
-                break;
-            case "Player3(Clone)":
-                StatHolder.Player3Wins += 1;
-                break;
-            case "Player4(Clone)":
-                StatHolder.Player4Wins += 1;
-                break;
-            default:
-                print("This should never happen");
+
+            case StatHolder.Modes.TDM:
+                if (redPlayers.Count == 0)
+                {
+                    Debug.Log(bluePlayers.Count);
+                    StatHolder.TeamBlueWins += 1;
+                    Debug.Log("blue"+StatHolder.TeamBlueWins);
+                    whoWonText.text = "Team Blue won the round";
+                }
+                if(bluePlayers.Count == 0)
+                {
+                    Debug.Log(redPlayers.Count);
+                    StatHolder.TeamRedWins += 1;
+                    Debug.Log("red"+StatHolder.TeamRedWins);
+                    whoWonText.text = "Team Red won the round";
+                }
                 break;
         }
 
         roundWon.SetActive(true);
 
-        if (StatHolder.Player1Wins >= StatHolder.WinsNeeded || StatHolder.Player2Wins >= StatHolder.WinsNeeded || StatHolder.Player3Wins >= StatHolder.WinsNeeded || StatHolder.Player4Wins >= StatHolder.WinsNeeded)
+        //Check if anyone has enough points to win the game and announce the winner if they do
+        if (StatHolder.Player1Wins >= StatHolder.WinsNeeded || StatHolder.Player2Wins >= StatHolder.WinsNeeded || StatHolder.Player3Wins >= StatHolder.WinsNeeded || StatHolder.Player4Wins >= StatHolder.WinsNeeded || StatHolder.TeamRedWins >=StatHolder.WinsNeeded || StatHolder.TeamBlueWins >= StatHolder.WinsNeeded)
         {
             //Game is over
-            switch (alivePlayers[0].name)
+            switch (StatHolder.CurrentMode)
             {
-                case "Player1(Clone)":
-                    whoWonText.text = "Player 1 won the game";
+                case StatHolder.Modes.DM:
+
+                    switch (alivePlayers[0].name)
+                    {
+                        case "Player1(Clone)":
+                            whoWonText.text = "Player 1 won the game";
+                            break;
+                        case "Player2(Clone)":
+                            whoWonText.text = "Player 2 won the game";
+                            break;
+                        case "Player3(Clone)":
+                            whoWonText.text = "Player 3 won the game";
+                            break;
+                        case "Player4(Clone)":
+                            whoWonText.text = "Player 4 won the game";
+                            break;
+                        default:
+                            print("This should never happen");
+                            break;
+                    }
                     break;
-                case "Player2(Clone)":
-                    whoWonText.text = "Player 2 won the game";
-                    break;
-                case "Player3(Clone)":
-                    whoWonText.text = "Player 3 won the game";
-                    break;
-                case "Player4(Clone)":
-                    whoWonText.text = "Player 4 won the game";
-                    break;
-                default:
-                    print("This should never happen");
+
+                case StatHolder.Modes.TDM:
+                    if (redPlayers.Count == 0)
+                    {
+                        whoWonText.text = "Team Blue won the game";
+                    }
+                    else if (bluePlayers.Count == 0)
+                    {
+                        whoWonText.text = "Team Red won the game";
+                    }
                     break;
             }
             StartCoroutine(BackToMenu());
         }
+        //If no one has enough wins, start a new round
         else
         {
-            switch (alivePlayers[0].name)
-            {
-                case "Player1(Clone)":
-                    whoWonText.text = "Player 1 won the round";
-                    break;
-                case "Player2(Clone)":
-                    whoWonText.text = "Player 2 won the round";
-                    break;
-                case "Player3(Clone)":
-                    whoWonText.text = "Player 3 won the round";
-                    break;
-                case "Player4(Clone)":
-                    whoWonText.text = "Player 4 won the round";
-                    break;
-                default:
-                    print("This should never happen");
-                    break;
-            }
             StartCoroutine(NextRound());
-
         }
     }
 
