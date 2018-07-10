@@ -13,12 +13,12 @@ public class SceneLoader : MonoBehaviour
 
     public Animator anim;
     private bool menu;
-
+    private bool open;
 
 
     private void Start()
     {
-        anim = GameObject.FindGameObjectWithTag("Menu").GetComponent<Animator>();
+        
   
 
         roundManager = gameObject.GetComponent<RoundManager>();
@@ -58,29 +58,6 @@ public class SceneLoader : MonoBehaviour
             ReloadScene();
 
         }
-        if (Input.GetKeyDown("escape"))
-        {
-            if(!menu)
-            {
-                anim.SetBool("Menu", true);
-                menu = true;
-            }
-        else if(menu)
-        {
-                anim.SetBool("Menu", false);
-                menu = false;
-        
-            }
-        }
-        if (Input.GetKeyDown("a") && menu)
-        {
-            anim.SetTrigger("Left");
-        }
-        if (Input.GetKeyDown("d") && menu)
-        {
-            anim.SetTrigger("Right");
-        }
-
 
 
     }

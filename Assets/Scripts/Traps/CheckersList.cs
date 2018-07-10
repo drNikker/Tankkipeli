@@ -8,6 +8,7 @@ public class CheckersList : MonoBehaviour
 
     private GameObject gameObjectToDrop;
     private Rigidbody rb;
+    public Animator anim;
 
     private bool waitTimerUntilDrop;
     [Space(10)]
@@ -38,7 +39,10 @@ public class CheckersList : MonoBehaviour
     private void Timer()
     {
         waitTimerUntilDropTime -= Time.deltaTime;
-
+        if(waitTimerUntilDropTime == 2)
+        {
+            anim.SetTrigger("Blink");
+        }
         if (waitTimerUntilDropTime <= 0)
         {
             if (checkers.Count <= 0)
