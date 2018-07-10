@@ -992,6 +992,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b415749e65ca12341b62b1903dfb9869, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &328154285
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 14.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658139836201228, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &353607284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,9 +1954,12 @@ MonoBehaviour:
   weaponParent: {fileID: 0}
   baseDamage: 5
   dmgMultiplier: 2
+  knockbackMultiplier: 1
   cooldownTime: 0.5
+  knockback: 50000
   equipped: 0
   currentWeaponState: 0
+  stance: 0
 --- !u!138 &711692105
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -2607,22 +2652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e29364d2fa3074a9b2f878069269e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 531684214}
-  right: {fileID: 1628000337}
-  leftWC1: {fileID: 0}
-  leftWC2: {fileID: 0}
-  leftWC3: {fileID: 0}
-  leftWC4: {fileID: 0}
-  rightWC1: {fileID: 0}
-  rightWC2: {fileID: 0}
-  rightWC3: {fileID: 0}
-  rightWC4: {fileID: 0}
-  maxSpeed: 0
-  acceleration: 0
-  turn: 75
-  brakeForce: 0
-  rightThrust: 0
-  player: P1
 --- !u!64 &1037592683
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2727,6 +2756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb6b1a06cad5f4d9fdaae8ae539955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currHealth: 100
   currentState: 0
 --- !u!1 &1073305607
 GameObject:
@@ -2995,6 +3025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb6b1a06cad5f4d9fdaae8ae539955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currHealth: 100
   currentState: 0
 --- !u!114 &1082285457
 MonoBehaviour:
@@ -3008,22 +3039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e29364d2fa3074a9b2f878069269e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 470331490}
-  right: {fileID: 41642049}
-  leftWC1: {fileID: 0}
-  leftWC2: {fileID: 0}
-  leftWC3: {fileID: 0}
-  leftWC4: {fileID: 0}
-  rightWC1: {fileID: 0}
-  rightWC2: {fileID: 0}
-  rightWC3: {fileID: 0}
-  rightWC4: {fileID: 0}
-  maxSpeed: 0
-  acceleration: 0
-  turn: 75
-  brakeForce: 0
-  rightThrust: 0
-  player: P1
 --- !u!64 &1082285458
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4275,9 +4290,12 @@ MonoBehaviour:
   weaponParent: {fileID: 0}
   baseDamage: 5
   dmgMultiplier: 2
+  knockbackMultiplier: 1
   cooldownTime: 0.5
+  knockback: 50000
   equipped: 0
   currentWeaponState: 0
+  stance: 0
 --- !u!138 &1489293139
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -4387,6 +4405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb6b1a06cad5f4d9fdaae8ae539955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currHealth: 100
   currentState: 0
 --- !u!1 &1587197832
 GameObject:
