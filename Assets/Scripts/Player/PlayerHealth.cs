@@ -134,7 +134,7 @@ public class PlayerHealth : MonoBehaviour {
     public void SetPlayerState()
     {
         HandControls[] hands = GetComponentsInChildren<HandControls>();
-        HeadUpright[] uprights = GetComponentsInChildren<HeadUpright>();
+        //HeadUpright[] uprights = GetComponentsInChildren<HeadUpright>();
         FullRagdollMode[] ragmode = GetComponentsInChildren<FullRagdollMode>();
 
         switch (currentState)

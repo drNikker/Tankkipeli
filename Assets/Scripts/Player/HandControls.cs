@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class HandControls : MonoBehaviour {
+
+    public PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
 
     Rigidbody rb;
     public GameObject otherHand;
@@ -39,14 +45,20 @@ public class HandControls : MonoBehaviour {
 
     void Update()
     {
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
         KeyPresses();
     }
 
 
     private void FixedUpdate()
     {
-        p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
-        p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
+        //p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
+        //p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
+
+        p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0f, state.ThumbSticks.Left.Y);
+        p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0f, state.ThumbSticks.Right.Y);
+
         front = playerObj.transform.forward;
 
         if (LRHand == "R" && guidingHand == false)
@@ -252,7 +264,7 @@ public class HandControls : MonoBehaviour {
 
     void KeyPresses()
     {
-        if (Input.GetButtonDown(player + "RightGrab") && LRHand == "R" && weapon != null && cd < Time.time)
+        if (state.Buttons.RightStick == ButtonState.Pressed && prevState.Buttons.RightStick == ButtonState.Released && LRHand == "R" && weapon != null && cd < Time.time)
         {
             cd = Time.time + 1;
             otherHandScript.cd = Time.time + 1;
@@ -285,7 +297,7 @@ public class HandControls : MonoBehaviour {
             }
 
         }
-        else if (Input.GetButtonDown(player + "LeftGrab") && LRHand == "L" && weapon != null && cd < Time.time)
+        else if (state.Buttons.LeftStick == ButtonState.Pressed && prevState.Buttons.LeftStick == ButtonState.Released && LRHand == "L" && weapon != null && cd < Time.time)
         {
             cd = Time.time + 1;
             otherHandScript.cd = Time.time + 1;

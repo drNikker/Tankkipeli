@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using XInputDotNetPure;
 
 public class PlayerJoining : MonoBehaviour {
 
@@ -14,6 +15,16 @@ public class PlayerJoining : MonoBehaviour {
     bool joined2;
     bool joined3;
     bool joined4;
+
+    //states for all 4 players' controllers because there is only one instance of this script.
+    GamePadState P1state;
+    GamePadState P1prevState;
+    GamePadState P2state;
+    GamePadState P2prevState;
+    GamePadState P3state;
+    GamePadState P3prevState;
+    GamePadState P4state;
+    GamePadState P4prevState;
 
     // Use this for initialization
     void Start ()
@@ -38,6 +49,16 @@ public class PlayerJoining : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        //setting previous state and new state
+        P1prevState = P1state;
+        P2prevState = P2state;
+        P3prevState = P3state;
+        P4prevState = P4state;
+        P1state = GamePad.GetState(PlayerIndex.One);
+        P2state = GamePad.GetState(PlayerIndex.Two);
+        P3state = GamePad.GetState(PlayerIndex.Three);
+        P4state = GamePad.GetState(PlayerIndex.Four);
+
         keyPresses();
     }
 
@@ -50,7 +71,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 1 join and color change
-        if (joined1 == false && Input.GetButtonDown("P1Join") || joined1 == false && Input.GetKeyDown("g"))
+        if (joined1 == false && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || joined1 == false && Input.GetKeyDown("g"))
         {
             joined1 = true;
             StatHolder.HowManyPlayers++;
@@ -72,11 +93,11 @@ public class PlayerJoining : MonoBehaviour {
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
 
-        else if (joined1 == true && Input.GetButtonDown("P1Join") || joined1 == true && Input.GetKeyDown("g"))
+        else if (joined1 == true && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || joined1 == true && Input.GetKeyDown("g"))
         {
             ChangePlayer1Color();
         }
-        if (joined1 == true && Input.GetButtonDown("P1B"))
+        if (joined1 == true && P1state.Buttons.B == ButtonState.Pressed && P1prevState.Buttons.B == ButtonState.Released)
         {
             joined1 = false;
             StatHolder.HowManyPlayers--;
@@ -86,7 +107,7 @@ public class PlayerJoining : MonoBehaviour {
 
 
         //Player 2 join and color change
-        if (joined2 == false && Input.GetButtonDown("P2Join") || joined2 == false && Input.GetKeyDown("f"))
+        if (joined2 == false && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || joined2 == false && Input.GetKeyDown("f"))
         {
             joined2 = true;
             StatHolder.HowManyPlayers++;
@@ -104,14 +125,14 @@ public class PlayerJoining : MonoBehaviour {
                     StatHolder.Player2Color = Random.Range(0, 2);
                     break;
             }
-        roundManager.spawnPlayers.Add(roundManager.playerPrefab2);
+            roundManager.spawnPlayers.Add(roundManager.playerPrefab2);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
-        else if (joined2 == true && Input.GetButtonDown("P2Join"))
+        else if (joined2 == true && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released)
         {
             ChangePlayer2Color();
         }
-        if (joined2 == true && Input.GetButtonDown("P2B"))
+        if (joined2 == true && P2state.Buttons.B == ButtonState.Pressed && P2prevState.Buttons.B == ButtonState.Released)
         {
             joined2 = false;
             StatHolder.HowManyPlayers--;
@@ -120,7 +141,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 3 join and color change
-        if (joined3 == false && Input.GetButtonDown("P3Join"))
+        if (joined3 == false && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released)
         {
             joined3 = true;
             StatHolder.HowManyPlayers++;
@@ -141,11 +162,11 @@ public class PlayerJoining : MonoBehaviour {
             roundManager.spawnPlayers.Add(roundManager.playerPrefab3);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
-        else if (joined3 == true && Input.GetButtonDown("P3Join"))
+        else if (joined3 == true && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released)
         {
             ChangePlayer3Color();
         }
-        if (joined3 == true && Input.GetButtonDown("P3B"))
+        if (joined3 == true && P3state.Buttons.B == ButtonState.Pressed && P3prevState.Buttons.B == ButtonState.Released)
         {
             joined3 = false;
             StatHolder.HowManyPlayers--;
@@ -154,7 +175,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 4 join and color change
-        if (joined4 == false && Input.GetButtonDown("P4Join"))
+        if (joined4 == false && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released)
         {
             joined4 = true;
             StatHolder.HowManyPlayers++;
@@ -175,11 +196,11 @@ public class PlayerJoining : MonoBehaviour {
             roundManager.spawnPlayers.Add(roundManager.playerPrefab4);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
-        else if (joined4 == true && Input.GetButtonDown("P4Join"))
+        else if (joined4 == true && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released)
         {
             ChangePlayer4Color();
         }
-        if (joined4 == true && Input.GetButtonDown("P4B"))
+        if (joined4 == true && P4state.Buttons.B == ButtonState.Pressed && P4prevState.Buttons.B == ButtonState.Released)
         {
             joined4 = false;
             StatHolder.HowManyPlayers--;
@@ -188,7 +209,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
 
-        if (StatHolder.HowManyPlayers >= 2 && Input.GetButtonDown("P1Start") || StatHolder.HowManyPlayers >= 2 && Input.GetKeyDown("y"))
+        if (StatHolder.HowManyPlayers >= 2 && P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released || StatHolder.HowManyPlayers >= 2 && Input.GetKeyDown("y"))
         {
              roundManager.NewGame();
         }

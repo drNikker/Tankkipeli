@@ -8,7 +8,6 @@ public class PhysicMovement1 : MonoBehaviour
     // XINPUT STUFF
     public PlayerIndex playerIndex;
     GamePadState state;
-    GamePadState prevState;
 
     //OTHER
     private GameObject player;
@@ -21,7 +20,6 @@ public class PhysicMovement1 : MonoBehaviour
     private Rigidbody rb;
     public Vector3 com;
     CharacterUpright charUpR;
-    Quaternion upRight;
     RaycastHit downRightRay;
     PlayerHealth health;
 
@@ -81,7 +79,6 @@ public class PhysicMovement1 : MonoBehaviour
         brakeTorqu = brakingForce;
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = com;
-        upRight = Quaternion.Euler(0, 0, 0);
         charUpR = GetComponent<CharacterUpright>();
 
         charUpR.keepUpright = false;
@@ -100,7 +97,7 @@ public class PhysicMovement1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        prevState = state;
+        
         state = GamePad.GetState(playerIndex);
 
         if (canMove)
@@ -122,22 +119,10 @@ public class PhysicMovement1 : MonoBehaviour
     void KeyPress()
     {
         // setup triggers as buttons
-        bool RT = Input.GetAxis(pelaaja + "TankThreadRight") > 0.0;
-        bool LT = Input.GetAxis(pelaaja + "TankThreadLeft") > 0.0;
-        // Tread Speed Increases
-
-        //if ((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(pelaaja + "RB")) && !(Input.GetKey(KeyCode.Keypad6) || RT))
-        //{
-        //    rightTread += accel * Time.deltaTime;
-        //    brakeRight = false;
-        //}
-        //if ((Input.GetKey(KeyCode.Keypad7) || Input.GetButton(pelaaja + "LB")) && !(Input.GetKey(KeyCode.Keypad4) || LT))
-        //{
-        //    leftTread += accel * Time.deltaTime;
-        //    brakeLeft = false;
-        //}
-
-        //XINPUT
+        //bool RT = Input.GetAxis(pelaaja + "TankThreadRight") > 0.0;
+        //bool LT = Input.GetAxis(pelaaja + "TankThreadLeft") > 0.0;
+        
+        //Tread speed increase
 
         if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
@@ -161,10 +146,11 @@ public class PhysicMovement1 : MonoBehaviour
             brakeLeft = false;
         }
 
+        //clamping tread speeds
         rightTread = Mathf.Clamp(rightTread, -topSpeed, topSpeed);
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
 
-
+        //set motortorque to 0 wwhen no input is given
         if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
             rightTread = 0;
@@ -177,7 +163,7 @@ public class PhysicMovement1 : MonoBehaviour
             brakeLeft = true;
         }
 
-
+        //Dizzy 
         if (rightTread >= topSpeed && leftTread <= -topSpeed || leftTread >= topSpeed && rightTread <= -topSpeed)
         {
             timerUntilDizzy = true;
@@ -281,12 +267,7 @@ public class PhysicMovement1 : MonoBehaviour
             transform.parent = null;
         }
     }
-
-    void onMovingPlatforms()
-    {
-
-    }
-
+    
     private void DizzyTimer()
     {
         timerUntilDizzyTime -= Time.deltaTime;
