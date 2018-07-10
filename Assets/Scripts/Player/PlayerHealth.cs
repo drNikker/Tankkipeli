@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour {
     bool lastStand = false;
     //[HideInInspector]
     public PLAYER_STATE currentState;
+    Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white };
+    Color color;
 
     // Use this for initialization
     void Start () {
@@ -24,8 +26,6 @@ public class PlayerHealth : MonoBehaviour {
     void SetColor()
     {
         GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
-        Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white };
-        Color color;
         switch (player.name)
         {
             case "Player1(Clone)":
@@ -51,6 +51,17 @@ public class PlayerHealth : MonoBehaviour {
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
         rend[2].SetPropertyBlock(_propBlock);
+        if(StatHolder.CurrentMode == StatHolder.Modes.TDM)
+        {
+            if (color == Color.red)
+            {
+                roundManager.redPlayers.Add(this.gameObject);
+            }
+            else if (color == Color.blue)
+            {
+                roundManager.bluePlayers.Add(this.gameObject);
+            }
+        }
     }
 
     public void TakeDamage(float damage)
@@ -87,8 +98,26 @@ public class PlayerHealth : MonoBehaviour {
             currentState = PLAYER_STATE.DEAD;
             SetPlayerState();
             //Game needs to recive info about player death
-            roundManager.alivePlayers.Remove(this.gameObject);
-            roundManager.playerChecker();
+            switch (StatHolder.CurrentMode)
+            {
+                case StatHolder.Modes.DM:
+                    roundManager.alivePlayers.Remove(this.gameObject);
+                    break;
+                case StatHolder.Modes.TDM:
+                    if (color == Color.red)
+                    {
+                        roundManager.alivePlayers.Remove(this.gameObject);
+                        roundManager.redPlayers.Remove(this.gameObject);
+                    }
+                    else if(color == Color.blue)
+                    {
+                        roundManager.alivePlayers.Remove(this.gameObject);
+                        roundManager.bluePlayers.Remove(this.gameObject);
+                    }
+                    break;
+
+            }
+            roundManager.PlayerChecker();
         }
         
         

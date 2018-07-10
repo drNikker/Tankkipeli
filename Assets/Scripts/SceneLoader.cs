@@ -41,6 +41,12 @@ public class SceneLoader : MonoBehaviour
     {
         if(Input.GetKeyDown("space"))
         {
+            StatHolder.CurrentMode = StatHolder.Modes.DM;
+            SceneManager.LoadScene("JoiningScene");
+        }
+        if (Input.GetKeyDown("t"))
+        {
+            StatHolder.CurrentMode = StatHolder.Modes.TDM;
             SceneManager.LoadScene("JoiningScene");
         }
         if (Input.GetKeyDown("h"))
@@ -66,6 +72,8 @@ public class SceneLoader : MonoBehaviour
         StatHolder.Player2Wins = 0;
         StatHolder.Player3Wins = 0;
         StatHolder.Player4Wins = 0;
+        StatHolder.TeamBlueWins = 0;
+        StatHolder.TeamRedWins = 0;
         StatHolder.WinsNeeded = 0;
         StatHolder.RoundNumber = 0;
     }

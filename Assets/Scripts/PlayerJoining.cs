@@ -15,7 +15,6 @@ public class PlayerJoining : MonoBehaviour {
     bool joined3;
     bool joined4;
 
-
     // Use this for initialization
     void Start ()
     {
@@ -24,6 +23,8 @@ public class PlayerJoining : MonoBehaviour {
         StatHolder.Player2Wins = 0;
         StatHolder.Player3Wins = 0;
         StatHolder.Player4Wins = 0;
+        StatHolder.TeamRedWins = 0;
+        StatHolder.TeamBlueWins = 0;
         StatHolder.WinsNeeded = 0;
         StatHolder.RoundNumber = 0;
         StatHolder.Player1Color = 100;
@@ -42,23 +43,35 @@ public class PlayerJoining : MonoBehaviour {
 
     void keyPresses()
     {
+        //Makes sure that players are always able to spawn
+        if (roundManager.playerSpawns.Count == 0)
+        {
+            roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
+        }
+
         //Player 1 join and color change
         if (joined1 == false && Input.GetButtonDown("P1Join") || joined1 == false && Input.GetKeyDown("g"))
         {
             joined1 = true;
             StatHolder.HowManyPlayers++;
-            StatHolder.Player1Color = Random.Range(0,5);
-            while (StatHolder.Player1Color == StatHolder.Player2Color || StatHolder.Player1Color == StatHolder.Player3Color || StatHolder.Player1Color == StatHolder.Player4Color)
+            switch (StatHolder.CurrentMode)
             {
-                StatHolder.Player1Color = Random.Range(0,5);
+                case StatHolder.Modes.DM:
+                    StatHolder.Player1Color = Random.Range(0, 5);
+                    while (StatHolder.Player1Color == StatHolder.Player2Color || StatHolder.Player1Color == StatHolder.Player3Color || StatHolder.Player1Color == StatHolder.Player4Color)
+                    {
+                        StatHolder.Player1Color = Random.Range(0, 5);
+                    }
+                    break;
+
+                case StatHolder.Modes.TDM:
+                    StatHolder.Player1Color = Random.Range(0, 2);
+                    break;
             }
             roundManager.spawnPlayers.Add(roundManager.playerPrefab1);
-            if (roundManager.playerSpawns.Count == 0)
-            {
-                roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
-            }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
+
         else if (joined1 == true && Input.GetButtonDown("P1Join") || joined1 == true && Input.GetKeyDown("g"))
         {
             ChangePlayer1Color();
@@ -77,16 +90,21 @@ public class PlayerJoining : MonoBehaviour {
         {
             joined2 = true;
             StatHolder.HowManyPlayers++;
-            StatHolder.Player2Color = Random.Range(0, 5);
-            while (StatHolder.Player2Color == StatHolder.Player1Color || StatHolder.Player2Color == StatHolder.Player3Color || StatHolder.Player2Color == StatHolder.Player4Color)
+            switch (StatHolder.CurrentMode)
             {
-                StatHolder.Player2Color = Random.Range(0, 5);
+                case StatHolder.Modes.DM:
+                    StatHolder.Player2Color = Random.Range(0, 5);
+                    while (StatHolder.Player2Color == StatHolder.Player1Color || StatHolder.Player2Color == StatHolder.Player3Color || StatHolder.Player2Color == StatHolder.Player4Color)
+                    {
+                        StatHolder.Player2Color = Random.Range(0, 5);
+                    }
+                    break;
+
+                case StatHolder.Modes.TDM:
+                    StatHolder.Player2Color = Random.Range(0, 2);
+                    break;
             }
-            roundManager.spawnPlayers.Add(roundManager.playerPrefab2);
-            if (roundManager.playerSpawns.Count == 0)
-            {
-                roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
-            }
+        roundManager.spawnPlayers.Add(roundManager.playerPrefab2);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
         else if (joined2 == true && Input.GetButtonDown("P2Join"))
@@ -106,16 +124,21 @@ public class PlayerJoining : MonoBehaviour {
         {
             joined3 = true;
             StatHolder.HowManyPlayers++;
-            StatHolder.Player3Color = Random.Range(0, 5);
-            while (StatHolder.Player3Color == StatHolder.Player2Color || StatHolder.Player3Color == StatHolder.Player1Color || StatHolder.Player3Color == StatHolder.Player4Color)
+            switch (StatHolder.CurrentMode)
             {
-                StatHolder.Player3Color = Random.Range(0, 5);
+                case StatHolder.Modes.DM:
+                    StatHolder.Player3Color = Random.Range(0, 5);
+                    while (StatHolder.Player3Color == StatHolder.Player2Color || StatHolder.Player3Color == StatHolder.Player1Color || StatHolder.Player3Color == StatHolder.Player4Color)
+                    {
+                        StatHolder.Player3Color = Random.Range(0, 5);
+                    }
+                    break;
+
+                case StatHolder.Modes.TDM:
+                    StatHolder.Player3Color = Random.Range(0, 2);
+                    break;
             }
             roundManager.spawnPlayers.Add(roundManager.playerPrefab3);
-            if (roundManager.playerSpawns.Count == 0)
-            {
-                roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
-            }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
         else if (joined3 == true && Input.GetButtonDown("P3Join"))
@@ -135,16 +158,21 @@ public class PlayerJoining : MonoBehaviour {
         {
             joined4 = true;
             StatHolder.HowManyPlayers++;
-            StatHolder.Player4Color = Random.Range(0, 5);
-            while (StatHolder.Player4Color == StatHolder.Player2Color || StatHolder.Player4Color == StatHolder.Player3Color || StatHolder.Player4Color == StatHolder.Player1Color)
+            switch (StatHolder.CurrentMode)
             {
-                StatHolder.Player4Color = Random.Range(0, 5);
+                case StatHolder.Modes.DM:
+                    StatHolder.Player4Color = Random.Range(0, 5);
+                    while (StatHolder.Player4Color == StatHolder.Player2Color || StatHolder.Player4Color == StatHolder.Player3Color || StatHolder.Player4Color == StatHolder.Player1Color)
+                    {
+                        StatHolder.Player4Color = Random.Range(0, 5);
+                    }
+                    break;
+
+                case StatHolder.Modes.TDM:
+                    StatHolder.Player3Color = Random.Range(0, 2);
+                    break;
             }
             roundManager.spawnPlayers.Add(roundManager.playerPrefab4);
-            if (roundManager.playerSpawns.Count == 0)
-            {
-                roundManager.playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
-            }
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
         else if (joined4 == true && Input.GetButtonDown("P4Join"))
@@ -162,16 +190,30 @@ public class PlayerJoining : MonoBehaviour {
 
         if (StatHolder.HowManyPlayers >= 2 && Input.GetButtonDown("P1Start") || StatHolder.HowManyPlayers >= 2 && Input.GetKeyDown("y"))
         {
-            roundManager.newGame();
+             roundManager.NewGame();
         }
     }
 
     void ChangePlayer1Color()
     {
         int save = Random.Range(0, 5);
-        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        switch (StatHolder.CurrentMode)
         {
-            save = Random.Range(0, 5);
+            case StatHolder.Modes.DM:
+
+                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+                {
+                    save = Random.Range(0, 5);
+                }
+                break;
+
+            case StatHolder.Modes.TDM:
+                save = Random.Range(0, 2);
+                while (save == StatHolder.Player1Color)
+                {
+                    save = Random.Range(0, 2);
+                }
+                break;
         }
         StatHolder.Player1Color = save;
         Color color = colorSet[save];
@@ -188,9 +230,22 @@ public class PlayerJoining : MonoBehaviour {
     void ChangePlayer2Color()
     {
         int save = Random.Range(0, 5);
-        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        switch (StatHolder.CurrentMode)
         {
-            save = Random.Range(0, 5);
+            case StatHolder.Modes.DM:
+                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+                {
+                    save = Random.Range(0, 5);
+                }
+                break;
+
+            case StatHolder.Modes.TDM:
+                save = Random.Range(0, 2);
+                while (save == StatHolder.Player2Color)
+                {
+                    save = Random.Range(0, 2);
+                }
+                break;
         }
         StatHolder.Player2Color = save;
         Color color = colorSet[save];
@@ -206,9 +261,22 @@ public class PlayerJoining : MonoBehaviour {
     void ChangePlayer3Color()
     {
         int save = Random.Range(0, 5);
-        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        switch (StatHolder.CurrentMode)
         {
-            save = Random.Range(0, 5);
+            case StatHolder.Modes.DM:
+                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+                {
+                    save = Random.Range(0, 5);
+                }
+                break;
+
+            case StatHolder.Modes.TDM:
+                save = Random.Range(0, 2);
+                while (save == StatHolder.Player3Color)
+                {
+                    save = Random.Range(0, 2);
+                }
+                break;
         }
         StatHolder.Player3Color = save;
         Color color = colorSet[save];
@@ -224,9 +292,22 @@ public class PlayerJoining : MonoBehaviour {
     void ChangePlayer4Color()
     {
         int save = Random.Range(0, 5);
-        while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+        switch (StatHolder.CurrentMode)
         {
-            save = Random.Range(0, 5);
+            case StatHolder.Modes.DM:
+                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+                {
+                    save = Random.Range(0, 5);
+                }
+                break;
+
+            case StatHolder.Modes.TDM:
+                save = Random.Range(0, 2);
+                while (save == StatHolder.Player4Color)
+                {
+                    save = Random.Range(0, 2);
+                }
+                break;
         }
         StatHolder.Player4Color = save;
         Color color = colorSet[save];
