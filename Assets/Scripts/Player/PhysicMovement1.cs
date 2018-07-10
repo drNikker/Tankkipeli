@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class PhysicMovement1 : MonoBehaviour
 {
+    // XINPUT STUFF
+    public PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
+    //OTHER
     private GameObject player;
     private FullRagdollMode ragdollmode;
     private CharacterJoint characterJoint;
@@ -93,6 +100,9 @@ public class PhysicMovement1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
+
         if (canMove)
         {
             KeyPress();
@@ -116,22 +126,36 @@ public class PhysicMovement1 : MonoBehaviour
         bool LT = Input.GetAxis(pelaaja + "TankThreadLeft") > 0.0;
         // Tread Speed Increases
 
-        if ((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(pelaaja + "RB")) && !(Input.GetKey(KeyCode.Keypad6) || RT))
+        //if ((Input.GetKey(KeyCode.Keypad9) || Input.GetButton(pelaaja + "RB")) && !(Input.GetKey(KeyCode.Keypad6) || RT))
+        //{
+        //    rightTread += accel * Time.deltaTime;
+        //    brakeRight = false;
+        //}
+        //if ((Input.GetKey(KeyCode.Keypad7) || Input.GetButton(pelaaja + "LB")) && !(Input.GetKey(KeyCode.Keypad4) || LT))
+        //{
+        //    leftTread += accel * Time.deltaTime;
+        //    brakeLeft = false;
+        //}
+
+        //XINPUT
+
+        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
             rightTread += accel * Time.deltaTime;
             brakeRight = false;
         }
-        if ((Input.GetKey(KeyCode.Keypad7) || Input.GetButton(pelaaja + "LB")) && !(Input.GetKey(KeyCode.Keypad4) || LT))
+        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
         {
             leftTread += accel * Time.deltaTime;
             brakeLeft = false;
         }
-        if ((Input.GetKey(KeyCode.Keypad6) || RT) && !(Input.GetKey(KeyCode.Keypad9) || Input.GetButton(pelaaja + "RB")))
+        
+        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))
         {
             rightTread -= accel * Time.deltaTime;
             brakeRight = false;
         }
-        if ((Input.GetKey(KeyCode.Keypad4) || LT) && !(Input.GetKey(KeyCode.Keypad7) || Input.GetButton(pelaaja + "LB")))
+        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))
         {
             leftTread -= accel * Time.deltaTime;
             brakeLeft = false;
@@ -141,13 +165,13 @@ public class PhysicMovement1 : MonoBehaviour
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
 
 
-        if (!(Input.GetKey(KeyCode.Keypad9) || Input.GetButton(pelaaja + "RB")) && !(Input.GetKey(KeyCode.Keypad6) || RT))
+        if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
             rightTread = 0;
             brakeRight = true;
         }
 
-        if (!(Input.GetKey(KeyCode.Keypad7) || Input.GetButton(pelaaja + "LB")) && !(Input.GetKey(KeyCode.Keypad4) || LT))
+        if (!(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
         {
             leftTread = 0;
             brakeLeft = true;
