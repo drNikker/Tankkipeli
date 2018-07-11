@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 65284489356955010}
   - component: {fileID: 153426859939512964}
   - component: {fileID: 153880583650658516}
+  - component: {fileID: 114947278175791026}
+  - component: {fileID: 136404117336899568}
   m_Layer: 8
   m_Name: GreatAxe
   m_TagString: Weapon
@@ -43,10 +45,8 @@ GameObject:
   - component: {fileID: 54013922911023322}
   - component: {fileID: 136008208260312060}
   - component: {fileID: 136520497649644408}
-  - component: {fileID: 114242836676079882}
   - component: {fileID: 138950239181876800}
-  - component: {fileID: 136321705165019112}
-  - component: {fileID: 136368953468335888}
+  - component: {fileID: 114204154188647990}
   m_Layer: 8
   m_Name: AxeCore
   m_TagString: Untagged
@@ -168,7 +168,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40.876637, y: 67.26741, z: 11.825828}
   m_Center: {x: 0, y: 8.637602, z: -0.019648725}
---- !u!114 &114242836676079882
+--- !u!114 &114204154188647990
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -176,15 +176,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1881999329016206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eb2648fe7097c444840594e5b1c2e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4103816632961970}
+  ownHP: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 1.8
   knockbackMultiplier: 2
   cooldownTime: 1
-  knockback: 100000
+  knockback: 400000
+--- !u!114 &114947278175791026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1428226877098448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParent: {fileID: 4103816632961970}
   equipped: 0
   currentWeaponState: 0
   stance: 2
@@ -197,36 +209,23 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 7
-  m_Height: 30
+  m_Radius: 4.5220876
+  m_Height: 30.000002
   m_Direction: 1
-  m_Center: {x: 12, y: 25, z: -0.000011938338}
---- !u!136 &136321705165019112
+  m_Center: {x: 10.776437, y: 25, z: -0.000011863125}
+--- !u!136 &136404117336899568
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1881999329016206}
+  m_GameObject: {fileID: 1428226877098448}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.36458772
-  m_Height: 10.58383
+  m_Radius: 0.5648407
+  m_Height: 55.191128
   m_Direction: 1
-  m_Center: {x: 0, y: -7.5468106, z: 0.012163093}
---- !u!136 &136368953468335888
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1881999329016206}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.36458772
-  m_Height: 27.077585
-  m_Direction: 1
-  m_Center: {x: 0, y: 18.309113, z: 0.012163093}
+  m_Center: {x: 0.08571956, y: 2.5994651, z: -0.000010168393}
 --- !u!136 &136520497649644408
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -236,10 +235,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 7
-  m_Height: 30
+  m_Radius: 4.497277
+  m_Height: 27.82058
   m_Direction: 1
-  m_Center: {x: -12, y: 25, z: -0.000011938338}
+  m_Center: {x: -11.353744, y: 24.98827, z: -0.19518316}
 --- !u!138 &138950239181876800
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -276,8 +275,8 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 1
-    bounciness: 0.5
+    limit: 0
+    bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
     spring: 0
@@ -364,14 +363,14 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 2
+  m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.8
-    bounciness: 0.5
+    limit: 0
+    bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
     spring: 0
@@ -388,7 +387,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 0
+    limit: 100
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
