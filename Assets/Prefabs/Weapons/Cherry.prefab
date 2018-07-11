@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 65629624598633932}
   - component: {fileID: 136646691274590420}
   - component: {fileID: 114337458327691044}
+  - component: {fileID: 108556320219677248}
   m_Layer: 8
   m_Name: Cherry
   m_TagString: Weapon
@@ -382,7 +383,7 @@ Animator:
   m_GameObject: {fileID: 1407746927328294}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a54932255298a9640a4e52f50feb2f3d, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eff95b80b87d9944481982923bf941b0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -391,6 +392,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!108 &108556320219677248
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407746927328294}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.9132484, b: 0, a: 1}
+  m_Intensity: 1.36
+  m_Range: 6.52
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114337458327691044
 MonoBehaviour:
   m_ObjectHideFlags: 1

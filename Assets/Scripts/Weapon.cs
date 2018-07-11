@@ -17,10 +17,14 @@ public class Weapon : MonoBehaviour {
     public WEAPON_STATE currentWeaponState;
     public Stance stance;
 
+    Animator dropAnimation;
+    Light dropLight;
 
 	// Use this for initialization
 	void Start ()
     {
+        dropAnimation = GetComponent<Animator>();
+        dropLight = GetComponent<Light>();
         damageDealers = GetComponentsInChildren<WeaponDamage>();
         weapon = weaponParent.GetComponent<Rigidbody>();
         currentWeaponState = WEAPON_STATE.DROPPED;
@@ -111,7 +115,8 @@ public class Weapon : MonoBehaviour {
                     body.isKinematic = true;
                     body.useGravity = false;
                 }
-
+                dropLight.enabled = true;
+                dropAnimation.enabled = true;
                 weaponParent.transform.eulerAngles = new Vector3(0, 0, 0);
                 equipped = false;
 
@@ -142,6 +147,8 @@ public class Weapon : MonoBehaviour {
                 {
                     wd.ownHP = wd.FindOwnHP();
                 }
+                dropLight.enabled = false;
+                dropAnimation.enabled = false;
                 equipped = true;
 
                 break;
