@@ -68,7 +68,6 @@ public class WeaponSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(spawnedWeapon.transform.position);
         RaycastHit hit;
         Ray spawnRay = new Ray(this.gameObject.transform.position, Vector3.down);
 
