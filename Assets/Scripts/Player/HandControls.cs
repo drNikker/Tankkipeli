@@ -110,6 +110,10 @@ public class HandControls : MonoBehaviour {
         if (weaponInHand == false)
         {
             weapon = wpn;
+            if (otherHandScript.weaponInHand == true && otherHandScript.weapon == wpn)
+            {
+                weapon = null;
+            }
         }
     }
 

@@ -4,24 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-    PlayerHealth ownHP;
-    PlayerHealth health;
-    Rigidbody tankBase;
     Rigidbody weapon;
+    WeaponDamage[] damageDealers;
     public Transform weaponParent;
 
-
-    public float baseDamage = 16;
-    public float dmgMultiplier = 1f;
-    public float knockbackMultiplier = 1f;
-    public float cooldownTime = 1;
-    public float knockback = 400000;
-
-    float cooldown;
-    float finalDamage;
+    float cooldown = 2;
+    float totalMass;
 
     bool canEquip;
-    public bool equipped;
+    [HideInInspector] public bool equipped;
 
     public WEAPON_STATE currentWeaponState;
     public Stance stance;
@@ -30,8 +21,8 @@ public class Weapon : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        weapon = GetComponent<Rigidbody>();
-        ownHP = FindOwnHP();
+        damageDealers = GetComponentsInChildren<WeaponDamage>();
+        weapon = weaponParent.GetComponent<Rigidbody>();
         currentWeaponState = WEAPON_STATE.DROPPED;
         SetWeaponState();
 	}
@@ -41,7 +32,7 @@ public class Weapon : MonoBehaviour {
         if (currentWeaponState == WEAPON_STATE.THROWN && weapon.velocity.x < 1 && weapon.velocity.z < 1 && cooldown <= Time.time)
         {
             Dropped();
-            transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            weaponParent.transform.position = new Vector3(weaponParent.transform.position.x, weaponParent.transform.position.y + 1, weaponParent.transform.position.z);
         }
     }
 
@@ -59,94 +50,23 @@ public class Weapon : MonoBehaviour {
 
     public void Thrown(Vector3 front)
     {
-        cooldown = Time.time + cooldownTime;
+        GetMass();
+        cooldown = Time.time + cooldown;
         currentWeaponState = WEAPON_STATE.THROWN;
         SetWeaponState();
         Rigidbody rb = weaponParent.GetComponent<Rigidbody>();
-        rb.AddForce((front + new Vector3(0,0.2f,0)) * 8000 * weapon.mass);
+        rb.AddForce((front + new Vector3(0,0.2f,0)) * 8000 * totalMass);
+        print(totalMass);
     }
 
-
-    void OnCollisionEnter(Collision collision)
+    void GetMass()
     {
-
-            if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
-            {
-                health = FindHP(collision);
-                tankBase = FindTank(collision);
-                if (ownHP != health)
-                {
-                    finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(collision.relativeVelocity.magnitude,1,15) / 10);       //Deal damage based on the damage values and the force of the impact
-                    health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
-                    print(Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) + " hit str");
-                    print(finalDamage + " dmg");
-                    Vector3 dir = collision.transform.position - transform.position;
-                    dir.y = 0;
-                    tankBase.AddForce(dir.normalized * (knockback * weapon.mass * Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) * knockbackMultiplier));
-                    cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
-                }
-
-            }
-        
-    }
-
-    static PlayerHealth FindHP(Collision col)                  //Finds the enemy players hp
-     {
-
-         PlayerHealth hp = col.gameObject.GetComponentInParent<PlayerHealth>();
-         Transform parentOb = col.gameObject.transform;
-
-         while (parentOb != null)
-         {
-            hp = parentOb.GetComponent<PlayerHealth>();
-
-             if (hp != null)
-             {
-                 return hp;
-             }
-            parentOb = parentOb.transform.parent;
-        }
-
-        Debug.LogWarning("Bodypart took a hit, but player health was not found");
-        return null;
-     }
-
-    PlayerHealth FindOwnHP()                  //Finds the players OWN hp
-    {
-        PlayerHealth hp = GetComponentInParent<PlayerHealth>();
-        Transform parentOb = gameObject.transform;
-        
-        while (parentOb != null)
+        totalMass = 0;
+        foreach (WeaponDamage wd in damageDealers)
         {
-            hp = parentOb.GetComponent<PlayerHealth>();
-
-            if (hp != null)
-            {
-                return hp;
-            }
-            parentOb = parentOb.transform.parent;
+            Rigidbody r = wd.GetComponent<Rigidbody>();
+            totalMass += r.mass;
         }
-
-        Debug.LogWarning("Players health was not found! If the weapon is not assigned to hand, ignore this");
-        return null;
-    }
-
-    static Rigidbody FindTank(Collision col)                  //Finds the players tank
-    {
-        Transform parentOb = col.gameObject.transform;
-
-        while (parentOb != null)
-        {
-            if (parentOb.tag == "Player")
-            {
-                Rigidbody rig = parentOb.GetComponent<Rigidbody>();
-                return rig;
-            }
-            parentOb = parentOb.transform.parent;
-        }
-
-        Debug.LogWarning("Bodypart took a hit, but player tankbase was not found");
-        return null;
     }
 
     public enum Stance
@@ -218,13 +138,17 @@ public class Weapon : MonoBehaviour {
                     body.isKinematic = false;
                     body.useGravity = true;
                 }
-                ownHP = FindOwnHP();
+                foreach (WeaponDamage wd in damageDealers)
+                {
+                    wd.ownHP = wd.FindOwnHP();
+                }
                 equipped = true;
 
                 break;
 
             case WEAPON_STATE.THROWN:
                 canEquip = false;
+
                 for (int i = 1; i <= colliders.Length -1; i++)
                 {
                     colliders[i].enabled = true;
@@ -238,11 +162,15 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularXMotion = ConfigurableJointMotion.Free;
                     joints[i].angularYMotion = ConfigurableJointMotion.Free;
                     joints[i].angularZMotion = ConfigurableJointMotion.Free;
+                    joints[i].autoConfigureConnectedAnchor = true;
                 }
                 weaponParent.GetComponent<BoxCollider>().enabled = true;
                 weaponParent.parent = null;
-                gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                gameObject.GetComponent<Rigidbody>().useGravity = true;
+                foreach (Rigidbody body in bodies)
+                {
+                    body.isKinematic = false;
+                    body.useGravity = true;
+                }
 
                 break;
         }

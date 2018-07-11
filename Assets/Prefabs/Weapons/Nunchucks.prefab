@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 153704545904440964}
   - component: {fileID: 65366813456428824}
   - component: {fileID: 136599691856665620}
+  - component: {fileID: 114652162046292492}
   m_Layer: 8
   m_Name: Nunchucks
   m_TagString: Weapon
@@ -191,9 +192,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4257617288881604}
   - component: {fileID: 54518479517654104}
-  - component: {fileID: 114221019186366110}
   - component: {fileID: 136132346806376362}
   - component: {fileID: 144744968104393970}
+  - component: {fileID: 114103944785552158}
   m_Layer: 8
   m_Name: End
   m_TagString: Untagged
@@ -584,7 +585,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114221019186366110
+--- !u!114 &114103944785552158
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -592,15 +593,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919302604502586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eb2648fe7097c444840594e5b1c2e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4259429765429146}
+  ownHP: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 1.1
   knockbackMultiplier: 1.2
   cooldownTime: 1
   knockback: 400000
+--- !u!114 &114652162046292492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592253862678370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParent: {fileID: 4259429765429146}
   equipped: 0
   currentWeaponState: 0
   stance: 1
