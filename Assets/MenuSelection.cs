@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class MenuSelection : MonoBehaviour {
 
@@ -8,6 +9,15 @@ public class MenuSelection : MonoBehaviour {
     public int option;
     private bool menu;
     private bool open;
+
+    GamePadState P1state;
+    GamePadState P1prevState;
+    GamePadState P2state;
+    GamePadState P2prevState;
+    GamePadState P3state;
+    GamePadState P3prevState;
+    GamePadState P4state;
+    GamePadState P4prevState;
 
     // Use this for initialization
     void Start()
@@ -18,7 +28,17 @@ public class MenuSelection : MonoBehaviour {
     // Update is called once per frame
     public void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        P1prevState = P1state;
+        P2prevState = P2state;
+        P3prevState = P3state;
+        P4prevState = P4state;
+        P1state = GamePad.GetState(PlayerIndex.One);
+        P2state = GamePad.GetState(PlayerIndex.Two);
+        P3state = GamePad.GetState(PlayerIndex.Three);
+        P4state = GamePad.GetState(PlayerIndex.Four);
+
+
+        if (P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released)
         {
             Debug.Log("sad");
             if (!menu)
@@ -33,18 +53,19 @@ public class MenuSelection : MonoBehaviour {
 
             }
         }
-        if (Input.GetKeyDown("a") && menu && !open)
+        // && P1prevState.ThumbSticks.Left.X < -0.7)
+        if ((P1state.DPad.Left == ButtonState.Pressed && P1prevState.DPad.Left == ButtonState.Released) && menu && !open)
         {
             anim.SetTrigger("Left");
         }
-        if (Input.GetKeyDown("d") && menu && !open)
+        if ((P1state.DPad.Right == ButtonState.Pressed && P1prevState.DPad.Right== ButtonState.Released) && menu && !open)
         {
             anim.SetTrigger("Right");
         }
 
 
 
-        if (Input.GetKeyDown("x") && menu)
+        if ((P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released || P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released ) && menu )
 
         {
             if (!open)
