@@ -18,6 +18,7 @@ public class RollingBarrels : MonoBehaviour
     [Space(10)]
     public float barrelWaitTimerTime;
     private float originalBarrelWaitTimerTime;
+    public float barrelTimerOffset;
 
     private bool canSpawn;
     private bool barrelWaitTimer;
@@ -27,8 +28,9 @@ public class RollingBarrels : MonoBehaviour
         rotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90);
 
         originalBarrelWaitTimerTime = barrelWaitTimerTime;
+        barrelWaitTimerTime = barrelTimerOffset;
 
-        canSpawn = true;
+        canSpawn = false;
         barrelWaitTimer = true;
     }
 
