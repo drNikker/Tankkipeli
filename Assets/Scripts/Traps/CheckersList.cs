@@ -8,8 +8,14 @@ public class CheckersList : MonoBehaviour
 
     private GameObject gameObjectToDrop;
     private Rigidbody rb;
+    private Animator anim;
 
-    private bool waitTimerUntilDrop;
+    private bool setRandomNumberTimer;
+    [Space(10)]
+    public float setRandomNumberTime;
+    private float originalSetRandomNumberTime;
+
+    private bool waitTimer;
     [Space(10)]
     public float waitTimerUntilDropTime;
     private float originalWaitTimerUntilDropTime;
@@ -23,28 +29,34 @@ public class CheckersList : MonoBehaviour
     void Start()
     {
         originalWaitTimerUntilDropTime = waitTimerUntilDropTime;
+        originalSetRandomNumberTime = setRandomNumberTime;
 
-        waitTimerUntilDrop = true;
+        setRandomNumberTimer = true;
     }
 
     void Update()
     {
-        if (waitTimerUntilDrop)
+        if (setRandomNumberTimer)
         {
             Timer();
+        }
+
+        if (waitTimer)
+        {
+            WaitTimer();
         }
     }
 
     private void Timer()
     {
-        waitTimerUntilDropTime -= Time.deltaTime;
+        setRandomNumberTime -= Time.deltaTime;
 
-        if (waitTimerUntilDropTime <= 0)
+        if (setRandomNumberTime <= 0)
         {
             if (checkers.Count <= 0)
             {
-                waitTimerUntilDropTime = 0;
-                waitTimerUntilDrop = false;
+                setRandomNumberTime = 0;
+                setRandomNumberTimer = false;
             }
 
             if (checkedDroppedObjects < 4)
@@ -74,18 +86,37 @@ public class CheckersList : MonoBehaviour
                 pickRandomIndex = Random.Range(0, checkers.Count);
                 gameObjectToDrop = checkers[pickRandomIndex];
             }
+            anim = gameObjectToDrop.GetComponent<Animator>();
+            anim.SetTrigger("Blink");
 
+            setRandomNumberTime = originalSetRandomNumberTime;
+
+            checkedDroppedObjects++;
+
+            waitTimer = true;
+            setRandomNumberTimer = false;
+        }
+    }
+
+    private void WaitTimer()
+    {
+        waitTimerUntilDropTime -= Time.deltaTime;
+
+        if (waitTimerUntilDropTime <= 0)
+        {
             rb = gameObjectToDrop.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.AddForce(Vector3.down * dropSpeed);
-
-            waitTimerUntilDropTime = originalWaitTimerUntilDropTime;
 
             checkers.RemoveAt(pickRandomIndex);
             checkers.RemoveAll(list_item => list_item == null);
             Destroy(gameObjectToDrop, 6);
 
-            checkedDroppedObjects++;
+            waitTimerUntilDropTime = originalWaitTimerUntilDropTime;
+
+            setRandomNumberTimer = true;
+            waitTimer = false;
         }
     }
+
 }

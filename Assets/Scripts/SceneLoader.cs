@@ -11,10 +11,15 @@ public class SceneLoader : MonoBehaviour
     List<string> mapSet2 = new List<string>();
     List<string> mapSet3 = new List<string>();
 
+    public Animator anim;
+    private bool menu;
+    private bool open;
 
 
     private void Start()
     {
+        
+  
 
         roundManager = gameObject.GetComponent<RoundManager>();
         ////Map set 1
@@ -59,6 +64,7 @@ public class SceneLoader : MonoBehaviour
             ReloadScene();
 
         }
+
 
     }
     
