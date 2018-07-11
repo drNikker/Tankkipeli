@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4202366458679926}
   - component: {fileID: 64094815438080414}
-  - component: {fileID: 114087623279945020}
   - component: {fileID: 54408953039500798}
   - component: {fileID: 138135944485731056}
+  - component: {fileID: 114645895949104388}
   m_Layer: 8
   m_Name: VikingBucklerCore
   m_TagString: Untagged
@@ -43,6 +43,10 @@ GameObject:
   - component: {fileID: 54738557753317130}
   - component: {fileID: 153530217580396086}
   - component: {fileID: 65862611123447956}
+  - component: {fileID: 136301560788079400}
+  - component: {fileID: 114503456832258616}
+  - component: {fileID: 95711031148236864}
+  - component: {fileID: 108138470180555350}
   m_Layer: 8
   m_Name: VikingBuckler
   m_TagString: Weapon
@@ -70,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1844679635902184}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.56, y: 1.34, z: -0.11}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 4202366458679926}
@@ -177,7 +181,76 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06205099, y: 0.06205099, z: 0.016939243}
   m_Center: {x: -0.0024214191, y: 0.0024214173, z: -0.003922427}
---- !u!114 &114087623279945020
+--- !u!95 &95711031148236864
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844679635902184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eff95b80b87d9944481982923bf941b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!108 &108138470180555350
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844679635902184}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.9132484, b: 0, a: 1}
+  m_Intensity: 1.36
+  m_Range: 6.52
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &114503456832258616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844679635902184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParent: {fileID: 4702981355906638}
+  equipped: 0
+  currentWeaponState: 0
+  stance: 1
+--- !u!114 &114645895949104388
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -185,18 +258,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423850463573134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eb2648fe7097c444840594e5b1c2e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4702981355906638}
-  baseDamage: 0
-  dmgMultiplier: 1
+  ownHP: {fileID: 0}
+  baseDamage: 16
+  dmgMultiplier: 0
   knockbackMultiplier: 1
   cooldownTime: 1
-  knockback: 0
-  equipped: 0
-  currentWeaponState: 0
-  stance: 1
+  knockback: 400000
+--- !u!136 &136301560788079400
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844679635902184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0013908707
+  m_Height: 0.013477695
+  m_Direction: 1
+  m_Center: {x: -0.0024214163, y: 0.0020932853, z: 0.0035924704}
 --- !u!138 &138135944485731056
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -220,7 +303,7 @@ ConfigurableJoint:
   m_Anchor: {x: -0.003, y: 0.002, z: 0.002}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -3.5, y: 1.38, z: -0.15}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: -1, z: 0}
   m_XMotion: 0
