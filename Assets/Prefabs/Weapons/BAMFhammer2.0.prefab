@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4481375944582686}
   - component: {fileID: 54223878205054364}
   - component: {fileID: 138359626369895542}
-  - component: {fileID: 114083957817739606}
   - component: {fileID: 136478750947191164}
-  - component: {fileID: 136348841259561794}
+  - component: {fileID: 114475242383936388}
   m_Layer: 8
   m_Name: HammerCore
   m_TagString: Untagged
@@ -44,6 +43,10 @@ GameObject:
   - component: {fileID: 54485098817683174}
   - component: {fileID: 65694224902883572}
   - component: {fileID: 153844184797229126}
+  - component: {fileID: 136038628501596268}
+  - component: {fileID: 114629653233148676}
+  - component: {fileID: 108541020366921036}
+  - component: {fileID: 95193371434420494}
   m_Layer: 8
   m_Name: BAMFhammer2.0
   m_TagString: Weapon
@@ -58,7 +61,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743323542074528}
   m_LocalRotation: {x: -0.0000000973536, y: -1.110223e-16, z: 1.1102229e-16, w: 1}
-  m_LocalPosition: {x: -1.9, y: 0.37, z: -3.08}
+  m_LocalPosition: {x: 0.39, y: 0.37, z: -2.6}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4481375944582686}
@@ -164,7 +167,61 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5018415, y: 7.400716, z: 3.8363945}
   m_Center: {x: -3.6091765e-23, y: 2.0970907, z: 0.010127127}
---- !u!114 &114083957817739606
+--- !u!95 &95193371434420494
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743323542074528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eff95b80b87d9944481982923bf941b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!108 &108541020366921036
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743323542074528}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.9132484, b: 0, a: 1}
+  m_Intensity: 1.36
+  m_Range: 6.52
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &114475242383936388
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -172,31 +229,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431198955023180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eb2648fe7097c444840594e5b1c2e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4312464574388338}
+  ownHP: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 1
   knockbackMultiplier: 1.5
   cooldownTime: 1
-  knockback: 300000
+  knockback: 400000
+--- !u!114 &114629653233148676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743323542074528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParent: {fileID: 4312464574388338}
   equipped: 0
   currentWeaponState: 0
   stance: 1
---- !u!136 &136348841259561794
+--- !u!136 &136038628501596268
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431198955023180}
+  m_GameObject: {fileID: 1743323542074528}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.09237975
-  m_Height: 3.8450196
+  m_Radius: 0.19094259
+  m_Height: 3.6427312
   m_Direction: 1
-  m_Center: {x: -3.9685794e-24, y: 0.7866658, z: -0.009123683}
+  m_Center: {x: -5.7055485e-24, y: 0.60023665, z: 0.0048937276}
 --- !u!136 &136478750947191164
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -233,7 +302,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.9, y: 0.37, z: -3.08}
+  m_ConnectedAnchor: {x: 0.39, y: 0.37, z: -2.6}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
