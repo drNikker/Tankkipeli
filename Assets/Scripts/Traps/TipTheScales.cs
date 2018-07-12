@@ -5,6 +5,8 @@ using UnityEngine;
 public class TipTheScales : MonoBehaviour
 {
     public Animator animator;
+    public Animator tileanim;
+
 
     private bool waitTimerToGoSmall;
     [Space(10)]
@@ -20,7 +22,7 @@ public class TipTheScales : MonoBehaviour
     {
         originalTimeBeforeMakingSmall = timeBeforeMakingSmall;
         originalTimeBeforeMakingBig = timeBeforeMakingBig;
-
+      
         waitTimerToGoSmall = true;
     }
 
@@ -40,7 +42,10 @@ public class TipTheScales : MonoBehaviour
     private void WaitTimerToGoSmall()
     {
         timeBeforeMakingSmall -= Time.deltaTime;
-
+        if (timeBeforeMakingSmall <= 2 && timeBeforeMakingSmall >= 1.9)
+        {
+            tileanim.SetTrigger("Blink");
+        }
         if (timeBeforeMakingSmall <= 0)
         {
             animator.SetTrigger("GoSmall");
@@ -53,6 +58,10 @@ public class TipTheScales : MonoBehaviour
     private void WaitTimerToGoBig()
     {
         timeBeforeMakingBig -= Time.deltaTime;
+        if (timeBeforeMakingBig <= 2 && timeBeforeMakingBig >= 1.9)
+        {
+            tileanim.SetTrigger("Blink");
+        }
 
         if (timeBeforeMakingBig <= 0)
         {

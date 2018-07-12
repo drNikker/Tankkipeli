@@ -189,7 +189,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4237845775728848, guid: b7f5a0086c01cef4daf5b63c5f979049, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 23
+      value: 762.6
       objectReference: {fileID: 0}
     - target: {fileID: 4237845775728848, guid: b7f5a0086c01cef4daf5b63c5f979049, type: 2}
       propertyPath: m_LocalPosition.z
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 193304395}
   - component: {fileID: 193304394}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -731,6 +731,7 @@ GameObject:
   - component: {fileID: 1204394893}
   - component: {fileID: 1204394892}
   - component: {fileID: 1204394894}
+  - component: {fileID: 1204394891}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -752,6 +753,24 @@ Transform:
   m_Father: {fileID: 613116096}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1204394891
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1204394889}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5ba961092a69094995f13935f7e7908, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!23 &1204394892
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -806,6 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 613116095}
+  tileanim: {fileID: 1204394891}
   timeBeforeMakingSmall: 10
   timeBeforeMakingBig: 10
 --- !u!1 &1677132152
@@ -819,6 +839,7 @@ GameObject:
   - component: {fileID: 1677132155}
   - component: {fileID: 1677132154}
   - component: {fileID: 1677132157}
+  - component: {fileID: 1677132153}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -826,6 +847,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &1677132153
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1677132152}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5ba961092a69094995f13935f7e7908, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!23 &1677132154
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -894,6 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 613116095}
+  tileanim: {fileID: 1677132153}
   timeBeforeMakingSmall: 10
   timeBeforeMakingBig: 10
 --- !u!1001 &1930932935
