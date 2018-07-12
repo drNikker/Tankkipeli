@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
     RoundManager roundManager;
 
+    //level camera for multicam
+    MultiTargetCamera LevelCam;
+
     float maxHealth = 100;
     public float currHealth = 100;
     bool lastStand = false;
@@ -15,6 +18,8 @@ public class PlayerHealth : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
+        LevelCam.AddTarget(transform);
         roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);
@@ -97,6 +102,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             currentState = PLAYER_STATE.DEAD;
             SetPlayerState();
+            LevelCam.RemoveTarget(transform.name);
             //Game needs to recive info about player death
             switch (StatHolder.CurrentMode)
             {
