@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponDamage : MonoBehaviour {
+public class WeaponDamage : MonoBehaviour
+{
 
     [HideInInspector] public PlayerHealth ownHP;
     PlayerHealth health;
+    PlayerAudioRandomizer playerAudio;
     Rigidbody tankBase;
     Rigidbody weapon;
 
@@ -21,9 +23,11 @@ public class WeaponDamage : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        playerAudio = GameObject.Find("AudioManager").GetComponent<PlayerAudioRandomizer>();
         weapon = GetComponent<Rigidbody>();
-	}
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -36,6 +40,8 @@ public class WeaponDamage : MonoBehaviour {
             {
                 finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
                 health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
+                playerAudio.RandomizePlayerAudio();
+
                 print(Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) + " hit str");
                 print(finalDamage + " dmg");
                 Vector3 dir = collision.transform.position - transform.position;
