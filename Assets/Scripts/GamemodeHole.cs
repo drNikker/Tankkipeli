@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GamemodeHole : MonoBehaviour {
 
-    int playerCount;
+    public StatHolder.Modes mode;
+
+    public int playersInHole;
 
     List<Collider> players;
 
@@ -13,24 +15,27 @@ public class GamemodeHole : MonoBehaviour {
         players = new List<Collider>();
     }
 
-    private void Update()
+    void Update()
     {
-        print(playerCount);
+        for (int i = 0; i < players.Count; i++)
+        {
+            if(players[i] == null)
+            {
+                players.Remove(players[i]);
+                playersInHole -= 1;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
-        playerCount = +1;
-        print(playerCount);
+        if(other.tag == "Player" && !players.Contains(other))
+        {
+            players.Add(other);
+            playersInHole += 1;
+        }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player")
-        playerCount -= 1;
-        print(playerCount);
-    }
 
 
 }

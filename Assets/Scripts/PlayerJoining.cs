@@ -26,7 +26,8 @@ public class PlayerJoining : MonoBehaviour {
     GamePadState P4state;
     GamePadState P4prevState;
 
-    BoxCollider[] holes;
+    GamemodeHole[] holes;
+    List<int> votes;
 
     // Use this for initialization
     void Start ()
@@ -213,7 +214,29 @@ public class PlayerJoining : MonoBehaviour {
 
         if (StatHolder.HowManyPlayers >= 2 && P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released || StatHolder.HowManyPlayers >= 2 && Input.GetKeyDown("y"))
         {
-             roundManager.NewGame();
+
+            votes = new List<int>();
+            holes = GetComponentsInChildren<GamemodeHole>();
+            int totalPlayersInHoles = 0;
+            
+            for(int i =0; i < holes.Length; i++)
+            {
+                totalPlayersInHoles += holes[i].playersInHole;
+                votes.Add(holes[i].playersInHole);
+            }
+            if(StatHolder.HowManyPlayers == totalPlayersInHoles)
+            {
+                int mode = Random.Range(1,totalPlayersInHoles+1);
+                int chosen;
+                int i = 0;
+
+                for (chosen = 0; mode > i; chosen++)
+                {
+                    i += votes[chosen];
+                }
+                StatHolder.CurrentMode = holes[chosen-1].mode;
+                roundManager.NewGame();
+            }
         }
     }
 
