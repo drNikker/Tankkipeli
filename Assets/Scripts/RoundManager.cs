@@ -7,6 +7,7 @@ using System.Linq;
 
 public class RoundManager : MonoBehaviour {
     SceneLoader sceneLoader;
+    AudioScript audioScript;
 
     public GameObject playerPrefab1;
     public GameObject playerPrefab2;
@@ -37,7 +38,7 @@ public class RoundManager : MonoBehaviour {
 
     private void Start()
     {
-
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
         
@@ -133,6 +134,7 @@ public class RoundManager : MonoBehaviour {
         StatHolder.WinsNeeded = 6;
         StatHolder.WitchSet = Random.Range(1, 4);
         NewRound();
+        //audioScript.PlaySceneMusic(1);
     }
 
     public void NewRound()

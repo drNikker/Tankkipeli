@@ -7,6 +7,8 @@ using UnityEngine;
 public class SceneLoader : MonoBehaviour
 {
     RoundManager roundManager;
+    AudioScript audioScript;
+
     List<string> mapSet1 = new List<string>();
     List<string> mapSet2 = new List<string>();
     List<string> mapSet3 = new List<string>();
@@ -18,10 +20,9 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
-        
-  
-
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         roundManager = gameObject.GetComponent<RoundManager>();
+
         ////Map set 1
         mapSet1.Add("2310");
         mapSet1.Add("9999");
@@ -39,7 +40,6 @@ public class SceneLoader : MonoBehaviour
         mapSet3.Add("HyperHexagon");
         mapSet3.Add("Rotat-o-Maze");
         mapSet3.Add("TipTheScales");
-
     }
 
     private void Update()
@@ -48,11 +48,13 @@ public class SceneLoader : MonoBehaviour
         {
             StatHolder.CurrentMode = StatHolder.Modes.DM;
             SceneManager.LoadScene("JoiningScene");
+            audioScript.PlaySceneMusic(0);
         }
         if (Input.GetKeyDown("t"))
         {
             StatHolder.CurrentMode = StatHolder.Modes.TDM;
             SceneManager.LoadScene("JoiningScene");
+            audioScript.PlaySceneMusic(0);
         }
         if (Input.GetKeyDown("h"))
         {
@@ -62,12 +64,8 @@ public class SceneLoader : MonoBehaviour
         if (Input.GetKeyDown("r"))
         {
             ReloadScene();
-
         }
-
-
     }
-    
 
     //Loads the menu scene and sets all win counters to zero
     public void MenuScene()
@@ -117,7 +115,8 @@ public class SceneLoader : MonoBehaviour
                 }
                 else
                 {
-                    SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber]);   
+                    SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber]);
+                    audioScript.PlaySceneMusic(2);
                 }
                 break;
             case 2:
@@ -136,6 +135,7 @@ public class SceneLoader : MonoBehaviour
                 else
                 {
                     SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber]);
+                    audioScript.PlaySceneMusic(2);
                 }
                 break;
             case 3:
@@ -154,6 +154,7 @@ public class SceneLoader : MonoBehaviour
                 else
                 {
                     SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]);
+                    audioScript.PlaySceneMusic(1);
                 }
                 break;
             default:
