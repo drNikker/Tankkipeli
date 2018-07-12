@@ -274,7 +274,7 @@ public class PlayerJoining : MonoBehaviour {
         MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
         Renderer[] rend = player.GetComponentsInChildren<Renderer>();
         rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", Random.ColorHSV());
+        _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
         rend[2].SetPropertyBlock(_propBlock); 
@@ -305,7 +305,7 @@ public class PlayerJoining : MonoBehaviour {
         MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
         Renderer[] rend = player.GetComponentsInChildren<Renderer>();
         rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", Random.ColorHSV());
+        _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
         rend[2].SetPropertyBlock(_propBlock);
@@ -336,7 +336,7 @@ public class PlayerJoining : MonoBehaviour {
         MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
         Renderer[] rend = player.GetComponentsInChildren<Renderer>();
         rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", Random.ColorHSV());
+        _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
         rend[2].SetPropertyBlock(_propBlock); 
