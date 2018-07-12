@@ -61,6 +61,9 @@ public class PhysicMovement1 : MonoBehaviour
 
     public bool canMove;
 
+    float smooth = 50.0f;
+    float tiltAngle = 10.0f;
+
     // Use this for initialization
     void Start()
     {
@@ -114,6 +117,7 @@ public class PhysicMovement1 : MonoBehaviour
         {
             BackToNormalTimer();
         }
+        StuckPreventer();
     }
 
     void KeyPress()
@@ -303,5 +307,22 @@ public class PhysicMovement1 : MonoBehaviour
             canMove = true;
             backToNormalTimer = false;
         }
+    }
+
+    void StuckPreventer()
+    {
+        if (player.transform.rotation.z > 1 )
+        {
+            // Smoothly tilts a transform towards a target rotation.
+            float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
+            float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
+
+            Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
+
+            // Dampen towards the target rotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+
+        }
+
     }
 }
