@@ -26,6 +26,8 @@ public class PlayerJoining : MonoBehaviour {
     GamePadState P4state;
     GamePadState P4prevState;
 
+    BoxCollider[] holes;
+
     // Use this for initialization
     void Start ()
     {
