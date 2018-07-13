@@ -15,14 +15,14 @@ public class MultiTargetCamera : MonoBehaviour {
 
     public List<Transform> targets;
     public Vector3 offset;
+    public Vector3 centerPointOffset;
     public float smoothTime = 0.5f;
     public float minZoom = 40f;
-    public float maxZoom = 10f;
+    public float maxZoom = 30f;
     public float zoomLimiter = 50F;
 
     private Vector3 velocity;
     private Camera cam;
-    private float speed = 10f;
 
     bool beginCameraSet = false;
     
@@ -57,15 +57,13 @@ public class MultiTargetCamera : MonoBehaviour {
 
         Move();
         Rotate();
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
+        //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
         Zoom();
-
-
+        
     }
 
     void Zoom()
     {
-        //Debug.Log(GetGreatestDistance());
         float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
     }
@@ -73,7 +71,7 @@ public class MultiTargetCamera : MonoBehaviour {
     void Move()
     {
         Vector3 centerPoint = GetCenterPoint();
-
+        
         centerPoint.x = Mathf.Clamp(centerPoint.x, lowerLimitX, upperLimitX);
         centerPoint.z = Mathf.Clamp(centerPoint.z, lowerLimitZ, upperLimitZ);
 
@@ -84,18 +82,24 @@ public class MultiTargetCamera : MonoBehaviour {
 
     void Rotate()
     {
-        float step = speed * Time.deltaTime;
-
+        
         Vector3 centerPoint = GetCenterPoint();
+        centerPoint += centerPointOffset;
+
         centerPoint.x = Mathf.Clamp(centerPoint.x, lowerLimitX, upperLimitX);
         centerPoint.z = Mathf.Clamp(centerPoint.z, lowerLimitZ, upperLimitZ);
-
-        Debug.DrawRay(centerPoint, Vector3.up, Color.red);
+        centerPoint.y = 0;
         
-        transform.LookAt(centerPoint);
+        Debug.DrawRay(centerPoint, Vector3.up, Color.red);
+
+        // Smoothly rotates towards target 
+        var targetRotation = Quaternion.LookRotation(centerPoint - transform.position, Vector3.up);
+        targetRotation.y = 0; targetRotation.z = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
         
     }
 
+    //Get greatest distance on X axis between players
     float GetGreatestDistance()
     {
         var bounds = new Bounds(targets[0].position, Vector3.zero);
@@ -103,10 +107,10 @@ public class MultiTargetCamera : MonoBehaviour {
         {
             bounds.Encapsulate(targets[i].position);
         }
-
         return bounds.size.x;
     }
 
+    //get center position between all players
     Vector3 GetCenterPoint()
     {
         if (targets.Count == 1)
@@ -118,7 +122,6 @@ public class MultiTargetCamera : MonoBehaviour {
         {
             bounds.Encapsulate(targets[i].position);
         }
-
         return bounds.center;
     }
 
@@ -127,6 +130,7 @@ public class MultiTargetCamera : MonoBehaviour {
     {
         targets.Add(targetToAdd);
     }
+
     //remove player from targets list
     public void RemoveTarget(string targetName)
     {
@@ -139,5 +143,4 @@ public class MultiTargetCamera : MonoBehaviour {
         if (showGizmos)
             Gizmos.DrawWireCube(new Vector3((lowerLimitX + upperLimitX) / 2, 0, (lowerLimitZ + upperLimitZ) / 2), new Vector3(upperLimitX - lowerLimitX, 0, upperLimitZ - lowerLimitZ));
     }
-    
 }
