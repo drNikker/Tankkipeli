@@ -282,7 +282,6 @@ public class PhysicMovement1 : MonoBehaviour
         //Debug.DrawRay(transform.localPosition, Vector3.down, Color.red,3);
         if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
         {
-            Debug.Log("try");
             upRightCounter += Time.deltaTime;
             if (upRightCounter >= 4)
             {
