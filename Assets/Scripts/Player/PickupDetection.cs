@@ -17,6 +17,8 @@ public class PickupDetection : MonoBehaviour {
         {
             foreach (HandControls hand in hands)
             {
+                Weapon temp = other.GetComponent<Weapon>();
+                if (temp.currentWeaponState == Weapon.WEAPON_STATE.DROPPED)
                 hand.WeaponInReach(other.gameObject);
             }
         }

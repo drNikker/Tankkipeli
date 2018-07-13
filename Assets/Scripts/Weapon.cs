@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour {
 
     bool canEquip;
     [HideInInspector] public bool equipped;
+    [HideInInspector] public bool canTake = false;
 
     public WEAPON_STATE currentWeaponState;
     public Stance stance;
@@ -100,6 +101,7 @@ public class Weapon : MonoBehaviour {
         switch (currentWeaponState)
         {
             case WEAPON_STATE.DROPPED:
+                canTake = true;
                 for (int i = 1; i <= colliders.Length -1; i++)
                 {
                     colliders[i].enabled = false;
@@ -123,7 +125,7 @@ public class Weapon : MonoBehaviour {
                 break;
 
             case WEAPON_STATE.WIELDED:
-                canEquip = false;
+                canTake = false;
                 weaponParent.GetComponent<BoxCollider>().enabled = false;
                 for (int i = 0; i < joints.Length; i++)
                 {
@@ -154,7 +156,7 @@ public class Weapon : MonoBehaviour {
                 break;
 
             case WEAPON_STATE.THROWN:
-                canEquip = false;
+                canTake = false;
 
                 for (int i = 1; i <= colliders.Length -1; i++)
                 {
