@@ -19,6 +19,9 @@ public class WeaponSpawn : MonoBehaviour
     [Range(0, 100)] public int HammerChanceWeight;
     [Range(0, 100)] public int StickChanceWeight;
     [Range(0, 100)] public int ShieldChanceWeight;
+    [Range(0, 100)] public int CherryChanceWeight;
+    [Range(0, 100)] public int GuitarChanceWeight;
+    [Range(0, 100)] public int NunchucksChanceWeight;
 
     public int XPositionLowerLimit;
     public int XPositionUpperLimit;
@@ -44,6 +47,9 @@ public class WeaponSpawn : MonoBehaviour
         chances.Add(HammerChanceWeight);
         chances.Add(StickChanceWeight);
         chances.Add(ShieldChanceWeight);
+        chances.Add(CherryChanceWeight);
+        chances.Add(GuitarChanceWeight);
+        chances.Add(NunchucksChanceWeight);
 
         if (randomPosition)
         {
@@ -104,6 +110,9 @@ public class WeaponSpawn : MonoBehaviour
         HAMMER,
         STICK,
         SHIELD,
+        CHERRY,
+        GUITAR,
+        NUNCHUCKS
     }
 
 
@@ -158,6 +167,21 @@ public class WeaponSpawn : MonoBehaviour
 
             case SPAWN_WEAPON.SHIELD:
                 spawnedWeapon = Instantiate(weapons[4], this.gameObject.transform.position, Quaternion.identity);
+                print(spawnedWeapon.transform.position);
+
+                break;
+            case SPAWN_WEAPON.CHERRY:
+                spawnedWeapon = Instantiate(weapons[5], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.GUITAR:
+                spawnedWeapon = Instantiate(weapons[6], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.NUNCHUCKS:
+                spawnedWeapon = Instantiate(weapons[7], this.gameObject.transform.position, Quaternion.identity);
                 print(spawnedWeapon.transform.position);
 
                 break;
