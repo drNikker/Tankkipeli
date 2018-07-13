@@ -32,6 +32,9 @@ public class PhysicMovement1 : MonoBehaviour
     public WheelCollider rightWheelCol2;
     public WheelCollider rightWheelCol3;
     public WheelCollider rightWheelCol4;
+    public WheelCollider middleWheelCol1;
+    public WheelCollider middleWheelCol2;
+    public WheelCollider middleWheelCol3;
 
     public float topSpeed;
     public float accel;
@@ -44,10 +47,13 @@ public class PhysicMovement1 : MonoBehaviour
     float rightTread;
     [SerializeField]
     float leftTread;
+    [SerializeField]
+    float middleTread;
     public float wheelDamp;
 
     bool brakeRight = true;
     bool brakeLeft = true;
+    bool brakeMiddle = true;
 
     public string pelaaja;
 
@@ -60,6 +66,9 @@ public class PhysicMovement1 : MonoBehaviour
     private float originalBackToNormalTimerTime;
 
     public bool canMove;
+
+
+    new protected Rigidbody rigidbody;
 
     // Use this for initialization
     void Start()
@@ -92,6 +101,9 @@ public class PhysicMovement1 : MonoBehaviour
         rightWheelCol2.wheelDampingRate = wheelDamp;
         rightWheelCol3.wheelDampingRate = wheelDamp;
         rightWheelCol4.wheelDampingRate = wheelDamp;
+        middleWheelCol1.wheelDampingRate = wheelDamp;
+        middleWheelCol2.wheelDampingRate = wheelDamp;
+        middleWheelCol3.wheelDampingRate = wheelDamp;
     }
 
     // Update is called once per frame
@@ -114,7 +126,9 @@ public class PhysicMovement1 : MonoBehaviour
         {
             BackToNormalTimer();
         }
+
     }
+
 
     void KeyPress()
     {
@@ -134,7 +148,17 @@ public class PhysicMovement1 : MonoBehaviour
             leftTread += accel * Time.deltaTime;
             brakeLeft = false;
         }
-        
+        if(state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
+        {
+            middleTread += accel * Time.deltaTime;
+            brakeMiddle = false;
+        }
+        if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
+        {
+            middleTread -= accel * Time.deltaTime;
+            brakeMiddle = false;
+        }
+
         if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))
         {
             rightTread -= accel * Time.deltaTime;
@@ -146,21 +170,27 @@ public class PhysicMovement1 : MonoBehaviour
             brakeLeft = false;
         }
 
+
         //clamping tread speeds
         rightTread = Mathf.Clamp(rightTread, -topSpeed, topSpeed);
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
+        middleTread = Mathf.Clamp(middleTread, -topSpeed, topSpeed);
 
         //set motortorque to 0 wwhen no input is given
         if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
             rightTread = 0;
             brakeRight = true;
+            middleTread = 0;
+            brakeMiddle = true;
         }
 
         if (!(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
         {
             leftTread = 0;
             brakeLeft = true;
+            middleTread = 0;
+            brakeMiddle = true;
         }
 
         //Dizzy 
@@ -219,6 +249,18 @@ public class PhysicMovement1 : MonoBehaviour
             leftWheelCol3.brakeTorque = 0;
             leftWheelCol4.brakeTorque = 0;
         }
+        if (brakeMiddle)
+        {
+            middleWheelCol1.brakeTorque = brakeTorqu;
+            middleWheelCol2.brakeTorque = brakeTorqu;
+            middleWheelCol3.brakeTorque = brakeTorqu;
+        }
+        else
+        {
+            middleWheelCol1.brakeTorque = 0;
+            middleWheelCol2.brakeTorque = 0;
+            middleWheelCol3.brakeTorque = 0;
+        }
 
         //Apply speed
         rightWheelCol1.motorTorque = rightTread;
@@ -229,7 +271,9 @@ public class PhysicMovement1 : MonoBehaviour
         rightWheelCol4.motorTorque = rightTread;
         leftWheelCol3.motorTorque = leftTread;
         leftWheelCol4.motorTorque = leftTread;
-
+        middleWheelCol1.motorTorque = middleTread;
+        middleWheelCol2.motorTorque = middleTread;
+        middleWheelCol3.motorTorque = middleTread;
     }
 
     void TurnUpRight()
@@ -238,6 +282,7 @@ public class PhysicMovement1 : MonoBehaviour
         //Debug.DrawRay(transform.localPosition, Vector3.down, Color.red,3);
         if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
         {
+            Debug.Log("try");
             upRightCounter += Time.deltaTime;
             if (upRightCounter >= 4)
             {
@@ -304,4 +349,6 @@ public class PhysicMovement1 : MonoBehaviour
             backToNormalTimer = false;
         }
     }
+
+
 }
