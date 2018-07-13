@@ -22,8 +22,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
-        //LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
-        //LevelCam.AddTarget(transform);
+        LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
+        LevelCam.AddTarget(transform);
         roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
 
         currHealth = maxHealth;
@@ -107,7 +107,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentState = PLAYER_STATE.DEAD;
             SetPlayerState();
-            //LevelCam.RemoveTarget(transform.name);
+            LevelCam.RemoveTarget(transform.name);
 
             //Game needs to recive info about player death
             switch (StatHolder.CurrentMode)
