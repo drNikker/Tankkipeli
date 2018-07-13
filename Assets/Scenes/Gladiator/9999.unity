@@ -1863,7 +1863,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 114364232625580646, guid: 50deb1c06491efc4a82eeea16b5f9bcb,
         type: 2}
@@ -3786,6 +3786,7 @@ MonoBehaviour:
   showGizmos: 1
   targets: []
   offset: {x: 0, y: 25, z: -20}
+  centerPointOffset: {x: 0, y: 0, z: 0}
   smoothTime: 3
   minZoom: 40
   maxZoom: 30
@@ -5937,7 +5938,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4515928099100770, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1110869769808408, guid: 50deb1c06491efc4a82eeea16b5f9bcb, type: 2}
       propertyPath: m_Name
@@ -6827,6 +6828,47 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0559b7adcdca674093a1a55e04a8c74, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1622395049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1622395051}
+  - component: {fileID: 1622395050}
+  m_Layer: 0
+  m_Name: Collision (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1622395050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622395049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 32.7, y: 12.5914955, z: 0.3182106}
+  m_Center: {x: 4.0918503, y: 5.7957478, z: 9.630629}
+--- !u!4 &1622395051
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622395049}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 15.1, y: 33.82, z: -4.13}
+  m_LocalScale: {x: 1, y: 2.86, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 90, y: -90.00001, z: 0}
 --- !u!4 &1626569902 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4658767510470278, guid: 9fd7e9f8200879847a88c497aeddf8a4,
