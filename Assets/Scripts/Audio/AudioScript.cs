@@ -13,6 +13,8 @@ public class AudioScript : MonoBehaviour
     public AudioClip knockOut;
     public AudioClip roundOver;
 
+    public bool stopPlayingSceneMusic;
+
     //private bool canPlayKnockOut;
     //private bool canPlayRoundOver;
 
@@ -56,5 +58,10 @@ public class AudioScript : MonoBehaviour
         currentSceneMusic = musicList[index];
         audioSource.clip = currentSceneMusic;
         audioSource.Play();
+
+        if (stopPlayingSceneMusic)
+        {
+            audioSource.Stop();
+        }
     }
 }

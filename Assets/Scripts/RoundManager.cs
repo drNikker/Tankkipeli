@@ -131,8 +131,8 @@ public class RoundManager : MonoBehaviour {
         }
         StatHolder.WinsNeeded = 6;
         StatHolder.WitchSet = Random.Range(1, 4);
+        audioScript.PlaySceneMusic(StatHolder.WitchSet);
         NewRound();
-        //audioScript.PlaySceneMusic(1);
     }
 
     public void NewRound()
@@ -154,14 +154,17 @@ public class RoundManager : MonoBehaviour {
             case 1:
                 sceneLoader.NextSetScene(1);
                 RoundStart();
+                //audioScript.PlaySceneMusic(1);
                 break;
             case 2:
                 sceneLoader.NextSetScene(2);
                 RoundStart();
+                //audioScript.PlaySceneMusic(2);
                 break;
             case 3:
                 sceneLoader.NextSetScene(3);
                 RoundStart();
+                //audioScript.PlaySceneMusic(3);
                 break;
             default:
                 sceneLoader.NewRandomScene();
@@ -289,6 +292,7 @@ public class RoundManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(5);
         roundWon.SetActive(false);
+        audioScript.stopPlayingSceneMusic = true;
         sceneLoader.MenuScene();
     }
 

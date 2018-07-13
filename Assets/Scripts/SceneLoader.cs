@@ -28,6 +28,8 @@ public class SceneLoader : MonoBehaviour
         mapSet1.Add("9999");
         mapSet1.Add("FlipperBox");
         mapSet1.Add("TheDefault");
+        mapSet1.Add("WeaponThrow");
+
         //Map set 2
         mapSet2.Add("BarrelRoll");
         mapSet2.Add("CannonShuffle");
@@ -112,11 +114,11 @@ public class SceneLoader : MonoBehaviour
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
+                    audioScript.PlaySceneMusic(1);
                 }
                 else
                 {
                     SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber]);
-                    audioScript.PlaySceneMusic(2);
                 }
                 break;
             case 2:
@@ -131,11 +133,11 @@ public class SceneLoader : MonoBehaviour
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
+                    audioScript.PlaySceneMusic(2);
                 }
                 else
                 {
                     SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber]);
-                    audioScript.PlaySceneMusic(2);
                 }
                 break;
             case 3:
@@ -150,11 +152,11 @@ public class SceneLoader : MonoBehaviour
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
+                    audioScript.PlaySceneMusic(3);
                 }
                 else
                 {
                     SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]);
-                    audioScript.PlaySceneMusic(1);
                 }
                 break;
             default:
