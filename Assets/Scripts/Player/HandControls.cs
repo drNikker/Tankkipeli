@@ -34,7 +34,7 @@ public class HandControls : MonoBehaviour {
 
     public float cd;
     bool weaponInHand = false;
-    public bool guidingHand = false;
+    [HideInInspector]public bool guidingHand = false;
 
     private void Start()
     {
@@ -56,8 +56,8 @@ public class HandControls : MonoBehaviour {
         //p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
         //p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
 
-        p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0f, state.ThumbSticks.Left.Y);
-        p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0f, state.ThumbSticks.Right.Y);
+        p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0.2f, state.ThumbSticks.Left.Y);
+        p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0.2f, state.ThumbSticks.Right.Y);
 
         front = playerObj.transform.forward;
 
@@ -67,6 +67,7 @@ public class HandControls : MonoBehaviour {
             {
                 rb.MovePosition(transform.position + p1RightHand * power * Time.deltaTime);
             }
+            Debug.DrawRay(transform.position, p1RightHand);
         }
         else if (LRHand == "R" && guidingHand == true)
         {
@@ -78,10 +79,11 @@ public class HandControls : MonoBehaviour {
             {
                 rb.MovePosition(transform.position + p1LeftHand * power * Time.deltaTime);
             }
+            Debug.DrawRay(transform.position, p1LeftHand, Color.red);
         }
         else if (LRHand == "L" && guidingHand == true)
         {
-            rb.MovePosition(transform.position + front * 20 * Time.deltaTime);
+            rb.MovePosition(transform.position + front * power * Time.deltaTime);
         }
 
 
@@ -107,13 +109,15 @@ public class HandControls : MonoBehaviour {
 
     public void WeaponInReach(GameObject wpn)
     {
+        Weapon temp = wpn.GetComponent<Weapon>();
         if (weaponInHand == false)
         {
-            weapon = wpn;
-            if (otherHandScript.weaponInHand == true && otherHandScript.weapon == wpn)
+            if (/*otherHandScript.weaponInHand == true && otherHandScript.weapon == wpn*/ temp.canTake == false)
             {
                 weapon = null;
             }
+            else
+                weapon = wpn;
         }
     }
 
@@ -278,6 +282,7 @@ public class HandControls : MonoBehaviour {
             joints = weapon.GetComponents<ConfigurableJoint>();
             if (weaponInHand == false && joints.Length == 1)
             {
+                script.canTake = false;
                 weaponInHand = true;
                 offset = 0.1f;
                 StartCoroutine("MoveHand");
@@ -286,7 +291,7 @@ public class HandControls : MonoBehaviour {
             }
             else if (joints.Length == 2 && weaponInHand == false)
             {
-
+                script.canTake = false;
                 if (otherHandScript.weaponInHand == true)
                 { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
