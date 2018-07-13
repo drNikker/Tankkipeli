@@ -6,6 +6,8 @@ using XInputDotNetPure;
 
 public class PlayerJoining : MonoBehaviour {
 
+    MultiTargetCamera LevelCam;
+
     RoundManager roundManager;
 
     Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white};
@@ -32,6 +34,8 @@ public class PlayerJoining : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
+
         StatHolder.HowManyPlayers = 0;
         StatHolder.Player1Wins = 0;
         StatHolder.Player2Wins = 0;
@@ -104,6 +108,7 @@ public class PlayerJoining : MonoBehaviour {
         {
             joined1 = false;
             StatHolder.HowManyPlayers--;
+            LevelCam.RemoveTarget("Player1(Clone)");
             Destroy(roundManager.alivePlayers.Where(obj => obj.name == "Player1(Clone)").SingleOrDefault());
             roundManager.alivePlayers.Remove(roundManager.alivePlayers.Where(obj => obj.name == "Player1(Clone)").SingleOrDefault());
         }
@@ -139,6 +144,7 @@ public class PlayerJoining : MonoBehaviour {
         {
             joined2 = false;
             StatHolder.HowManyPlayers--;
+            LevelCam.RemoveTarget("Player2(Clone)");
             Destroy(roundManager.alivePlayers.Where(obj => obj.name == "Player2(Clone)").SingleOrDefault());
             roundManager.alivePlayers.Remove(roundManager.alivePlayers.Where(obj => obj.name == "Player2(Clone)").SingleOrDefault());
         }
@@ -173,6 +179,7 @@ public class PlayerJoining : MonoBehaviour {
         {
             joined3 = false;
             StatHolder.HowManyPlayers--;
+            LevelCam.RemoveTarget("Player3(Clone)");
             Destroy(roundManager.alivePlayers.Where(obj => obj.name == "Player3(Clone)").SingleOrDefault());
             roundManager.alivePlayers.Remove(roundManager.alivePlayers.Where(obj => obj.name == "Player3(Clone)").SingleOrDefault());
         }
@@ -207,6 +214,7 @@ public class PlayerJoining : MonoBehaviour {
         {
             joined4 = false;
             StatHolder.HowManyPlayers--;
+            LevelCam.RemoveTarget("Player4(Clone)");
             Destroy(roundManager.alivePlayers.Where(obj => obj.name == "Player4(Clone)").SingleOrDefault());
             roundManager.alivePlayers.Remove(roundManager.alivePlayers.Where(obj => obj.name == "Player4(Clone)").SingleOrDefault());
         }
