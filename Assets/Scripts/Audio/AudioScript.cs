@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class AudioScript : MonoBehaviour
 {
-    public List<AudioClip> playerAudioList = new List<AudioClip>();
     public List<AudioClip> musicList = new List<AudioClip>();
+    public List<AudioClip> weaponAudioList = new List<AudioClip>();
 
     private AudioSource audioSource;
-    private AudioClip currentAudioClip;
     private AudioClip currentSceneMusic;
-    private int randomIndex;
+    [Space(10)]
+    public AudioClip knockOut;
+    public AudioClip roundOver;
+
+    //private bool canPlayKnockOut;
+    //private bool canPlayRoundOver;
 
     public static AudioScript Instance;
 
@@ -37,13 +41,14 @@ public class AudioScript : MonoBehaviour
 
     }
 
-    public void RandomizePlayerAudio()
+    public void PlayKnockOutSound()
     {
-        randomIndex = Random.Range(0, playerAudioList.Count);
+        audioSource.PlayOneShot(knockOut);
+    }
 
-        currentAudioClip = playerAudioList[randomIndex];
-        audioSource.clip = currentAudioClip;
-        audioSource.Play();
+    public void PlayRoundOverSound()
+    {
+        audioSource.PlayOneShot(roundOver);
     }
 
     public void PlaySceneMusic(int index)

@@ -59,8 +59,6 @@ public class RoundManager : MonoBehaviour {
         {
             StartCoroutine(SpawnWeapon());
         }
-
-
     }
 
 
@@ -181,12 +179,15 @@ public class RoundManager : MonoBehaviour {
 
     public void RoundOver()
     {
+        audioScript.PlayRoundOverSound();
+
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
         //Add a win to the player/team who won the round and announce that winner
         switch (StatHolder.CurrentMode)
         {
             case StatHolder.Modes.DM:
+
                 switch (alivePlayers[0].name)
                 {
                     case "Player1(Clone)":
@@ -212,18 +213,15 @@ public class RoundManager : MonoBehaviour {
                 break;
 
             case StatHolder.Modes.TDM:
+
                 if (redPlayers.Count == 0)
                 {
-                    Debug.Log(bluePlayers.Count);
                     StatHolder.TeamBlueWins += 1;
-                    Debug.Log("blue"+StatHolder.TeamBlueWins);
                     whoWonText.text = "Team Blue won the round";
                 }
                 if(bluePlayers.Count == 0)
                 {
-                    Debug.Log(redPlayers.Count);
                     StatHolder.TeamRedWins += 1;
-                    Debug.Log("red"+StatHolder.TeamRedWins);
                     whoWonText.text = "Team Red won the round";
                 }
                 break;

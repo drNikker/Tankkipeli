@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour
+{
     RoundManager roundManager;
+    AudioScript audioScript;
 
     //level camera for multicam
     MultiTargetCamera LevelCam;
@@ -17,17 +19,20 @@ public class PlayerHealth : MonoBehaviour {
     Color color;
 
     // Use this for initialization
-    void Start () {
-        LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
-        LevelCam.AddTarget(transform);
+    void Start()
+    {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        //LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
+        //LevelCam.AddTarget(transform);
         roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
+
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);
         currentState = PLAYER_STATE.ALIVE;
         SetPlayerState();
         SetColor();
     }
-	
+
     void SetColor()
     {
         GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
@@ -56,7 +61,7 @@ public class PlayerHealth : MonoBehaviour {
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
         rend[2].SetPropertyBlock(_propBlock);
-        if(StatHolder.CurrentMode == StatHolder.Modes.TDM)
+        if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
         {
             if (color == Color.red)
             {
@@ -102,7 +107,8 @@ public class PlayerHealth : MonoBehaviour {
         {
             currentState = PLAYER_STATE.DEAD;
             SetPlayerState();
-            LevelCam.RemoveTarget(transform.name);
+            //LevelCam.RemoveTarget(transform.name);
+
             //Game needs to recive info about player death
             switch (StatHolder.CurrentMode)
             {
@@ -115,7 +121,7 @@ public class PlayerHealth : MonoBehaviour {
                         roundManager.alivePlayers.Remove(this.gameObject);
                         roundManager.redPlayers.Remove(this.gameObject);
                     }
-                    else if(color == Color.blue)
+                    else if (color == Color.blue)
                     {
                         roundManager.alivePlayers.Remove(this.gameObject);
                         roundManager.bluePlayers.Remove(this.gameObject);
@@ -124,9 +130,12 @@ public class PlayerHealth : MonoBehaviour {
 
             }
             roundManager.PlayerChecker();
+
+            if (roundManager.alivePlayers.Count > 1)
+            {
+                audioScript.PlayKnockOutSound();
+            }
         }
-        
-        
     }
 
     public enum PLAYER_STATE
@@ -151,7 +160,7 @@ public class PlayerHealth : MonoBehaviour {
                 {
                     hf.enabled = true;
                 }
-               
+
                 break;
 
             case PLAYER_STATE.STUNNED:
@@ -163,7 +172,7 @@ public class PlayerHealth : MonoBehaviour {
                 break;
 
             case PLAYER_STATE.DEAD:
-                
+
                 GetComponent<PhysicMovement1>().enabled = false;
                 foreach (HandControls hf in hands)
                 {
@@ -176,6 +185,6 @@ public class PlayerHealth : MonoBehaviour {
                 }
                 break;
         }
-      
+
     }
 }

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-
     [HideInInspector] public PlayerHealth ownHP;
     PlayerHealth health;
-    AudioScript playerAudio;
+    WeaponAudio weaponAudio;
     Rigidbody tankBase;
     Rigidbody weapon;
 
@@ -25,7 +24,13 @@ public class WeaponDamage : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        playerAudio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        weaponAudio = gameObject.GetComponentInParent<WeaponAudio>();
+        /*
+        if (weaponAudio == null)
+        {
+            weaponAudio = transform.root.GetComponent<WeaponAudio>();
+        }
+        */
         weapon = GetComponent<Rigidbody>();
     }
 
@@ -43,7 +48,7 @@ public class WeaponDamage : MonoBehaviour
 
                 if (collision.relativeVelocity.magnitude >= 8)
                 {
-                    playerAudio.RandomizePlayerAudio();
+                    weaponAudio.RandomizeWeaponAudio();
                 }  
 
                 print(Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) + " hit str");
