@@ -59,8 +59,6 @@ public class RoundManager : MonoBehaviour {
         {
             StartCoroutine(SpawnWeapon());
         }
-
-
     }
 
 
@@ -133,8 +131,8 @@ public class RoundManager : MonoBehaviour {
         }
         StatHolder.WinsNeeded = 6;
         StatHolder.WitchSet = Random.Range(1, 4);
+        audioScript.PlaySceneMusic(StatHolder.WitchSet);
         NewRound();
-        //audioScript.PlaySceneMusic(1);
     }
 
     public void NewRound()
@@ -156,14 +154,17 @@ public class RoundManager : MonoBehaviour {
             case 1:
                 sceneLoader.NextSetScene(1);
                 RoundStart();
+                //audioScript.PlaySceneMusic(1);
                 break;
             case 2:
                 sceneLoader.NextSetScene(2);
                 RoundStart();
+                //audioScript.PlaySceneMusic(2);
                 break;
             case 3:
                 sceneLoader.NextSetScene(3);
                 RoundStart();
+                //audioScript.PlaySceneMusic(3);
                 break;
             default:
                 sceneLoader.NewRandomScene();
@@ -181,12 +182,15 @@ public class RoundManager : MonoBehaviour {
 
     public void RoundOver()
     {
+        audioScript.PlayRoundOverSound();
+
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
         //Add a win to the player/team who won the round and announce that winner
         switch (StatHolder.CurrentMode)
         {
             case StatHolder.Modes.DM:
+
                 switch (alivePlayers[0].name)
                 {
                     case "Player1(Clone)":
@@ -212,18 +216,15 @@ public class RoundManager : MonoBehaviour {
                 break;
 
             case StatHolder.Modes.TDM:
+
                 if (redPlayers.Count == 0)
                 {
-                    Debug.Log(bluePlayers.Count);
                     StatHolder.TeamBlueWins += 1;
-                    Debug.Log("blue"+StatHolder.TeamBlueWins);
                     whoWonText.text = "Team Blue won the round";
                 }
                 if(bluePlayers.Count == 0)
                 {
-                    Debug.Log(redPlayers.Count);
                     StatHolder.TeamRedWins += 1;
-                    Debug.Log("red"+StatHolder.TeamRedWins);
                     whoWonText.text = "Team Red won the round";
                 }
                 break;
@@ -291,6 +292,7 @@ public class RoundManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(5);
         roundWon.SetActive(false);
+        audioScript.stopPlayingSceneMusic = true;
         sceneLoader.MenuScene();
     }
 

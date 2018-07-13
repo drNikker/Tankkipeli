@@ -51,10 +51,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -147,11 +147,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37af1b958994512458b0499732b5b48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAudioList:
+  musicList:
+  - {fileID: 8300000, guid: c853ec9a06b321c4b8adec0bea39db89, type: 3}
+  - {fileID: 8300000, guid: 88d5560939a320a4e94ba8ca5d5e51c9, type: 3}
+  - {fileID: 8300000, guid: 88d5560939a320a4e94ba8ca5d5e51c9, type: 3}
+  - {fileID: 8300000, guid: 1ccc51cace7f04a44a9fed24179d6c4d, type: 3}
+  weaponAudioList:
   - {fileID: 8300000, guid: 35eb19d1d3e34fb41870c79b00ce1639, type: 3}
   - {fileID: 8300000, guid: 77200257086018342b78b44fc7a0af62, type: 3}
   - {fileID: 8300000, guid: ac35bf1227e993847ab41ad72eb3869f, type: 3}
-  musicList:
-  - {fileID: 8300000, guid: c853ec9a06b321c4b8adec0bea39db89, type: 3}
-  - {fileID: 8300000, guid: 1ccc51cace7f04a44a9fed24179d6c4d, type: 3}
-  - {fileID: 8300000, guid: 88d5560939a320a4e94ba8ca5d5e51c9, type: 3}
+  knockOut: {fileID: 8300000, guid: b19275531dfb28e4dbcac3a64d5e1225, type: 3}
+  roundOver: {fileID: 8300000, guid: 0772f9293567e7e4aa3fdc56ad49e4fa, type: 3}
+  stopPlayingSceneMusic: 0
