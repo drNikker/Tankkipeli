@@ -13,6 +13,13 @@ public class MultiTargetCamera : MonoBehaviour {
     [SerializeField] private float upperLimitZ, lowerLimitZ;
     [SerializeField] private bool showGizmos;
 
+    // How long the object should shake for.
+    private float shakeDuration = 0f;
+
+    // Amplitude of the shake. A larger value shakes the camera harder.
+    public float shakeAmount = 0.2f;
+    public float decreaseFactor = 1.5f;
+
     public List<Transform> targets;
     public Vector3 offset;
     public Vector3 centerPointOffset;
@@ -78,6 +85,18 @@ public class MultiTargetCamera : MonoBehaviour {
         Vector3 newPosition = centerPoint + offset;
 
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+
+        //camera shake
+        if (shakeDuration > 0)
+        {
+            transform.position = transform.position + Random.insideUnitSphere * shakeAmount;
+
+            shakeDuration -= Time.deltaTime * decreaseFactor;
+        }
+        else
+        {
+            shakeDuration = 0f;
+        }
     }
 
     void Rotate()
@@ -136,6 +155,7 @@ public class MultiTargetCamera : MonoBehaviour {
     {
         Transform targetToRemove = targets.Single(targ => targ.name == targetName);
         targets.Remove(targetToRemove);
+        shakeDuration = 0.5f;
     }
 
     private void OnDrawGizmos()
