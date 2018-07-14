@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 224482599524595324}
   - component: {fileID: 222974339458397434}
   - component: {fileID: 114827457270756808}
+  - component: {fileID: 114321435123771118}
   m_Layer: 5
   m_Name: Winner
   m_TagString: Untagged
@@ -105,13 +106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812e86fc903a8194b99b9620fdbeb670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab1: {fileID: 1145142098431918, guid: 73494e541e0e3ed499665822775b52be,
+  playerPrefab1: {fileID: 1266417649548162, guid: 35d2a332bd6c6f54b965cb2bcfe9596a,
     type: 2}
-  playerPrefab2: {fileID: 1145142098431918, guid: a54684ca92d78f343acbe0e6bfd3dde7,
+  playerPrefab2: {fileID: 1266417649548162, guid: fb18b83a530a6804f9b3a162df8c3c79,
     type: 2}
-  playerPrefab3: {fileID: 1145142098431918, guid: 1f4bd573bfa0ab8409c73e36609fbc4d,
+  playerPrefab3: {fileID: 1266417649548162, guid: 8fc411eae7294ff4d895899fad75a0d7,
     type: 2}
-  playerPrefab4: {fileID: 1145142098431918, guid: 6a0b2e37e8341fd48a8996d5cf4bbbfc,
+  playerPrefab4: {fileID: 1266417649548162, guid: 84189c1153a50a4428865fcc01a5c825,
     type: 2}
   whoWonText: {fileID: 114827457270756808}
   roundWon: {fileID: 1611074844739974}
@@ -120,6 +121,22 @@ MonoBehaviour:
   spawnPlayers: []
   weaponSpawns: []
   playerSpawns: []
+  redPlayers: []
+  bluePlayers: []
+--- !u!114 &114321435123771118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635945437522878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: -7.2, y: 10.35}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114419499530811418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b3f59107fd8f3479e79cbefca0be20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!114 &114669709433514620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -215,10 +233,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 65
+    m_Font: {fileID: 12800000, guid: 2f8fb6231bb3183438b9141a88bf7867, type: 3}
+    m_FontSize: 300
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 4
@@ -275,8 +293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 595, y: 361}
-  m_SizeDelta: {x: 450.6, y: 333.9}
+  m_AnchoredPosition: {x: 595, y: 512}
+  m_SizeDelta: {x: 1353, y: 241.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224741987297842136
 RectTransform:
