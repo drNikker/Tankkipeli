@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
         LevelCam.AddTarget(transform);
-        roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
+        roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
 
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);

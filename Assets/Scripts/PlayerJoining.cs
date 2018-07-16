@@ -50,7 +50,7 @@ public class PlayerJoining : MonoBehaviour {
         StatHolder.Player3Color = 100;
         StatHolder.Player4Color = 100;
 
-        roundManager = GameObject.Find("GameManager").GetComponent<RoundManager>();
+        roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
     }
 
     // Update is called once per frame
