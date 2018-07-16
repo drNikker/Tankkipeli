@@ -198,19 +198,19 @@ public class HandControls : MonoBehaviour {
 
             case Weapon.Stance.TwoHanded:
                 {
-                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    /*CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
                     SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
                     otherLimit.limit = 90;
                     otherHandJoint.swing2Limit = otherLimit;
                     transform.eulerAngles = new Vector3(0, 0, 0);
                     otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
                     t.rotation = transform.rotation;
-                    t.eulerAngles = new Vector3(0, 90, 90);
+                    t.eulerAngles = new Vector3(0, 90, 90);*/
                     break;
                 }
             case Weapon.Stance.TwoHandedTwinblade:
                 {
-                    CharacterJoint handJoint = GetComponent<CharacterJoint>();
+                   /* CharacterJoint handJoint = GetComponent<CharacterJoint>();
                     CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
                     SoftJointLimit limit = handJoint.swing2Limit;
                     SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
@@ -220,7 +220,7 @@ public class HandControls : MonoBehaviour {
                     transform.eulerAngles = new Vector3(180, 0, 0);
                     otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
                     t.rotation = transform.rotation;
-                    t.eulerAngles = new Vector3(0, 90, 90);
+                    t.eulerAngles = new Vector3(0, 90, 90);*/
                     break;
                 }
             case Weapon.Stance.FistWeapon:
