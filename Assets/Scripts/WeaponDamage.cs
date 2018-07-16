@@ -25,12 +25,12 @@ public class WeaponDamage : MonoBehaviour
     void Start()
     {
         weaponAudio = gameObject.GetComponentInParent<WeaponAudio>();
-        /*
+        
         if (weaponAudio == null)
         {
             weaponAudio = transform.root.GetComponent<WeaponAudio>();
         }
-        */
+        
         weapon = GetComponent<Rigidbody>();
     }
 
@@ -55,7 +55,7 @@ public class WeaponDamage : MonoBehaviour
                 print(finalDamage + " dmg");
                 Vector3 dir = collision.transform.position - transform.position;
                 dir.y = 0;
-                tankBase.AddForce(dir.normalized * (knockback * weapon.mass * Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) * knockbackMultiplier));
+                tankBase.AddForce(dir.normalized * (knockback * Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) * knockbackMultiplier));
                 cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
             }
 
