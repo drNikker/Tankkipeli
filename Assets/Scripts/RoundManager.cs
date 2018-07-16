@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-public class RoundManager : MonoBehaviour {
+public class RoundManager : MonoBehaviour
+{
     SceneLoader sceneLoader;
     AudioScript audioScript;
 
@@ -35,21 +36,20 @@ public class RoundManager : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> bluePlayers;
 
-
     private void Start()
     {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
-        
-        if (SceneManager.GetActiveScene().name != "JoiningScene" )
+
+        if (SceneManager.GetActiveScene().name != "JoiningScene")
         {
             if (StatHolder.HowManyPlayers == 0)
             {
                 //This if statement exists for developing purposes. It ensures that the player spawns work even if you dont start at menu
                 StatHolder.HowManyPlayers = 2;
             }
-            if(SceneManager.GetActiveScene().name == "Menu")
+            if (SceneManager.GetActiveScene().name == "Menu")
             {
                 StatHolder.HowManyPlayers = 0;
             }
@@ -60,7 +60,6 @@ public class RoundManager : MonoBehaviour {
             StartCoroutine(SpawnWeapon());
         }
     }
-
 
     void playersForRound()
     {
@@ -154,17 +153,14 @@ public class RoundManager : MonoBehaviour {
             case 1:
                 sceneLoader.NextSetScene(1);
                 RoundStart();
-                //audioScript.PlaySceneMusic(1);
                 break;
             case 2:
                 sceneLoader.NextSetScene(2);
                 RoundStart();
-                //audioScript.PlaySceneMusic(2);
                 break;
             case 3:
                 sceneLoader.NextSetScene(3);
                 RoundStart();
-                //audioScript.PlaySceneMusic(3);
                 break;
             default:
                 sceneLoader.NewRandomScene();
@@ -222,7 +218,7 @@ public class RoundManager : MonoBehaviour {
                     StatHolder.TeamBlueWins += 1;
                     whoWonText.text = "Team Blue won the round";
                 }
-                if(bluePlayers.Count == 0)
+                if (bluePlayers.Count == 0)
                 {
                     StatHolder.TeamRedWins += 1;
                     whoWonText.text = "Team Red won the round";
@@ -233,7 +229,7 @@ public class RoundManager : MonoBehaviour {
         roundWon.SetActive(true);
 
         //Check if anyone has enough points to win the game and announce the winner if they do
-        if (StatHolder.Player1Wins >= StatHolder.WinsNeeded || StatHolder.Player2Wins >= StatHolder.WinsNeeded || StatHolder.Player3Wins >= StatHolder.WinsNeeded || StatHolder.Player4Wins >= StatHolder.WinsNeeded || StatHolder.TeamRedWins >=StatHolder.WinsNeeded || StatHolder.TeamBlueWins >= StatHolder.WinsNeeded)
+        if (StatHolder.Player1Wins >= StatHolder.WinsNeeded || StatHolder.Player2Wins >= StatHolder.WinsNeeded || StatHolder.Player3Wins >= StatHolder.WinsNeeded || StatHolder.Player4Wins >= StatHolder.WinsNeeded || StatHolder.TeamRedWins >= StatHolder.WinsNeeded || StatHolder.TeamBlueWins >= StatHolder.WinsNeeded)
         {
             //Game is over
             switch (StatHolder.CurrentMode)
@@ -292,7 +288,7 @@ public class RoundManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(5);
         roundWon.SetActive(false);
-        audioScript.stopPlayingSceneMusic = true;
+        audioScript.StopPlayingSceneMusic();
         sceneLoader.MenuScene();
     }
 

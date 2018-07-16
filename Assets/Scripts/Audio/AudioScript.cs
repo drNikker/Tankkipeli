@@ -13,11 +13,6 @@ public class AudioScript : MonoBehaviour
     public AudioClip knockOut;
     public AudioClip roundOver;
 
-    public bool stopPlayingSceneMusic;
-
-    //private bool canPlayKnockOut;
-    //private bool canPlayRoundOver;
-
     public static AudioScript Instance;
 
     void Awake()
@@ -57,11 +52,11 @@ public class AudioScript : MonoBehaviour
     {
         currentSceneMusic = musicList[index];
         audioSource.clip = currentSceneMusic;
-        audioSource.Play();
+        audioSource.Play(); 
+    }
 
-        if (stopPlayingSceneMusic)
-        {
-            audioSource.Stop();
-        }
+    public void StopPlayingSceneMusic()
+    {
+        audioSource.Stop();
     }
 }

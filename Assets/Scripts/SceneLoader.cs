@@ -114,7 +114,8 @@ public class SceneLoader : MonoBehaviour
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
-                    audioScript.PlaySceneMusic(1);
+                    audioScript.StopPlayingSceneMusic();
+                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
                 }
                 else
                 {
@@ -133,7 +134,8 @@ public class SceneLoader : MonoBehaviour
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
-                    audioScript.PlaySceneMusic(2);
+                    audioScript.StopPlayingSceneMusic();
+                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
                 }
                 else
                 {
@@ -152,7 +154,8 @@ public class SceneLoader : MonoBehaviour
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
-                    audioScript.PlaySceneMusic(3);
+                    audioScript.StopPlayingSceneMusic();
+                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
                 }
                 else
                 {
