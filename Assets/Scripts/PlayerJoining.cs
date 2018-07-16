@@ -251,24 +251,10 @@ public class PlayerJoining : MonoBehaviour {
     void ChangePlayer1Color()
     {
         int save = Random.Range(0, 5);
-        switch (StatHolder.CurrentMode)
-        {
-            case StatHolder.Modes.DM:
-
                 while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
                 {
                     save = Random.Range(0, 5);
                 }
-                break;
-
-            case StatHolder.Modes.TDM:
-                save = Random.Range(0, 2);
-                while (save == StatHolder.Player1Color)
-                {
-                    save = Random.Range(0, 2);
-                }
-                break;
-        }
         StatHolder.Player1Color = save;
         Color color = colorSet[save];
         GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player1(Clone)").SingleOrDefault();
@@ -284,23 +270,10 @@ public class PlayerJoining : MonoBehaviour {
     void ChangePlayer2Color()
     {
         int save = Random.Range(0, 5);
-        switch (StatHolder.CurrentMode)
-        {
-            case StatHolder.Modes.DM:
                 while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
                 {
                     save = Random.Range(0, 5);
                 }
-                break;
-
-            case StatHolder.Modes.TDM:
-                save = Random.Range(0, 2);
-                while (save == StatHolder.Player2Color)
-                {
-                    save = Random.Range(0, 2);
-                }
-                break;
-        }
         StatHolder.Player2Color = save;
         Color color = colorSet[save];
         GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player2(Clone)").SingleOrDefault();
@@ -315,23 +288,10 @@ public class PlayerJoining : MonoBehaviour {
     void ChangePlayer3Color()
     {
         int save = Random.Range(0, 5);
-        switch (StatHolder.CurrentMode)
-        {
-            case StatHolder.Modes.DM:
-                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
-                {
-                    save = Random.Range(0, 5);
-                }
-                break;
-
-            case StatHolder.Modes.TDM:
-                save = Random.Range(0, 2);
-                while (save == StatHolder.Player3Color)
-                {
-                    save = Random.Range(0, 2);
-                }
-                break;
-        }
+             while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+            {
+                save = Random.Range(0, 5);
+            }
         StatHolder.Player3Color = save;
         Color color = colorSet[save];
         GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player3(Clone)").SingleOrDefault();
@@ -346,23 +306,10 @@ public class PlayerJoining : MonoBehaviour {
     void ChangePlayer4Color()
     {
         int save = Random.Range(0, 5);
-        switch (StatHolder.CurrentMode)
-        {
-            case StatHolder.Modes.DM:
                 while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
                 {
                     save = Random.Range(0, 5);
                 }
-                break;
-
-            case StatHolder.Modes.TDM:
-                save = Random.Range(0, 2);
-                while (save == StatHolder.Player4Color)
-                {
-                    save = Random.Range(0, 2);
-                }
-                break;
-        }
         StatHolder.Player4Color = save;
         Color color = colorSet[save];
         GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player4(Clone)").SingleOrDefault();
