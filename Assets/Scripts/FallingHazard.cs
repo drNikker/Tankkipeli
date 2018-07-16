@@ -7,6 +7,8 @@ public class FallingHazard : MonoBehaviour
 
     public int spawnTime = 10;
     public bool randomPosition;
+    public bool randomRotation;
+    public bool randomSize;
     public int XPositionLowerLimit;
     public int XPositionUpperLimit;
     public int ZPositionLowerLimit;
@@ -50,8 +52,15 @@ public class FallingHazard : MonoBehaviour
     }
     void CreateFallingObject()
     {
-        GameObject fallingObject = Instantiate(objects[Random.Range(0, objects.Count)], this.gameObject.transform.position, Quaternion.AngleAxis(Random.Range(0,360), Vector3.one));
-        fallingObject.transform.localScale = new Vector3(Random.Range(sizeLoweLimit, sizeUpperLimit), Random.Range(sizeLoweLimit, sizeUpperLimit), Random.Range(sizeLoweLimit, sizeUpperLimit));
+        GameObject fallingObject = Instantiate(objects[Random.Range(0, objects.Count)], this.gameObject.transform.position, transform.rotation);
+        if(randomRotation)
+        {
+            fallingObject.transform.rotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.one);
+        }
+        if (randomSize)
+        {
+            fallingObject.transform.localScale = new Vector3(Random.Range(sizeLoweLimit, sizeUpperLimit), Random.Range(sizeLoweLimit, sizeUpperLimit), Random.Range(sizeLoweLimit, sizeUpperLimit));
+        }
         if (randomPosition)
         {
             this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), this.transform.position.y, Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
