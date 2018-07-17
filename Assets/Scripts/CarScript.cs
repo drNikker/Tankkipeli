@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour {
 
-    float swerweAmount;
+    public float swerweAmount;
     public float maxSwerweAmount;
     public float minSwerweAmount;
     public float maxSpeed;
@@ -18,8 +18,8 @@ public class CarScript : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        speed = 0;
-        acceleration = Random.Range(0.01f, 0.05f);
+        speed = 20;
+        acceleration = Random.Range(0.02f, 0.03f);
         swerweAmount = Random.Range(minSwerweAmount, maxSwerweAmount);
         MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
         Renderer[] rend = this.gameObject.GetComponentsInChildren<Renderer>();
@@ -30,9 +30,17 @@ public class CarScript : MonoBehaviour {
     }
     private void Update()
     {
+        RaycastHit hit ;
+
+        if (Physics.Raycast(transform.position, -Vector3.up* -5, out hit) || hit.collider != null && hit.collider.tag != "Environment")
+        {
+            speed = 0;
+            maxSpeed = 0;
+            IsSwerwing = false;
+        }
         if (IsSwerwing)
         {
-            transform.Rotate(0, Time.deltaTime * swerweAmount, 0);
+            transform.Rotate(0, Time.deltaTime * 110, 0);
         }
     }
 
@@ -59,7 +67,7 @@ public class CarScript : MonoBehaviour {
     }
     IEnumerator carStop()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5f);
         speed = 0;
         maxSpeed = 0;
         IsSwerwing = false;
