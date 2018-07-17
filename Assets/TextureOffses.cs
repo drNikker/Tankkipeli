@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextureOffseb : MonoBehaviour {
+public class TextureOffses : MonoBehaviour {
 
     private Material mat;
     public float xSpeed;
