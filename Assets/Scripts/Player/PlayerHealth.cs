@@ -54,6 +54,18 @@ public class PlayerHealth : MonoBehaviour
                 color = Color.clear;
                 break;
         }
+
+        if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
+        {
+            if (color == Color.blue)
+            {
+                roundManager.bluePlayers.Add(this.gameObject);
+            }
+            else if(color == Color.red)
+            {
+                roundManager.redPlayers.Add(this.gameObject);
+            }
+        }
         MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
         Renderer[] rend = player.GetComponentsInChildren<Renderer>();
         rend[0].GetPropertyBlock(_propBlock);
@@ -61,17 +73,7 @@ public class PlayerHealth : MonoBehaviour
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
         rend[2].SetPropertyBlock(_propBlock);
-        if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
-        {
-            if (color == Color.red)
-            {
-                roundManager.redPlayers.Add(this.gameObject);
-            }
-            else if (color == Color.blue)
-            {
-                roundManager.bluePlayers.Add(this.gameObject);
-            }
-        }
+
     }
 
     public void TakeDamage(float damage)

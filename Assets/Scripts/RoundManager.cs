@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
+
 public class RoundManager : MonoBehaviour
 {
     SceneLoader sceneLoader;
@@ -19,6 +20,7 @@ public class RoundManager : MonoBehaviour
     //bool randomMap = true;
     //bool mapSet = false;
 
+    Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white };
     public Text whoWonText;
 
     public GameObject roundWon;
@@ -42,19 +44,19 @@ public class RoundManager : MonoBehaviour
         playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
 
-        if (SceneManager.GetActiveScene().name != "JoiningScene")
-        {
+        //if (SceneManager.GetActiveScene().name != "JoiningScene")
+        //{
             if (StatHolder.HowManyPlayers == 0)
             {
                 //This if statement exists for developing purposes. It ensures that the player spawns work even if you dont start at menu
-                StatHolder.HowManyPlayers = 2;
+                StatHolder.HowManyPlayers = 4;
             }
             if (SceneManager.GetActiveScene().name == "Menu")
             {
                 StatHolder.HowManyPlayers = 0;
             }
             playersForRound();
-        }
+        //}
         if (weaponSpawns.Count > 0)
         {
             StartCoroutine(SpawnWeapon());
@@ -191,19 +193,15 @@ public class RoundManager : MonoBehaviour
                 {
                     case "Player1(Clone)":
                         StatHolder.Player1Wins += 1;
-                        whoWonText.text = "Player 1 won the round";
                         break;
                     case "Player2(Clone)":
                         StatHolder.Player2Wins += 1;
-                        whoWonText.text = "Player 2 won the round";
                         break;
                     case "Player3(Clone)":
                         StatHolder.Player3Wins += 1;
-                        whoWonText.text = "Player 3 won the round";
                         break;
                     case "Player4(Clone)":
                         StatHolder.Player4Wins += 1;
-                        whoWonText.text = "Player 4 won the round";
                         break;
                     default:
                         print("This should never happen");
@@ -226,6 +224,36 @@ public class RoundManager : MonoBehaviour
                 break;
         }
 
+        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        Renderer[] rend = alivePlayers[0].GetComponentsInChildren<Renderer>();
+        rend[0].GetPropertyBlock(_propBlock);
+        Color color = _propBlock.GetColor("_Color");
+        int c = System.Array.IndexOf(colorSet, color);
+
+        if (StatHolder.CurrentMode == StatHolder.Modes.DM)
+        {
+            switch(c)
+            {
+                case 0:
+                    whoWonText.text = "Red player won the round";
+                    break;
+                case 1:
+                    whoWonText.text = "Blue player won the round";
+                    break;
+                case 2:
+                    whoWonText.text = "Green player won the round";
+                    break;
+                case 3:
+                    whoWonText.text = "Yellow player won the round";
+                    break;
+                case 4:
+                    whoWonText.text = "White player won the round";
+                    break;
+
+            }
+
+        }
+
         roundWon.SetActive(true);
 
         //Check if anyone has enough points to win the game and announce the winner if they do
@@ -236,22 +264,22 @@ public class RoundManager : MonoBehaviour
             {
                 case StatHolder.Modes.DM:
 
-                    switch (alivePlayers[0].name)
+                    switch (c)
                     {
-                        case "Player1(Clone)":
-                            whoWonText.text = "Player 1 won the game";
+                        case 0:
+                            whoWonText.text = "Red player won the game";
                             break;
-                        case "Player2(Clone)":
-                            whoWonText.text = "Player 2 won the game";
+                        case 1:
+                            whoWonText.text = "Blue player won the game";
                             break;
-                        case "Player3(Clone)":
-                            whoWonText.text = "Player 3 won the game";
+                        case 2:
+                            whoWonText.text = "Green player won the game";
                             break;
-                        case "Player4(Clone)":
-                            whoWonText.text = "Player 4 won the game";
+                        case 3:
+                            whoWonText.text = "Yellow player won the game";
                             break;
-                        default:
-                            print("This should never happen");
+                        case 4:
+                            whoWonText.text = "White player won the game";
                             break;
                     }
                     break;
