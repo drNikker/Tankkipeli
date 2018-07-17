@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DizzyEffect : MonoBehaviour
+public class PlayerStateEffect : MonoBehaviour
 {
 
     public GameObject smokePartObj01;
@@ -188,8 +188,5 @@ public class DizzyEffect : MonoBehaviour
 
 
     }
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(5);
-    }
+    
 }
