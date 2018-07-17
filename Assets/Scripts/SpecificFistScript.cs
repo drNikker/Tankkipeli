@@ -8,6 +8,8 @@ public class SpecificFistScript : FistScript
     public float power;
     public float range;
     public ParticleSystem VFX;
+    public ParticleSystem VFXCharge;
+    public ParticleSystem VFXLaunch;
     int finalDamageVFX;
     [HideInInspector]
     public bool canDoDamage;
@@ -58,6 +60,7 @@ public class SpecificFistScript : FistScript
         if (punchTimerTime <= stopRotation)
         {
             anim.SetBool("Warning", true);
+            VFXCharge.Play(true);
             transform.root.GetComponent<CannonScrit>().rotate = false;
         }
 
@@ -65,6 +68,8 @@ public class SpecificFistScript : FistScript
         {
             canDoDamage = true;
             anim.SetBool("Warning", false);
+            VFXCharge.Stop(true);
+            VFXLaunch.Play(true);
             anim.SetBool("FB",true);
             punchTimerTime = defaultPunchTimerTime;
             holdOffTimer = true;
@@ -81,6 +86,7 @@ public class SpecificFistScript : FistScript
             anim.SetBool("FB", false);
             holdOffTimerTime = originalHoldOffTimerTime;
             waitTimer = true;
+            VFXLaunch.Stop(true);
             holdOffTimer = false;
             canDoDamage = false;
         }
