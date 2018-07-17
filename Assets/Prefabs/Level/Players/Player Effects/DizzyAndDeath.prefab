@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1492370917659336}
+  m_IsPrefabParent: 1
+--- !u!1 &1492370917659336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4372634767273428}
+  - component: {fileID: 114282562108423896}
+  m_Layer: 0
+  m_Name: DizzyAndDeath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4372634767273428
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492370917659336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114282562108423896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492370917659336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3caebb22fb2e9af4eb8aa256ccc82149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smokePartObj01: {fileID: 0}
+  smokePartObj02: {fileID: 0}
+  dizzyStart: 1
+  criticalStart: 0
+  deadStart: 0
+  effectStop: 0
+  dizzyUpdate: 0
+  criticalUpdate: 0
+  deadUpdate: 0
+  DeathSprite: {fileID: 1007366199425074, guid: ced71147f3ca9e04db5e22358d8f4962,
+    type: 2}
+  StarSprite: {fileID: 1007366199425074, guid: 71a7f3139a0a83c4c98e5124713c27ab, type: 2}
+  starCount: 5
+  spawnedStars: []
+  spawnedDeath: {fileID: 0}
+  dizzyRotSpeed: 5
+  yOffset: 0.75
+  radius: 0.5

@@ -5,12 +5,13 @@ using UnityEngine;
 public class WeaponDamage : MonoBehaviour
 {
     [HideInInspector] public PlayerHealth ownHP;
+    RoundManager roundManager;
     PlayerHealth health;
     WeaponAudio weaponAudio;
     Rigidbody tankBase;
     Rigidbody weapon;
-
-
+    static Color color;
+    static Color color2;
     public float baseDamage = 16;
     public float dmgMultiplier = 1f;
     public float knockbackMultiplier = 1f;
@@ -24,8 +25,8 @@ public class WeaponDamage : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         weaponAudio = gameObject.GetComponentInParent<WeaponAudio>();
-        
         if (weaponAudio == null)
         {
             weaponAudio = transform.root.GetComponent<WeaponAudio>();
@@ -44,8 +45,17 @@ public class WeaponDamage : MonoBehaviour
             if (ownHP != health)
             {
                 finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
-                health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
-
+                if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
+                {
+                    if ((!roundManager.redPlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.redPlayers.Contains(collision.transform.root.gameObject)) || (!roundManager.bluePlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.bluePlayers.Contains(collision.transform.root.gameObject)))
+                    {
+                        health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
+                    }
+                }
+                else
+                {
+                    health.TakeDamage(finalDamage);
+                }
                 if (collision.relativeVelocity.magnitude >= 8)
                 {
                     weaponAudio.RandomizeWeaponAudio();
@@ -68,10 +78,11 @@ public class WeaponDamage : MonoBehaviour
 
         PlayerHealth hp = col.gameObject.GetComponentInParent<PlayerHealth>();
         Transform parentOb = col.gameObject.transform;
+        GameObject parentObject = col.gameObject;
 
         while (parentOb != null)
         {
-            hp = parentOb.GetComponent<PlayerHealth>();
+
 
             if (hp != null)
             {

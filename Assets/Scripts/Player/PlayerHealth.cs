@@ -6,7 +6,6 @@ public class PlayerHealth : MonoBehaviour
 {
     RoundManager roundManager;
     AudioScript audioScript;
-
     //level camera for multicam
     MultiTargetCamera LevelCam;
 
@@ -15,8 +14,15 @@ public class PlayerHealth : MonoBehaviour
     bool lastStand = false;
     //[HideInInspector]
     public PLAYER_STATE currentState;
-    Color[] colorSet = { Color.red, Color.blue, Color.green, Color.yellow, Color.white };
-    Color color;
+    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1f);
+    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 0);
+    static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
+    static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
+    static Color Green = new Color(0, 0.1886792f, 0.0004195716f, 1);
+    static Color Purple = new Color(0.4823529f, 0.1176471f, 0.479214f, 1);
+    static Color Orange = new Color(0.8867924f, 0.3786893f, 0.1547704f, 1);
+    static Color Lime = new Color(0.4082314f, 0.945098f, 0.2f, 1);
+    Color[] colorSet = { Red, Blue, Cyan, Yellow, Green, Purple, Orange, Lime }; Color color;
 
     // Use this for initialization
     void Start()
@@ -51,8 +57,20 @@ public class PlayerHealth : MonoBehaviour
                 color = colorSet[StatHolder.Player4Color];
                 break;
             default:
-                color = Color.clear;
+                color = Color.cyan;
                 break;
+        }
+
+        if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
+        {
+            if (color == Color.blue)
+            {
+                roundManager.bluePlayers.Add(this.gameObject);
+            }
+            else if(color == Color.red)
+            {
+                roundManager.redPlayers.Add(this.gameObject);
+            }
         }
         MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
         Renderer[] rend = player.GetComponentsInChildren<Renderer>();
@@ -60,18 +78,7 @@ public class PlayerHealth : MonoBehaviour
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
         rend[1].SetPropertyBlock(_propBlock);
-        rend[2].SetPropertyBlock(_propBlock);
-        if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
-        {
-            if (color == Color.red)
-            {
-                roundManager.redPlayers.Add(this.gameObject);
-            }
-            else if (color == Color.blue)
-            {
-                roundManager.bluePlayers.Add(this.gameObject);
-            }
-        }
+
     }
 
     public void TakeDamage(float damage)
@@ -131,7 +138,12 @@ public class PlayerHealth : MonoBehaviour
             }
             roundManager.PlayerChecker();
 
-            if (roundManager.alivePlayers.Count > 1)
+            if (StatHolder.CurrentMode == StatHolder.Modes.DM && roundManager.alivePlayers.Count > 1)
+            {
+                audioScript.PlayKnockOutSound();
+            }
+
+            if (StatHolder.CurrentMode == StatHolder.Modes.TDM && roundManager.redPlayers.Count > 1 && roundManager.bluePlayers.Count > 1)
             {
                 audioScript.PlayKnockOutSound();
             }

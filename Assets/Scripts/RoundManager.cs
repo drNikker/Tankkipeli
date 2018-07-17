@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
+
 public class RoundManager : MonoBehaviour
 {
     SceneLoader sceneLoader;
@@ -18,6 +19,15 @@ public class RoundManager : MonoBehaviour
 
     //bool randomMap = true;
     //bool mapSet = false;
+    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1f);
+    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 0);
+    static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
+    static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
+    static Color Green = new Color(0, 0.1886792f, 0.0004195716f, 1);
+    static Color Purple = new Color(0.4823529f, 0.1176471f, 0.479214f, 1);
+    static Color Orange = new Color(0.8867924f, 0.3786893f, 0.1547704f, 1);
+    static Color Lime = new Color(0.4082314f, 0.945098f, 0.2f, 1);
+    Color[] colorSet = { Red, Blue, Cyan, Yellow, Green, Purple, Orange, Lime };
 
     public Text whoWonText;
 
@@ -183,6 +193,7 @@ public class RoundManager : MonoBehaviour
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
         //Add a win to the player/team who won the round and announce that winner
+        int c = 5;
         switch (StatHolder.CurrentMode)
         {
             case StatHolder.Modes.DM:
@@ -191,19 +202,19 @@ public class RoundManager : MonoBehaviour
                 {
                     case "Player1(Clone)":
                         StatHolder.Player1Wins += 1;
-                        whoWonText.text = "Player 1 won the round";
+                        c = StatHolder.Player1Color;
                         break;
                     case "Player2(Clone)":
                         StatHolder.Player2Wins += 1;
-                        whoWonText.text = "Player 2 won the round";
+                        c = StatHolder.Player2Color;
                         break;
                     case "Player3(Clone)":
                         StatHolder.Player3Wins += 1;
-                        whoWonText.text = "Player 3 won the round";
+                        c = StatHolder.Player3Color;
                         break;
                     case "Player4(Clone)":
                         StatHolder.Player4Wins += 1;
-                        whoWonText.text = "Player 4 won the round";
+                        c = StatHolder.Player4Color;
                         break;
                     default:
                         print("This should never happen");
@@ -226,6 +237,39 @@ public class RoundManager : MonoBehaviour
                 break;
         }
 
+        if (StatHolder.CurrentMode == StatHolder.Modes.DM)
+        {
+            switch(c)
+            {
+                case 0:
+                    whoWonText.text = "Red player won the round";
+                    break;
+                case 1:
+                    whoWonText.text = "Blue player won the round";
+                    break;
+                case 2:
+                    whoWonText.text = "Cyan player won the round";
+                    break;
+                case 3:
+                    whoWonText.text = "Yellow player won the round";
+                    break;
+                case 4:
+                    whoWonText.text = "Green player won the round";
+                    break;
+                case 5:
+                    whoWonText.text = "Purple player won the round";
+                    break;
+                case 6:
+                    whoWonText.text = "Orange player won the round";
+                    break;
+                case 7:
+                    whoWonText.text = "Lime player won the round";
+                    break;
+
+            }
+
+        }
+
         roundWon.SetActive(true);
 
         //Check if anyone has enough points to win the game and announce the winner if they do
@@ -236,22 +280,31 @@ public class RoundManager : MonoBehaviour
             {
                 case StatHolder.Modes.DM:
 
-                    switch (alivePlayers[0].name)
+                    switch (c)
                     {
-                        case "Player1(Clone)":
-                            whoWonText.text = "Player 1 won the game";
+                        case 0:
+                            whoWonText.text = "Red player won the game";
                             break;
-                        case "Player2(Clone)":
-                            whoWonText.text = "Player 2 won the game";
+                        case 1:
+                            whoWonText.text = "Blue player won the game";
                             break;
-                        case "Player3(Clone)":
-                            whoWonText.text = "Player 3 won the game";
+                        case 2:
+                            whoWonText.text = "Cyan player won the game";
                             break;
-                        case "Player4(Clone)":
-                            whoWonText.text = "Player 4 won the game";
+                        case 3:
+                            whoWonText.text = "Yellow player won the game";
                             break;
-                        default:
-                            print("This should never happen");
+                        case 4:
+                            whoWonText.text = "Green player won the game";
+                            break;
+                        case 5:
+                            whoWonText.text = "Purple player won the game";
+                            break;
+                        case 6:
+                            whoWonText.text = "Orange player won the game";
+                            break;
+                        case 7:
+                            whoWonText.text = "Lime player won the game";
                             break;
                     }
                     break;

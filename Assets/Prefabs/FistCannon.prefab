@@ -668,7 +668,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110869769808408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.4391003, y: -0.39, z: 0.49480465}
+  m_LocalPosition: {x: 7.4391003, y: -0.1, z: 4}
   m_LocalScale: {x: 0.5929056, y: 0.5929056, z: 0.5929056}
   m_Children:
   - {fileID: 4717953347441666}
@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boneToRot: {fileID: 1661868481465936}
-  rotationSpeed: -1
+  rotationSpeed: 1
   rotate: 0
 --- !u!114 &114364232625580646
 MonoBehaviour:
@@ -1518,9 +1518,9 @@ MonoBehaviour:
   holdOffTimerTime: 1
   waitTimerTime: 1
   stopRotation: 1
-  damage: 0
-  power: 1
-  range: 1
+  damage: 20
+  power: 0.8
+  range: 3.5
   canDoDamage: 0
 --- !u!114 &114533957378567274
 MonoBehaviour:
@@ -1541,9 +1541,9 @@ MonoBehaviour:
   holdOffTimerTime: 1
   waitTimerTime: 1
   stopRotation: 1
-  damage: 0
-  power: 1
-  range: 1
+  damage: 20
+  power: 0.8
+  range: 3.5
   canDoDamage: 0
 --- !u!114 &114574323931405582
 MonoBehaviour:
@@ -1564,9 +1564,9 @@ MonoBehaviour:
   holdOffTimerTime: 1
   waitTimerTime: 1
   stopRotation: 1
-  damage: 0
-  power: 1
-  range: 1
+  damage: 20
+  power: 0.8
+  range: 3.5
   canDoDamage: 0
 --- !u!114 &114595337768496042
 MonoBehaviour:
@@ -1587,9 +1587,9 @@ MonoBehaviour:
   holdOffTimerTime: 1
   waitTimerTime: 1
   stopRotation: 1
-  damage: 0
-  power: 1
-  range: 1
+  damage: 20
+  power: 0.8
+  range: 3.5
   canDoDamage: 0
 --- !u!135 &135272622596330446
 SphereCollider:
@@ -1648,10 +1648,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.59
+  m_Radius: 2.6715128
   m_Height: 7.99
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.02996108, y: 0, z: 0.00073024805}
 --- !u!137 &137060089420787788
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

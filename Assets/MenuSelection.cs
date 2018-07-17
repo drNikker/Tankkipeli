@@ -10,6 +10,10 @@ public class MenuSelection : MonoBehaviour {
     private bool menu;
     private bool open;
 
+
+    public SelectOnInput[] menuLists;
+    private SelectOnInput rightList;
+
     GamePadState P1state;
     GamePadState P1prevState;
     GamePadState P2state;
@@ -50,15 +54,14 @@ public class MenuSelection : MonoBehaviour {
             {
                 anim.SetBool("Menu", false);
                 menu = false;
-
             }
         }
         // && P1prevState.ThumbSticks.Left.X < -0.7)
-        if ((P1state.DPad.Left == ButtonState.Pressed && P1prevState.DPad.Left == ButtonState.Released) && menu && !open)
+        if (((P1state.Buttons.LeftShoulder == ButtonState.Pressed && P1prevState.Buttons.LeftShoulder == ButtonState.Released)|| (P2state.Buttons.LeftShoulder == ButtonState.Pressed && P2prevState.Buttons.LeftShoulder == ButtonState.Released) || (P3state.Buttons.LeftShoulder == ButtonState.Pressed && P3prevState.Buttons.LeftShoulder == ButtonState.Released) || (P4state.Buttons.LeftShoulder == ButtonState.Pressed && P4prevState.Buttons.LeftShoulder == ButtonState.Released)) && menu && !open)
         {
             anim.SetTrigger("Left");
         }
-        if ((P1state.DPad.Right == ButtonState.Pressed && P1prevState.DPad.Right== ButtonState.Released) && menu && !open)
+        if (((P1state.Buttons.RightShoulder == ButtonState.Pressed && P1prevState.Buttons.RightShoulder == ButtonState.Released) || (P2state.Buttons.RightShoulder == ButtonState.Pressed && P2prevState.Buttons.RightShoulder == ButtonState.Released) || (P3state.Buttons.RightShoulder == ButtonState.Pressed && P3prevState.Buttons.RightShoulder == ButtonState.Released) || (P4state.Buttons.RightShoulder == ButtonState.Pressed && P4prevState.Buttons.RightShoulder == ButtonState.Released)) && menu && !open)
         {
             anim.SetTrigger("Right");
         }
@@ -98,31 +101,59 @@ public class MenuSelection : MonoBehaviour {
     {
         option = 1;
         anim.SetFloat("Option", 1f);
+        rightList = menuLists[0];
+        SelectList();
        
-        }
+    }
     public void Option2() //Video
     {
         option = 2;
         anim.SetFloat("Option", 2f);
+        rightList = menuLists[1];
+        SelectList();
     }
     public void Option3() //Audio
     {
         option = 3;
         anim.SetFloat("Option", 3f);
+        rightList = menuLists[2];
+        SelectList();
     }
     public void Option4() //Controls
     {
         option = 4;
         anim.SetFloat("Option", 4f);
+        rightList = menuLists[3];
+        SelectList();
     }
     public void Option5() //Credits
     {
         option = 5;
         anim.SetFloat("Option", 5f);
+        rightList = menuLists[4];
+        SelectList();
     }
     public void Option6() //Back to lobby
     {
         option = 6;
         anim.SetFloat("Option", 6f);
+        rightList = menuLists[5];
+        SelectList();
+    }
+    
+
+    void SelectList()
+    {
+        for (int i = 0; i < menuLists.Length; i++)
+        {
+            if (menuLists[i] != rightList)
+            {
+                menuLists[i].enabled = false;
+            }
+            else
+            {
+                menuLists[i].enabled = true;
+            }
+        }
     }
 }
