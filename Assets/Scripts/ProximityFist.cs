@@ -73,8 +73,8 @@ public class ProximityFist : FistScript
             canDoDamage = true;
             anim.SetBool("Warning", false);
             VFXCharge.Stop(true);
-            anim.SetBool("FB", true);
             VFXLaunch.Play(true);
+            anim.SetBool("FB", true);
             punchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
             holdOffTimer = true;
