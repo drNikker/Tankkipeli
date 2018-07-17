@@ -185,6 +185,7 @@ public class RoundManager : MonoBehaviour
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
         //Add a win to the player/team who won the round and announce that winner
+        int c = 5;
         switch (StatHolder.CurrentMode)
         {
             case StatHolder.Modes.DM:
@@ -193,15 +194,19 @@ public class RoundManager : MonoBehaviour
                 {
                     case "Player1(Clone)":
                         StatHolder.Player1Wins += 1;
+                        c = StatHolder.Player1Color;
                         break;
                     case "Player2(Clone)":
                         StatHolder.Player2Wins += 1;
+                        c = StatHolder.Player2Color;
                         break;
                     case "Player3(Clone)":
                         StatHolder.Player3Wins += 1;
+                        c = StatHolder.Player3Color;
                         break;
                     case "Player4(Clone)":
                         StatHolder.Player4Wins += 1;
+                        c = StatHolder.Player4Color;
                         break;
                     default:
                         print("This should never happen");
@@ -223,12 +228,6 @@ public class RoundManager : MonoBehaviour
                 }
                 break;
         }
-
-        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-        Renderer[] rend = alivePlayers[0].GetComponentsInChildren<Renderer>();
-        rend[0].GetPropertyBlock(_propBlock);
-        Color color = _propBlock.GetColor("_Color");
-        int c = System.Array.IndexOf(colorSet, color);
 
         if (StatHolder.CurrentMode == StatHolder.Modes.DM)
         {

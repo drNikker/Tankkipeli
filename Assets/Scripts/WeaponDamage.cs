@@ -45,10 +45,16 @@ public class WeaponDamage : MonoBehaviour
             if (ownHP != health)
             {
                 finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
-                if ((!roundManager.redPlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.redPlayers.Contains(collision.transform.root.gameObject)) || (!roundManager.bluePlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.bluePlayers.Contains(collision.transform.root.gameObject)))
+                if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
                 {
-                    Debug.LogWarning("DmgDealt");
-                    health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
+                    if ((!roundManager.redPlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.redPlayers.Contains(collision.transform.root.gameObject)) || (!roundManager.bluePlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.bluePlayers.Contains(collision.transform.root.gameObject)))
+                    {
+                        health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
+                    }
+                }
+                else
+                {
+                    health.TakeDamage(finalDamage);
                 }
                 if (collision.relativeVelocity.magnitude >= 8)
                 {

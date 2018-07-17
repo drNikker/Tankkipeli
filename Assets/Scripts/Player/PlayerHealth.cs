@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
                 color = colorSet[StatHolder.Player4Color];
                 break;
             default:
-                color = Color.clear;
+                color = Color.cyan;
                 break;
         }
 
