@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class DizzyEffect : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-    public GameObject smokePartObj;
 
-    private bool changeToDead;
-    private bool changeToDizzy;
+    public GameObject smokePartObj01;
+    public GameObject smokePartObj02;
 
-    public bool dizzy;
-    public bool dead;
+    public bool dizzyStart;
+    public bool criticalStart;
+    public bool deadStart;
+    public bool effectStop;
+
+    [SerializeField] public bool dizzyUpdate;
+    [SerializeField] public bool criticalUpdate;
+    [SerializeField] public bool deadUpdate;
+
     private bool hided;
 
     public GameObject DeathSprite;
@@ -27,12 +32,12 @@ public class DizzyEffect : MonoBehaviour
     private LineRenderer LineDrawer;
     private float Theta = 0f;
 
-    private float velocity; 
+    private float velocity;
 
     // Use this for initialization
     void Start()
     {
-        playerHealth = gameObject.transform.root.GetComponent<PlayerHealth>();
+
         //Spawnes ste star structure at the start
         Theta = 0f;
         Size = (int)((starCount) + 1f);
@@ -46,9 +51,9 @@ public class DizzyEffect : MonoBehaviour
             GameObject newStar = Instantiate(StarSprite, new Vector3(x, transform.position.y + yOffset, z), transform.rotation);
             newStar.transform.parent = gameObject.transform;
             spawnedStars.Add(newStar);
-      
+
         }
-        
+
         //Hides stars at the start
         for (int i = 0; i < spawnedStars.Count; i++)
         {
@@ -61,17 +66,56 @@ public class DizzyEffect : MonoBehaviour
 
         spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
 
+        //Critical particles Off
+        smokePartObj01.GetComponent<ParticleSystem>().Stop();
         //Death particles Off
-        smokePartObj.GetComponent<ParticleSystem>().Stop();
+        smokePartObj02.GetComponent<ParticleSystem>().Stop();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Start part
+        if (dizzyStart)
+        {
+            if (deadUpdate)
+            {
+                effectStop = true;
+                deadUpdate = false;
+            }
+            dizzyUpdate = true;
+            dizzyStart = false;
+        }
+
+        if (criticalStart)
+        {
+            criticalUpdate = true;
+            smokePartObj01.GetComponent<ParticleSystem>().Play();
+            criticalStart = false;
+        }
+
+        if (deadStart)
+        {
+            deadUpdate = true;
+            smokePartObj02.GetComponent<ParticleSystem>().Play();
+            dizzyUpdate = false;
+            deadStart = false;
+        }
+        if (effectStop)
+        {
+            smokePartObj01.GetComponent<ParticleSystem>().Stop();
+            smokePartObj02.GetComponent<ParticleSystem>().Stop();
+            dizzyUpdate = false;
+            criticalUpdate = false;
+            deadUpdate = false;
+            effectStop = false;
+        }
+
+
 
         //Effect rotating and scaling. 
-        if (!hided && !dead)
+        if (!hided && !deadUpdate && !criticalUpdate)
         {
             {
                 for (int i = 0; i < spawnedStars.Count; i++)
@@ -83,25 +127,17 @@ public class DizzyEffect : MonoBehaviour
             }
         }
 
-        if (!dizzy && !dead)
+        if (!dizzyUpdate && !deadUpdate && !criticalUpdate)
         {
             float newScale = Mathf.SmoothDamp(transform.localScale.x, 0, ref velocity, 10f * Time.deltaTime);
             transform.localScale = new Vector3(newScale, newScale, newScale);
         }
 
-        
-        //Scale to 1
-        if(transform.localScale.x < 1)
-        {
-            if(dead)
-            {
-                float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
-                transform.localScale = new Vector3(newScale, newScale, newScale);
-                hided = false;
-                smokePartObj.GetComponent<ParticleSystem>().Play();
-            }
 
-            if (dizzy)
+        //Scale to 1
+        if (transform.localScale.x < 1)
+        {
+            if (dizzyUpdate)
             {
                 float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
                 transform.localScale = new Vector3(newScale, newScale, newScale);
@@ -111,6 +147,22 @@ public class DizzyEffect : MonoBehaviour
                     spawnedStars[i].GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
+
+            if (criticalUpdate)
+            {
+                float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
+                transform.localScale = new Vector3(newScale, newScale, newScale);
+                hided = false;
+
+            }
+            if (deadUpdate)
+            {
+                float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
+                transform.localScale = new Vector3(newScale, newScale, newScale);
+                hided = false;
+
+            }
+
         }
 
         //If hided
@@ -120,36 +172,24 @@ public class DizzyEffect : MonoBehaviour
             for (int i = 0; i < spawnedStars.Count; i++)
             {
                 spawnedStars[i].GetComponent<SpriteRenderer>().enabled = false;
-                
+
             }
 
             spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
-            smokePartObj.GetComponent<ParticleSystem>().Stop();
-
-
-            if (changeToDead)
-            {
-                dead = true;
-                changeToDead = false;
-            }
-            if (changeToDizzy)
-            {
-                dizzy = true;
-                changeToDizzy = false;
-            }
 
         }
 
-        if(dead)
+        if (deadUpdate)
         {
             spawnedDeath.transform.LookAt(Camera.main.transform.position, Vector3.up);
             spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
 
-        }    
-        
-        //if(playerHealth.currentState == ALIVE)
-        //{
+        }
 
-        //}
+
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5);
     }
 }

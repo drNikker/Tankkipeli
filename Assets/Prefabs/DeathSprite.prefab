@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4061854622372874}
+  - component: {fileID: 54597816680533942}
   m_Layer: 0
   m_Name: DeathSprite
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1007366199425074}
   m_LocalRotation: {x: -0, y: 1.4210853e-14, z: 7.1054265e-15, w: 1}
-  m_LocalPosition: {x: -6.4749002, y: 0.014999151, z: -5.087622}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4339462652374378}
@@ -69,6 +70,21 @@ Transform:
   m_Father: {fileID: 4061854622372874}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54597816680533942
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007366199425074}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!212 &212292310933909550
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -104,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: abbd6ea18d9b1e447a3e31ecbccc02ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67d9244eeae210f49a5d41bb86caed55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
