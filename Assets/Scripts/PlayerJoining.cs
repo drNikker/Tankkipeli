@@ -243,6 +243,32 @@ public class PlayerJoining : MonoBehaviour {
                     i += votes[chosen];
                 }
                 StatHolder.CurrentMode = holes[chosen-1].mode;
+                if(StatHolder.CurrentMode == StatHolder.Modes.TDM)
+                {
+                    StatHolder.Player1Color = Random.Range(0, 2);
+                    StatHolder.Player2Color = Random.Range(0, 2);
+                    if (StatHolder.Player1Color == 0 && StatHolder.Player2Color == 0)
+                    {
+                        StatHolder.Player3Color = 1;
+                        StatHolder.Player4Color = 1;
+                    }
+                    else if (StatHolder.Player1Color == 1 && StatHolder.Player2Color == 1)
+                    {
+                        StatHolder.Player3Color = 0;
+                        StatHolder.Player4Color = 0;
+                    }
+                    else
+                    {
+                        StatHolder.Player3Color = Random.Range(0,2);
+                        StatHolder.Player4Color = Random.Range(0,2);
+                        while (StatHolder.Player3Color == StatHolder.Player4Color)
+                        {
+                            StatHolder.Player4Color = Random.Range(0,2);
+                        }
+                    }
+
+                }
+
                 roundManager.NewGame();
             }
         }

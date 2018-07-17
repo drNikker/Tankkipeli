@@ -44,19 +44,19 @@ public class RoundManager : MonoBehaviour
         playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
 
-        if (SceneManager.GetActiveScene().name != "JoiningScene")
-        {
+        //if (SceneManager.GetActiveScene().name != "JoiningScene")
+        //{
             if (StatHolder.HowManyPlayers == 0)
             {
                 //This if statement exists for developing purposes. It ensures that the player spawns work even if you dont start at menu
-                StatHolder.HowManyPlayers = 2;
+                StatHolder.HowManyPlayers = 4;
             }
             if (SceneManager.GetActiveScene().name == "Menu")
             {
                 StatHolder.HowManyPlayers = 0;
             }
             playersForRound();
-        }
+        //}
         if (weaponSpawns.Count > 0)
         {
             StartCoroutine(SpawnWeapon());
