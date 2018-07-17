@@ -90,7 +90,15 @@ public class Weapon : MonoBehaviour {
         THROWN,
     }
 
-
+    IEnumerator CollidersOn()
+    {
+        Collider[] colliders = weaponParent.GetComponentsInChildren<Collider>();
+        yield return new WaitForSeconds(0.2f);
+        for (int i = 1; i <= colliders.Length - 1; i++)
+        {
+            colliders[i].enabled = true;
+        }
+    }
 
     public void SetWeaponState()
     {
@@ -136,10 +144,7 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                 }
-                for (int i = 1; i <= colliders.Length -1; i++)
-                {
-                    colliders[i].enabled = true;
-                }
+                StartCoroutine("CollidersOn");
                 foreach (Rigidbody body in bodies)
                 {
                     body.isKinematic = false;
@@ -158,7 +163,7 @@ public class Weapon : MonoBehaviour {
             case WEAPON_STATE.THROWN:
                 canTake = false;
 
-                for (int i = 1; i <= colliders.Length -1; i++)
+                for (int i = 1; i <= colliders.Length - 1; i++)
                 {
                     colliders[i].enabled = true;
                 }

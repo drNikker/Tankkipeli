@@ -56,8 +56,8 @@ public class HandControls : MonoBehaviour {
         //p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
         //p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
 
-        p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0.2f, state.ThumbSticks.Left.Y);
-        p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0.2f, state.ThumbSticks.Right.Y);
+        p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0.5f, state.ThumbSticks.Left.Y);
+        p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0.5f, state.ThumbSticks.Right.Y);
 
         front = playerObj.transform.forward;
 
@@ -146,30 +146,52 @@ public class HandControls : MonoBehaviour {
         otherHandScript.guidingHand = false;
     }
 
+
     void EquipOneHand()
     {
-        weapon.transform.position = playerObj.transform.position + front * 2;
+        equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
         joints[0].connectedBody = GetComponent<Rigidbody>();
         joints[0].autoConfigureConnectedAnchor = false;
-        joints[0].connectedAnchor = new Vector3(offset, 0.2f, 0);
+        joints[0].connectedAnchor = new Vector3(offset, 0.14f, 0);
         script.Equip();
         otherHandScript.WeaponOutOfReach();
     }
 
     void EquipTwoHands()
     {
-        weapon.transform.position = playerObj.transform.position + front * 2;
+        equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
+
+        t.rotation = transform.rotation * Quaternion.Euler(90, 0, 0);
         joints[0].connectedBody = GetComponent<Rigidbody>();
         joints[0].autoConfigureConnectedAnchor = false;
-        joints[0].connectedAnchor = new Vector3(offset, 0.2f, 0);
+        joints[0].connectedAnchor = new Vector3(offset, 0.1f, 0);
+
+        t.rotation = otherHand.transform.rotation * Quaternion.Euler(90, 0, 0);
         joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
         joints[1].autoConfigureConnectedAnchor = false;
-        joints[1].connectedAnchor = new Vector3(-offset, 0.2f, 0);
+        joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
         script.Equip();
+
+     /*   equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
+        equippedWeapon.transform.parent = this.transform;
+        SetStance(script.stance);
+
+
+        transform.rotation = t.rotation ;
+
+        joints[0].connectedBody = GetComponent<Rigidbody>();
+        joints[0].autoConfigureConnectedAnchor = false;
+        joints[0].connectedAnchor = new Vector3(offset, 0.1f, 0);
+
+        otherHand.transform.rotation = t.rotation ;
+        joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
+        joints[1].autoConfigureConnectedAnchor = false;
+        joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
+        script.Equip();*/
     }
 
     void SetStance(Weapon.Stance stance)
@@ -190,7 +212,7 @@ public class HandControls : MonoBehaviour {
                 }
             case Weapon.Stance.OneHanded:
                 {
-                    transform.eulerAngles = new Vector3(0,0,0);
+                    //transform.eulerAngles = new Vector3(0,0,0);
                     t.rotation = transform.rotation;
                     t.Rotate(90, 0, 0);
                     break;
@@ -198,14 +220,20 @@ public class HandControls : MonoBehaviour {
 
             case Weapon.Stance.TwoHanded:
                 {
-                    /*CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    CharacterJoint handJoint = GetComponent<CharacterJoint>();
+                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    SoftJointLimit limit = handJoint.swing2Limit;
                     SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
                     otherLimit.limit = 90;
+                    handJoint.swing2Limit = otherLimit;
                     otherHandJoint.swing2Limit = otherLimit;
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-                    otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
+                    /*
+                    transform.Rotate(-90,0,0);
+                    otherHand.transform.Rotate(0,0,0);
                     t.rotation = transform.rotation;
-                    t.eulerAngles = new Vector3(0, 90, 90);*/
+                    t.eulerAngles = new Vector3(0, 90, 90);
+                    otherHand.transform.rotation = transform.rotation;*/
+
                     break;
                 }
             case Weapon.Stance.TwoHandedTwinblade:
@@ -284,7 +312,7 @@ public class HandControls : MonoBehaviour {
             {
                 script.canTake = false;
                 weaponInHand = true;
-                offset = 0.1f;
+                offset = 0.04f;
                 StartCoroutine("MoveHand");
                 Invoke("EquipOneHand", 0.2f);
 
@@ -296,7 +324,7 @@ public class HandControls : MonoBehaviour {
                 { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
-                offset = 0.1f;
+                offset = 0.04f;
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);
             }
@@ -317,7 +345,7 @@ public class HandControls : MonoBehaviour {
             if (weaponInHand == false && joints.Length == 1)
             {
                 weaponInHand = true;
-                offset = -0.1f;
+                offset = -0.04f;
                 StartCoroutine("MoveHand");
                 Invoke("EquipOneHand", 0.2f);
             }
@@ -327,7 +355,7 @@ public class HandControls : MonoBehaviour {
                 { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
-                offset = -0.1f;
+                offset = -0.04f;
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);
             }
