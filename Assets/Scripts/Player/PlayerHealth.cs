@@ -133,7 +133,12 @@ public class PlayerHealth : MonoBehaviour
             }
             roundManager.PlayerChecker();
 
-            if (roundManager.alivePlayers.Count > 1)
+            if (StatHolder.CurrentMode == StatHolder.Modes.DM && roundManager.alivePlayers.Count > 1)
+            {
+                audioScript.PlayKnockOutSound();
+            }
+
+            if (StatHolder.CurrentMode == StatHolder.Modes.TDM && roundManager.redPlayers.Count > 1 && roundManager.bluePlayers.Count > 1)
             {
                 audioScript.PlayKnockOutSound();
             }
