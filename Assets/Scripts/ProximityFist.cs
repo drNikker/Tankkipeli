@@ -8,14 +8,21 @@ public class ProximityFist : FistScript
     [Space(10)]
     public float power;
     public float range;
+    public ParticleSystem VFX;
+    public ParticleSystem VFXCharge;
+    public ParticleSystem VFXLaunch;
+    int finalDamageVFX;
     [HideInInspector]
     public bool canDoDamage;
+    
 
     protected override void Start()
     {
         base.Start();
 
         proximityFistCollider = gameObject.GetComponentInChildren<ProximityFistCollider>();
+        VFX = GetComponent<ParticleSystem>();
+        
 
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
@@ -57,6 +64,7 @@ public class ProximityFist : FistScript
     protected void PunchTimer()
     {
         anim.SetBool("Warning", true);
+        VFXCharge.Play(true);
         punchTimerTime -= Time.deltaTime;
 
         if (punchTimerTime <= 0)
@@ -64,7 +72,9 @@ public class ProximityFist : FistScript
             print("hit me");
             canDoDamage = true;
             anim.SetBool("Warning", false);
+            VFXCharge.Stop(true);
             anim.SetBool("FB", true);
+            VFXLaunch.Play(true);
             punchTimerTime = defaultPunchTimerTime;
             punchTimer = false;
             holdOffTimer = true;
@@ -78,6 +88,8 @@ public class ProximityFist : FistScript
         if (holdOffTimerTime <= 0)
         {
             anim.SetBool("FB", false);
+        VFXLaunch.Stop(true);
+
             holdOffTimerTime = originalHoldOffTimerTime;
             waitTimer = true;
             canDoDamage = false;
@@ -92,7 +104,8 @@ public class ProximityFist : FistScript
             if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
             {
                 collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-
+                finalDamageVFX = Mathf.RoundToInt(damage);
+                VFX.Emit(2 * finalDamageVFX);
                 cooldown = Time.time + cooldownTime;
             }
         }

@@ -7,11 +7,14 @@ public class SingleFist : FistScript
     [Space(10)]
     public float power;
     public float range;
+    public ParticleSystem VFX;
+    int finalDamageVFX;
     [HideInInspector]
     public bool canDoDamage;
 
     protected override void Start()
     {
+        VFX = GetComponent<ParticleSystem>();
         base.Start();
 
         anim.SetFloat("Power", power);
@@ -87,6 +90,8 @@ public class SingleFist : FistScript
             if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
             {
                 collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                finalDamageVFX = Mathf.RoundToInt(damage);
+                VFX.Emit(2 * finalDamageVFX);
 
                 cooldown = Time.time + cooldownTime;
             }

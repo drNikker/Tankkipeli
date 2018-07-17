@@ -12,6 +12,8 @@ public class Spikes : MonoBehaviour
     public float baseDamage = 16;
     public float cooldownTime = 1;
     public float knockback = 400000;
+    public ParticleSystem VFX;
+    int finalDamageVFX;
 
     float cooldown;
     float finalDamage;
@@ -19,6 +21,7 @@ public class Spikes : MonoBehaviour
     void Start()
     {
         spikes = GetComponent<Rigidbody>();
+        VFX = GetComponent<ParticleSystem>();
     }
 
 
@@ -33,6 +36,9 @@ public class Spikes : MonoBehaviour
             health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
             Vector3 dir = collision.transform.position - transform.position;
             dir.y = 0;
+            finalDamageVFX = Mathf.RoundToInt(finalDamage);
+            
+            VFX.Emit(20 * finalDamageVFX);
             tankBase.AddForce(dir.normalized * knockback);
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
 
