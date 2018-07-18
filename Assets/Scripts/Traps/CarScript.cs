@@ -13,6 +13,7 @@ public class CarScript : MonoBehaviour {
     float acceleration;
     Rigidbody rb;
     public bool IsSwerwing;
+    public bool nascarCar;
 
 
     void Start()
@@ -40,7 +41,24 @@ public class CarScript : MonoBehaviour {
         }
         if (IsSwerwing)
         {
-            transform.Rotate(0, Time.deltaTime * 110, 0);
+            if (nascarCar)
+            {
+                int i = Random.Range(0, 1);
+                switch (i)
+                {
+                    case 0:
+                    transform.Rotate(0, Time.deltaTime * 110, 0);
+                        break;
+                    case 1:
+                        speed = 50;
+                        transform.Rotate(0, Time.deltaTime * 40, 0);
+                        break;
+                }
+            }
+            else
+            {
+                transform.Rotate(0, Time.deltaTime * swerweAmount, 0);
+            }
         }
     }
 
@@ -67,7 +85,7 @@ public class CarScript : MonoBehaviour {
     }
     IEnumerator carStop()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10);
         speed = 0;
         maxSpeed = 0;
         IsSwerwing = false;
