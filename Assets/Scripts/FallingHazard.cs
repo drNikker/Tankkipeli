@@ -5,14 +5,15 @@ using UnityEngine;
 public class FallingHazard : MonoBehaviour
 {
 
-    public int spawnTime = 10;
+    public float maxSpawnTime = 10;
+    public float minSpawnTime = 9;
     public bool randomPosition;
     public bool randomRotation;
     public bool randomSize;
-    public int XPositionLowerLimit;
-    public int XPositionUpperLimit;
-    public int ZPositionLowerLimit;
-    public int ZPositionUpperLimit;
+    public float XPositionLowerLimit;
+    public float XPositionUpperLimit;
+    public float ZPositionLowerLimit;
+    public float ZPositionUpperLimit;
     public float sizeUpperLimit;
     public float sizeLoweLimit;
 
@@ -47,7 +48,7 @@ public class FallingHazard : MonoBehaviour
 
     IEnumerator SpawnObject()
     {
-        yield return new WaitForSeconds(spawnTime);
+        yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
         CreateFallingObject();
     }
     void CreateFallingObject()
