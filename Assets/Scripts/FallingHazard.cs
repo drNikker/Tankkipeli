@@ -50,6 +50,7 @@ public class FallingHazard : MonoBehaviour
         yield return new WaitForSeconds(spawnTime);
         CreateFallingObject();
     }
+
     void CreateFallingObject()
     {
         GameObject fallingObject = Instantiate(objects[Random.Range(0, objects.Count)], this.gameObject.transform.position, transform.rotation);
@@ -69,5 +70,12 @@ public class FallingHazard : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "FallingStuff")
+        {
+            Destroy(collider.gameObject);
+        }
+    }
 }
 
