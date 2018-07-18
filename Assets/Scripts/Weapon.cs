@@ -144,7 +144,10 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                 }
-                StartCoroutine("CollidersOn");
+                for (int i = 1; i <= colliders.Length - 1; i++)
+                {
+                    colliders[i].enabled = true;
+                }
                 foreach (Rigidbody body in bodies)
                 {
                     body.isKinematic = false;

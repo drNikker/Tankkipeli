@@ -161,7 +161,7 @@ public class HandControls : MonoBehaviour {
 
     void EquipTwoHands()
     {
-        equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
+        /*equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
 
@@ -174,24 +174,22 @@ public class HandControls : MonoBehaviour {
         joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
         joints[1].autoConfigureConnectedAnchor = false;
         joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
-        script.Equip();
+        script.Equip();*/
 
-     /*   equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
+        equippedWeapon.transform.position = playerObj.transform.position + front * 1f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
 
-
-        transform.rotation = t.rotation ;
 
         joints[0].connectedBody = GetComponent<Rigidbody>();
         joints[0].autoConfigureConnectedAnchor = false;
         joints[0].connectedAnchor = new Vector3(offset, 0.1f, 0);
 
-        otherHand.transform.rotation = t.rotation ;
+
         joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
         joints[1].autoConfigureConnectedAnchor = false;
         joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
-        script.Equip();*/
+        script.Equip();
     }
 
     void SetStance(Weapon.Stance stance)
@@ -212,6 +210,13 @@ public class HandControls : MonoBehaviour {
                 }
             case Weapon.Stance.OneHanded:
                 {
+                    CharacterJoint handJoint = GetComponent<CharacterJoint>();
+                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    SoftJointLimit limit = handJoint.swing2Limit;
+                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                    limit.limit = 0;
+                    handJoint.swing2Limit = limit;
+                    otherHandJoint.swing2Limit = limit;
                     //transform.eulerAngles = new Vector3(0,0,0);
                     t.rotation = transform.rotation;
                     t.Rotate(90, 0, 0);
@@ -227,6 +232,9 @@ public class HandControls : MonoBehaviour {
                     otherLimit.limit = 90;
                     handJoint.swing2Limit = otherLimit;
                     otherHandJoint.swing2Limit = otherLimit;
+                    t.rotation = Quaternion.Euler(0, 90, 0);
+                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(0, 0, 0);
+                    transform.rotation = t.rotation;
                     /*
                     transform.Rotate(-90,0,0);
                     otherHand.transform.Rotate(0,0,0);
@@ -238,17 +246,30 @@ public class HandControls : MonoBehaviour {
                 }
             case Weapon.Stance.TwoHandedTwinblade:
                 {
-                   /* CharacterJoint handJoint = GetComponent<CharacterJoint>();
-                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
-                    SoftJointLimit limit = handJoint.swing2Limit;
-                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
-                    limit.limit = 90;
-                    handJoint.swing2Limit = limit;
-                    otherHandJoint.swing2Limit = limit;
-                    transform.eulerAngles = new Vector3(180, 0, 0);
-                    otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
-                    t.rotation = transform.rotation;
-                    t.eulerAngles = new Vector3(0, 90, 90);*/
+                    /* CharacterJoint handJoint = GetComponent<CharacterJoint>();
+                     CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                     SoftJointLimit limit = handJoint.swing2Limit;
+                     SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                     limit.limit = 90;
+                     handJoint.swing2Limit = limit;
+                     otherHandJoint.swing2Limit = limit;
+                     transform.eulerAngles = new Vector3(180, 0, 0);
+                     otherHand.transform.eulerAngles = new Vector3(0, 0, 90);
+                     t.rotation = transform.rotation;
+                     t.eulerAngles = new Vector3(0, 90, 90);*/
+
+                     CharacterJoint handJoint = GetComponent<CharacterJoint>();
+                     CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                     SoftJointLimit limit = handJoint.swing2Limit;
+                     SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                     limit.limit = 90;
+                     handJoint.swing2Limit = limit;
+                     otherHandJoint.swing2Limit = limit;
+
+
+                     t.rotation = Quaternion.Euler(0,0,90);
+                     transform.rotation = t.rotation * Quaternion.Euler(90,180,0);
+                     otherHand.transform.rotation = t.rotation * Quaternion.Euler(90,0,0);
                     break;
                 }
             case Weapon.Stance.FistWeapon:
