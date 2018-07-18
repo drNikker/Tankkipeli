@@ -23,18 +23,18 @@ public class CarScript : MonoBehaviour {
         speed = 20;
         if (nascarCar)
         {
-            i = Random.Range(0, 35);
+            i = Random.Range(0, 30);
             if (i < 1)
             {
                 acceleration = 0.00015f;
-                speed = 10;
-                maxSpeed = 22;
+                speed = 20;
+                maxSpeed = 20.14f;
                 baseDamage = 0.6f;
             }
             else
             {
                 baseDamage = 10;
-                acceleration = Random.Range(0.025f, 0.026f);
+                acceleration = Random.Range(0.024f, 0.026f);
             }
         }
         else
@@ -112,7 +112,7 @@ public class CarScript : MonoBehaviour {
         {
             StartCoroutine(carStop());
         }
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && speed > 5)
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
         }
@@ -121,6 +121,7 @@ public class CarScript : MonoBehaviour {
     IEnumerator carStop()
     {
         yield return new WaitForSeconds(0.2f);
+        acceleration = 0;
         speed = 0;
         maxSpeed = 0;
         IsSwerwing = false;

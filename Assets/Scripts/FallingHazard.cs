@@ -12,6 +12,8 @@ public class FallingHazard : MonoBehaviour
     public bool randomSize;
     public float XPositionLowerLimit;
     public float XPositionUpperLimit;
+    public float YPositionLowerLimit;
+    public float YPositionUpperLimit;
     public float ZPositionLowerLimit;
     public float ZPositionUpperLimit;
     public float sizeUpperLimit;
@@ -25,7 +27,7 @@ public class FallingHazard : MonoBehaviour
     {
         if (randomPosition)
         {
-            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), this.transform.position.y, Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
+            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
         }
 
        StartCoroutine(SpawnObject());
@@ -41,7 +43,7 @@ public class FallingHazard : MonoBehaviour
         if (!Physics.Raycast(spawnRay, out hit, 10000) && randomPosition || hit.collider.tag != "Environment" && randomPosition)
         {
 
-            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), this.transform.position.y, Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
+            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
 
         }
     }
@@ -64,7 +66,7 @@ public class FallingHazard : MonoBehaviour
         }
         if (randomPosition)
         {
-            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), this.transform.position.y, Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
+            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
         }
         StartCoroutine(SpawnObject());
 
