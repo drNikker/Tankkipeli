@@ -100,7 +100,7 @@ public class SpecificFistScript : FistScript
             {   
                 collision.transform.root.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
                 finalDamageVFX = Mathf.RoundToInt(damage);
-                VFX.Emit(2 * finalDamageVFX);
+                VFX.Emit(3 * finalDamageVFX);
 
                 cooldown = Time.time + cooldownTime;
             }
