@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4658139836201228}
+  - component: {fileID: 65491352876329926}
   - component: {fileID: 114725114583878130}
   m_Layer: 0
   m_Name: FallingStuffHazard
@@ -34,12 +35,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1262710698986124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 14.38, z: 0.2}
+  m_LocalPosition: {x: 0, y: 15, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65491352876329926
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262710698986124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 60, y: 1.4, z: 55}
+  m_Center: {x: -1, y: -26, z: -0.5}
 --- !u!114 &114725114583878130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,12 +64,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384f272dfaa12c249a8efe3b2bfbdd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 10
+  spawnTime: 2
   randomPosition: 1
+  randomRotation: 1
+  randomSize: 0
   XPositionLowerLimit: -11
   XPositionUpperLimit: 10
   ZPositionLowerLimit: -11
   ZPositionUpperLimit: 11
   sizeUpperLimit: 1
   sizeLoweLimit: 0.5
-  objects: []
+  objects:
+  - {fileID: 1250714117201902, guid: b32e09e5fde8a5a43a8ee0f718d33f93, type: 2}
+  - {fileID: 1341970356953120, guid: da4b9a136afa86245abb922c3686bf8f, type: 2}
+  - {fileID: 1506876449315582, guid: 0847815e233fbc94bb2c985853a9daab, type: 2}
+  - {fileID: 1553708717066412, guid: 68625319642998a4590010c423cefcf3, type: 2}
+  - {fileID: 1257155167573514, guid: 2cfce04b08f1e264eb4c3583769e22da, type: 2}
+  - {fileID: 1757243992589710, guid: dc888362918b4d5479ea1e7872326f63, type: 2}
+  - {fileID: 1703764148257408, guid: 32b69359f9162b94788dc0638a13b3b6, type: 2}
+  - {fileID: 1039671018644372, guid: 0adc3850a430bac4a9223577379639c3, type: 2}
+  - {fileID: 1988654790066550, guid: bb647ee4c568c2f4dba157e605ecf5a7, type: 2}
+  - {fileID: 1002122702223982, guid: 29bddc61b1278d24fbc11e9aa2daeaaa, type: 2}
