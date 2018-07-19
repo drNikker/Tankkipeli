@@ -8,6 +8,8 @@ public class PhysicMovement1 : MonoBehaviour
     // XINPUT STUFF
     public PlayerIndex playerIndex;
     GamePadState state;
+    public PlayerStateEffect playerStateEffect;
+    public TankTextureSpeed tankTextureSpeed;
 
     //OTHER
     private GameObject player;
@@ -77,6 +79,8 @@ public class PhysicMovement1 : MonoBehaviour
         ragdollmode = player.GetComponentInChildren<FullRagdollMode>();
         characterJoint = player.GetComponentInChildren<CharacterJoint>();
         health = GetComponent<PlayerHealth>();
+        playerStateEffect = gameObject.GetComponentInChildren<PlayerStateEffect>();
+        tankTextureSpeed = gameObject.GetComponentInChildren<TankTextureSpeed>();
 
         lowTwistLimitOriginal = characterJoint.lowTwistLimit;
         highTwistLimitOriginal = characterJoint.highTwistLimit;
@@ -84,6 +88,9 @@ public class PhysicMovement1 : MonoBehaviour
         originalBackToNormalTimerTime = backToNormalTimerTime;
 
         canMove = true;
+
+
+        
 
         brakeTorqu = brakingForce;
         rb = GetComponent<Rigidbody>();
@@ -109,7 +116,6 @@ public class PhysicMovement1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         state = GamePad.GetState(playerIndex);
 
         if (canMove)
@@ -127,6 +133,7 @@ public class PhysicMovement1 : MonoBehaviour
             BackToNormalTimer();
         }
 
+        
     }
 
 
@@ -142,11 +149,21 @@ public class PhysicMovement1 : MonoBehaviour
         {
             rightTread += accel * Time.deltaTime;
             brakeRight = false;
+
+            if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedR = 0.99f;
+            }
         }
         if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
         {
             leftTread += accel * Time.deltaTime;
             brakeLeft = false;
+
+            if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedL = 0.99f;
+            }
         }
         if(state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
@@ -163,11 +180,21 @@ public class PhysicMovement1 : MonoBehaviour
         {
             rightTread -= accel * Time.deltaTime;
             brakeRight = false;
+
+            if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedR = -0.99f;
+            }
         }
         if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))
         {
             leftTread -= accel * Time.deltaTime;
             brakeLeft = false;
+
+            if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedL = -0.99f;
+            }
         }
 
 
@@ -183,6 +210,11 @@ public class PhysicMovement1 : MonoBehaviour
             brakeRight = true;
             middleTread = 0;
             brakeMiddle = true;
+
+            if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedR = 0;
+            }
         }
 
         if (!(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
@@ -191,6 +223,11 @@ public class PhysicMovement1 : MonoBehaviour
             brakeLeft = true;
             middleTread = 0;
             brakeMiddle = true;
+
+            if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedL = 0;
+            }
         }
 
         //Dizzy 
@@ -324,6 +361,9 @@ public class PhysicMovement1 : MonoBehaviour
             canMove = false;
             rightTread = 0;
             leftTread = 0;
+            playerStateEffect.dizzyStart = true;
+            tankTextureSpeed.speedR = 0;
+            tankTextureSpeed.speedL = 0;
 
             timerUntilDizzyTime = originalTimerUntilDizzyTime;
 
@@ -343,11 +383,10 @@ public class PhysicMovement1 : MonoBehaviour
             backToNormalTimerTime = originalBackToNormalTimerTime;
             health.currentState = PlayerHealth.PLAYER_STATE.ALIVE;
             health.SetPlayerState();
+            playerStateEffect.effectStop = true;
 
             canMove = true;
             backToNormalTimer = false;
         }
     }
-
-
 }
