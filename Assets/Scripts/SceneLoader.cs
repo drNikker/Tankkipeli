@@ -46,6 +46,9 @@ public class SceneLoader : MonoBehaviour
         //Map set 4
         mapSet4.Add("Roof");
         mapSet4.Add("SpinningBeams");
+        mapSet4.Add("FallingShit");
+        mapSet4.Add("ConcreteMixer");
+        mapSet4.Add("WreckingBall");
         //Map set 5
         mapSet4.Add("Nascar");
     }

@@ -350,6 +350,7 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         roundWon.SetActive(false);
         audioScript.StopPlayingSceneMusic();
+        audioScript.PlaySceneMusic(0);
         sceneLoader.MenuScene();
     }
 

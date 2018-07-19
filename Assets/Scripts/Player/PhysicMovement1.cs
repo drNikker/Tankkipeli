@@ -145,9 +145,9 @@ public class PhysicMovement1 : MonoBehaviour
         
         //Tread speed increase
 
-        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
+        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))            //RB
         {
-            rightTread += accel * Time.deltaTime;
+            rightTread -= accel * Time.deltaTime;
             brakeRight = false;
 
             if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
@@ -155,9 +155,9 @@ public class PhysicMovement1 : MonoBehaviour
                 tankTextureSpeed.speedR = 0.99f;
             }
         }
-        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
+        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))              //LB
         {
-            leftTread += accel * Time.deltaTime;
+            leftTread -= accel * Time.deltaTime;
             brakeLeft = false;
 
             if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
@@ -167,18 +167,18 @@ public class PhysicMovement1 : MonoBehaviour
         }
         if(state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
-            middleTread += accel * Time.deltaTime;
+            middleTread -= accel * Time.deltaTime;
             brakeMiddle = false;
         }
         if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
         {
-            middleTread -= accel * Time.deltaTime;
+            middleTread += accel * Time.deltaTime;
             brakeMiddle = false;
         }
 
-        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))
+        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))        //RT
         {
-            rightTread -= accel * Time.deltaTime;
+            rightTread += accel * Time.deltaTime;
             brakeRight = false;
 
             if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
@@ -186,9 +186,9 @@ public class PhysicMovement1 : MonoBehaviour
                 tankTextureSpeed.speedR = -0.99f;
             }
         }
-        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))
+        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))          //LT
         {
-            leftTread -= accel * Time.deltaTime;
+            leftTread += accel * Time.deltaTime;
             brakeLeft = false;
 
             if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
