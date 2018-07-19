@@ -72,7 +72,7 @@ public class SceneLoader : MonoBehaviour
     //Loads the menu scene and sets all win counters to zero
     public void MenuScene()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("JoiningScene");
         StatHolder.HowManyPlayers = 0;
         StatHolder.Player1Wins = 0;
         StatHolder.Player2Wins = 0;
