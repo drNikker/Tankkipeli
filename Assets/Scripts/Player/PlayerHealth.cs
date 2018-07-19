@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[8].SetPropertyBlock(_propBlock);
+        rend[1].SetPropertyBlock(_propBlock);
 
     }
 
