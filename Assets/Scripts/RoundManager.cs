@@ -139,7 +139,7 @@ public class RoundManager : MonoBehaviour
             StatHolder.HowManyPlayers = 2;
         }
         StatHolder.WinsNeeded = 6;
-        StatHolder.WitchSet = Random.Range(1, 4);
+        StatHolder.WitchSet = Random.Range(1, 6);
         audioScript.PlaySceneMusic(StatHolder.WitchSet);
         NewRound();
     }
@@ -170,6 +170,14 @@ public class RoundManager : MonoBehaviour
                 break;
             case 3:
                 sceneLoader.NextSetScene(3);
+                RoundStart();
+                break;
+            case 4:
+                sceneLoader.NextSetScene(4);
+                RoundStart();
+                break;
+            case 5:
+                sceneLoader.NextSetScene(5);
                 RoundStart();
                 break;
             default:
