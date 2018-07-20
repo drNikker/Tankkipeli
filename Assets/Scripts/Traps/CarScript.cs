@@ -15,7 +15,6 @@ public class CarScript : MonoBehaviour {
     public bool IsSwerwing;
     public bool nascarCar;
     int i;
-    //TEST
 
     void Start()
     {
@@ -54,12 +53,15 @@ public class CarScript : MonoBehaviour {
     {
         RaycastHit hit ;
 
-        if (Physics.Raycast(transform.position, -Vector3.up* -0.5f, out hit) || hit.collider != null && hit.collider.tag != "Environment")
+        if (Physics.Raycast(transform.position, -Vector3.up* -0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
         {
-            speed = 0;
-            maxSpeed = 0;
-            acceleration = 0;
-            IsSwerwing = false;
+            if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea")
+            {
+                speed = 0;
+                maxSpeed = 0;
+                acceleration = 0;
+                IsSwerwing = false;
+            }
         }
         if (IsSwerwing)
         {
@@ -110,6 +112,7 @@ public class CarScript : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player")
         {
+            print(collision.gameObject.name);
             StartCoroutine(carStop());
         }
         if(collision.gameObject.tag == "Player" && speed > 5)
@@ -117,6 +120,10 @@ public class CarScript : MonoBehaviour {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
         }
         if (collision.gameObject.tag == "Weapon")
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
+        }
+        if (collision.gameObject.tag == "PlayArea")
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
         }
@@ -129,6 +136,7 @@ public class CarScript : MonoBehaviour {
         }
 
     }
+
 
     IEnumerator carStop()
     {
