@@ -8,6 +8,7 @@ public class PhysicMovement1 : MonoBehaviour
     // XINPUT STUFF
     public PlayerIndex playerIndex;
     GamePadState state;
+    GamePadState prevState;
     public PlayerStateEffect playerStateEffect;
     public TankTextureSpeed tankTextureSpeed;
 
@@ -43,6 +44,11 @@ public class PhysicMovement1 : MonoBehaviour
     public float brakingForce;
     public float upRightCounter;
 
+    private int invertSpeed = 1;
+    public int invertSpeedBool = 0;
+    private int invertControls = 1;
+
+
     float brakeTorqu;
 
     [SerializeField]
@@ -56,9 +62,7 @@ public class PhysicMovement1 : MonoBehaviour
     bool brakeRight = true;
     bool brakeLeft = true;
     bool brakeMiddle = true;
-
-    public string pelaaja;
-
+    
     private bool timerUntilDizzy;
     public float timerUntilDizzyTime = 3;
     private float originalTimerUntilDizzyTime;
@@ -89,7 +93,7 @@ public class PhysicMovement1 : MonoBehaviour
 
         canMove = true;
 
-
+        SetInvertedSpeed();
         
 
         brakeTorqu = brakingForce;
@@ -113,14 +117,26 @@ public class PhysicMovement1 : MonoBehaviour
         middleWheelCol3.wheelDampingRate = wheelDamp;
     }
 
+
     // Update is called once per frame
     void Update()
     {
+
+        prevState = state;
         state = GamePad.GetState(playerIndex);
+
+        SetInvertedSpeed();
 
         if (canMove)
         {
-            KeyPress();
+            if (invertControls == 0)
+            {
+                KeyPress();
+            }
+            else
+            {
+                KeyPressInvert();
+            }
         }
 
         if (timerUntilDizzy)
@@ -139,66 +155,70 @@ public class PhysicMovement1 : MonoBehaviour
 
     void KeyPress()
     {
-        // setup triggers as buttons
-        //bool RT = Input.GetAxis(pelaaja + "TankThreadRight") > 0.0;
-        //bool LT = Input.GetAxis(pelaaja + "TankThreadLeft") > 0.0;
-        
         //Tread speed increase
 
+        //RB
         if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))            //RB
         {
-            rightTread -= accel * Time.deltaTime;
+            rightTread -= accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
 
             if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
             {
-                tankTextureSpeed.speedR = 0.99f;
+                tankTextureSpeed.speedR = -0.99f * invertSpeed;
             }
         }
+
+        //LB
         if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))              //LB
         {
-            leftTread -= accel * Time.deltaTime;
+            leftTread -= accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
 
             if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
             {
-                tankTextureSpeed.speedL = 0.99f;
+                tankTextureSpeed.speedL = -0.99f * invertSpeed;
             }
         }
+
+        //MIDDLE WHEELS
         if(state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
-            middleTread -= accel * Time.deltaTime;
-            brakeMiddle = false;
-        }
-        if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
-        {
-            middleTread += accel * Time.deltaTime;
+            middleTread -= accel * invertSpeed * Time.deltaTime;
             brakeMiddle = false;
         }
 
+        if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
+        {
+            middleTread += accel * invertSpeed * Time.deltaTime;
+            brakeMiddle = false;
+        }
+
+        //RT
         if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))        //RT
         {
-            rightTread += accel * Time.deltaTime;
+            rightTread += accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
 
             if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
             {
-                tankTextureSpeed.speedR = -0.99f;
+                tankTextureSpeed.speedR = 0.99f * invertSpeed;
             }
         }
+        //LT
         if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))          //LT
         {
-            leftTread += accel * Time.deltaTime;
+            leftTread += accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
 
             if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
             {
-                tankTextureSpeed.speedL = -0.99f;
+                tankTextureSpeed.speedL = 0.99f * invertSpeed;
             }
         }
 
 
-        //clamping tread speeds
+        //Clamping tread speeds
         rightTread = Mathf.Clamp(rightTread, -topSpeed, topSpeed);
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
         middleTread = Mathf.Clamp(middleTread, -topSpeed, topSpeed);
@@ -245,6 +265,128 @@ public class PhysicMovement1 : MonoBehaviour
                 timerUntilDizzyTime = originalTimerUntilDizzyTime;
             }
         }
+
+        DebugMovementControls();
+    }
+
+
+
+    void KeyPressInvert()
+    {
+        //Tread speed increase
+
+        //LB
+        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))           
+        {
+            rightTread -= accel * invertSpeed * Time.deltaTime;
+            brakeRight = false;
+
+            if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedR = -0.99f * invertSpeed;
+            }
+        }
+
+        //RB 
+        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))             
+        {
+            leftTread -= accel * invertSpeed * Time.deltaTime;
+            brakeLeft = false;
+
+            if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedL = -0.99f * invertSpeed;
+            }
+        }
+
+        //MIDDLE WHEELS
+        if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
+        {
+            middleTread -= accel * invertSpeed * Time.deltaTime;
+            brakeMiddle = false;
+        }
+        
+        if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
+        {
+            middleTread += accel * invertSpeed * Time.deltaTime;
+            brakeMiddle = false;
+        }
+
+        //LT
+        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))       
+        {
+            rightTread += accel * invertSpeed * Time.deltaTime;
+            brakeRight = false;
+
+            if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedR = 0.99f * invertSpeed;
+            }
+        }
+        //RT 
+        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))         
+        {
+            leftTread += accel * invertSpeed * Time.deltaTime;
+            brakeLeft = false;
+
+            if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedL = 0.99f * invertSpeed;
+            }
+        }
+
+
+        //Clamping tread speeds
+        rightTread = Mathf.Clamp(rightTread, -topSpeed, topSpeed);
+        leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
+        middleTread = Mathf.Clamp(middleTread, -topSpeed, topSpeed);
+
+        //set motortorque to 0 wwhen no input is given
+        if (!(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
+        {
+            rightTread = 0;
+            brakeRight = true;
+            middleTread = 0;
+            brakeMiddle = true;
+
+            if (rightWheelCol1.isGrounded == true || rightWheelCol2.isGrounded == true || rightWheelCol3.isGrounded == true || rightWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedR = 0;
+            }
+        }
+
+
+        //  (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
+        if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
+        {
+            leftTread = 0;
+            brakeLeft = true;
+            middleTread = 0;
+            brakeMiddle = true;
+
+            if (leftWheelCol1.isGrounded == true || leftWheelCol2.isGrounded == true || leftWheelCol3.isGrounded == true || leftWheelCol4.isGrounded == true)
+            {
+                tankTextureSpeed.speedL = 0;
+            }
+        }
+
+        //Dizzy 
+        if (rightTread >= topSpeed && leftTread <= -topSpeed || leftTread >= topSpeed && rightTread <= -topSpeed)
+        {
+            timerUntilDizzy = true;
+        }
+        else
+        {
+            timerUntilDizzyTime += Time.deltaTime;
+            timerUntilDizzy = false;
+
+            if (timerUntilDizzyTime >= originalTimerUntilDizzyTime)
+            {
+                timerUntilDizzyTime = originalTimerUntilDizzyTime;
+            }
+        }
+
+        DebugMovementControls();
     }
 
     private void FixedUpdate()
@@ -387,6 +529,52 @@ public class PhysicMovement1 : MonoBehaviour
 
             canMove = true;
             backToNormalTimer = false;
+        }
+    }
+    
+    public void SetInvertedSpeed()
+    {
+        if (invertSpeedBool == 1)
+        {
+            invertSpeed = -1;
+        }
+        else
+        {
+            invertSpeed = 1;
+        }
+    }
+
+
+
+    private void DebugMovementControls()
+    {
+        //DEBUG INVERTS. REMOVED LATER
+        if (state.Buttons.X == ButtonState.Pressed && prevState.Buttons.X == ButtonState.Released)
+        {
+
+            if (invertSpeedBool == 1)
+            {
+                invertSpeedBool = 0;
+            }
+            else
+            {
+                invertSpeedBool = 1;
+            }
+
+            SetInvertedSpeed();
+        }
+
+        if (state.Buttons.Y == ButtonState.Pressed && prevState.Buttons.Y == ButtonState.Released)
+        {
+            if (invertControls == 1)
+            {
+                invertControls = 0;
+            }
+            else
+            {
+                invertControls = 1;
+            }
+
         }
     }
 }
