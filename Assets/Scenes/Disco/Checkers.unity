@@ -1298,15 +1298,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperLimitX: 3
   lowerLimitX: -3
-  upperLimitZ: 2
-  lowerLimitZ: -2
+  upperLimitZ: 6
+  lowerLimitZ: 2
   showGizmos: 1
   shakeAmount: 0.2
   decreaseFactor: 1.5
   targets: []
   offset: {x: 0, y: 30, z: -25}
-  centerPointOffset: {x: 0, y: 0, z: 0}
-  smoothTime: 3
+  centerPointOffset: {x: 0, y: 0, z: -2}
+  smoothTime: 2
   minZoom: 40
   maxZoom: 30
   zoomLimiter: 50
@@ -2472,8 +2472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkers: []
   setRandomNumberTime: 5
-  waitTimerUntilDropTime: 2
-  dropSpeed: 10000
+  waitTimerUntilDropTime: 3
+  dropSpeed: 5000
 --- !u!1 &1114925017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,6 +2794,11 @@ Prefab:
     - target: {fileID: 4349340458159192, guid: d96e30a207b35824cbd167d54b5319f5, type: 2}
       propertyPath: m_RootOrder
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 224192603038486242, guid: d96e30a207b35824cbd167d54b5319f5,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d96e30a207b35824cbd167d54b5319f5, type: 2}
