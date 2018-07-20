@@ -58,8 +58,8 @@ public class HandControls : MonoBehaviour {
 
         //Quaternion.Euler(playerObj.transform.rotation.eulerAngles) *
 
-        p1LeftHand =  new Vector3(state.ThumbSticks.Left.X, 0.5f, state.ThumbSticks.Left.Y);
-        p1RightHand =  new Vector3(state.ThumbSticks.Right.X, 0.5f, state.ThumbSticks.Right.Y);
+        p1LeftHand =  new Vector3(state.ThumbSticks.Left.X, 0, state.ThumbSticks.Left.Y);
+        p1RightHand =  new Vector3(state.ThumbSticks.Right.X, 0, state.ThumbSticks.Right.Y);
 
         front = playerObj.transform.forward;
 
@@ -67,7 +67,7 @@ public class HandControls : MonoBehaviour {
         {
             if ((Mathf.Abs(p1RightHand.x) > 0.2 || Mathf.Abs(p1RightHand.z) > 0.2))
             {
-                rb.MovePosition(transform.position + p1RightHand * power * Time.deltaTime);
+                rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1RightHand * power * Time.deltaTime);
             }
             Debug.DrawRay(transform.position, p1RightHand);
         }
@@ -79,7 +79,7 @@ public class HandControls : MonoBehaviour {
         {
             if ((Mathf.Abs(p1LeftHand.x) > 0.2 || Mathf.Abs(p1LeftHand.z) > 0.2))
             {
-                rb.MovePosition(transform.position + p1LeftHand * power * Time.deltaTime);
+                rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1LeftHand * power * Time.deltaTime);
             }
             Debug.DrawRay(transform.position, p1LeftHand, Color.red);
         }
@@ -151,6 +151,7 @@ public class HandControls : MonoBehaviour {
 
     void EquipOneHand()
     {
+        OneHandingRestricting();
         equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
@@ -194,6 +195,18 @@ public class HandControls : MonoBehaviour {
         script.Equip();
     }
 
+    void OneHandingRestricting()
+    {
+        Transform arm = transform.parent.parent;
+        CharacterJoint armJoint = arm.GetComponent<CharacterJoint>();
+        SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
+        SoftJointLimit armHighLimit = armJoint.highTwistLimit;
+        armLowLimit.limit = -20;
+        armHighLimit.limit = 0;
+        armJoint.lowTwistLimit = armLowLimit;
+        armJoint.highTwistLimit = armHighLimit;
+    }
+
     void SetStance(Weapon.Stance stance)
     {
         switch(stance)
@@ -201,24 +214,28 @@ public class HandControls : MonoBehaviour {
 
             case Weapon.Stance.NoStance:
                 {
+                    Transform arm = transform.parent.parent;
                     CharacterJoint handJoint = GetComponent<CharacterJoint>();
                     CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    CharacterJoint armJoint = arm.GetComponent<CharacterJoint>();
                     SoftJointLimit limit = handJoint.swing2Limit;
-                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                    SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
+                    SoftJointLimit armHighLimit = armJoint.highTwistLimit;
                     limit.limit = 0;
+                    armLowLimit.limit = -70;
+                    armHighLimit.limit = 50;
                     handJoint.swing2Limit = limit;
                     otherHandJoint.swing2Limit = limit;
+                    armJoint.lowTwistLimit = armLowLimit;
+                    armJoint.highTwistLimit = armHighLimit;
                     break;
                 }
             case Weapon.Stance.OneHanded:
                 {
                     CharacterJoint handJoint = GetComponent<CharacterJoint>();
-                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
                     SoftJointLimit limit = handJoint.swing2Limit;
-                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
                     limit.limit = 0;
                     handJoint.swing2Limit = limit;
-                    otherHandJoint.swing2Limit = limit;
                     //transform.eulerAngles = new Vector3(0,0,0);
                     t.rotation = transform.rotation;
                     t.Rotate(90, 0, 0);
@@ -234,9 +251,9 @@ public class HandControls : MonoBehaviour {
                     otherLimit.limit = 90;
                     handJoint.swing2Limit = otherLimit;
                     otherHandJoint.swing2Limit = otherLimit;
-                    t.rotation = Quaternion.Euler(0, 90, 0);
-                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(0, 0, 0);
-                    transform.rotation = t.rotation;
+                    t.rotation = Quaternion.Euler(0, 0, 0);
+                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(90, 0, 0);
+                    transform.rotation = t.rotation * Quaternion.Euler(90,0,0) ;
                     /*
                     transform.Rotate(-90,0,0);
                     otherHand.transform.Rotate(0,0,0);
@@ -270,7 +287,7 @@ public class HandControls : MonoBehaviour {
 
 
                      t.rotation = Quaternion.Euler(0,0,90);
-                     transform.rotation = t.rotation * Quaternion.Euler(90,180,0);
+                     transform.rotation = t.rotation * Quaternion.Euler(0,0,0);
                      otherHand.transform.rotation = t.rotation * Quaternion.Euler(90,0,0);
                     break;
                 }
@@ -282,13 +299,20 @@ public class HandControls : MonoBehaviour {
                 }
             default:
                 {
-                    CharacterJoint handJoint = otherHand.GetComponent<CharacterJoint>();
+                    Transform arm = transform.parent.parent;
+                    CharacterJoint handJoint = GetComponent<CharacterJoint>();
                     CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
+                    CharacterJoint armJoint = arm.GetComponent<CharacterJoint>();
                     SoftJointLimit limit = handJoint.swing2Limit;
-                    SoftJointLimit otherLimit = otherHandJoint.swing2Limit;
+                    SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
+                    SoftJointLimit armHighLimit = armJoint.highTwistLimit;
                     limit.limit = 0;
+                    armLowLimit.limit = -70;
+                    armHighLimit.limit = 50;
                     handJoint.swing2Limit = limit;
                     otherHandJoint.swing2Limit = limit;
+                    armJoint.lowTwistLimit = armLowLimit;
+                    armJoint.highTwistLimit = armHighLimit;
                     break;
                 }
         }
