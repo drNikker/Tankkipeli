@@ -128,12 +128,12 @@ public class PlayerHealth : MonoBehaviour
                     roundManager.alivePlayers.Remove(this.gameObject);
                     break;
                 case StatHolder.Modes.TDM:
-                    if (color == Color.red)
+                    if (color == Red)
                     {
                         roundManager.alivePlayers.Remove(this.gameObject);
                         roundManager.redPlayers.Remove(this.gameObject);
                     }
-                    else if (color == Color.blue)
+                    else if (color == Blue)
                     {
                         roundManager.alivePlayers.Remove(this.gameObject);
                         roundManager.bluePlayers.Remove(this.gameObject);
