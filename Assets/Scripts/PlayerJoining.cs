@@ -24,6 +24,10 @@ public class PlayerJoining : MonoBehaviour {
     bool joined2;
     bool joined3;
     bool joined4;
+    bool wait1;
+    bool wait2;
+    bool wait3;
+    bool wait4;
 
     bool gameStarting = false;
     int totalPlayersInHoles = 0;
@@ -91,9 +95,10 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 1 join and color change
-        if (joined1 == false && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || joined1 == false && Input.GetKeyDown("g"))
+        if (joined1 == false && wait1 == false && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || joined1 == false && Input.GetKeyDown("g"))
         {
-            joined1 = true;
+            wait1 = true;
+            StartCoroutine(Player1Joined());
             StatHolder.HowManyPlayers++;
                     StatHolder.Player1Color = Random.Range(0, 8);
                     while (StatHolder.Player1Color == StatHolder.Player2Color || StatHolder.Player1Color == StatHolder.Player3Color || StatHolder.Player1Color == StatHolder.Player4Color)
@@ -120,9 +125,10 @@ public class PlayerJoining : MonoBehaviour {
 
 
         //Player 2 join and color change
-        if (joined2 == false && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || joined2 == false && Input.GetKeyDown("f"))
+        if (joined2 == false && wait2 == false && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || joined2 == false && Input.GetKeyDown("f"))
         {
-            joined2 = true;
+            wait2 = true;
+            StartCoroutine(Player2Joined());
             StatHolder.HowManyPlayers++;
 
                     StatHolder.Player2Color = Random.Range(0, 8);
@@ -148,9 +154,10 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 3 join and color change
-        if (joined3 == false && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released)
+        if (joined3 == false && wait3 == false && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released)
         {
-            joined3 = true;
+            wait3 = true;
+            StartCoroutine(Player3Joined());
             StatHolder.HowManyPlayers++;
                     StatHolder.Player3Color = Random.Range(0, 8);
                     while (StatHolder.Player3Color == StatHolder.Player2Color || StatHolder.Player3Color == StatHolder.Player1Color || StatHolder.Player3Color == StatHolder.Player4Color)
@@ -175,11 +182,12 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 4 join and color change
-        if (joined4 == false && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released)
+        if (joined4 == false && wait4 == false && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released)
         {
-            joined4 = true;
+            wait4 = true;
             StatHolder.HowManyPlayers++;
-                    StatHolder.Player4Color = Random.Range(0, 8);
+            StartCoroutine(Player4Joined());
+            StatHolder.Player4Color = Random.Range(0, 8);
                     while (StatHolder.Player4Color == StatHolder.Player2Color || StatHolder.Player4Color == StatHolder.Player3Color || StatHolder.Player4Color == StatHolder.Player1Color)
                     {
                         StatHolder.Player4Color = Random.Range(0, 8);
@@ -250,6 +258,31 @@ public class PlayerJoining : MonoBehaviour {
                 gameStarting = true;
             }
         }
+    }
+
+    IEnumerator Player1Joined()
+    {
+        yield return new WaitForSeconds(0.5f);
+        wait1 = false;
+        joined1 = true;
+    }
+    IEnumerator Player2Joined()
+    {
+        yield return new WaitForSeconds(0.5f);
+        wait2 = false;
+        joined2 = true;
+    }
+    IEnumerator Player3Joined()
+    {
+        yield return new WaitForSeconds(0.5f);
+        wait3 = false;
+        joined3 = true;
+    }
+    IEnumerator Player4Joined()
+    {
+        yield return new WaitForSeconds(0.5f);
+        wait4 = false;
+        joined4 = true;
     }
 
     void StartTimer()
