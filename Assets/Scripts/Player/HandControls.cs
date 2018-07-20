@@ -56,8 +56,10 @@ public class HandControls : MonoBehaviour {
         //p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
         //p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
 
-        p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0.5f, state.ThumbSticks.Left.Y);
-        p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0.5f, state.ThumbSticks.Right.Y);
+        //Quaternion.Euler(playerObj.transform.rotation.eulerAngles) *
+
+        p1LeftHand =  new Vector3(state.ThumbSticks.Left.X, 0.5f, state.ThumbSticks.Left.Y);
+        p1RightHand =  new Vector3(state.ThumbSticks.Right.X, 0.5f, state.ThumbSticks.Right.Y);
 
         front = playerObj.transform.forward;
 
