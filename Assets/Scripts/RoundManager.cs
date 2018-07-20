@@ -340,18 +340,20 @@ public class RoundManager : MonoBehaviour
     IEnumerator NextRound()
     {
         yield return new WaitForSeconds(5);
-        roundWon.SetActive(false);
         StatHolder.RoundNumber += 1;
         NewRound();
+        yield return new WaitForSeconds(0.02f);
+        roundWon.SetActive(false);
     }
 
     IEnumerator BackToMenu()
     {
         yield return new WaitForSeconds(5);
-        roundWon.SetActive(false);
         audioScript.StopPlayingSceneMusic();
         audioScript.PlaySceneMusic(0);
         sceneLoader.MenuScene();
+        yield return new WaitForSeconds(0.02f);
+        roundWon.SetActive(false);
     }
 
     IEnumerator SpawnWeapon()
