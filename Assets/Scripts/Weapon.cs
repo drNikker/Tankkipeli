@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     WeaponDamage[] damageDealers;
     public Transform weaponParent;
 
+    float baseCooldown = 2;
     float cooldown = 2;
     float totalMass;
 
@@ -34,7 +35,7 @@ public class Weapon : MonoBehaviour {
 
     private void Update()
     {
-        if (currentWeaponState == WEAPON_STATE.THROWN && weapon.velocity.x < 1 && weapon.velocity.z < 1 && cooldown <= Time.time)
+        if (currentWeaponState == WEAPON_STATE.THROWN && cooldown <= Time.time)
         {
             Dropped();
             weaponParent.transform.position = new Vector3(weaponParent.transform.position.x, weaponParent.transform.position.y + 1, weaponParent.transform.position.z);
@@ -56,12 +57,11 @@ public class Weapon : MonoBehaviour {
     public void Thrown(Vector3 front)
     {
         GetMass();
-        cooldown = Time.time + cooldown;
+        cooldown = Time.time + baseCooldown;
         currentWeaponState = WEAPON_STATE.THROWN;
         SetWeaponState();
         Rigidbody rb = weaponParent.GetComponent<Rigidbody>();
         rb.AddForce((front + new Vector3(0,0.2f,0)) * 8000 * totalMass);
-        print(totalMass);
     }
 
     void GetMass()

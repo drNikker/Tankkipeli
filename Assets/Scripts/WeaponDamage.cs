@@ -44,7 +44,7 @@ public class WeaponDamage : MonoBehaviour
             tankBase = FindTank(collision);
             if (ownHP != health)
             {
-                finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
+                finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(GetWeaponVelocity(), 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
                 if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
                 {
                     if ((!roundManager.redPlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.redPlayers.Contains(collision.transform.root.gameObject)) || (!roundManager.bluePlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.bluePlayers.Contains(collision.transform.root.gameObject)))
@@ -61,16 +61,22 @@ public class WeaponDamage : MonoBehaviour
                     weaponAudio.RandomizeWeaponAudio();
                 }  
 
-                print(Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) + " hit str");
-                print(finalDamage + " dmg");
+                print(Mathf.Clamp(GetWeaponVelocity(), 1, 15) + " weapons speed during impact");
+                print(finalDamage + " damage dealt");
                 Vector3 dir = collision.transform.position - transform.position;
                 dir.y = 0;
-                tankBase.AddForce(dir.normalized * (knockback * Mathf.Clamp(collision.relativeVelocity.magnitude, 1, 15) * knockbackMultiplier));
+                tankBase.AddForce(dir.normalized * (knockback * Mathf.Clamp(GetWeaponVelocity(), 1, 15) * knockbackMultiplier));
                 cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
             }
 
         }
 
+    }
+
+    float GetWeaponVelocity()
+    {
+        float speed = GetComponent<Rigidbody>().velocity.magnitude;
+        return speed;
     }
 
     static PlayerHealth FindHP(Collision col)                  //Finds the enemy players hp
