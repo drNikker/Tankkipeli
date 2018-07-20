@@ -8,6 +8,7 @@ public class AudioScript : MonoBehaviour
     public List<AudioClip> weaponAudioList = new List<AudioClip>();
 
     private AudioSource audioSource;
+    private AudioSource audioSourceChild;
     private AudioClip currentSceneMusic;
     [Space(10)]
     public AudioClip knockOut;
@@ -31,6 +32,7 @@ public class AudioScript : MonoBehaviour
     void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
+        audioSourceChild = gameObject.GetComponentInChildren<AudioSource>();
     }
 
     void Update()
@@ -40,19 +42,19 @@ public class AudioScript : MonoBehaviour
 
     public void PlayKnockOutSound()
     {
-        audioSource.PlayOneShot(knockOut);
+        audioSourceChild.PlayOneShot(knockOut);
     }
 
     public void PlayRoundOverSound()
     {
-        audioSource.PlayOneShot(roundOver);
+        audioSourceChild.PlayOneShot(roundOver);
     }
 
     public void PlaySceneMusic(int index)
     {
         currentSceneMusic = musicList[index];
         audioSource.clip = currentSceneMusic;
-        audioSource.Play(); 
+        audioSource.Play();
     }
 
     public void StopPlayingSceneMusic()
