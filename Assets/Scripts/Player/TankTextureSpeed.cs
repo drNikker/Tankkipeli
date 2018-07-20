@@ -124,6 +124,20 @@ public class TankTextureSpeed : MonoBehaviour
         {
             gameObject.GetComponent<MeshRenderer>().materials[wheelsMatNoR].SetFloat("_RotationSpeed", 0);
         }
+
+        if (speedR < 0.0019f && speedR > -0.0019f)
+        {
+            SetParticleStrenght(1, 0);
+            SetParticleStrenght(3, 0);
+        }
+
+        if (speedL < 0.0019f && speedL > -0.0019f)
+        {
+            SetParticleStrenght(0, 0);
+            SetParticleStrenght(2, 0);
+        }
+
+
     }
     void SetParticleStrenght(int objNo, float strenght)
     {
@@ -133,5 +147,7 @@ public class TankTextureSpeed : MonoBehaviour
         var main = wheelParticles[objNo].GetComponent<ParticleSystem>().main;
         main.startSpeed = strenght * particleSpeedMult;
     }
+
+    
 }
 

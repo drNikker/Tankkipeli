@@ -20,14 +20,14 @@ public class CarScript : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        speed = 20;
+        speed = 6;
         if (nascarCar)
         {
+            speed = 20;
             i = Random.Range(0, 30);
             if (i < 1)
             {
                 acceleration = 0.00015f;
-                speed = 20;
                 maxSpeed = 20.14f;
                 baseDamage = 0.6f;
             }
@@ -98,7 +98,7 @@ public class CarScript : MonoBehaviour {
         {
             speed += acceleration;
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
-            rb.AddForce(Vector3.down * 1500);
+            rb.AddForce(Vector3.down * 20000);
         }
         else
         {
@@ -116,8 +116,20 @@ public class CarScript : MonoBehaviour {
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
         }
+        if (collision.gameObject.tag == "Weapon")
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Weapon")
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), other);
+        }
 
     }
+
     IEnumerator carStop()
     {
         yield return new WaitForSeconds(0.2f);

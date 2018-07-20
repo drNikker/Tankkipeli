@@ -25,6 +25,10 @@ public class PlayerJoining : MonoBehaviour {
     bool joined3;
     bool joined4;
 
+    bool gameStarting = false;
+    int totalPlayersInHoles = 0;
+    float timer;
+
     //states for all 4 players' controllers because there is only one instance of this script.
     GamePadState P1state;
     GamePadState P1prevState;
@@ -74,6 +78,8 @@ public class PlayerJoining : MonoBehaviour {
         P4state = GamePad.GetState(PlayerIndex.Four);
 
         keyPresses();
+        GameStarter();
+        StartTimer();
     }
 
     void keyPresses()
@@ -194,23 +200,19 @@ public class PlayerJoining : MonoBehaviour {
             Destroy(roundManager.alivePlayers.Where(obj => obj.name == "Player4(Clone)").SingleOrDefault());
             roundManager.alivePlayers.Remove(roundManager.alivePlayers.Where(obj => obj.name == "Player4(Clone)").SingleOrDefault());
         }
+       
+    }
 
-
-        if (StatHolder.HowManyPlayers >= 2 && P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released || StatHolder.HowManyPlayers >= 2 && Input.GetKeyDown("y"))
+    void GameStarter()
+    {
+        if (StatHolder.HowManyPlayers >= 2 && gameStarting == false)
         {
-
-            votes = new List<int>();
-            holes = GetComponentsInChildren<GamemodeHole>();
-            int totalPlayersInHoles = 0;
-            
-            for(int i =0; i < holes.Length; i++)
+            print("get in the holes");
+            print(totalPlayersInHoles);
+            CheckPlayersInHoles();
+            if (StatHolder.HowManyPlayers == totalPlayersInHoles)
             {
-                totalPlayersInHoles += holes[i].playersInHole;
-                votes.Add(holes[i].playersInHole);
-            }
-            if(StatHolder.HowManyPlayers == totalPlayersInHoles)
-            {
-                int mode = Random.Range(1,totalPlayersInHoles+1);
+                int mode = Random.Range(1, totalPlayersInHoles + 1);
                 int chosen;
                 int i = 0;
 
@@ -218,8 +220,8 @@ public class PlayerJoining : MonoBehaviour {
                 {
                     i += votes[chosen];
                 }
-                StatHolder.CurrentMode = holes[chosen-1].mode;
-                if(StatHolder.CurrentMode == StatHolder.Modes.TDM)
+                StatHolder.CurrentMode = holes[chosen - 1].mode;
+                if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
                 {
                     StatHolder.Player1Color = Random.Range(0, 2);
                     StatHolder.Player2Color = Random.Range(0, 2);
@@ -235,18 +237,51 @@ public class PlayerJoining : MonoBehaviour {
                     }
                     else
                     {
-                        StatHolder.Player3Color = Random.Range(0,2);
-                        StatHolder.Player4Color = Random.Range(0,2);
+                        StatHolder.Player3Color = Random.Range(0, 2);
+                        StatHolder.Player4Color = Random.Range(0, 2);
                         while (StatHolder.Player3Color == StatHolder.Player4Color)
                         {
-                            StatHolder.Player4Color = Random.Range(0,2);
+                            StatHolder.Player4Color = Random.Range(0, 2);
                         }
                     }
 
                 }
+                timer = 3;
+                gameStarting = true;
+            }
+        }
+    }
 
+    void StartTimer()
+    {
+        if (gameStarting == true)
+        {
+            CheckPlayersInHoles();
+            if (totalPlayersInHoles != StatHolder.HowManyPlayers)
+            {
+                gameStarting = false;
+                return;
+            }
+            print(timer);
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                gameStarting = false;
                 roundManager.NewGame();
             }
+        }
+    }
+
+    void CheckPlayersInHoles()
+    {
+        votes = new List<int>();
+        holes = GetComponentsInChildren<GamemodeHole>();
+        totalPlayersInHoles = 0;
+
+        for (int i = 0; i < holes.Length; i++)
+        {
+            totalPlayersInHoles += holes[i].playersInHole;
+            votes.Add(holes[i].playersInHole);
         }
     }
 
@@ -266,7 +301,9 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[1].SetPropertyBlock(_propBlock);
+        rend[8].SetPropertyBlock(_propBlock);
+
+
     }
     void ChangePlayer2Color()
     {
@@ -283,7 +320,7 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[1].SetPropertyBlock(_propBlock);
+        rend[8].SetPropertyBlock(_propBlock);
     }
     void ChangePlayer3Color()
     {
@@ -300,7 +337,7 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[1].SetPropertyBlock(_propBlock);
+        rend[8].SetPropertyBlock(_propBlock);
     }
     void ChangePlayer4Color()
     {
@@ -317,6 +354,6 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[1].SetPropertyBlock(_propBlock);
+        rend[8].SetPropertyBlock(_propBlock);
     }
 }

@@ -12,6 +12,8 @@ public class SceneLoader : MonoBehaviour
     List<string> mapSet1 = new List<string>();
     List<string> mapSet2 = new List<string>();
     List<string> mapSet3 = new List<string>();
+    List<string> mapSet4 = new List<string>();
+    List<string> mapSet5 = new List<string>();
 
     public Animator anim;
     private bool menu;
@@ -29,7 +31,6 @@ public class SceneLoader : MonoBehaviour
         mapSet1.Add("FlipperBox");
         mapSet1.Add("TheDefault");
         mapSet1.Add("WeaponThrow");
-
         //Map set 2
         mapSet2.Add("BarrelRoll");
         mapSet2.Add("CannonShuffle");
@@ -42,6 +43,14 @@ public class SceneLoader : MonoBehaviour
         mapSet3.Add("HyperHexagon");
         mapSet3.Add("Rotat-o-Maze");
         mapSet3.Add("TipTheScales");
+        //Map set 4
+        mapSet4.Add("Roof");
+        mapSet4.Add("SpinningBeams");
+        mapSet4.Add("FallingShit");
+        mapSet4.Add("ConcreteMixer");
+        mapSet4.Add("WreckingBall");
+        //Map set 5
+        mapSet4.Add("Nascar");
     }
 
     private void Update()
@@ -72,7 +81,7 @@ public class SceneLoader : MonoBehaviour
     //Loads the menu scene and sets all win counters to zero
     public void MenuScene()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("JoiningScene");
         StatHolder.HowManyPlayers = 0;
         StatHolder.Player1Wins = 0;
         StatHolder.Player2Wins = 0;
@@ -107,10 +116,10 @@ public class SceneLoader : MonoBehaviour
                 {
                     StatHolder.RoundNumber = 0;
                     //SceneManager.LoadScene(mapSet1[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set
-                    int i = Random.Range(1, 4);
+                    int i = Random.Range(1, 6);
                     while (i == 1)
                     {
-                        i = Random.Range(1, 4);
+                        i = Random.Range(1, 6);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
@@ -127,10 +136,10 @@ public class SceneLoader : MonoBehaviour
                 {
                     StatHolder.RoundNumber = 0;
                     //SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set
-                    int i = Random.Range(1, 4);
+                    int i = Random.Range(1, 6);
                     while (i == 2)
                     {
-                        i = Random.Range(1, 4);
+                        i = Random.Range(1, 6);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
@@ -147,10 +156,10 @@ public class SceneLoader : MonoBehaviour
                 {
                     StatHolder.RoundNumber = 0;
                     //SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set
-                    int i = Random.Range(1, 4);
+                    int i = Random.Range(1, 6);
                     while (i == 3)
                     {
-                        i = Random.Range(1, 4);
+                        i = Random.Range(1, 6);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
@@ -160,6 +169,46 @@ public class SceneLoader : MonoBehaviour
                 else
                 {
                     SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]);
+                }
+                break;
+            case 4:
+                if (StatHolder.RoundNumber > mapSet4.Count - 1)
+                {
+                    StatHolder.RoundNumber = 0;
+                    //SceneManager.LoadScene(mapSet2[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set
+                    int i = Random.Range(1, 6);
+                    while (i == 4)
+                    {
+                        i = Random.Range(1, 6);
+                    }
+                    NextSetScene(i);
+                    StatHolder.WitchSet = i;
+                    audioScript.StopPlayingSceneMusic();
+                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
+                }
+                else
+                {
+                    SceneManager.LoadScene(mapSet4[StatHolder.RoundNumber]);
+                }
+                break;
+            case 5:
+                if (StatHolder.RoundNumber > mapSet5.Count - 1)
+                {
+                    StatHolder.RoundNumber = 0;
+                    //SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set
+                    int i = Random.Range(1, 6);
+                    while (i == 3)
+                    {
+                        i = Random.Range(1, 6);
+                    }
+                    NextSetScene(i);
+                    StatHolder.WitchSet = i;
+                    audioScript.StopPlayingSceneMusic();
+                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
+                }
+                else
+                {
+                    SceneManager.LoadScene(mapSet5[StatHolder.RoundNumber]);
                 }
                 break;
             default:
