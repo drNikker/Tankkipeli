@@ -301,7 +301,7 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[8].SetPropertyBlock(_propBlock);
+        rend[10].SetPropertyBlock(_propBlock);
 
 
     }
@@ -320,7 +320,7 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[8].SetPropertyBlock(_propBlock);
+        rend[10].SetPropertyBlock(_propBlock);
     }
     void ChangePlayer3Color()
     {
@@ -337,7 +337,7 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[8].SetPropertyBlock(_propBlock);
+        rend[10].SetPropertyBlock(_propBlock);
     }
     void ChangePlayer4Color()
     {
@@ -354,6 +354,6 @@ public class PlayerJoining : MonoBehaviour {
         rend[0].GetPropertyBlock(_propBlock);
         _propBlock.SetColor("_Color", color);
         rend[0].SetPropertyBlock(_propBlock);
-        rend[8].SetPropertyBlock(_propBlock);
+        rend[10].SetPropertyBlock(_propBlock);
     }
 }
