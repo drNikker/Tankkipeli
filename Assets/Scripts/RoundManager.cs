@@ -181,6 +181,7 @@ public class RoundManager : MonoBehaviour
                 RoundStart();
                 break;
             default:
+                Debug.LogWarning("RoundManager NewRound() switch case default was chosen. Next map is randomized");
                 sceneLoader.NewRandomScene();
                 RoundStart();
                 break;
@@ -237,7 +238,7 @@ public class RoundManager : MonoBehaviour
                     StatHolder.TeamBlueWins += 1;
                     whoWonText.text = "Team Blue won the round";
                 }
-                if (bluePlayers.Count == 0)
+                else if (bluePlayers.Count == 0)
                 {
                     StatHolder.TeamRedWins += 1;
                     whoWonText.text = "Team Red won the round";

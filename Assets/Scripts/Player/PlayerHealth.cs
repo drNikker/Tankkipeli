@@ -66,11 +66,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
         {
-            if (color == Color.blue)
+            if (color == Blue)
             {
                 roundManager.bluePlayers.Add(this.gameObject);
             }
-            else if(color == Color.red)
+            else if(color == Red)
             {
                 roundManager.redPlayers.Add(this.gameObject);
             }

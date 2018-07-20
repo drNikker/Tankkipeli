@@ -50,7 +50,7 @@ public class SceneLoader : MonoBehaviour
         mapSet4.Add("ConcreteMixer");
         mapSet4.Add("WreckingBall");
         //Map set 5
-        mapSet4.Add("Nascar");
+        mapSet5.Add("Nascar");
     }
 
     private void Update()
@@ -197,7 +197,7 @@ public class SceneLoader : MonoBehaviour
                     StatHolder.RoundNumber = 0;
                     //SceneManager.LoadScene(mapSet3[StatHolder.RoundNumber]); Replace the below with this if you want the set to start over once its finished. The below code randomizes a new set
                     int i = Random.Range(1, 6);
-                    while (i == 3)
+                    while (i == 5)
                     {
                         i = Random.Range(1, 6);
                     }
@@ -212,7 +212,7 @@ public class SceneLoader : MonoBehaviour
                 }
                 break;
             default:
-
+                Debug.LogWarning("SceneLoader NextSetScene() switch case default was chosen");
                 break;
         }
     }
