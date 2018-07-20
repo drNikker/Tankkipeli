@@ -93,7 +93,7 @@ public class Weapon : MonoBehaviour {
     IEnumerator CollidersOn()
     {
         Collider[] colliders = weaponParent.GetComponentsInChildren<Collider>();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         for (int i = 1; i <= colliders.Length - 1; i++)
         {
             colliders[i].enabled = true;
@@ -144,10 +144,7 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                 }
-                for (int i = 1; i <= colliders.Length - 1; i++)
-                {
-                    colliders[i].enabled = true;
-                }
+                StartCoroutine("CollidersOn");
                 foreach (Rigidbody body in bodies)
                 {
                     body.isKinematic = false;
