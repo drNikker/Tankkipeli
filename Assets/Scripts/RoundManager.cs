@@ -15,6 +15,7 @@ public class RoundManager : MonoBehaviour
     public GameObject playerPrefab2;
     public GameObject playerPrefab3;
     public GameObject playerPrefab4;
+    public GameObject startMenu;
     int playersAlive;
 
     //bool randomMap = true;
@@ -51,6 +52,8 @@ public class RoundManager : MonoBehaviour
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         playerSpawns.AddRange(GameObject.FindGameObjectsWithTag("playerSpawn"));
         sceneLoader = gameObject.GetComponent<SceneLoader>();
+        //startMenu = GameObject.Find("Menu2");
+        startMenu.SetActive(true);
 
         if (SceneManager.GetActiveScene().name != "JoiningScene")
         {

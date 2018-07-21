@@ -18,6 +18,11 @@ public class WeaponDamage : MonoBehaviour
     public float cooldownTime = 1;
     public float knockback = 400000;
 
+    // Hit Particles-------------
+    ParticleSystem hitParticle;
+    int finalDamageVFX;
+    // Hit Particles-------------
+
     float cooldown;
     float finalDamage;
 
@@ -27,6 +32,7 @@ public class WeaponDamage : MonoBehaviour
     {
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         weaponAudio = gameObject.GetComponentInParent<WeaponAudio>();
+        hitParticle = GetComponent<ParticleSystem>();
         if (weaponAudio == null)
         {
             weaponAudio = transform.root.GetComponent<WeaponAudio>();
@@ -45,6 +51,14 @@ public class WeaponDamage : MonoBehaviour
             if (ownHP != health)
             {
                 finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(GetWeaponVelocity(), 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
+
+                // Hit Particles--------------------------------------
+                finalDamageVFX = Mathf.RoundToInt(finalDamage);
+                hitParticle.startLifetime = (0.05f * finalDamageVFX);
+                hitParticle.startSpeed = (1f * finalDamageVFX);
+                hitParticle.Emit(5 * finalDamageVFX);
+                // Hit Particles--------------------------------------
+
                 if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
                 {
                     if ((!roundManager.redPlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.redPlayers.Contains(collision.transform.root.gameObject)) || (!roundManager.bluePlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.bluePlayers.Contains(collision.transform.root.gameObject)))
