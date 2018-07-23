@@ -3885,7 +3885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1898007003793992
 GameObject:
   m_ObjectHideFlags: 1
@@ -7412,7 +7412,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114506016039998418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114418333933646490}
+        m_MethodName: MoveDirButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114318863006816352
@@ -7776,7 +7787,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114889217106230766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114418333933646490}
+        m_MethodName: TurnDirButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114382483010710086
@@ -8040,6 +8062,9 @@ MonoBehaviour:
   masterVolText: {fileID: 114593305960747058}
   musicVolText: {fileID: 114759088754530076}
   sfxVolText: {fileID: 114206691635841828}
+  playerText: {fileID: 114432365683957898}
+  moveDirText: {fileID: 114615944007475980}
+  turnDirText: {fileID: 114547317778973388}
 --- !u!114 &114428693944943772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8105,7 +8130,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: P1/P2/P3/P4
+  m_Text: P1
 --- !u!114 &114447334528166008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9008,7 +9033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Normal?
+  m_Text: Normal
 --- !u!114 &114548964762564670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9183,7 +9208,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114863023579231144}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114418333933646490}
+        m_MethodName: ChangePlayerButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114555333450021034
