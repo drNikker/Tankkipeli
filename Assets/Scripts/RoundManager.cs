@@ -16,6 +16,7 @@ public class RoundManager : MonoBehaviour
     public GameObject playerPrefab3;
     public GameObject playerPrefab4;
     public GameObject startMenu;
+    public Image PointImage;
     int playersAlive;
 
     //bool randomMap = true;
@@ -279,6 +280,27 @@ public class RoundManager : MonoBehaviour
                     break;
 
             }
+            for(int i = 0; i < StatHolder.Player1Wins; i++)
+            {
+                Image ScoreImage =  Instantiate(PointImage, roundWon.transform, false);
+                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, 50, 0);
+            }
+            for (int i = 0; i < StatHolder.Player2Wins; i++)
+            {
+                Image ScoreImage = Instantiate(PointImage, roundWon.transform, false);
+                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, -50, 0);
+            }
+            for (int i = 0; i < StatHolder.Player3Wins; i++)
+            {
+                Image ScoreImage = Instantiate(PointImage, roundWon.transform, false);
+                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, -150, 0);
+            }
+            for (int i = 0; i < StatHolder.Player4Wins; i++)
+            {
+                Image ScoreImage = Instantiate(PointImage, roundWon.transform, false);
+                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, -250, 0);
+            }
+
 
         }
 
