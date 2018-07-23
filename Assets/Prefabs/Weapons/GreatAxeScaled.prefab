@@ -76,9 +76,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1745737419211482}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.1932387, y: 1.05, z: -7.0082226}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.57, y: 1.2378252, z: -6.48}
+  m_LocalScale: {x: 1.0000002, y: 1, z: 1}
   m_Children:
   - {fileID: 4687623875210450}
   m_Father: {fileID: 0}
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4894472610003008}
+  weaponThrowForce: 8000
   equipped: 0
   canTake: 0
   currentWeaponState: 0
@@ -414,20 +414,20 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.8, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.1932387, y: 0.24999994, z: -7.0082226}
+  m_ConnectedAnchor: {x: -2.57, y: 0.43782514, z: -6.48}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 0
+  m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
-    spring: 1000
-    damper: 5
+    spring: 10000
+    damper: 10
   m_LinearLimit:
-    limit: 0
+    limit: 1
     bounciness: 0.5
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -508,7 +508,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.15, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.1932387, y: 0.9, z: -7.0082226}
+  m_ConnectedAnchor: {x: -2.57, y: 1.0878252, z: -6.48}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -518,10 +518,10 @@ ConfigurableJoint:
   m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
-    spring: 1000
-    damper: 5
+    spring: 10000
+    damper: 10
   m_LinearLimit:
-    limit: 0
+    limit: 1
     bounciness: 0.5
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -539,7 +539,7 @@ ConfigurableJoint:
     spring: 1000
     damper: 5
   m_AngularYLimit:
-    limit: 177
+    limit: 0
     bounciness: 0.5
     contactDistance: 0
   m_AngularZLimit:
