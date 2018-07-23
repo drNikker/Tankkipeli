@@ -36,15 +36,15 @@ public class Spikes : MonoBehaviour
             health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
             Vector3 dir = collision.transform.position - transform.position;
             dir.y = 0;
-            
-            finalDamageVFX = Mathf.RoundToInt(finalDamage);
-            VFX.startLifetime = (0.05f * finalDamageVFX);
-            VFX.Emit(5 * finalDamageVFX);
-            
+
+            Debug.Log("Cannonball Hit: " + finalDamage);
+
             tankBase.AddForce(dir.normalized * knockback);
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
 
-
+            finalDamageVFX = Mathf.RoundToInt(finalDamage);
+            VFX.startLifetime = (0.05f * finalDamageVFX);
+            VFX.Emit(5 * finalDamageVFX);
         }
 
     }

@@ -23,7 +23,8 @@ public class TipTheScales : MonoBehaviour
         originalTimeBeforeMakingSmall = timeBeforeMakingSmall;
         originalTimeBeforeMakingBig = timeBeforeMakingBig;
       
-        waitTimerToGoSmall = true;
+        waitTimerToGoBig = true;
+        timeBeforeMakingBig = 3f;
     }
 
     void Update()
