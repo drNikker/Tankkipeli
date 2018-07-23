@@ -27,7 +27,7 @@ public class CannonBall : MonoBehaviour
     [Space(10)]
     public float cannonBallTimerTime; //Max time the timer will reset to
     private float currentCannonBallTimer; //Displays current time
-
+    
     private bool generateNewRandom;
 
     void Start()
