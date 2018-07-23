@@ -33,15 +33,13 @@ public class FenceScript : MonoBehaviour
             playerRigidBody.AddForce(pushDirection * playerPushingForce);
         }
 
-        if (collision.gameObject.tag == "Weapon" && collision.relativeVelocity.magnitude >= weaponImpactMagnitude)
+        if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.tag == "Weapon" && collision.relativeVelocity.magnitude >= weaponImpactMagnitude)
         {
-            Debug.Log("jou");
-            rigidBody.isKinematic = false;
-            
-            Vector3 fencePushDirection = collision.contacts[0].point - transform.position;
-            fencePushDirection.Normalize();
+                rigidBody.isKinematic = false;
+                Vector3 fencePushDirection = collision.contacts[0].point - collision.transform.position;
+                fencePushDirection.Normalize();
 
-            rigidBody.AddForce(fencePushDirection * fencePushingForce);
+                rigidBody.AddForce(fencePushDirection * fencePushingForce);
         }
     }
 }
