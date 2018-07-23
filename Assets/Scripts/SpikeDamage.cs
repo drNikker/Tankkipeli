@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spikes : MonoBehaviour
+public class SpikeDamage : MonoBehaviour
 {
 
     PlayerHealth health;
