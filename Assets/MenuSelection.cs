@@ -42,7 +42,7 @@ public class MenuSelection : MonoBehaviour {
         P4state = GamePad.GetState(PlayerIndex.Four);
 
 
-        if (P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released)
+        if (((P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released) || (P2state.Buttons.Start == ButtonState.Pressed && P2prevState.Buttons.Start == ButtonState.Released) || (P3state.Buttons.Start == ButtonState.Pressed && P3prevState.Buttons.Start == ButtonState.Released) || (P4state.Buttons.Start == ButtonState.Pressed && P4prevState.Buttons.Start == ButtonState.Released)))
         {
             Debug.Log("sad");
             if (!menu)
