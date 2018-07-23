@@ -51,7 +51,7 @@ public class SceneLoader : MonoBehaviour
         mapSet4.Add("WreckingBall");
         //Map set 5
         mapSet5.Add("Nascar");
-        mapSet5.Add("Smash");
+       // mapSet5.Add("Smash");
     }
 
     private void Update()
