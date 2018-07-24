@@ -40,6 +40,7 @@ public class FenceScript : MonoBehaviour
             //fencePushDirection.Normalize();
 
             Vector3 fencePushDirection = transform.position - collision.transform.position;
+            fencePushDirection.Normalize();
 
             rigidBody.AddForce(fencePushDirection * fencePushingForce);
         }
