@@ -6,6 +6,7 @@ public class AudioScript : MonoBehaviour
 {
     public List<AudioClip> musicList = new List<AudioClip>();
     public List<AudioClip> weaponAudioList = new List<AudioClip>();
+    public List<AudioClip> hazardAudioList = new List<AudioClip>();
 
     private AudioSource audioSource;
     private AudioSource audioSourceChild;

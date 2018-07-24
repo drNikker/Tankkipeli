@@ -8,9 +8,14 @@ public class FlipperBumper : MonoBehaviour
     public Animator anim;
     private Rigidbody rb;
 
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     void Start()
     {
-        
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,6 +33,14 @@ public class FlipperBumper : MonoBehaviour
             dir = dir.normalized;
 
             rb.AddForce(dir * force);
+            playSound();
         }
+    }
+
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[1];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }
