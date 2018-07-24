@@ -45,16 +45,20 @@ public class Weapon : MonoBehaviour {
 
         if (timer == true)
         {
+            Rigidbody rb = GetComponent<Rigidbody>();
+
+            rb.drag = 1000;
             for (int i = 0; i < joints.Length; i++)
             {
                 SoftJointLimit limit = joints[i].linearLimit;
-                limit.limit -= 0.1f * Time.deltaTime;
+                limit.limit -= 0.2f * Time.deltaTime;
                 joints[i].linearLimit = limit;
                 if (limit.limit <= 0.01)
                 {
                     timer = false;
                     limit.limit = 0;
                     joints[i].linearLimit = limit;
+                    rb.drag = 3;
                 }
             }
         }
@@ -79,6 +83,7 @@ public class Weapon : MonoBehaviour {
         currentWeaponState = WEAPON_STATE.THROWN;
         SetWeaponState();
         Rigidbody rb = GetComponent<Rigidbody>();
+        rb.drag = 1;
         rb.AddForce((front + new Vector3(0,0.1f,0)) * weaponThrowForce * totalMass);
     }
 
@@ -163,7 +168,7 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                     SoftJointLimit limit = joints[i].linearLimit;
-                    limit.limit = 0.2f;
+                    limit.limit = 0.25f;
                     joints[i].linearLimit = limit;
 
                 }

@@ -79,7 +79,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1745737419211482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.31445, y: 20.832659, z: -13.879838}
+  m_LocalPosition: {x: 2.57, y: 0.5671119, z: -7.48}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1}
   m_Children:
   - {fileID: 4687623875210450}
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 0}
+  weaponThrowForce: 8000
   equipped: 0
   canTake: 0
   currentWeaponState: 0
@@ -416,7 +416,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.8, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.57, y: 0.43782514, z: -6.48}
+  m_ConnectedAnchor: {x: 2.57, y: -0.2328881, z: -7.48}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -427,7 +427,7 @@ ConfigurableJoint:
   m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 10000
-    damper: 10
+    damper: 100
   m_LinearLimit:
     limit: 1
     bounciness: 0.5
@@ -510,7 +510,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.15, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.57, y: 1.0878252, z: -6.48}
+  m_ConnectedAnchor: {x: 2.57, y: 0.4171119, z: -7.48}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -521,7 +521,7 @@ ConfigurableJoint:
   m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 10000
-    damper: 10
+    damper: 100
   m_LinearLimit:
     limit: 1
     bounciness: 0.5

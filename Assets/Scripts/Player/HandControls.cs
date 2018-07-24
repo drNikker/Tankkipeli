@@ -69,7 +69,7 @@ public class HandControls : MonoBehaviour {
             {
                 rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1RightHand * power * Time.deltaTime);
             }
-            Debug.DrawRay(transform.position, p1RightHand);
+            Debug.DrawRay(transform.position, Quaternion.Euler(playerObj.transform.rotation.eulerAngles)* p1RightHand);
         }
         else if (LRHand == "R" && guidingHand == true)
         {
@@ -81,7 +81,7 @@ public class HandControls : MonoBehaviour {
             {
                 rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1LeftHand * power * Time.deltaTime);
             }
-            Debug.DrawRay(transform.position, p1LeftHand, Color.red);
+            Debug.DrawRay(transform.position, Quaternion.Euler(playerObj.transform.rotation.eulerAngles)*p1LeftHand, Color.red);
         }
         else if (LRHand == "L" && guidingHand == true)
         {
@@ -135,7 +135,7 @@ public class HandControls : MonoBehaviour {
     IEnumerator MoveHand()
     {
         guidingHand = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         guidingHand = false;
     }
 
@@ -143,7 +143,7 @@ public class HandControls : MonoBehaviour {
     {
         guidingHand = true;
         otherHandScript.guidingHand = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         guidingHand = false;
         otherHandScript.guidingHand = false;
     }
@@ -178,7 +178,6 @@ public class HandControls : MonoBehaviour {
         joints[1].autoConfigureConnectedAnchor = false;
         joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
         script.Equip();*/
-
         equippedWeapon.transform.position = playerObj.transform.position + front * 1f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
@@ -332,11 +331,11 @@ public class HandControls : MonoBehaviour {
 
     public void ThrowWeapon()
     {
-        print("throwing");
         //weapon removal from hand
         SetStance(Weapon.Stance.NoStance);
         if (joints.Length == 2)
-        { otherHandScript.weaponInHand = false; }
+        { otherHandScript.weaponInHand = false;;
+        }
         weaponInHand = false;
         weapon = null;
         equippedWeapon = null;
