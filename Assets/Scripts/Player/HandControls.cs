@@ -73,7 +73,7 @@ public class HandControls : MonoBehaviour {
         }
         else if (LRHand == "R" && guidingHand == true)
         {
-            rb.MovePosition(transform.position + front * power * Time.deltaTime);
+            rb.MovePosition(transform.position + front * power*2 * Time.deltaTime);
         }
         else if (LRHand == "L" && guidingHand == false)
         {
@@ -85,7 +85,7 @@ public class HandControls : MonoBehaviour {
         }
         else if (LRHand == "L" && guidingHand == true)
         {
-            rb.MovePosition(transform.position + front * power * Time.deltaTime);
+            rb.MovePosition(transform.position + front * power*2 * Time.deltaTime);
         }
 
 
@@ -135,7 +135,7 @@ public class HandControls : MonoBehaviour {
     IEnumerator MoveHand()
     {
         guidingHand = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         guidingHand = false;
     }
 
@@ -143,7 +143,7 @@ public class HandControls : MonoBehaviour {
     {
         guidingHand = true;
         otherHandScript.guidingHand = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         guidingHand = false;
         otherHandScript.guidingHand = false;
     }
@@ -251,9 +251,10 @@ public class HandControls : MonoBehaviour {
                     otherLimit.limit = 90;
                     handJoint.swing2Limit = otherLimit;
                     otherHandJoint.swing2Limit = otherLimit;
+
                     t.rotation = Quaternion.Euler(0, 0, 0);
-                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(90, 0, 0);
-                    transform.rotation = t.rotation * Quaternion.Euler(90,0,0) ;
+               //     transform.rotation = t.rotation * Quaternion.Euler(0,0,0) ;
+                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(-90, 0, 0);
                     /*
                     transform.Rotate(-90,0,0);
                     otherHand.transform.Rotate(0,0,0);
@@ -286,8 +287,8 @@ public class HandControls : MonoBehaviour {
                      otherHandJoint.swing2Limit = limit;
 
 
-                     t.rotation = Quaternion.Euler(0,0,90);
-                     transform.rotation = t.rotation * Quaternion.Euler(0,0,0);
+                     t.rotation = Quaternion.Euler(0,0,0);
+                     //transform.rotation = t.rotation * Quaternion.Euler(0,0,0);
                      otherHand.transform.rotation = t.rotation * Quaternion.Euler(90,0,0);
                     break;
                 }

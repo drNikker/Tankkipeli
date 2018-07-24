@@ -80,11 +80,18 @@ public class MenuSelection : MonoBehaviour {
                     menu = false;
 
                 }
-  
-                if (option == 6) //Back to lobby
+
+                if (option == 5) //Back to lobby
                 {
-                    anim.SetBool("Menu", false);
-                    menu = false;
+                    anim.SetBool("SureMenu", true);
+
+                }
+
+
+                if (option == 6) //Quit Game
+                {
+                    anim.SetBool("SureQuit", true);
+                    
                 }
      
                 
