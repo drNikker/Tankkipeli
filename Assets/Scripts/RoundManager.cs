@@ -16,13 +16,17 @@ public class RoundManager : MonoBehaviour
     public GameObject playerPrefab3;
     public GameObject playerPrefab4;
     public GameObject startMenu;
-    public Image PointImage;
+
+    public Image ScoreAmount1;
+    public Image ScoreAmount2;
+    public Image ScoreAmount3;
+    public Image ScoreAmount4;
     int playersAlive;
 
     //bool randomMap = true;
     //bool mapSet = false;
-    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1f);
-    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 0);
+    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
+    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
     static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
     static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
     static Color Green = new Color(0, 0.1886792f, 0.0004195716f, 1);
@@ -236,7 +240,6 @@ public class RoundManager : MonoBehaviour
                 break;
 
             case StatHolder.Modes.TDM:
-
                 if (redPlayers.Count == 0)
                 {
                     StatHolder.TeamBlueWins += 1;
@@ -247,6 +250,12 @@ public class RoundManager : MonoBehaviour
                     StatHolder.TeamRedWins += 1;
                     whoWonText.text = "Team Red won the round";
                 }
+                ScoreAmount1.transform.parent.gameObject.SetActive(false);
+                ScoreAmount4.transform.parent.gameObject.SetActive(false);
+                ScoreAmount2.fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
+                ScoreAmount2.GetComponent<Image>().color = Blue;
+                ScoreAmount3.fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
+                ScoreAmount3.GetComponent<Image>().color = Red;
                 break;
         }
 
@@ -280,27 +289,27 @@ public class RoundManager : MonoBehaviour
                     break;
 
             }
-            for(int i = 0; i < StatHolder.Player1Wins; i++)
-            {
-                Image ScoreImage =  Instantiate(PointImage, roundWon.transform, false);
-                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, 50, 0);
-            }
-            for (int i = 0; i < StatHolder.Player2Wins; i++)
-            {
-                Image ScoreImage = Instantiate(PointImage, roundWon.transform, false);
-                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, -50, 0);
-            }
-            for (int i = 0; i < StatHolder.Player3Wins; i++)
-            {
-                Image ScoreImage = Instantiate(PointImage, roundWon.transform, false);
-                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, -150, 0);
-            }
-            for (int i = 0; i < StatHolder.Player4Wins; i++)
-            {
-                Image ScoreImage = Instantiate(PointImage, roundWon.transform, false);
-                ScoreImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(-100 + i * 100, -250, 0);
-            }
 
+            ScoreAmount1.fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
+            ScoreAmount1.GetComponent<Image>().color = colorSet[StatHolder.Player1Color];
+
+            ScoreAmount2.fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
+            ScoreAmount2.GetComponent<Image>().color = colorSet[StatHolder.Player2Color];
+            ScoreAmount3.transform.parent.gameObject.SetActive(false);
+            ScoreAmount4.transform.parent.gameObject.SetActive(false);
+            if (StatHolder.HowManyPlayers > 2)
+            {
+                ScoreAmount3.transform.parent.gameObject.SetActive(true);
+                ScoreAmount3.fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
+                ScoreAmount3.GetComponent<Image>().color = colorSet[StatHolder.Player3Color];
+
+                if (StatHolder.HowManyPlayers > 3)
+                {
+                    ScoreAmount4.transform.parent.gameObject.SetActive(true);
+                    ScoreAmount4.fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
+                    ScoreAmount4.GetComponent<Image>().color = colorSet[StatHolder.Player4Color];
+                }
+            }
 
         }
 

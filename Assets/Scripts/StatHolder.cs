@@ -1,12 +1,13 @@
 ﻿public static class StatHolder
 {
-    private static int player1Wins, player2Wins, player3Wins, player4Wins, howManyPlayers, roundNumber, witchSet, player1Color, player2Color, player3Color, player4Color, winsNeeded, teamRedWins, teamBlueWins;
+    private static int howManyPlayers, roundNumber, witchSet, player1Color, player2Color, player3Color, player4Color, teamRedWins, teamBlueWins;
+    private static float player1Wins, player2Wins, player3Wins, player4Wins, winsNeeded;
     public enum Modes { DM, TDM};
     public static Modes CurrentMode = Modes.DM;
 
 
 
-    public static int Player1Wins
+    public static float Player1Wins
     {
         get
         {
@@ -17,7 +18,7 @@
             player1Wins = value;
         }
     }
-    public static int Player2Wins
+    public static float Player2Wins
     {
         get
         {
@@ -28,7 +29,7 @@
             player2Wins = value;
         }
     }
-    public static int Player3Wins
+    public static float Player3Wins
     {
         get
         {
@@ -39,7 +40,7 @@
             player3Wins = value;
         }
     }
-    public static int Player4Wins
+    public static float Player4Wins
     {
         get
         {
@@ -84,7 +85,7 @@
         }
     }
 
-    public static int WinsNeeded
+    public static float WinsNeeded
     {
         get
         {
