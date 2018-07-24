@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-    Rigidbody weapon;
     WeaponDamage[] damageDealers;
-    public Transform weaponParent;
+    ConfigurableJoint[] joints;
 
     float baseCooldown = 2;
     float cooldown = 2;
     float totalMass;
+    public float weaponThrowForce = 8000;
 
+    bool timer = false;
     bool canEquip;
     [HideInInspector] public bool equipped;
     [HideInInspector] public bool canTake = false;
@@ -28,17 +29,38 @@ public class Weapon : MonoBehaviour {
         dropAnimation = GetComponent<Animator>();
         dropLight = GetComponent<Light>();
         damageDealers = GetComponentsInChildren<WeaponDamage>();
-        weapon = weaponParent.GetComponent<Rigidbody>();
+
         currentWeaponState = WEAPON_STATE.DROPPED;
         SetWeaponState();
-	}
+        joints = GetComponents<ConfigurableJoint>();
+    }
 
     private void Update()
     {
         if (currentWeaponState == WEAPON_STATE.THROWN && cooldown <= Time.time)
         {
             Dropped();
-            weaponParent.transform.position = new Vector3(weaponParent.transform.position.x, weaponParent.transform.position.y + 1, weaponParent.transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        }
+
+        if (timer == true)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+
+            rb.drag = 1000;
+            for (int i = 0; i < joints.Length; i++)
+            {
+                SoftJointLimit limit = joints[i].linearLimit;
+                limit.limit -= 0.2f * Time.deltaTime;
+                joints[i].linearLimit = limit;
+                if (limit.limit <= 0.01)
+                {
+                    timer = false;
+                    limit.limit = 0;
+                    joints[i].linearLimit = limit;
+                    rb.drag = 3;
+                }
+            }
         }
     }
 
@@ -60,8 +82,9 @@ public class Weapon : MonoBehaviour {
         cooldown = Time.time + baseCooldown;
         currentWeaponState = WEAPON_STATE.THROWN;
         SetWeaponState();
-        Rigidbody rb = weaponParent.GetComponent<Rigidbody>();
-        rb.AddForce((front + new Vector3(0,0.2f,0)) * 8000 * totalMass);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.drag = 1;
+        rb.AddForce((front + new Vector3(0,0.1f,0)) * weaponThrowForce * totalMass);
     }
 
     void GetMass()
@@ -92,19 +115,20 @@ public class Weapon : MonoBehaviour {
 
     IEnumerator CollidersOn()
     {
-        Collider[] colliders = weaponParent.GetComponentsInChildren<Collider>();
-        yield return new WaitForSeconds(0.4f);
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        yield return new WaitForSeconds(0.6f);
         for (int i = 1; i <= colliders.Length - 1; i++)
         {
             colliders[i].enabled = true;
         }
     }
 
+
     public void SetWeaponState()
     {
-        Collider[] colliders = weaponParent.GetComponentsInChildren<Collider>();
-        ConfigurableJoint[] joints = weaponParent.GetComponents<ConfigurableJoint>();
-        Rigidbody[] bodies = weaponParent.GetComponentsInChildren<Rigidbody>();
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        joints = GetComponents<ConfigurableJoint>();
+        Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
 
         switch (currentWeaponState)
         {
@@ -118,8 +142,8 @@ public class Weapon : MonoBehaviour {
                 {
                     joints[i].connectedBody = null;
                 }
-                weaponParent.GetComponent<BoxCollider>().enabled = true;
-                weaponParent.parent = null;
+                GetComponent<BoxCollider>().enabled = true;
+                transform.parent = null;
                 foreach (Rigidbody body in bodies)
                 {
                     body.isKinematic = true;
@@ -127,14 +151,14 @@ public class Weapon : MonoBehaviour {
                 }
                 dropLight.enabled = true;
                 dropAnimation.enabled = true;
-                weaponParent.transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 equipped = false;
 
                 break;
 
             case WEAPON_STATE.WIELDED:
                 canTake = false;
-                weaponParent.GetComponent<BoxCollider>().enabled = false;
+                GetComponent<BoxCollider>().enabled = false;
                 for (int i = 0; i < joints.Length; i++)
                 {
                     joints[i].xMotion = ConfigurableJointMotion.Limited;
@@ -143,6 +167,10 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularXMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
+                    SoftJointLimit limit = joints[i].linearLimit;
+                    limit.limit = 0.25f;
+                    joints[i].linearLimit = limit;
+
                 }
                 StartCoroutine("CollidersOn");
                 foreach (Rigidbody body in bodies)
@@ -157,7 +185,7 @@ public class Weapon : MonoBehaviour {
                 dropLight.enabled = false;
                 dropAnimation.enabled = false;
                 equipped = true;
-
+                timer = true;
                 break;
 
             case WEAPON_STATE.THROWN:
@@ -178,8 +206,8 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularZMotion = ConfigurableJointMotion.Free;
                     joints[i].autoConfigureConnectedAnchor = true;
                 }
-                weaponParent.GetComponent<BoxCollider>().enabled = true;
-                weaponParent.parent = null;
+                GetComponent<BoxCollider>().enabled = true;
+                transform.parent = null;
                 foreach (Rigidbody body in bodies)
                 {
                     body.isKinematic = false;

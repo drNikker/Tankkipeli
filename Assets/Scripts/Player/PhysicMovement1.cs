@@ -44,19 +44,19 @@ public class PhysicMovement1 : MonoBehaviour
     public float brakingForce;
     public float upRightCounter;
 
+    //"BOOLS" FOR PLAYER CONTROLS SWITCHING
+    //Controls which direction buttons rotate treads
     private int invertSpeed = 1;
+    //used to set invert speed
     public int invertSpeedBool = 0;
+
+    //switches left and right side buttons (triggers and bumpers)
     private int invertControls = 1;
-
-
-    float brakeTorqu;
-
-    [SerializeField]
-    float rightTread;
-    [SerializeField]
-    float leftTread;
-    [SerializeField]
-    float middleTread;
+    
+    private float brakeTorqu;
+    private float rightTread;
+    private float leftTread;
+    private float middleTread;
     public float wheelDamp;
 
     bool brakeRight = true;
@@ -72,8 +72,7 @@ public class PhysicMovement1 : MonoBehaviour
     private float originalBackToNormalTimerTime;
 
     public bool canMove;
-
-
+    
     new protected Rigidbody rigidbody;
 
     // Use this for initialization
@@ -92,9 +91,8 @@ public class PhysicMovement1 : MonoBehaviour
         originalBackToNormalTimerTime = backToNormalTimerTime;
 
         canMove = true;
-
-        SetInvertedSpeed();
         
+        SetControls();
 
         brakeTorqu = brakingForce;
         rb = GetComponent<Rigidbody>();
@@ -116,17 +114,14 @@ public class PhysicMovement1 : MonoBehaviour
         middleWheelCol2.wheelDampingRate = wheelDamp;
         middleWheelCol3.wheelDampingRate = wheelDamp;
     }
-
-
+    
     // Update is called once per frame
     void Update()
     {
 
         prevState = state;
         state = GamePad.GetState(playerIndex);
-
-        SetInvertedSpeed();
-
+        
         if (canMove)
         {
             if (invertControls == 0)
@@ -151,8 +146,7 @@ public class PhysicMovement1 : MonoBehaviour
 
         
     }
-
-
+    
     void KeyPress()
     {
         //Tread speed increase
@@ -266,11 +260,9 @@ public class PhysicMovement1 : MonoBehaviour
             }
         }
 
-        DebugMovementControls();
+        //DebugMovementControls();
     }
-
-
-
+    
     void KeyPressInvert()
     {
         //Tread speed increase
@@ -386,7 +378,7 @@ public class PhysicMovement1 : MonoBehaviour
             }
         }
 
-        DebugMovementControls();
+        //DebugMovementControls();
     }
 
     private void FixedUpdate()
@@ -532,49 +524,60 @@ public class PhysicMovement1 : MonoBehaviour
         }
     }
     
-    public void SetInvertedSpeed()
+    
+    //private void DebugMovementControls()
+    //{
+    //    //DEBUG INVERTS. REMOVED LATER
+    //    if (state.Buttons.X == ButtonState.Pressed && prevState.Buttons.X == ButtonState.Released)
+    //    {
+
+    //        if (invertSpeedBool == 1)
+    //        {
+    //            invertSpeedBool = 0;
+    //        }
+    //        else
+    //        {
+    //            invertSpeedBool = 1;
+    //        }
+
+    //        SetInvertedSpeed();
+    //    }
+
+    //    if (state.Buttons.Y == ButtonState.Pressed && prevState.Buttons.Y == ButtonState.Released)
+    //    {
+    //        if (invertControls == 1)
+    //        {
+    //            invertControls = 0;
+    //        }
+    //        else
+    //        {
+    //            invertControls = 1;
+    //        }
+
+    //    }
+    //}
+
+    public void SetControls()
     {
-        if (invertSpeedBool == 1)
+        if (playerIndex == PlayerIndex.One)
         {
-            invertSpeed = -1;
+            invertControls = PlayerPrefs.GetInt("P1_TurnDirPref_");
+            invertSpeed = PlayerPrefs.GetInt("P1_MoveDirPref_");
         }
-        else
+        else if (playerIndex == PlayerIndex.Two)
         {
-            invertSpeed = 1;
+            invertControls = PlayerPrefs.GetInt("P2_TurnDirPref_");
+            invertSpeed = PlayerPrefs.GetInt("P2_MoveDirPref_");
         }
-    }
-
-
-
-    private void DebugMovementControls()
-    {
-        //DEBUG INVERTS. REMOVED LATER
-        if (state.Buttons.X == ButtonState.Pressed && prevState.Buttons.X == ButtonState.Released)
+        else if (playerIndex == PlayerIndex.Three)
         {
-
-            if (invertSpeedBool == 1)
-            {
-                invertSpeedBool = 0;
-            }
-            else
-            {
-                invertSpeedBool = 1;
-            }
-
-            SetInvertedSpeed();
+            invertControls = PlayerPrefs.GetInt("P3_TurnDirPref_");
+            invertSpeed = PlayerPrefs.GetInt("P3_MoveDirPref_");
         }
-
-        if (state.Buttons.Y == ButtonState.Pressed && prevState.Buttons.Y == ButtonState.Released)
+        else if (playerIndex == PlayerIndex.Four)
         {
-            if (invertControls == 1)
-            {
-                invertControls = 0;
-            }
-            else
-            {
-                invertControls = 1;
-            }
-
+            invertControls = PlayerPrefs.GetInt("P4_TurnDirPref_");
+            invertSpeed = PlayerPrefs.GetInt("P4_MoveDirPref_");
         }
     }
 }

@@ -8,7 +8,7 @@ public class XInputJoin : MonoBehaviour {
 	public GameObject playerPrefab;
 	public GameObject playerInstance;
 
-	public GUIText text;
+	//public GUIText text;
 
 	uint lastPacketNumber;
 	float lastPacketTime;
@@ -22,7 +22,7 @@ public class XInputJoin : MonoBehaviour {
 			if( currentState.Buttons.A == ButtonState.Pressed){
 				playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, transform.rotation);
 				playerInstance.GetComponent<XCharacterController2D>().playerIndex = playerIndex;
-				text.enabled = false;
+				//text.enabled = false;
 			}
 		}
 		else{
@@ -30,7 +30,7 @@ public class XInputJoin : MonoBehaviour {
 			//destroy the player instance if the controller disconnects
 			if(currentState.IsConnected == false){
 				Destroy ( playerInstance );
-				text.enabled = true;
+				//text.enabled = true;
 				return;
 			}
 			else{
@@ -38,7 +38,7 @@ public class XInputJoin : MonoBehaviour {
 				//destroy the player instance if the player pushed the Back button
 				if(currentState.Buttons.Back == ButtonState.Pressed){
 					Destroy ( playerInstance );
-					text.enabled = true;
+					//text.enabled = true;
 					return;
 				}
 

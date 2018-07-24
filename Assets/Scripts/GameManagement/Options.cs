@@ -12,12 +12,18 @@ public class Options : MonoBehaviour
     
     public AudioMixer masterMixer;
 
+    //Settings menu textboxes
     public Text resoText;
     public Text framerateText;
     public Text windowMode;
     public Text masterVolText;
     public Text musicVolText;
     public Text sfxVolText;
+
+    //Controls menu textboxes
+    public Text playerText;
+    public Text moveDirText;
+    public Text turnDirText;
 
     private float masterVolFloat;
     private float musicVolFloat;
@@ -31,6 +37,8 @@ public class Options : MonoBehaviour
     private string musicVolumePref = "MusicVolPref_";
     private string sfxVolumePref = "SFXVolPref_";
     private string frameratePref = "FrameratePref_";
+    private string moveDirPref = "_MoveDirPref_";
+    private string turnDirPref = "_TurnDirPref_";
 
 
     private void Start()
@@ -48,10 +56,11 @@ public class Options : MonoBehaviour
         PlayerPrefs.SetFloat(sfxVolumePref, sfxVolFloat);
         PlayerPrefs.SetInt(frameratePref, targetFramerate);
         PlayerPrefs.SetInt(resolutionChoicePref, resoVar);
-        PlayerPrefs.Save();
 
         SetReso();
         Application.targetFrameRate = targetFramerate;
+
+        PlayerPrefs.Save();
 
     }
 
@@ -70,6 +79,7 @@ public class Options : MonoBehaviour
         targetFramerate = PlayerPrefs.GetInt(frameratePref, 30);
 
         SetTextBoxes();
+        SetControlOptions();
 
     }
 
@@ -301,10 +311,157 @@ public class Options : MonoBehaviour
         }
     }
 
+    // PLAYER SETTINGS
+    private void SetControlOptions()
+    {
+        
+        switch (playerText.text)
+        {
+            case "P1":
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                {
+                    moveDirText.text = "Bumpers/Triggers";
+                }
+                else
+                {
+                    moveDirText.text = "Triggers/Bumpers";
+                }
+
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                {
+                    turnDirText.text = "Inverted";
+                }
+                else
+                {
+                    turnDirText.text = "Normal";
+                }
+
+                break;
+            case "P2":
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                {
+                    moveDirText.text = "Bumpers/Triggers";
+                }
+                else
+                {
+                    moveDirText.text = "Triggers/Bumpers";
+                }
+
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                {
+                    turnDirText.text = "Inverted";
+                }
+                else
+                {
+                    turnDirText.text = "Normal";
+                }
+                break;
+            case "P3":
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                {
+                    moveDirText.text = "Bumpers/Triggers";
+                }
+                else
+                {
+                    moveDirText.text = "Triggers/Bumpers";
+                }
+
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                {
+                    turnDirText.text = "Inverted";
+                }
+                else
+                {
+                    turnDirText.text = "Normal";
+                }
+                break;
+            case "P4":
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                {
+                    moveDirText.text = "Bumpers/Triggers";
+                }
+                else
+                {
+                    moveDirText.text = "Triggers/Bumpers";
+                }
+
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                {
+                    turnDirText.text = "Inverted";
+                }
+                else
+                {
+                    turnDirText.text = "Normal";
+                }
+                break;
+        }
+        
+    }
+
+    public void ChangePlayerButton()
+    {
+        switch (playerText.text)
+        {
+            case "P1":
+                playerText.text = "P2";
+                break;
+            case "P2":
+                playerText.text = "P3";
+                break;
+            case "P3":
+                playerText.text = "P4";
+                break;
+            case "P4":
+                playerText.text = "P1";
+                break;
+        }
+        SetControlOptions();
+    }
     
 
-    
 
+    // PlayerPrefs.SetInt(resolutionChoicePref, resoVar);
+
+    public void MoveDirButton()
+    {
+        if (moveDirText.text == "Triggers/Bumpers")
+        {
+            moveDirText.text = "Bumpers/Triggers";
+            PlayerPrefs.SetInt(playerText.text + moveDirPref, 1);
+        }
+        else
+        {
+            moveDirText.text = "Triggers/Bumpers";
+
+            PlayerPrefs.SetInt(playerText.text + moveDirPref, -1);
+        }
+        SetplayerControls();
+    }
+
+    public void TurnDirButton()
+    {
+        if (turnDirText.text == "Normal")
+        {
+            turnDirText.text = "Inverted";
+            PlayerPrefs.SetInt(playerText.text + turnDirPref, 1);
+        }
+        else
+        {
+            turnDirText.text = "Normal";
+
+            PlayerPrefs.SetInt(playerText.text + turnDirPref, 0);
+        }
+        SetplayerControls();
+    }
+    
+    private void SetplayerControls()
+    {
+        PhysicMovement1[] PM1List = FindObjectsOfType<PhysicMovement1>();
+        foreach (PhysicMovement1 item in PM1List)
+        {
+            item.SetControls();
+        }
+    }
 
 
 }

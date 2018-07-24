@@ -9,8 +9,8 @@ public class MultiTargetCamera : MonoBehaviour {
 
 
     // Set camera limits to be the size of the play area in the inspector. When Game starts Initialize() 
-    [SerializeField] private float upperLimitX, lowerLimitX;
-    [SerializeField] private float upperLimitZ, lowerLimitZ;
+    [SerializeField] private float upperLimitX = 0, lowerLimitX  = 0;
+    [SerializeField] private float upperLimitZ = 0, lowerLimitZ = 0;
     [SerializeField] private bool showGizmos;
 
     // How long the object should shake for.

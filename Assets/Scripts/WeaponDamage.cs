@@ -9,7 +9,6 @@ public class WeaponDamage : MonoBehaviour
     PlayerHealth health;
     WeaponAudio weaponAudio;
     Rigidbody tankBase;
-    Rigidbody weapon;
     static Color color;
     static Color color2;
     public float baseDamage = 16;
@@ -38,7 +37,6 @@ public class WeaponDamage : MonoBehaviour
             weaponAudio = transform.root.GetComponent<WeaponAudio>();
         }
         
-        weapon = GetComponent<Rigidbody>();
     }
 
     void OnCollisionEnter(Collision collision)
