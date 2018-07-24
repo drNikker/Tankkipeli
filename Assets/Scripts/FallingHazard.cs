@@ -33,7 +33,6 @@ public class FallingHazard : MonoBehaviour
        StartCoroutine(SpawnObject());
     }
 
-
     // Update is called once per frame
     void Update()
     {

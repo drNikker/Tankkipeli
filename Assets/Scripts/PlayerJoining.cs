@@ -9,8 +9,8 @@ public class PlayerJoining : MonoBehaviour {
     MultiTargetCamera LevelCam;
 
     RoundManager roundManager;
-    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1f);
-    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 0);
+    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
+    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
     static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
     static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
     static Color Green = new Color(0, 0.1886792f, 0.0004195716f, 1);
