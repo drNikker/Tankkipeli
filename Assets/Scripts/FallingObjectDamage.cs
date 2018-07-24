@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spikes : MonoBehaviour
+public class FallingObjectDamage : MonoBehaviour
 {
 
     PlayerHealth health;
-    Rigidbody spikes;
+    Rigidbody rb;
     Rigidbody tankBase;
 
     public float baseDamage = 16;
@@ -14,30 +14,33 @@ public class Spikes : MonoBehaviour
     public float knockback = 400000;
     public ParticleSystem VFX;
     int finalDamageVFX;
+    private float startCooldown;
 
     float cooldown;
     float finalDamage;
+    private bool canDamage = true;
 
     void Start()
     {
-        spikes = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         VFX = GetComponent<ParticleSystem>();
+        startCooldown = Time.time + 2;
+        Destroy(gameObject, 60);
     }
 
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time)
+        if (collision.gameObject.tag == "Bodypart" && cooldown <= Time.time && canDamage)
         {
             health = FindHP(collision);
             tankBase = FindTank(collision);
 
-            finalDamage = baseDamage;       //Deal damage based on the damage values and the force of the impact
+            finalDamage = baseDamage * (rb.mass / 200) * (rb.velocity.magnitude / 5);       //Deal damage based on the damage values and the force of the impact
+            //Debug.Log(finalDamage + " THAT'S A LOTTA DAMAGE!");
             health.TakeDamage(finalDamage);                                  //Tells how much damage to deal
             Vector3 dir = collision.transform.position - transform.position;
             dir.y = 0;
-
-            Debug.Log("Cannonball Hit: " + finalDamage);
 
             tankBase.AddForce(dir.normalized * knockback);
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
@@ -45,10 +48,13 @@ public class Spikes : MonoBehaviour
             finalDamageVFX = Mathf.RoundToInt(finalDamage);
             VFX.startLifetime = (0.05f * finalDamageVFX);
             VFX.Emit(5 * finalDamageVFX);
+        } else if (rb.velocity.magnitude <= 1 && Time.time > startCooldown)
+        {
+            canDamage = false;
+            //Debug.Log("Physics object can't damage anymore");
         }
 
     }
-
 
     static PlayerHealth FindHP(Collision col)                  //Finds the players hp
     {
