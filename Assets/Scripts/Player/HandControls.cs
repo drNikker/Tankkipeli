@@ -164,20 +164,6 @@ public class HandControls : MonoBehaviour {
 
     void EquipTwoHands()
     {
-        /*equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
-        equippedWeapon.transform.parent = this.transform;
-        SetStance(script.stance);
-
-        t.rotation = transform.rotation * Quaternion.Euler(90, 0, 0);
-        joints[0].connectedBody = GetComponent<Rigidbody>();
-        joints[0].autoConfigureConnectedAnchor = false;
-        joints[0].connectedAnchor = new Vector3(offset, 0.1f, 0);
-
-        t.rotation = otherHand.transform.rotation * Quaternion.Euler(90, 0, 0);
-        joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
-        joints[1].autoConfigureConnectedAnchor = false;
-        joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
-        script.Equip();*/
         equippedWeapon.transform.position = playerObj.transform.position + front * 1f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
@@ -192,6 +178,15 @@ public class HandControls : MonoBehaviour {
         joints[1].autoConfigureConnectedAnchor = false;
         joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
         script.Equip();
+    }
+
+    void EquipFists()
+    {
+        equippedWeapon.transform.position = playerObj.transform.position + front * 1f;
+        equippedWeapon.transform.parent = this.transform;
+        SetStance(script.stance);
+
+        //jointit käteen
     }
 
     void OneHandingRestricting()
@@ -293,8 +288,7 @@ public class HandControls : MonoBehaviour {
                 }
             case Weapon.Stance.FistWeapon:
                 {
-                    t.Rotate(90,0,0);
-                    t.Rotate(0,180,0);
+                    //käännä aseet
                     break;
                 }
             default:
@@ -372,6 +366,17 @@ public class HandControls : MonoBehaviour {
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
                 offset = 0.04f;
+                StartCoroutine("MoveBothHands");
+                Invoke("EquipTwoHands", 0.2f);
+            }
+            else if (joints.Length == 0 && weaponInHand == false)
+            {
+                // nyrkit
+                script.canTake = false;
+                if (otherHandScript.weaponInHand == true)
+                { otherHandScript.DropWeapon(); }
+                weaponInHand = true;
+                otherHandScript.weaponInHand = true;
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);
             }
