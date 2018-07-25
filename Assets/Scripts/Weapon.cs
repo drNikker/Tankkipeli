@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour {
     WeaponDamage[] damageDealers;
     ConfigurableJoint[] joints;
 
-    float baseCooldown = 2;
+    float baseCooldown = 4;
     float cooldown = 2;
     float totalMass;
     public float weaponThrowForce = 8000;

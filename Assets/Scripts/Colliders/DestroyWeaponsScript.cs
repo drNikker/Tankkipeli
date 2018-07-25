@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyWeaponsScript : MonoBehaviour
 {
+    public float destroyTime;
 
     void Start()
     {
@@ -17,9 +18,9 @@ public class DestroyWeaponsScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent.tag == "Weapon")
+        if (other.gameObject.tag != null && other.gameObject.tag == "Weapon")
         {
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, destroyTime);
         }
     }
 }
