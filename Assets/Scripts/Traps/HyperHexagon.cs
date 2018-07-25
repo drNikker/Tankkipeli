@@ -46,6 +46,9 @@ public class HyperHexagon : MonoBehaviour
                 case "Untagged":
                     animator.SetTrigger("5");
                     break;
+                case "Car":
+                    animator.SetTrigger("6");
+                    break;
             }
 
             timerUntilDropTime = 0;

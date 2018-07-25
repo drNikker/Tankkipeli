@@ -35,7 +35,7 @@ public class SceneLoader : MonoBehaviour
         mapSet2.Add("QuadBridge");
         mapSet2.Add("BarrelRoll");
         mapSet2.Add("TheSlice");
-        // mapSet2.Add("CannonShuffle");
+        mapSet2.Add("CannonShuffle");
         mapSet2.Add("RotatingHoleInWall");
         //Map set 3
         mapSet3.Add("HyperHexagon");
@@ -45,12 +45,12 @@ public class SceneLoader : MonoBehaviour
         mapSet3.Add("TipTheScales");
         //Map set 4
         mapSet4.Add("Roof");
-        mapSet4.Add("SpinningBeams");
         mapSet4.Add("WreckingBall");
-        //mapSet4.Add("FallingShit");
-        mapSet4.Add("ConcreteMixer");
+        mapSet4.Add("FallingShit");
+        mapSet4.Add("SpinningBeams");
+        //mapSet4.Add("ConcreteMixer");
         //Map set 5
-        mapSet5.Add("Nascar");
+        //mapSet5.Add("Nascar");
        // mapSet5.Add("Smash");
     }
 
