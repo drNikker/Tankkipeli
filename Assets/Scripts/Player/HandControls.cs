@@ -199,8 +199,8 @@ public class HandControls : MonoBehaviour {
         SoftJointLimit armHighLimit = armJoint.highTwistLimit;
         SoftJointLimit elbowLowLimit = elbowJoint.lowTwistLimit;
         SoftJointLimit elbowHighLimit = elbowJoint.highTwistLimit;
-        armLowLimit.limit = -20;
-        armHighLimit.limit = -20;
+        armLowLimit.limit = 0;
+        armHighLimit.limit = 0;
         elbowLowLimit.limit = -20;
         elbowHighLimit.limit = 0;
         armJoint.lowTwistLimit = armLowLimit;
@@ -217,19 +217,25 @@ public class HandControls : MonoBehaviour {
             case Weapon.Stance.NoStance:
                 {
                     Transform arm = transform.parent.parent;
+                    Transform elbow = transform.parent;
                     CharacterJoint handJoint = GetComponent<CharacterJoint>();
-                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
                     CharacterJoint armJoint = arm.GetComponent<CharacterJoint>();
+                    CharacterJoint elbowJoint = elbow.GetComponent<CharacterJoint>();
                     SoftJointLimit limit = handJoint.swing2Limit;
                     SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
                     SoftJointLimit armHighLimit = armJoint.highTwistLimit;
+                    SoftJointLimit elbowLowLimit = elbowJoint.lowTwistLimit;
+                    SoftJointLimit elbowHighLimit = elbowJoint.highTwistLimit;
                     limit.limit = 0;
-                    armLowLimit.limit = 90;
-                    armHighLimit.limit = 0;
+                    armLowLimit.limit = -70;
+                    armHighLimit.limit = 50;
+                    elbowLowLimit.limit = -90;
+                    elbowHighLimit.limit = 0;
                     handJoint.swing2Limit = limit;
-                    otherHandJoint.swing2Limit = limit;
                     armJoint.lowTwistLimit = armLowLimit;
                     armJoint.highTwistLimit = armHighLimit;
+                    elbowJoint.lowTwistLimit = elbowLowLimit;
+                    elbowJoint.highTwistLimit = elbowHighLimit;
                     break;
                 }
             case Weapon.Stance.OneHanded:
@@ -344,7 +350,8 @@ public class HandControls : MonoBehaviour {
         //weapon removal from hand
         SetStance(Weapon.Stance.NoStance);
         if (joints.Length == 2)
-        { otherHandScript.weaponInHand = false;;
+        { otherHandScript.weaponInHand = false;
+            otherHandScript.SetStance(Weapon.Stance.NoStance);
         }
         weaponInHand = false;
         weapon = null;
