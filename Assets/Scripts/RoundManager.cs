@@ -210,7 +210,7 @@ public class RoundManager : MonoBehaviour
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
         //Add a win to the player/team who won the round and announce that winner
-        int c = 5;
+        //int c = 5;
         switch (StatHolder.CurrentMode)
         {
             case StatHolder.Modes.DM:
@@ -219,24 +219,50 @@ public class RoundManager : MonoBehaviour
                 {
                     case "Player1(Clone)":
                         StatHolder.Player1Wins += 1;
-                        c = StatHolder.Player1Color;
+                        whoWonText.text = "Red player won the round";
+                        //c = StatHolder.Player1Color;
                         break;
                     case "Player2(Clone)":
                         StatHolder.Player2Wins += 1;
-                        c = StatHolder.Player2Color;
+                        whoWonText.text = "Blue player won the round";
+                        //c = StatHolder.Player2Color;
                         break;
                     case "Player3(Clone)":
                         StatHolder.Player3Wins += 1;
-                        c = StatHolder.Player3Color;
+                        whoWonText.text = "Cyan player won the round";
+                        //c = StatHolder.Player3Color;
                         break;
                     case "Player4(Clone)":
                         StatHolder.Player4Wins += 1;
-                        c = StatHolder.Player4Color;
+                        whoWonText.text = "Yellow player won the round";
+                        //c = StatHolder.Player4Color;
                         break;
                     default:
                         print("This should never happen");
                         break;
                 }
+                //if color change comes back delete the below since other code below adresses this. From here...
+                ScoreAmount1.fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
+                ScoreAmount1.GetComponent<Image>().color = Red;
+
+                ScoreAmount2.fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
+                ScoreAmount2.GetComponent<Image>().color = Blue;
+                ScoreAmount3.transform.parent.gameObject.SetActive(false);
+                ScoreAmount4.transform.parent.gameObject.SetActive(false);
+                if (StatHolder.HowManyPlayers > 2)
+                {
+                    ScoreAmount3.transform.parent.gameObject.SetActive(true);
+                    ScoreAmount3.fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
+                    ScoreAmount3.GetComponent<Image>().color = Cyan;
+
+                    if (StatHolder.HowManyPlayers > 3)
+                    {
+                        ScoreAmount4.transform.parent.gameObject.SetActive(true);
+                        ScoreAmount4.fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
+                        ScoreAmount4.GetComponent<Image>().color = Yellow;
+                    }
+                }
+                //...to here
                 break;
 
             case StatHolder.Modes.TDM:
@@ -259,59 +285,59 @@ public class RoundManager : MonoBehaviour
                 break;
         }
 
-        if (StatHolder.CurrentMode == StatHolder.Modes.DM)
-        {
-            switch(c)
-            {
-                case 0:
-                    whoWonText.text = "Red player won the round";
-                    break;
-                case 1:
-                    whoWonText.text = "Blue player won the round";
-                    break;
-                case 2:
-                    whoWonText.text = "Cyan player won the round";
-                    break;
-                case 3:
-                    whoWonText.text = "Yellow player won the round";
-                    break;
-                case 4:
-                    whoWonText.text = "Green player won the round";
-                    break;
-                case 5:
-                    whoWonText.text = "Purple player won the round";
-                    break;
-                case 6:
-                    whoWonText.text = "Orange player won the round";
-                    break;
-                case 7:
-                    whoWonText.text = "Lime player won the round";
-                    break;
+        //if (StatHolder.CurrentMode == StatHolder.Modes.DM)
+        //{
+        //    switch(c)
+        //    {
+        //        case 0:
+        //            whoWonText.text = "Red player won the round";
+        //            break;
+        //        case 1:
+        //            whoWonText.text = "Blue player won the round";
+        //            break;
+        //        case 2:
+        //            whoWonText.text = "Cyan player won the round";
+        //            break;
+        //        case 3:
+        //            whoWonText.text = "Yellow player won the round";
+        //            break;
+        //        case 4:
+        //            whoWonText.text = "Green player won the round";
+        //            break;
+        //        case 5:
+        //            whoWonText.text = "Purple player won the round";
+        //            break;
+        //        case 6:
+        //            whoWonText.text = "Orange player won the round";
+        //            break;
+        //        case 7:
+        //            whoWonText.text = "Lime player won the round";
+        //            break;
 
-            }
+        //    }
 
-            ScoreAmount1.fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
-            ScoreAmount1.GetComponent<Image>().color = colorSet[StatHolder.Player1Color];
+        //    ScoreAmount1.fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
+        //    ScoreAmount1.GetComponent<Image>().color = colorSet[StatHolder.Player1Color];
 
-            ScoreAmount2.fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
-            ScoreAmount2.GetComponent<Image>().color = colorSet[StatHolder.Player2Color];
-            ScoreAmount3.transform.parent.gameObject.SetActive(false);
-            ScoreAmount4.transform.parent.gameObject.SetActive(false);
-            if (StatHolder.HowManyPlayers > 2)
-            {
-                ScoreAmount3.transform.parent.gameObject.SetActive(true);
-                ScoreAmount3.fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
-                ScoreAmount3.GetComponent<Image>().color = colorSet[StatHolder.Player3Color];
+        //    ScoreAmount2.fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
+        //    ScoreAmount2.GetComponent<Image>().color = colorSet[StatHolder.Player2Color];
+        //    ScoreAmount3.transform.parent.gameObject.SetActive(false);
+        //    ScoreAmount4.transform.parent.gameObject.SetActive(false);
+        //    if (StatHolder.HowManyPlayers > 2)
+        //    {
+        //        ScoreAmount3.transform.parent.gameObject.SetActive(true);
+        //        ScoreAmount3.fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
+        //        ScoreAmount3.GetComponent<Image>().color = colorSet[StatHolder.Player3Color];
 
-                if (StatHolder.HowManyPlayers > 3)
-                {
-                    ScoreAmount4.transform.parent.gameObject.SetActive(true);
-                    ScoreAmount4.fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
-                    ScoreAmount4.GetComponent<Image>().color = colorSet[StatHolder.Player4Color];
-                }
-            }
+        //        if (StatHolder.HowManyPlayers > 3)
+        //        {
+        //            ScoreAmount4.transform.parent.gameObject.SetActive(true);
+        //            ScoreAmount4.fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
+        //            ScoreAmount4.GetComponent<Image>().color = colorSet[StatHolder.Player4Color];
+        //        }
+        //    }
 
-        }
+        //}
 
         roundWon.SetActive(true);
 
@@ -323,33 +349,51 @@ public class RoundManager : MonoBehaviour
             {
                 case StatHolder.Modes.DM:
 
-                    switch (c)
+                    switch (alivePlayers[0].name)
                     {
-                        case 0:
+                        case "Player1(Clone)":
                             whoWonText.text = "Red player won the game";
                             break;
-                        case 1:
+                        case "Player2(Clone)":
                             whoWonText.text = "Blue player won the game";
                             break;
-                        case 2:
+                        case "Player3(Clone)":
                             whoWonText.text = "Cyan player won the game";
                             break;
-                        case 3:
+                        case "Player4(Clone)":
                             whoWonText.text = "Yellow player won the game";
                             break;
-                        case 4:
-                            whoWonText.text = "Green player won the game";
-                            break;
-                        case 5:
-                            whoWonText.text = "Purple player won the game";
-                            break;
-                        case 6:
-                            whoWonText.text = "Orange player won the game";
-                            break;
-                        case 7:
-                            whoWonText.text = "Lime player won the game";
+                        default:
+                            print("This should never happen");
                             break;
                     }
+                    //switch (c)
+                    //{
+                    //    case 0:
+                    //        whoWonText.text = "Red player won the game";
+                    //        break;
+                    //    case 1:
+                    //        whoWonText.text = "Blue player won the game";
+                    //        break;
+                    //    case 2:
+                    //        whoWonText.text = "Cyan player won the game";
+                    //        break;
+                    //    case 3:
+                    //        whoWonText.text = "Yellow player won the game";
+                    //        break;
+                    //    case 4:
+                    //        whoWonText.text = "Green player won the game";
+                    //        break;
+                    //    case 5:
+                    //        whoWonText.text = "Purple player won the game";
+                    //        break;
+                    //    case 6:
+                    //        whoWonText.text = "Orange player won the game";
+                    //        break;
+                    //    case 7:
+                    //        whoWonText.text = "Lime player won the game";
+                    //        break;
+                    //}
                     break;
 
                 case StatHolder.Modes.TDM:
