@@ -30,8 +30,14 @@ public class CannonBall : MonoBehaviour
     
     private bool generateNewRandom;
 
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         cannonBalls = new GameObject[sizeOfTheList];
 
         randomedCannonBallPositionX = 0;
@@ -108,8 +114,14 @@ public class CannonBall : MonoBehaviour
         if (currentCannonBallTimer <= 0)
         {
             SpawnCannonBalls();
-
+            playSound();
             currentCannonBallTimer = cannonBallTimerTime;
         }
+    }
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[2];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }
