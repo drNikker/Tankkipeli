@@ -68,12 +68,15 @@ public class CannonBall : MonoBehaviour
 
                 while (generateNewRandom)
                 {
-                    pickRandomPositionX = Random.Range(cannonBallPositionMinX, cannonBallPositionMaxX);
 
                     if (randomedCannonBallPositionX != pickRandomPositionX)
                     {
                         //Debug.Log("jou uutta randomia generatee");
                         generateNewRandom = false;
+                    }
+                    else
+                    {
+                        pickRandomPositionX = Random.Range(cannonBallPositionMinX, cannonBallPositionMaxX);
                     }
                 }
             }
@@ -86,17 +89,21 @@ public class CannonBall : MonoBehaviour
 
                 while (generateNewRandom)
                 {
-                    pickRandomPositionZ = Random.Range(cannonBallPositionMinZ, cannonBallPositionMaxZ);
 
                     if (randomedCannonBallPositionZ != pickRandomPositionZ)
                     {
                         //Debug.Log("jou uutta randomia generatee");
                         generateNewRandom = false;
                     }
+                    else
+                    {
+                        pickRandomPositionZ = Random.Range(cannonBallPositionMinZ, cannonBallPositionMaxZ);
+                    }
                 }
             }
 
-            randomedCannonBallPositionX = pickRandomPositionX;
+            //randomedCannonBallPositionX = pickRandomPositionX;
+            //randomedCannonBallPositionZ = pickRandomPositionZ;
 
             cannonBallPosition = new Vector3(pickRandomPositionX, cannonBallPositionY, pickRandomPositionZ);
 

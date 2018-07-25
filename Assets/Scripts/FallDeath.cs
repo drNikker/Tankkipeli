@@ -8,7 +8,6 @@ public class FallDeath : MonoBehaviour
     {
         if (other.tag == "Bodypart")
         {
-            other.transform.root.gameObject.GetComponent<PlayerHealth>().KillPlayer();
             //Debug.Log("lol");
         }
     }
