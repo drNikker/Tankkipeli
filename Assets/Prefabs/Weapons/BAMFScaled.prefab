@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672936990165786}
   m_LocalRotation: {x: -0.00000009735359, y: -1.1102229e-16, z: 1.1102229e-16, w: 1}
-  m_LocalPosition: {x: -3.5297294, y: 20.832659, z: -11.986589}
+  m_LocalPosition: {x: -0.227, y: 0.344, z: -6.373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4498516672186328}
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4367140983902150}
+  weaponThrowForce: 8000
   equipped: 0
   canTake: 0
   currentWeaponState: 0
@@ -414,7 +414,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 4.5808463, y: 7.4154687, z: -12.617643}
+  m_ConnectedAnchor: {x: -0.227, y: 0.344, z: -6.373}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -567,7 +567,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

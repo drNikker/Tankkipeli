@@ -164,20 +164,6 @@ public class HandControls : MonoBehaviour {
 
     void EquipTwoHands()
     {
-        /*equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
-        equippedWeapon.transform.parent = this.transform;
-        SetStance(script.stance);
-
-        t.rotation = transform.rotation * Quaternion.Euler(90, 0, 0);
-        joints[0].connectedBody = GetComponent<Rigidbody>();
-        joints[0].autoConfigureConnectedAnchor = false;
-        joints[0].connectedAnchor = new Vector3(offset, 0.1f, 0);
-
-        t.rotation = otherHand.transform.rotation * Quaternion.Euler(90, 0, 0);
-        joints[1].connectedBody = otherHand.GetComponent<Rigidbody>();
-        joints[1].autoConfigureConnectedAnchor = false;
-        joints[1].connectedAnchor = new Vector3(-offset, 0.1f, 0);
-        script.Equip();*/
         equippedWeapon.transform.position = playerObj.transform.position + front * 1f;
         equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
@@ -194,16 +180,33 @@ public class HandControls : MonoBehaviour {
         script.Equip();
     }
 
+    void EquipFists()
+    {
+        equippedWeapon.transform.position = playerObj.transform.position + front * 1f;
+        equippedWeapon.transform.parent = this.transform;
+        SetStance(script.stance);
+
+        //jointit käteen
+    }
+
     void OneHandingRestricting()
     {
         Transform arm = transform.parent.parent;
+        Transform elbow = transform.parent;
         CharacterJoint armJoint = arm.GetComponent<CharacterJoint>();
+        CharacterJoint elbowJoint = elbow.GetComponent<CharacterJoint>();
         SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
         SoftJointLimit armHighLimit = armJoint.highTwistLimit;
+        SoftJointLimit elbowLowLimit = elbowJoint.lowTwistLimit;
+        SoftJointLimit elbowHighLimit = elbowJoint.highTwistLimit;
         armLowLimit.limit = -20;
-        armHighLimit.limit = 0;
+        armHighLimit.limit = -20;
+        elbowLowLimit.limit = -20;
+        elbowHighLimit.limit = 0;
         armJoint.lowTwistLimit = armLowLimit;
         armJoint.highTwistLimit = armHighLimit;
+        elbowJoint.lowTwistLimit = elbowLowLimit;
+        elbowJoint.highTwistLimit = elbowHighLimit;
     }
 
     void SetStance(Weapon.Stance stance)
@@ -221,8 +224,8 @@ public class HandControls : MonoBehaviour {
                     SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
                     SoftJointLimit armHighLimit = armJoint.highTwistLimit;
                     limit.limit = 0;
-                    armLowLimit.limit = -70;
-                    armHighLimit.limit = 50;
+                    armLowLimit.limit = 90;
+                    armHighLimit.limit = 0;
                     handJoint.swing2Limit = limit;
                     otherHandJoint.swing2Limit = limit;
                     armJoint.lowTwistLimit = armLowLimit;
@@ -293,26 +296,31 @@ public class HandControls : MonoBehaviour {
                 }
             case Weapon.Stance.FistWeapon:
                 {
-                    t.Rotate(90,0,0);
-                    t.Rotate(0,180,0);
+                    //käännä aseet
                     break;
                 }
             default:
                 {
                     Transform arm = transform.parent.parent;
+                    Transform elbow = transform.parent;
                     CharacterJoint handJoint = GetComponent<CharacterJoint>();
-                    CharacterJoint otherHandJoint = otherHand.GetComponent<CharacterJoint>();
                     CharacterJoint armJoint = arm.GetComponent<CharacterJoint>();
+                    CharacterJoint elbowJoint = elbow.GetComponent<CharacterJoint>();
                     SoftJointLimit limit = handJoint.swing2Limit;
                     SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
                     SoftJointLimit armHighLimit = armJoint.highTwistLimit;
+                    SoftJointLimit elbowLowLimit = elbowJoint.lowTwistLimit;
+                    SoftJointLimit elbowHighLimit = elbowJoint.highTwistLimit;
                     limit.limit = 0;
                     armLowLimit.limit = -70;
                     armHighLimit.limit = 50;
+                    elbowLowLimit.limit = -90;
+                    elbowHighLimit.limit = 0;
                     handJoint.swing2Limit = limit;
-                    otherHandJoint.swing2Limit = limit;
                     armJoint.lowTwistLimit = armLowLimit;
                     armJoint.highTwistLimit = armHighLimit;
+                    elbowJoint.lowTwistLimit = elbowLowLimit;
+                    elbowJoint.highTwistLimit = elbowHighLimit;
                     break;
                 }
         }
@@ -323,7 +331,9 @@ public class HandControls : MonoBehaviour {
         script.Dropped();
         SetStance(Weapon.Stance.NoStance);
         if (joints.Length == 2)
-        { otherHandScript.weaponInHand = false; }
+        { otherHandScript.weaponInHand = false;
+            otherHandScript.SetStance(Weapon.Stance.NoStance);
+        }
         weaponInHand = false;
         weapon = null;
         equippedWeapon = null;
@@ -372,6 +382,17 @@ public class HandControls : MonoBehaviour {
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
                 offset = 0.04f;
+                StartCoroutine("MoveBothHands");
+                Invoke("EquipTwoHands", 0.2f);
+            }
+            else if (joints.Length == 0 && weaponInHand == false)
+            {
+                // nyrkit
+                script.canTake = false;
+                if (otherHandScript.weaponInHand == true)
+                { otherHandScript.DropWeapon(); }
+                weaponInHand = true;
+                otherHandScript.weaponInHand = true;
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);
             }
