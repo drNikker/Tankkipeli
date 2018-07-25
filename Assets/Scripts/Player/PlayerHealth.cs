@@ -45,24 +45,24 @@ public class PlayerHealth : MonoBehaviour
     void SetColor()
     {
         GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
-        switch (player.name)
-        {
-            case "Player1(Clone)":
-                color = colorSet[StatHolder.Player1Color];
-                break;
-            case "Player2(Clone)":
-                color = colorSet[StatHolder.Player2Color];
-                break;
-            case "Player3(Clone)":
-                color = colorSet[StatHolder.Player3Color];
-                break;
-            case "Player4(Clone)":
-                color = colorSet[StatHolder.Player4Color];
-                break;
-            default:
-                color = Color.cyan;
-                break;
-        }
+        //switch (player.name)
+        //{
+        //    case "Player1(Clone)":
+        //        color = colorSet[StatHolder.Player1Color];
+        //        break;
+        //    case "Player2(Clone)":
+        //        color = colorSet[StatHolder.Player2Color];
+        //        break;
+        //    case "Player3(Clone)":
+        //        color = colorSet[StatHolder.Player3Color];
+        //        break;
+        //    case "Player4(Clone)":
+        //        color = colorSet[StatHolder.Player4Color];
+        //        break;
+        //    default:
+        //        color = Color.cyan;
+        //        break;
+        //}
 
         if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
         {
@@ -70,17 +70,18 @@ public class PlayerHealth : MonoBehaviour
             {
                 roundManager.bluePlayers.Add(this.gameObject);
             }
-            else if(color == Red)
+            else if (color == Red)
             {
                 roundManager.redPlayers.Add(this.gameObject);
             }
-        }
-        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-        rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", color);
-        rend[0].SetPropertyBlock(_propBlock);
-        rend[3].SetPropertyBlock(_propBlock);
+            //}
+            MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+            Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+            rend[0].GetPropertyBlock(_propBlock);
+            _propBlock.SetColor("_Color", color);
+            rend[0].SetPropertyBlock(_propBlock);
+            rend[3].SetPropertyBlock(_propBlock);
+        }//change this to the upper commented one if color change system comes back
 
     }
 
