@@ -262,25 +262,25 @@ public class PlayerJoining : MonoBehaviour {
 
     IEnumerator Player1Joined()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         wait1 = false;
         joined1 = true;
     }
     IEnumerator Player2Joined()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         wait2 = false;
         joined2 = true;
     }
     IEnumerator Player3Joined()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         wait3 = false;
         joined3 = true;
     }
     IEnumerator Player4Joined()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         wait4 = false;
         joined4 = true;
     }
