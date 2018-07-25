@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 224637632801939738}
   - component: {fileID: 222403314433504622}
   - component: {fileID: 114909787517954342}
+  - component: {fileID: 114376650148461264}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -343,7 +344,6 @@ GameObject:
   - component: {fileID: 224058474091048802}
   - component: {fileID: 222968902955137682}
   - component: {fileID: 114189198475477666}
-  - component: {fileID: 114552160502209984}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -1996,6 +1996,7 @@ GameObject:
   - component: {fileID: 224612226976635532}
   - component: {fileID: 222239234212702474}
   - component: {fileID: 114838646385314884}
+  - component: {fileID: 114820164364317038}
   m_Layer: 5
   m_Name: Quit2
   m_TagString: Untagged
@@ -2711,7 +2712,6 @@ GameObject:
   - component: {fileID: 224631087965254964}
   - component: {fileID: 222136706194253634}
   - component: {fileID: 114486306567665660}
-  - component: {fileID: 114269799058721402}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -7246,17 +7246,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114269799058721402
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581818779905352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e999798c9723b42911f49b0f787ba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114273191847065340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8053,6 +8042,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114376650148461264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1001177026541114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e999798c9723b42911f49b0f787ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114379678263152828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8414,6 +8414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterMixer: {fileID: 24100000, guid: 1cb113691e2a58b42afb10f17db4b139, type: 2}
+  anim: {fileID: 95682640782098640}
   resoText: {fileID: 114485322777441664}
   framerateText: {fileID: 114276051797509712}
   windowMode: {fileID: 114258998931141350}
@@ -9523,17 +9524,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114552160502209984
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1069254686526058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e999798c9723b42911f49b0f787ba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114554734053908058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10558,13 +10548,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 95682640782098640}
   option: 0
+  menu: 0
+  inputLock: 6
   menuLists:
   - {fileID: 114361492612907280}
   - {fileID: 114961119029437974}
   - {fileID: 114548964762564670}
   - {fileID: 114978993834546046}
-  - {fileID: 114552160502209984}
-  - {fileID: 114269799058721402}
+  - {fileID: 114820164364317038}
+  - {fileID: 114376650148461264}
+  rightList: {fileID: 0}
 --- !u!114 &114669301726120670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10630,7 +10623,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114881860450999468}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114663569355490746}
+        m_MethodName: MenuButtonNo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114676223112878404
@@ -11800,6 +11804,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114820164364317038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1413466352562592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e999798c9723b42911f49b0f787ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114824696064359368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11892,7 +11907,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114197441370432008}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114418333933646490}
+        m_MethodName: MenuButtonYes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114835667091555402
@@ -12234,7 +12260,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114620512004939534}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114663569355490746}
+        m_MethodName: QuitButtonNo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114867868385473738
@@ -12746,7 +12783,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114312175203952240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114418333933646490}
+        m_MethodName: QuitButtonYes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114914775524839376
@@ -15160,7 +15208,7 @@ RectTransform:
   - {fileID: 224809118863429572}
   - {fileID: 224214899915351140}
   m_Father: {fileID: 224192603038486242}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45.000004}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15378,7 +15426,7 @@ RectTransform:
   m_Children:
   - {fileID: 224734324371133508}
   m_Father: {fileID: 224192603038486242}
-  m_RootOrder: 8
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -16141,15 +16189,15 @@ RectTransform:
   - {fileID: 224792182870433550}
   - {fileID: 224688221161414856}
   - {fileID: 224504274414769322}
-  - {fileID: 224058474091048802}
-  - {fileID: 224631087965254964}
-  - {fileID: 4434147021646264}
-  - {fileID: 224448693637569254}
-  - {fileID: 224381864860466410}
-  - {fileID: 224026288592230836}
-  - {fileID: 224104476862879768}
   - {fileID: 224612226976635532}
   - {fileID: 224637632801939738}
+  - {fileID: 4434147021646264}
+  - {fileID: 224026288592230836}
+  - {fileID: 224448693637569254}
+  - {fileID: 224381864860466410}
+  - {fileID: 224104476862879768}
+  - {fileID: 224058474091048802}
+  - {fileID: 224631087965254964}
   m_Father: {fileID: 4349340458159192}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16628,7 +16676,7 @@ RectTransform:
   m_Children:
   - {fileID: 224024778474311604}
   m_Father: {fileID: 224637632801939738}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17294,7 +17342,7 @@ RectTransform:
   m_LocalScale: {x: 1.0341451, y: 1.034145, z: 1.034145}
   m_Children: []
   m_Father: {fileID: 224192603038486242}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -17313,7 +17361,7 @@ RectTransform:
   m_Children:
   - {fileID: 224976547062554656}
   m_Father: {fileID: 224637632801939738}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17622,7 +17670,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224192603038486242}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17641,7 +17689,7 @@ RectTransform:
   m_Children:
   - {fileID: 224440713637746652}
   m_Father: {fileID: 224612226976635532}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17791,7 +17839,7 @@ RectTransform:
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_Children: []
   m_Father: {fileID: 224637632801939738}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18370,7 +18418,7 @@ RectTransform:
   m_Children:
   - {fileID: 224674259174201598}
   m_Father: {fileID: 224612226976635532}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18424,11 +18472,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.36, y: 0.36, z: 0.36}
   m_Children:
-  - {fileID: 224952115696115012}
   - {fileID: 224453358122103806}
   - {fileID: 224597105290450978}
+  - {fileID: 224952115696115012}
   m_Father: {fileID: 224192603038486242}
-  m_RootOrder: 15
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -18519,7 +18567,7 @@ RectTransform:
   m_Children:
   - {fileID: 224056054940149312}
   m_Father: {fileID: 224192603038486242}
-  m_RootOrder: 9
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -18554,11 +18602,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.36000404, y: 0.36000404, z: 0.36000404}
   m_Children:
-  - {fileID: 224493135994946932}
   - {fileID: 224261756367486554}
   - {fileID: 224383552686187474}
+  - {fileID: 224493135994946932}
   m_Father: {fileID: 224192603038486242}
-  m_RootOrder: 16
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -19951,7 +19999,7 @@ RectTransform:
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_Children: []
   m_Father: {fileID: 224612226976635532}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
