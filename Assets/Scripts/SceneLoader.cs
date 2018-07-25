@@ -26,29 +26,29 @@ public class SceneLoader : MonoBehaviour
         roundManager = gameObject.GetComponent<RoundManager>();
 
         ////Map set 1
-        mapSet1.Add("2310");
         mapSet1.Add("9999");
+        mapSet1.Add("2310");
         mapSet1.Add("FlipperBox");
         mapSet1.Add("TheDefault");
         mapSet1.Add("WeaponThrow");
         //Map set 2
-        mapSet2.Add("BarrelRoll");
-       // mapSet2.Add("CannonShuffle");
         mapSet2.Add("QuadBridge");
-        mapSet2.Add("RotatingHoleInWall");
+        mapSet2.Add("BarrelRoll");
         mapSet2.Add("TheSlice");
+        // mapSet2.Add("CannonShuffle");
+        mapSet2.Add("RotatingHoleInWall");
         //Map set 3
-        mapSet3.Add("Checkers");
-        mapSet3.Add("CrushingWall");
         mapSet3.Add("HyperHexagon");
         mapSet3.Add("Rotat-o-Maze");
+        mapSet3.Add("Checkers");
+        mapSet3.Add("CrushingWall");
         mapSet3.Add("TipTheScales");
         //Map set 4
         mapSet4.Add("Roof");
         mapSet4.Add("SpinningBeams");
+        mapSet4.Add("WreckingBall");
         //mapSet4.Add("FallingShit");
         mapSet4.Add("ConcreteMixer");
-        mapSet4.Add("WreckingBall");
         //Map set 5
         mapSet5.Add("Nascar");
        // mapSet5.Add("Smash");
