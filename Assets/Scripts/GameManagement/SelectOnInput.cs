@@ -33,9 +33,6 @@ public class SelectOnInput : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-        
-
         P1prevState = P1state;
         P2prevState = P2state;
         P3prevState = P3state;
@@ -46,9 +43,8 @@ public class SelectOnInput : MonoBehaviour {
         P4state = GamePad.GetState(PlayerIndex.Four);
 
         //Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false
-
-
-        if ((P1state.DPad.Down == ButtonState.Pressed && P1prevState.DPad.Down == ButtonState.Released) || (P2state.DPad.Down == ButtonState.Pressed && P2prevState.DPad.Down == ButtonState.Released) || (P3state.DPad.Down == ButtonState.Pressed && P3prevState.DPad.Down == ButtonState.Released) || (P4state.DPad.Down == ButtonState.Pressed && P4prevState.DPad.Down == ButtonState.Released))
+        
+        if (Input.GetKeyDown(KeyCode.DownArrow) || (P1state.DPad.Down == ButtonState.Pressed && P1prevState.DPad.Down == ButtonState.Released) || (P2state.DPad.Down == ButtonState.Pressed && P2prevState.DPad.Down == ButtonState.Released) || (P3state.DPad.Down == ButtonState.Pressed && P3prevState.DPad.Down == ButtonState.Released) || (P4state.DPad.Down == ButtonState.Pressed && P4prevState.DPad.Down == ButtonState.Released))
         {
             //eventSystem.SetSelectedGameObject(selectedObject);
             //buttonSelected = true;
@@ -59,9 +55,8 @@ public class SelectOnInput : MonoBehaviour {
             }
             
         }
-
-
-        if ((P1state.DPad.Up == ButtonState.Pressed && P1prevState.DPad.Up == ButtonState.Released) || (P2state.DPad.Up == ButtonState.Pressed && P2prevState.DPad.Up == ButtonState.Released) || (P3state.DPad.Up == ButtonState.Pressed && P3prevState.DPad.Up == ButtonState.Released) || (P4state.DPad.Up == ButtonState.Pressed && P4prevState.DPad.Up == ButtonState.Released))
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow) || (P1state.DPad.Up == ButtonState.Pressed && P1prevState.DPad.Up == ButtonState.Released) || (P2state.DPad.Up == ButtonState.Pressed && P2prevState.DPad.Up == ButtonState.Released) || (P3state.DPad.Up == ButtonState.Pressed && P3prevState.DPad.Up == ButtonState.Released) || (P4state.DPad.Up == ButtonState.Pressed && P4prevState.DPad.Up == ButtonState.Released))
         {
             if (selected > 0)
             {
@@ -70,9 +65,8 @@ public class SelectOnInput : MonoBehaviour {
             }
             
         }
-
-
-        if ((P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released) || (P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released) || (P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released) || (P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released))
+        
+        if (Input.GetKeyDown(KeyCode.K) || (P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released) || (P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released) || (P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released) || (P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released))
         {
                 menuButtons[selected].onClick.Invoke();
         }

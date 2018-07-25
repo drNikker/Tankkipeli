@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
 
-public class MenuSelection : MonoBehaviour {
+public class MenuSelection : MonoBehaviour
+{
 
     public Animator anim;
     public int option;
     private bool menu;
     private bool open;
 
+    private bool lockLeftRight;
+
 
     public SelectOnInput[] menuLists;
+    [SerializeField]
     private SelectOnInput rightList;
 
     GamePadState P1state;
@@ -26,7 +30,7 @@ public class MenuSelection : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -42,65 +46,82 @@ public class MenuSelection : MonoBehaviour {
         P4state = GamePad.GetState(PlayerIndex.Four);
 
 
-        if (((P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released) || (P2state.Buttons.Start == ButtonState.Pressed && P2prevState.Buttons.Start == ButtonState.Released) || (P3state.Buttons.Start == ButtonState.Pressed && P3prevState.Buttons.Start == ButtonState.Released) || (P4state.Buttons.Start == ButtonState.Pressed && P4prevState.Buttons.Start == ButtonState.Released)))
+        if ((Input.GetKeyDown(KeyCode.O) || (P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released) || (P2state.Buttons.Start == ButtonState.Pressed && P2prevState.Buttons.Start == ButtonState.Released) || (P3state.Buttons.Start == ButtonState.Pressed && P3prevState.Buttons.Start == ButtonState.Released) || (P4state.Buttons.Start == ButtonState.Pressed && P4prevState.Buttons.Start == ButtonState.Released)))
         {
-            Debug.Log("sad");
+
             if (!menu)
             {
                 anim.SetBool("Menu", true);
                 menu = true;
+                anim.SetBool("lockLeftRight", false);
+                rightList = menuLists[0];
             }
             else if (menu)
             {
                 anim.SetBool("Menu", false);
                 menu = false;
+                anim.SetBool("lockLeftRight", true);
+                rightList = null;
+                anim.SetBool("SureQuit", false);
+                anim.SetBool("SureMenu", false);
             }
         }
-        // && P1prevState.ThumbSticks.Left.X < -0.7)
-        if (((P1state.Buttons.LeftShoulder == ButtonState.Pressed && P1prevState.Buttons.LeftShoulder == ButtonState.Released)|| (P2state.Buttons.LeftShoulder == ButtonState.Pressed && P2prevState.Buttons.LeftShoulder == ButtonState.Released) || (P3state.Buttons.LeftShoulder == ButtonState.Pressed && P3prevState.Buttons.LeftShoulder == ButtonState.Released) || (P4state.Buttons.LeftShoulder == ButtonState.Pressed && P4prevState.Buttons.LeftShoulder == ButtonState.Released)) && menu && !open)
+
+        if (menu)
         {
-            anim.SetTrigger("Left");
-        }
-        if (((P1state.Buttons.RightShoulder == ButtonState.Pressed && P1prevState.Buttons.RightShoulder == ButtonState.Released) || (P2state.Buttons.RightShoulder == ButtonState.Pressed && P2prevState.Buttons.RightShoulder == ButtonState.Released) || (P3state.Buttons.RightShoulder == ButtonState.Pressed && P3prevState.Buttons.RightShoulder == ButtonState.Released) || (P4state.Buttons.RightShoulder == ButtonState.Pressed && P4prevState.Buttons.RightShoulder == ButtonState.Released)) && menu && !open)
-        {
-            anim.SetTrigger("Right");
-        }
-
-
-
-        if ((P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released || P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released ) && menu )
-
-        {
-            if (!open)
+            if (anim.GetBool("lockLeftRight") == false)
             {
-                if (option == 1) //Resume
+                // && P1prevState.ThumbSticks.Left.X < -0.7)
+                if ((Input.GetKeyDown(KeyCode.LeftArrow) || (P1state.Buttons.LeftShoulder == ButtonState.Pressed && P1prevState.Buttons.LeftShoulder == ButtonState.Released) || (P2state.Buttons.LeftShoulder == ButtonState.Pressed && P2prevState.Buttons.LeftShoulder == ButtonState.Released) || (P3state.Buttons.LeftShoulder == ButtonState.Pressed && P3prevState.Buttons.LeftShoulder == ButtonState.Released) || (P4state.Buttons.LeftShoulder == ButtonState.Pressed && P4prevState.Buttons.LeftShoulder == ButtonState.Released)) && menu && !open)
                 {
-
-                    anim.SetBool("Menu", false);
-                    menu = false;
-
+                    anim.SetTrigger("Left");
                 }
-
-                if (option == 5) //Back to lobby
+                if ((Input.GetKeyDown(KeyCode.RightArrow) || (P1state.Buttons.RightShoulder == ButtonState.Pressed && P1prevState.Buttons.RightShoulder == ButtonState.Released) || (P2state.Buttons.RightShoulder == ButtonState.Pressed && P2prevState.Buttons.RightShoulder == ButtonState.Released) || (P3state.Buttons.RightShoulder == ButtonState.Pressed && P3prevState.Buttons.RightShoulder == ButtonState.Released) || (P4state.Buttons.RightShoulder == ButtonState.Pressed && P4prevState.Buttons.RightShoulder == ButtonState.Released)) && menu && !open)
                 {
-                    anim.SetBool("SureMenu", true);
-
+                    anim.SetTrigger("Right");
                 }
-
-
-                if (option == 6) //Quit Game
-                {
-                    anim.SetBool("SureQuit", true);
-                    
-                }
-     
-                
             }
-            else if (open)
+
+
+            if (Input.GetKeyDown(KeyCode.K) || (P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released || P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released) && menu)
+
             {
-                anim.SetBool("Open", false);
-                open = false;
+                if (!open)
+                {
+                    if (option == 1) //Resume
+                    {
+
+                        anim.SetBool("Menu", false);
+                        menu = false;
+
+                    }
+
+                    if (option == 5) //Back to lobby
+                    {
+                        anim.SetBool("SureMenu", true);
+                        rightList = menuLists[5];
+                        anim.SetBool("lockLeftRight", true);
+
+                    }
+
+
+                    if (option == 6) //Quit Game
+                    {
+                        anim.SetBool("SureQuit", true);
+                        rightList = menuLists[4];
+                        anim.SetBool("lockLeftRight", true);
+
+                    }
+
+
+                }
+                else if (open)
+                {
+                    anim.SetBool("Open", false);
+                    open = false;
+                }
             }
+
         }
     }
 
@@ -110,44 +131,54 @@ public class MenuSelection : MonoBehaviour {
         anim.SetFloat("Option", 1f);
         rightList = menuLists[0];
         SelectList();
-       
+
     }
-    public void Option2() //Video
+    public void Option2() //settings
     {
         option = 2;
         anim.SetFloat("Option", 2f);
         rightList = menuLists[1];
         SelectList();
     }
-    public void Option3() //Audio
+    public void Option3() //Controls
     {
         option = 3;
         anim.SetFloat("Option", 3f);
         rightList = menuLists[2];
         SelectList();
     }
-    public void Option4() //Controls
+    public void Option4() //Credits
     {
         option = 4;
         anim.SetFloat("Option", 4f);
         rightList = menuLists[3];
         SelectList();
     }
-    public void Option5() //Credits
+    public void Option5() //Mainmenu
     {
         option = 5;
         anim.SetFloat("Option", 5f);
-        rightList = menuLists[4];
         SelectList();
     }
-    public void Option6() //Back to lobby
+    public void Option6() //Quit
     {
         option = 6;
         anim.SetFloat("Option", 6f);
-        rightList = menuLists[5];
         SelectList();
     }
-    
+
+    public void QuitButtonNo()
+    {
+        anim.SetBool("SureQuit", false);
+        anim.SetBool("lockLeftRight", false);
+        //rightList = null;
+    }
+    public void MenuButtonNo()
+    {
+        anim.SetBool("SureMenu", false);
+        anim.SetBool("lockLeftRight", false);
+        //rightList = null;
+    }
 
     void SelectList()
     {
@@ -163,4 +194,5 @@ public class MenuSelection : MonoBehaviour {
             }
         }
     }
+
 }
