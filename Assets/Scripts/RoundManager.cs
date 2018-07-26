@@ -292,10 +292,16 @@ public class RoundManager : MonoBehaviour
                 }
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
                 ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
-                ScoreAmount2[1].fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
-                ScoreAmount2[1].GetComponent<Image>().color = Blue;
-                ScoreAmount3[1].fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
-                ScoreAmount3[1].GetComponent<Image>().color = Red;
+                ScoreAmount2[0].fillAmount = 0;
+                ScoreAmount3[0].fillAmount = 0;
+                ScoreAmount2[0].GetComponent<Image>().color = Red;
+                ScoreAmount3[0].GetComponent<Image>().color = Blue;
+                ScoreAmount2[2].GetComponent<Image>().color = Red;
+                ScoreAmount3[2].GetComponent<Image>().color = Blue;
+                ScoreAmount2[1].fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
+                ScoreAmount2[1].GetComponent<Image>().color = Red;
+                ScoreAmount3[1].fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
+                ScoreAmount3[1].GetComponent<Image>().color = Blue;
                 break;
         }
 
@@ -418,10 +424,12 @@ public class RoundManager : MonoBehaviour
                     if (redPlayers.Count == 0)
                     {
                         whoWonText.text = "Team Blue won the game";
+                        ScoreAmount3[0].fillAmount = 100;
                     }
                     else if (bluePlayers.Count == 0)
                     {
                         whoWonText.text = "Team Red won the game";
+                        ScoreAmount2[0].fillAmount = 100;
                     }
                     break;
             }
