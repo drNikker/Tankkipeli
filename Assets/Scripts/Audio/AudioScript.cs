@@ -10,10 +10,12 @@ public class AudioScript : MonoBehaviour
 
     private AudioSource audioSource;
     private AudioSource audioSourceChild;
+    private AudioSource audioSourceChild2;
     private AudioClip currentSceneMusic;
     [Space(10)]
     public AudioClip knockOut;
     public AudioClip roundOver;
+    public AudioClip motorRumble;
 
     public static AudioScript Instance;
 
@@ -34,6 +36,8 @@ public class AudioScript : MonoBehaviour
     {
         audioSource = gameObject.GetComponent<AudioSource>();
         audioSourceChild = gameObject.GetComponentInChildren<AudioSource>();
+        audioSourceChild2 = gameObject.transform.Find("MotorRumbleAudioSource").GetComponent<AudioSource>();
+        PlayRumbleSound();
     }
 
     void Update()
@@ -62,4 +66,10 @@ public class AudioScript : MonoBehaviour
     {
         audioSource.Stop();
     }
+    public void PlayRumbleSound()
+    {
+        audioSourceChild2.clip = motorRumble;
+        audioSourceChild2.Play();
+    }
+    
 }
