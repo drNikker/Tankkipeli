@@ -12,11 +12,16 @@ public class SingleFist : FistScript
     [HideInInspector]
     public bool canDoDamage;
 
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     protected override void Start()
     {
         VFX = GetComponent<ParticleSystem>();
         base.Start();
-
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         anim.SetFloat("Power", power);
         anim.SetFloat("Range", range);
 
@@ -94,7 +99,14 @@ public class SingleFist : FistScript
                 VFX.Emit(2 * finalDamageVFX);
 
                 cooldown = Time.time + cooldownTime;
+                playSound();
             }
         }
+    }
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[3];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }

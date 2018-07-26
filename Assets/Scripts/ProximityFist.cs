@@ -14,12 +14,16 @@ public class ProximityFist : FistScript
     int finalDamageVFX;
     [HideInInspector]
     public bool canDoDamage;
-    
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
 
     protected override void Start()
     {
         base.Start();
-
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         proximityFistCollider = gameObject.GetComponentInChildren<ProximityFistCollider>();
         VFX = GetComponent<ParticleSystem>();
         
@@ -107,7 +111,14 @@ public class ProximityFist : FistScript
                 finalDamageVFX = Mathf.RoundToInt(damage);
                 VFX.Emit(3 * finalDamageVFX);
                 cooldown = Time.time + cooldownTime;
+                playSound();
             }
         }
+    }
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[3];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }
