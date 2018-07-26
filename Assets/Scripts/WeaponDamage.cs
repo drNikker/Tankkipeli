@@ -6,7 +6,8 @@ public class WeaponDamage : MonoBehaviour
 {
     [HideInInspector] public PlayerHealth ownHP;
     RoundManager roundManager;
-    PlayerHealth health;
+    [HideInInspector]
+    public PlayerHealth health;
     WeaponAudio weaponAudio;
     Rigidbody tankBase;
     static Color color;
@@ -21,9 +22,9 @@ public class WeaponDamage : MonoBehaviour
     ParticleSystem hitParticle;
     int finalDamageVFX;
     // Hit Particles-------------
-
     float cooldown;
-    float finalDamage;
+    [HideInInspector]
+    public float finalDamage;
 
 
     // Use this for initialization
@@ -68,9 +69,16 @@ public class WeaponDamage : MonoBehaviour
                 {
                     health.TakeDamage(finalDamage);
                 }
-                if (collision.relativeVelocity.magnitude >= 8)
+                if (collision.relativeVelocity.magnitude >= 4)
                 {
-                    weaponAudio.RandomizeWeaponAudio();
+                    if (gameObject.transform.parent.name == "GreatAxe(Clone)" || gameObject.transform.parent.name == "GreatAxeScaled(Clone)")
+                    {
+                        gameObject.transform.parent.GetComponent<AxeSound>().playSound();
+                    }
+                    else
+                    {
+                        weaponAudio.RandomizeWeaponAudio();
+                    }
                 }  
 
                 print(Mathf.Clamp(GetWeaponVelocity(), 1, 15) + " weapons speed during impact");

@@ -28,8 +28,8 @@ GameObject:
   - component: {fileID: 114152831168665024}
   - component: {fileID: 95920873406571586}
   - component: {fileID: 108635781522704196}
-  - component: {fileID: 114478495565184284}
   - component: {fileID: 82705814070464186}
+  - component: {fileID: 114549049736697920}
   m_Layer: 8
   m_Name: GreatAxeScaled
   m_TagString: Weapon
@@ -339,7 +339,7 @@ MonoBehaviour:
   canTake: 0
   currentWeaponState: 0
   stance: 2
---- !u!114 &114478495565184284
+--- !u!114 &114549049736697920
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745737419211482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c821d7b332a194997270923f3d7265, type: 3}
+  m_Script: {fileID: 11500000, guid: 87ef041800ab856429320bcc69859cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114863466516275976
@@ -362,11 +362,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 1.9
   knockbackMultiplier: 0.7
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!136 &136173276371196952
 CapsuleCollider:
   m_ObjectHideFlags: 1
