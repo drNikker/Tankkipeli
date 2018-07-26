@@ -12,6 +12,7 @@ public class CloudMesher : MonoBehaviour {
     // Use this for initialization
     void Start () {
         cloudsToMove.AddRange(startClouds);
+
 	}
 	
 	// Update is called once per frame
