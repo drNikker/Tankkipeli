@@ -566,23 +566,23 @@ public class PhysicMovement1 : MonoBehaviour
     {
         if (playerIndex == PlayerIndex.One)
         {
-            invertControls = PlayerPrefs.GetInt("Red_TurnDirPref_");
-            invertSpeed = PlayerPrefs.GetInt("Red_MoveDirPref_");
+            invertControls = PlayerPrefs.GetInt("Red_TurnDirPref_", 1);
+            invertSpeed = PlayerPrefs.GetInt("Red_MoveDirPref_", 1);
         }
         else if (playerIndex == PlayerIndex.Two)
         {
-            invertControls = PlayerPrefs.GetInt("Blue_TurnDirPref_");
-            invertSpeed = PlayerPrefs.GetInt("Blue_MoveDirPref_");
+            invertControls = PlayerPrefs.GetInt("Blue_TurnDirPref_", 1);
+            invertSpeed = PlayerPrefs.GetInt("Blue_MoveDirPref_", 1);
         }
         else if (playerIndex == PlayerIndex.Three)
         {
-            invertControls = PlayerPrefs.GetInt("Cyan_TurnDirPref_");
-            invertSpeed = PlayerPrefs.GetInt("Cyan_MoveDirPref_");
+            invertControls = PlayerPrefs.GetInt("Cyan_TurnDirPref_", 1);
+            invertSpeed = PlayerPrefs.GetInt("Cyan_MoveDirPref_", 1);
         }
         else if (playerIndex == PlayerIndex.Four)
         {
-            invertControls = PlayerPrefs.GetInt("Yellow_TurnDirPref_");
-            invertSpeed = PlayerPrefs.GetInt("Yellow_MoveDirPref_");
+            invertControls = PlayerPrefs.GetInt("Yellow_TurnDirPref_", 1);
+            invertSpeed = PlayerPrefs.GetInt("Yellow_MoveDirPref_", 1);
         }
     }
 }
