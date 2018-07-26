@@ -45,9 +45,17 @@ public class SelectOnInput : MonoBehaviour
         P4state = GamePad.GetState(PlayerIndex.Four);
 
         //Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false
+
+        ////up
+        //|| (P1state.ThumbSticks.Left.Y > 0.3f && P1prevState.ThumbSticks.Left.Y < 0.3f) || (P2state.ThumbSticks.Left.Y > 0.3f && P2prevState.ThumbSticks.Left.Y < 0.3f) || (P3state.ThumbSticks.Left.Y > 0.3f && P3prevState.ThumbSticks.Left.Y < 0.3f) || (P4state.ThumbSticks.Left.Y > 0.3f && P4prevState.ThumbSticks.Left.Y < 0.3f)
+
+        ////down
+        //|| (P1state.ThumbSticks.Left.Y < -0.3f && P1prevState.ThumbSticks.Left.Y > -0.3f) || (P2state.ThumbSticks.Left.Y < -0.3f && P2prevState.ThumbSticks.Left.Y > -0.3f) || (P3state.ThumbSticks.Left.Y < -0.3f && P3prevState.ThumbSticks.Left.Y > -0.3f) || (P4state.ThumbSticks.Left.Y < -0.3f && P4prevState.ThumbSticks.Left.Y > -0.3f)
+
+
         if (isFirstFrame == false)
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow) || (P1state.DPad.Down == ButtonState.Pressed && P1prevState.DPad.Down == ButtonState.Released) || (P2state.DPad.Down == ButtonState.Pressed && P2prevState.DPad.Down == ButtonState.Released) || (P3state.DPad.Down == ButtonState.Pressed && P3prevState.DPad.Down == ButtonState.Released) || (P4state.DPad.Down == ButtonState.Pressed && P4prevState.DPad.Down == ButtonState.Released))
+            if (Input.GetKeyDown(KeyCode.DownArrow) || (P1state.DPad.Down == ButtonState.Pressed && P1prevState.DPad.Down == ButtonState.Released) || (P2state.DPad.Down == ButtonState.Pressed && P2prevState.DPad.Down == ButtonState.Released) || (P3state.DPad.Down == ButtonState.Pressed && P3prevState.DPad.Down == ButtonState.Released) || (P4state.DPad.Down == ButtonState.Pressed && P4prevState.DPad.Down == ButtonState.Released) || (P1state.ThumbSticks.Left.Y < -0.3f && P1prevState.ThumbSticks.Left.Y > -0.3f) || (P2state.ThumbSticks.Left.Y < -0.3f && P2prevState.ThumbSticks.Left.Y > -0.3f) || (P3state.ThumbSticks.Left.Y < -0.3f && P3prevState.ThumbSticks.Left.Y > -0.3f) || (P4state.ThumbSticks.Left.Y < -0.3f && P4prevState.ThumbSticks.Left.Y > -0.3f))
             {
                 //eventSystem.SetSelectedGameObject(selectedObject);
                 //buttonSelected = true;
@@ -59,7 +67,7 @@ public class SelectOnInput : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || (P1state.DPad.Up == ButtonState.Pressed && P1prevState.DPad.Up == ButtonState.Released) || (P2state.DPad.Up == ButtonState.Pressed && P2prevState.DPad.Up == ButtonState.Released) || (P3state.DPad.Up == ButtonState.Pressed && P3prevState.DPad.Up == ButtonState.Released) || (P4state.DPad.Up == ButtonState.Pressed && P4prevState.DPad.Up == ButtonState.Released))
+            if (Input.GetKeyDown(KeyCode.UpArrow) || (P1state.DPad.Up == ButtonState.Pressed && P1prevState.DPad.Up == ButtonState.Released) || (P2state.DPad.Up == ButtonState.Pressed && P2prevState.DPad.Up == ButtonState.Released) || (P3state.DPad.Up == ButtonState.Pressed && P3prevState.DPad.Up == ButtonState.Released) || (P4state.DPad.Up == ButtonState.Pressed && P4prevState.DPad.Up == ButtonState.Released) || (P1state.ThumbSticks.Left.Y > 0.3f && P1prevState.ThumbSticks.Left.Y < 0.3f) || (P2state.ThumbSticks.Left.Y > 0.3f && P2prevState.ThumbSticks.Left.Y < 0.3f) || (P3state.ThumbSticks.Left.Y > 0.3f && P3prevState.ThumbSticks.Left.Y < 0.3f) || (P4state.ThumbSticks.Left.Y > 0.3f && P4prevState.ThumbSticks.Left.Y < 0.3f))
             {
                 if (selected > 0)
                 {
