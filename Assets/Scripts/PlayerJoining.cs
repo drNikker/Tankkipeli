@@ -50,7 +50,7 @@ public class PlayerJoining : MonoBehaviour {
     void Start ()
     {
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
-
+        StatHolder.CurrentMode = StatHolder.Modes.DM;
         StatHolder.HowManyPlayers = 0;
         StatHolder.Player1Wins = 0;
         StatHolder.Player2Wins = 0;
