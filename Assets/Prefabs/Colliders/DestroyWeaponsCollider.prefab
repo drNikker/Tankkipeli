@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65541924912593930}
   - component: {fileID: 65992789723180200}
   - component: {fileID: 65188275261554644}
+  - component: {fileID: 65301558610637812}
   - component: {fileID: 114087311073141310}
   m_Layer: 0
   m_Name: DestroyWeaponsCollider
@@ -54,8 +55,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7855835, y: 23.21205, z: 21.274117}
-  m_Center: {x: -10.050068, y: 11.106025, z: 1.3719978}
+  m_Size: {x: 1.9393549, y: 23.21205, z: 21.274117}
+  m_Center: {x: -11.208963, y: 11.106025, z: 1.3719978}
 --- !u!65 &65227535695462720
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -66,8 +67,20 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 22.790253, y: 23.795345, z: 1.5469913}
-  m_Center: {x: 0.72158, y: 11.397673, z: -8.540769}
+  m_Size: {x: 24.286219, y: 23.795345, z: 1.5469913}
+  m_Center: {x: -0.026402473, y: 11.397673, z: -8.540769}
+--- !u!65 &65301558610637812
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331964362283540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 24.665794, y: 2.399765, z: 22.333538}
+  m_Center: {x: -0.12141609, y: 4.033804, z: 1.3971004}
 --- !u!65 &65541924912593930
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -90,8 +103,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 23.377947, y: 23.14767, z: 1.0051117}
-  m_Center: {x: 0.6867151, y: 11.073835, z: 11.523228}
+  m_Size: {x: 24.572325, y: 23.14767, z: 1.0051117}
+  m_Center: {x: 0.08952618, y: 11.073835, z: 11.523228}
 --- !u!114 &114087311073141310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,3 +116,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f26e40be37cd5b4eb795277ab55dba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyTime: 2

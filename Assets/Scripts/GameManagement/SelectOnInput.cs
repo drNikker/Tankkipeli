@@ -5,13 +5,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XInputDotNetPure;
 
-public class SelectOnInput : MonoBehaviour {
-    
+public class SelectOnInput : MonoBehaviour
+{
+
     private int selected = 0;
 
     Button[] menuButtons;
 
     private bool initialized = false;
+    private bool isFirstFrame = true;
 
     GamePadState P1state;
     GamePadState P1prevState;
@@ -21,7 +23,7 @@ public class SelectOnInput : MonoBehaviour {
     GamePadState P3prevState;
     GamePadState P4state;
     GamePadState P4prevState;
-    
+
     // Use this for initialization
     void Start()
     {
@@ -33,9 +35,6 @@ public class SelectOnInput : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-        
-
         P1prevState = P1state;
         P2prevState = P2state;
         P3prevState = P3state;
@@ -47,36 +46,45 @@ public class SelectOnInput : MonoBehaviour {
 
         //Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false
 
+        ////up
+        //|| (P1state.ThumbSticks.Left.Y > 0.3f && P1prevState.ThumbSticks.Left.Y < 0.3f) || (P2state.ThumbSticks.Left.Y > 0.3f && P2prevState.ThumbSticks.Left.Y < 0.3f) || (P3state.ThumbSticks.Left.Y > 0.3f && P3prevState.ThumbSticks.Left.Y < 0.3f) || (P4state.ThumbSticks.Left.Y > 0.3f && P4prevState.ThumbSticks.Left.Y < 0.3f)
 
-        if ((P1state.DPad.Down == ButtonState.Pressed && P1prevState.DPad.Down == ButtonState.Released) || (P2state.DPad.Down == ButtonState.Pressed && P2prevState.DPad.Down == ButtonState.Released) || (P3state.DPad.Down == ButtonState.Pressed && P3prevState.DPad.Down == ButtonState.Released) || (P4state.DPad.Down == ButtonState.Pressed && P4prevState.DPad.Down == ButtonState.Released))
+        ////down
+        //|| (P1state.ThumbSticks.Left.Y < -0.3f && P1prevState.ThumbSticks.Left.Y > -0.3f) || (P2state.ThumbSticks.Left.Y < -0.3f && P2prevState.ThumbSticks.Left.Y > -0.3f) || (P3state.ThumbSticks.Left.Y < -0.3f && P3prevState.ThumbSticks.Left.Y > -0.3f) || (P4state.ThumbSticks.Left.Y < -0.3f && P4prevState.ThumbSticks.Left.Y > -0.3f)
+
+
+        if (isFirstFrame == false)
         {
-            //eventSystem.SetSelectedGameObject(selectedObject);
-            //buttonSelected = true;
-            if (selected < menuButtons.Length - 1)
+            if (Input.GetKeyDown(KeyCode.DownArrow) || (P1state.DPad.Down == ButtonState.Pressed && P1prevState.DPad.Down == ButtonState.Released) || (P2state.DPad.Down == ButtonState.Pressed && P2prevState.DPad.Down == ButtonState.Released) || (P3state.DPad.Down == ButtonState.Pressed && P3prevState.DPad.Down == ButtonState.Released) || (P4state.DPad.Down == ButtonState.Pressed && P4prevState.DPad.Down == ButtonState.Released) || (P1state.ThumbSticks.Left.Y < -0.3f && P1prevState.ThumbSticks.Left.Y > -0.3f) || (P2state.ThumbSticks.Left.Y < -0.3f && P2prevState.ThumbSticks.Left.Y > -0.3f) || (P3state.ThumbSticks.Left.Y < -0.3f && P3prevState.ThumbSticks.Left.Y > -0.3f) || (P4state.ThumbSticks.Left.Y < -0.3f && P4prevState.ThumbSticks.Left.Y > -0.3f))
             {
-                selected++;
-                menuButtons[selected].Select();
+                //eventSystem.SetSelectedGameObject(selectedObject);
+                //buttonSelected = true;
+                if (selected < menuButtons.Length - 1)
+                {
+                    selected++;
+                    menuButtons[selected].Select();
+                }
+
             }
-            
-        }
 
-
-        if ((P1state.DPad.Up == ButtonState.Pressed && P1prevState.DPad.Up == ButtonState.Released) || (P2state.DPad.Up == ButtonState.Pressed && P2prevState.DPad.Up == ButtonState.Released) || (P3state.DPad.Up == ButtonState.Pressed && P3prevState.DPad.Up == ButtonState.Released) || (P4state.DPad.Up == ButtonState.Pressed && P4prevState.DPad.Up == ButtonState.Released))
-        {
-            if (selected > 0)
+            if (Input.GetKeyDown(KeyCode.UpArrow) || (P1state.DPad.Up == ButtonState.Pressed && P1prevState.DPad.Up == ButtonState.Released) || (P2state.DPad.Up == ButtonState.Pressed && P2prevState.DPad.Up == ButtonState.Released) || (P3state.DPad.Up == ButtonState.Pressed && P3prevState.DPad.Up == ButtonState.Released) || (P4state.DPad.Up == ButtonState.Pressed && P4prevState.DPad.Up == ButtonState.Released) || (P1state.ThumbSticks.Left.Y > 0.3f && P1prevState.ThumbSticks.Left.Y < 0.3f) || (P2state.ThumbSticks.Left.Y > 0.3f && P2prevState.ThumbSticks.Left.Y < 0.3f) || (P3state.ThumbSticks.Left.Y > 0.3f && P3prevState.ThumbSticks.Left.Y < 0.3f) || (P4state.ThumbSticks.Left.Y > 0.3f && P4prevState.ThumbSticks.Left.Y < 0.3f))
             {
-                selected--;
-                menuButtons[selected].Select();
+                if (selected > 0)
+                {
+                    selected--;
+                    menuButtons[selected].Select();
+                }
+
             }
-            
-        }
 
-
-        if ((P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released) || (P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released) || (P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released) || (P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released))
-        {
+            if (Input.GetKeyDown(KeyCode.K) || (P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released) || (P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released) || (P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released) || (P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released))
+            {
                 menuButtons[selected].onClick.Invoke();
-        }
+            }
+            
 
+        }
+        isFirstFrame = false;
     }
 
     private void OnEnable()
@@ -87,7 +95,7 @@ public class SelectOnInput : MonoBehaviour {
         {
             menuButtons[selected].Select();
         }
-        
+        isFirstFrame = true;
     }
 
     //private void OnDisable()

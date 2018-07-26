@@ -167,7 +167,7 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                     SoftJointLimit limit = joints[i].linearLimit;
-                    limit.limit = 0.25f;
+                    limit.limit = 0.0f;
                     joints[i].linearLimit = limit;
 
                 }

@@ -16,6 +16,7 @@ public class PhysicMovement1 : MonoBehaviour
     private GameObject player;
     private FullRagdollMode ragdollmode;
     private CharacterJoint characterJoint;
+    private MenuSelection menuSel;
 
     private SoftJointLimit lowTwistLimitOriginal;
     private SoftJointLimit highTwistLimitOriginal;
@@ -52,7 +53,7 @@ public class PhysicMovement1 : MonoBehaviour
 
     //switches left and right side buttons (triggers and bumpers)
     private int invertControls = 1;
-    
+
     private float brakeTorqu;
     private float rightTread;
     private float leftTread;
@@ -62,7 +63,7 @@ public class PhysicMovement1 : MonoBehaviour
     bool brakeRight = true;
     bool brakeLeft = true;
     bool brakeMiddle = true;
-    
+
     private bool timerUntilDizzy;
     public float timerUntilDizzyTime = 3;
     private float originalTimerUntilDizzyTime;
@@ -72,12 +73,14 @@ public class PhysicMovement1 : MonoBehaviour
     private float originalBackToNormalTimerTime;
 
     public bool canMove;
-    
+
     new protected Rigidbody rigidbody;
 
     // Use this for initialization
     void Start()
     {
+
+        menuSel = FindObjectOfType<MenuSelection>();
         player = gameObject;
         ragdollmode = player.GetComponentInChildren<FullRagdollMode>();
         characterJoint = player.GetComponentInChildren<CharacterJoint>();
@@ -91,7 +94,7 @@ public class PhysicMovement1 : MonoBehaviour
         originalBackToNormalTimerTime = backToNormalTimerTime;
 
         canMove = true;
-        
+
         SetControls();
 
         brakeTorqu = brakingForce;
@@ -114,23 +117,25 @@ public class PhysicMovement1 : MonoBehaviour
         middleWheelCol2.wheelDampingRate = wheelDamp;
         middleWheelCol3.wheelDampingRate = wheelDamp;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
 
         prevState = state;
         state = GamePad.GetState(playerIndex);
-        
-        if (canMove)
+        if (menuSel.menu == false)
         {
-            if (invertControls == 0)
+            if (canMove)
             {
-                KeyPress();
-            }
-            else
-            {
-                KeyPressInvert();
+                if (invertControls == 0)
+                {
+                    KeyPress();
+                }
+                else
+                {
+                    KeyPressInvert();
+                }
             }
         }
 
@@ -144,9 +149,9 @@ public class PhysicMovement1 : MonoBehaviour
             BackToNormalTimer();
         }
 
-        
+
     }
-    
+
     void KeyPress()
     {
         //Tread speed increase
@@ -176,7 +181,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //MIDDLE WHEELS
-        if(state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
+        if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
             middleTread -= accel * invertSpeed * Time.deltaTime;
             brakeMiddle = false;
@@ -262,13 +267,13 @@ public class PhysicMovement1 : MonoBehaviour
 
         //DebugMovementControls();
     }
-    
+
     void KeyPressInvert()
     {
         //Tread speed increase
 
         //LB
-        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))           
+        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
         {
             rightTread -= accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
@@ -280,7 +285,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //RB 
-        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))             
+        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
             leftTread -= accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
@@ -297,7 +302,7 @@ public class PhysicMovement1 : MonoBehaviour
             middleTread -= accel * invertSpeed * Time.deltaTime;
             brakeMiddle = false;
         }
-        
+
         if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
         {
             middleTread += accel * invertSpeed * Time.deltaTime;
@@ -305,7 +310,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //LT
-        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))       
+        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))
         {
             rightTread += accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
@@ -316,7 +321,7 @@ public class PhysicMovement1 : MonoBehaviour
             }
         }
         //RT 
-        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))         
+        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))
         {
             leftTread += accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
@@ -482,7 +487,7 @@ public class PhysicMovement1 : MonoBehaviour
             transform.parent = null;
         }
     }
-    
+
     private void DizzyTimer()
     {
         timerUntilDizzyTime -= Time.deltaTime;
@@ -523,8 +528,8 @@ public class PhysicMovement1 : MonoBehaviour
             backToNormalTimer = false;
         }
     }
-    
-    
+
+
     //private void DebugMovementControls()
     //{
     //    //DEBUG INVERTS. REMOVED LATER

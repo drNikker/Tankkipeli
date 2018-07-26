@@ -100,20 +100,23 @@ public class PlayerJoining : MonoBehaviour {
             wait1 = true;
             StartCoroutine(Player1Joined());
             StatHolder.HowManyPlayers++;
-                    StatHolder.Player1Color = Random.Range(0, 8);
-                    while (StatHolder.Player1Color == StatHolder.Player2Color || StatHolder.Player1Color == StatHolder.Player3Color || StatHolder.Player1Color == StatHolder.Player4Color)
-                    {
-                        StatHolder.Player1Color = Random.Range(0, 8);
-                    }
+                    //StatHolder.Player1Color = Random.Range(0, 8);
+                    //while (StatHolder.Player1Color == StatHolder.Player2Color || StatHolder.Player1Color == StatHolder.Player3Color || StatHolder.Player1Color == StatHolder.Player4Color)
+                    //{
+                    //    StatHolder.Player1Color = Random.Range(0, 8);
+                    //}
 
             roundManager.spawnPlayers.Add(roundManager.playerPrefab1);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
 
-        else if (joined1 == true && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || joined1 == true && Input.GetKeyDown("g"))
-        {
-            ChangePlayer1Color();
-        }
+        //Color Changes
+
+        //else if (joined1 == true && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || joined1 == true && Input.GetKeyDown("g"))
+        //{
+        //    ChangePlayer1Color();
+        //}
+
         if (joined1 == true && P1state.Buttons.B == ButtonState.Pressed && P1prevState.Buttons.B == ButtonState.Released)
         {
             joined1 = false;
@@ -131,19 +134,23 @@ public class PlayerJoining : MonoBehaviour {
             StartCoroutine(Player2Joined());
             StatHolder.HowManyPlayers++;
 
-                    StatHolder.Player2Color = Random.Range(0, 8);
-                    while (StatHolder.Player2Color == StatHolder.Player1Color || StatHolder.Player2Color == StatHolder.Player3Color || StatHolder.Player2Color == StatHolder.Player4Color)
-                    {
-                        StatHolder.Player2Color = Random.Range(0, 8);
-                    }
+                    //StatHolder.Player2Color = Random.Range(0, 8);
+                    //while (StatHolder.Player2Color == StatHolder.Player1Color || StatHolder.Player2Color == StatHolder.Player3Color || StatHolder.Player2Color == StatHolder.Player4Color)
+                    //{
+                    //    StatHolder.Player2Color = Random.Range(0, 8);
+                    //}
 
             roundManager.spawnPlayers.Add(roundManager.playerPrefab2);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
-        else if (joined2 == true && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released)
-        {
-            ChangePlayer2Color();
-        }
+
+        //Color Changes
+
+        //else if (joined2 == true && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released)
+        //{
+        //    ChangePlayer2Color();
+        //}
+
         if (joined2 == true && P2state.Buttons.B == ButtonState.Pressed && P2prevState.Buttons.B == ButtonState.Released)
         {
             joined2 = false;
@@ -159,19 +166,23 @@ public class PlayerJoining : MonoBehaviour {
             wait3 = true;
             StartCoroutine(Player3Joined());
             StatHolder.HowManyPlayers++;
-                    StatHolder.Player3Color = Random.Range(0, 8);
-                    while (StatHolder.Player3Color == StatHolder.Player2Color || StatHolder.Player3Color == StatHolder.Player1Color || StatHolder.Player3Color == StatHolder.Player4Color)
-                    {
-                        StatHolder.Player3Color = Random.Range(0, 8);
-                    }
+                    //StatHolder.Player3Color = Random.Range(0, 8);
+                    //while (StatHolder.Player3Color == StatHolder.Player2Color || StatHolder.Player3Color == StatHolder.Player1Color || StatHolder.Player3Color == StatHolder.Player4Color)
+                    //{
+                    //    StatHolder.Player3Color = Random.Range(0, 8);
+                    //}
 
             roundManager.spawnPlayers.Add(roundManager.playerPrefab3);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
-        else if (joined3 == true && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released)
-        {
-            ChangePlayer3Color();
-        }
+
+        //Color Changes
+
+        //else if (joined3 == true && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released)
+        //{
+        //    ChangePlayer3Color();
+        //}
+
         if (joined3 == true && P3state.Buttons.B == ButtonState.Pressed && P3prevState.Buttons.B == ButtonState.Released)
         {
             joined3 = false;
@@ -187,19 +198,24 @@ public class PlayerJoining : MonoBehaviour {
             wait4 = true;
             StatHolder.HowManyPlayers++;
             StartCoroutine(Player4Joined());
-            StatHolder.Player4Color = Random.Range(0, 8);
-                    while (StatHolder.Player4Color == StatHolder.Player2Color || StatHolder.Player4Color == StatHolder.Player3Color || StatHolder.Player4Color == StatHolder.Player1Color)
-                    {
-                        StatHolder.Player4Color = Random.Range(0, 8);
-                    }
+            //StatHolder.Player4Color = Random.Range(0, 8);
+            //        while (StatHolder.Player4Color == StatHolder.Player2Color || StatHolder.Player4Color == StatHolder.Player3Color || StatHolder.Player4Color == StatHolder.Player1Color)
+            //        {
+            //            StatHolder.Player4Color = Random.Range(0, 8);
+            //        }
 
             roundManager.spawnPlayers.Add(roundManager.playerPrefab4);
             roundManager.playerSpawns[Random.Range(0, roundManager.playerSpawns.Count)].GetComponent<PlayerSpawn>().spawnPlayer();
         }
-        else if (joined4 == true && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released)
-        {
-            ChangePlayer4Color();
-        }
+
+        //Color Changes
+
+        //else if (joined4 == true && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released)
+        //{
+        //    ChangePlayer4Color();
+        //}
+
+
         if (joined4 == true && P4state.Buttons.B == ButtonState.Pressed && P4prevState.Buttons.B == ButtonState.Released)
         {
             joined4 = false;
@@ -318,75 +334,78 @@ public class PlayerJoining : MonoBehaviour {
         }
     }
 
-    void ChangePlayer1Color()
-    {
-        int save = Random.Range(0, 8);
-                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
-                {
-                    save = Random.Range(0, 8);
-                }
-        StatHolder.Player1Color = save;
-        Color color = colorSet[save];
-        GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player1(Clone)").SingleOrDefault();
-        print(player);
-        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-        rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", color);
-        rend[0].SetPropertyBlock(_propBlock);
-        rend[10].SetPropertyBlock(_propBlock);
+
+    //Color changes:
+
+    //void ChangePlayer1Color()
+    //{
+    //    int save = Random.Range(0, 8);
+    //            while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+    //            {
+    //                save = Random.Range(0, 8);
+    //            }
+    //    StatHolder.Player1Color = save;
+    //    Color color = colorSet[save];
+    //    GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player1(Clone)").SingleOrDefault();
+    //    print(player);
+    //    MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+    //    Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+    //    rend[0].GetPropertyBlock(_propBlock);
+    //    _propBlock.SetColor("_Color", color);
+    //    rend[0].SetPropertyBlock(_propBlock);
+    //    rend[10].SetPropertyBlock(_propBlock);
 
 
-    }
-    void ChangePlayer2Color()
-    {
-        int save = Random.Range(0, 8);
-                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
-                {
-                    save = Random.Range(0, 8);
-                }
-        StatHolder.Player2Color = save;
-        Color color = colorSet[save];
-        GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player2(Clone)").SingleOrDefault();
-        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-        rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", color);
-        rend[0].SetPropertyBlock(_propBlock);
-        rend[10].SetPropertyBlock(_propBlock);
-    }
-    void ChangePlayer3Color()
-    {
-        int save = Random.Range(0, 8);
-             while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
-            {
-                save = Random.Range(0, 8);
-            }
-        StatHolder.Player3Color = save;
-        Color color = colorSet[save];
-        GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player3(Clone)").SingleOrDefault();
-        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-        rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", color);
-        rend[0].SetPropertyBlock(_propBlock);
-        rend[10].SetPropertyBlock(_propBlock);
-    }
-    void ChangePlayer4Color()
-    {
-        int save = Random.Range(0, 8);
-                while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
-                {
-                    save = Random.Range(0, 8);
-                }
-        StatHolder.Player4Color = save;
-        Color color = colorSet[save];
-        GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player4(Clone)").SingleOrDefault();
-        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-        Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-        rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", color);
-        rend[0].SetPropertyBlock(_propBlock);
-        rend[10].SetPropertyBlock(_propBlock);
-    }
+    //}
+    //void ChangePlayer2Color()
+    //{
+    //    int save = Random.Range(0, 8);
+    //            while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+    //            {
+    //                save = Random.Range(0, 8);
+    //            }
+    //    StatHolder.Player2Color = save;
+    //    Color color = colorSet[save];
+    //    GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player2(Clone)").SingleOrDefault();
+    //    MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+    //    Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+    //    rend[0].GetPropertyBlock(_propBlock);
+    //    _propBlock.SetColor("_Color", color);
+    //    rend[0].SetPropertyBlock(_propBlock);
+    //    rend[10].SetPropertyBlock(_propBlock);
+    //}
+    //void ChangePlayer3Color()
+    //{
+    //    int save = Random.Range(0, 8);
+    //         while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+    //        {
+    //            save = Random.Range(0, 8);
+    //        }
+    //    StatHolder.Player3Color = save;
+    //    Color color = colorSet[save];
+    //    GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player3(Clone)").SingleOrDefault();
+    //    MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+    //    Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+    //    rend[0].GetPropertyBlock(_propBlock);
+    //    _propBlock.SetColor("_Color", color);
+    //    rend[0].SetPropertyBlock(_propBlock);
+    //    rend[10].SetPropertyBlock(_propBlock);
+    //}
+    //void ChangePlayer4Color()
+    //{
+    //    int save = Random.Range(0, 8);
+    //            while (save == StatHolder.Player1Color || save == StatHolder.Player2Color || save == StatHolder.Player3Color || save == StatHolder.Player4Color)
+    //            {
+    //                save = Random.Range(0, 8);
+    //            }
+    //    StatHolder.Player4Color = save;
+    //    Color color = colorSet[save];
+    //    GameObject player = roundManager.alivePlayers.Where(obj => obj.name == "Player4(Clone)").SingleOrDefault();
+    //    MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+    //    Renderer[] rend = player.GetComponentsInChildren<Renderer>();
+    //    rend[0].GetPropertyBlock(_propBlock);
+    //    _propBlock.SetColor("_Color", color);
+    //    rend[0].SetPropertyBlock(_propBlock);
+    //    rend[10].SetPropertyBlock(_propBlock);
+    //}
 }

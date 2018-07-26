@@ -319,7 +319,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363289398862896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.063356, y: 17.398329, z: -15.379087}
+  m_LocalPosition: {x: -17.75, y: 0.27314568, z: 4.1831636}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4738998973070654}
@@ -602,8 +602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
   baseDamage: 16
-  dmgMultiplier: 0.4
-  knockbackMultiplier: 0.3
+  dmgMultiplier: 0.6
+  knockbackMultiplier: 0.6
   cooldownTime: 1
   knockback: 400000
 --- !u!114 &114843772525929214
@@ -619,8 +619,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
   baseDamage: 16
-  dmgMultiplier: 0.4
-  knockbackMultiplier: 0.3
+  dmgMultiplier: 0.6
+  knockbackMultiplier: 0.6
   cooldownTime: 1
   knockback: 400000
 --- !u!114 &114958349939053522
@@ -634,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 0}
+  weaponThrowForce: 8000
   equipped: 0
   canTake: 0
   currentWeaponState: 0
@@ -739,7 +739,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 54789043850654604}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.25472915, y: 0.56864846, z: 0.00000023841858}
+  m_ConnectedAnchor: {x: -0.25472915, y: 0.56864846, z: 0}
   serializedVersion: 2
   m_Spring: 1000
   m_Damper: 10
@@ -761,7 +761,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 54789043850654604}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.25472924, y: 0.5686485, z: 0}
+  m_ConnectedAnchor: {x: 0.25472927, y: 0.5686486, z: 0}
   serializedVersion: 2
   m_Spring: 1000
   m_Damper: 10
@@ -784,7 +784,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.297894, y: 0.3, z: -3.982463}
+  m_ConnectedAnchor: {x: -1.4120305, y: 0.4, z: -6.2178035}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -937,7 +937,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -5525,7 +5525,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
