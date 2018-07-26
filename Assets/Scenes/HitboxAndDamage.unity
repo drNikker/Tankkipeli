@@ -4790,11 +4790,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 0.5
   knockbackMultiplier: 1
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!54 &23695823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10307,11 +10309,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 1
   knockbackMultiplier: 1
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!54 &646677586
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15160,11 +15164,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 1
   knockbackMultiplier: 0.5
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!136 &829899877
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15251,24 +15257,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f6f408a6399cc44291ee17d71c3c931, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &875207611 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1113154212056366, guid: 468c42ac3b33c974e970d92cecddc182,
-    type: 2}
-  m_PrefabInternal: {fileID: 1642167320}
---- !u!136 &875207612
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 875207611}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.030190215
-  m_Height: 0.27658367
-  m_Direction: 1
-  m_Center: {x: -0.0048698634, y: -0.006097913, z: 0.097186804}
 --- !u!1 &935281601
 GameObject:
   m_ObjectHideFlags: 0
@@ -16617,11 +16605,6 @@ Prefab:
     - target: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114652162046292492, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-      propertyPath: weaponThrowForce
-      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eac619c0e98893e4c8fa5093d469760e, type: 2}
