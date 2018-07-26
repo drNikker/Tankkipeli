@@ -50,6 +50,14 @@ public class MenuSelection : MonoBehaviour
 
 
         //(P1state.DPad.Right == ButtonState.Pressed && P1prevState.DPad.Right == ButtonState.Released) || (P2state.DPad.Right == ButtonState.Pressed && P2prevState.DPad.Right == ButtonState.Released) || (P3state.DPad.Right == ButtonState.Pressed && P3prevState.DPad.Right == ButtonState.Released) || (P4state.DPad.Right == ButtonState.Pressed && P4prevState.DPad.Right == ButtonState.Released)
+        if (menu == true)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
 
         if (inputLock == 0)
         {
@@ -106,6 +114,10 @@ public class MenuSelection : MonoBehaviour
 
                                     anim.SetBool("Menu", false);
                                     menu = false;
+                                    anim.SetBool("lockLeftRight", true);
+                                    rightList = null;
+                                    anim.SetBool("SureQuit", false);
+                                    anim.SetBool("SureMenu", false);
 
                                 }
 
