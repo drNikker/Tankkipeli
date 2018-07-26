@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 255835149}
   - component: {fileID: 255835148}
   - component: {fileID: 255835147}
+  - component: {fileID: 255835150}
   m_Layer: 0
   m_Name: Falldeath
   m_TagString: Untagged
@@ -656,6 +657,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+--- !u!114 &255835150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 255835146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f26e40be37cd5b4eb795277ab55dba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 2
 --- !u!4 &268040831 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d82836d34599203499038c6ef1194274, type: 3}
@@ -887,7 +900,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4814714034160894, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4814714034160894, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2472,7 +2485,7 @@ Transform:
   - {fileID: 427009446}
   - {fileID: 437903406}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &724891963 stripped
 Transform:
@@ -2486,6 +2499,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: 7.83
@@ -2516,7 +2534,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
@@ -2551,7 +2569,7 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalScale.x
@@ -2579,6 +2597,35 @@ Prefab:
       propertyPath: startWeapon
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[7]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: NunchucksChanceWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[6]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -2965,7 +3012,7 @@ Transform:
   - {fileID: 77773745}
   - {fileID: 357740467}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: -360, z: 0}
 --- !u!111 &842934492
 Animation:
@@ -3136,6 +3183,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: 9.8
@@ -3201,7 +3253,7 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalScale.x
@@ -3225,6 +3277,35 @@ Prefab:
       propertyPath: startWeapon
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[7]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: NunchucksChanceWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[6]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -3473,7 +3554,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4127962061575256, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
@@ -3952,7 +4033,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4814714034160894, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1092182468035532, guid: adadbb29815ba8f40b75fdc041220a0b, type: 2}
       propertyPath: m_Name
@@ -5299,6 +5380,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.02
@@ -5329,7 +5415,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
@@ -5364,7 +5450,7 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalScale.x
@@ -5392,6 +5478,35 @@ Prefab:
       propertyPath: startWeapon
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[7]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: NunchucksChanceWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[6]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -6522,6 +6637,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: -7.02
@@ -6552,7 +6672,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
@@ -6587,7 +6707,7 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: spawnTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalScale.x
@@ -6615,6 +6735,35 @@ Prefab:
       propertyPath: startWeapon
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[7]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: NunchucksChanceWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[6]
+      value: 
+      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
+        type: 2}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0

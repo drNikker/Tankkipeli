@@ -46,8 +46,8 @@ public class Options : MonoBehaviour
 
     private void Start()
     {
+        playerText.text = "Red";
         GetOptions();
-        
     }
     
     //SET AND GET
@@ -320,7 +320,7 @@ public class Options : MonoBehaviour
         
         switch (playerText.text)
         {
-            case "P1":
+            case "Red":
                 if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
@@ -340,7 +340,7 @@ public class Options : MonoBehaviour
                 }
 
                 break;
-            case "P2":
+            case "Blue":
                 if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
@@ -359,7 +359,7 @@ public class Options : MonoBehaviour
                     turnDirText.text = "Normal";
                 }
                 break;
-            case "P3":
+            case "Cyan":
                 if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
@@ -378,7 +378,7 @@ public class Options : MonoBehaviour
                     turnDirText.text = "Normal";
                 }
                 break;
-            case "P4":
+            case "Yellow":
                 if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
@@ -405,17 +405,17 @@ public class Options : MonoBehaviour
     {
         switch (playerText.text)
         {
-            case "P1":
-                playerText.text = "P2";
+            case "Red":
+                playerText.text = "Blue";
                 break;
-            case "P2":
-                playerText.text = "P3";
+            case "Blue":
+                playerText.text = "Cyan";
                 break;
-            case "P3":
-                playerText.text = "P4";
+            case "Cyan":
+                playerText.text = "Yellow";
                 break;
-            case "P4":
-                playerText.text = "P1";
+            case "Yellow":
+                playerText.text = "Red";
                 break;
         }
         SetControlOptions();
@@ -479,7 +479,7 @@ public class Options : MonoBehaviour
     }
     public void MenuButtonYes()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("JoiningScene");
     }
 
  

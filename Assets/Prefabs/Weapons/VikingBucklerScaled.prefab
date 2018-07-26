@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 95516912671731056}
   - component: {fileID: 114000371852564978}
   - component: {fileID: 114692878302882216}
+  - component: {fileID: 136663900913289098}
   m_Layer: 8
   m_Name: VikingBucklerScaled
   m_TagString: Weapon
@@ -77,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1113154212056366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6437817, y: 0.6335312, z: -6.773981}
+  m_LocalPosition: {x: 0.33, y: 1.248, z: -6.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4591973586792328}
@@ -357,11 +358,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 0
   knockbackMultiplier: 0.7
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!114 &114692878302882216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,11 +376,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4709103075799594}
+  weaponThrowForce: 8000
   equipped: 0
   canTake: 0
   currentWeaponState: 0
   stance: 1
+--- !u!136 &136663900913289098
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1113154212056366}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.030190215
+  m_Height: 0.27658367
+  m_Direction: 1
+  m_Center: {x: -0.0048698634, y: -0.006097913, z: 0.097186804}
 --- !u!138 &138698020676219540
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -401,7 +417,7 @@ ConfigurableJoint:
   m_Anchor: {x: -0.003, y: 0.002, z: 0.002}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.6467817, y: 0.6355312, z: -6.7719812}
+  m_ConnectedAnchor: {x: 0.32700002, y: 1.25, z: -6.738}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: -1, z: 0}
   m_XMotion: 0

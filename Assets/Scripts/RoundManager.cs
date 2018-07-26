@@ -17,10 +17,10 @@ public class RoundManager : MonoBehaviour
     public GameObject playerPrefab4;
     public GameObject startMenu;
 
-    public Image ScoreAmount1;
-    public Image ScoreAmount2;
-    public Image ScoreAmount3;
-    public Image ScoreAmount4;
+    public List<Image> ScoreAmount1;
+    public List<Image> ScoreAmount2;
+    public List<Image> ScoreAmount3;
+    public List<Image> ScoreAmount4;
     int playersAlive;
 
     //bool randomMap = true;
@@ -147,7 +147,7 @@ public class RoundManager : MonoBehaviour
             StatHolder.HowManyPlayers = 2;
         }
         StatHolder.WinsNeeded = 4;
-        StatHolder.WitchSet = Random.Range(1, 3);
+        StatHolder.WitchSet = Random.Range(1, 5);
         audioScript.PlaySceneMusic(StatHolder.WitchSet);
         NewRound();
     }
@@ -241,25 +241,39 @@ public class RoundManager : MonoBehaviour
                         print("This should never happen");
                         break;
                 }
+                ScoreAmount1[2].GetComponent<Image>().color = Red;
+                ScoreAmount2[2].GetComponent<Image>().color = Blue;
+                ScoreAmount3[2].GetComponent<Image>().color = Cyan;
+                ScoreAmount4[2].GetComponent<Image>().color = Yellow;
+                ScoreAmount1[0].GetComponent<Image>().color = Red;
+                ScoreAmount2[0].GetComponent<Image>().color = Blue;
+                ScoreAmount3[0].GetComponent<Image>().color = Cyan;
+                ScoreAmount4[0].GetComponent<Image>().color = Yellow;
+                ScoreAmount1[0].fillAmount = 0;
+                ScoreAmount2[0].fillAmount = 0;
+                ScoreAmount3[0].fillAmount = 0;
+                ScoreAmount4[0].fillAmount = 0;
                 //if color change comes back delete the below since other code below adresses this. From here...
-                ScoreAmount1.fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
-                ScoreAmount1.GetComponent<Image>().color = Red;
+                ScoreAmount1[1].transform.parent.gameObject.SetActive(true);
+                ScoreAmount2[1].transform.parent.gameObject.SetActive(true);
+                ScoreAmount1[1].fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
+                ScoreAmount1[1].GetComponent<Image>().color = Red;
 
-                ScoreAmount2.fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
-                ScoreAmount2.GetComponent<Image>().color = Blue;
-                ScoreAmount3.transform.parent.gameObject.SetActive(false);
-                ScoreAmount4.transform.parent.gameObject.SetActive(false);
+                ScoreAmount2[1].fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
+                ScoreAmount2[1].GetComponent<Image>().color = Blue;
+                ScoreAmount3[1].transform.parent.gameObject.SetActive(false);
+                ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
                 if (StatHolder.HowManyPlayers > 2)
                 {
-                    ScoreAmount3.transform.parent.gameObject.SetActive(true);
-                    ScoreAmount3.fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
-                    ScoreAmount3.GetComponent<Image>().color = Cyan;
+                    ScoreAmount3[1].transform.parent.gameObject.SetActive(true);
+                    ScoreAmount3[1].fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
+                    ScoreAmount3[1].GetComponent<Image>().color = Cyan;
 
                     if (StatHolder.HowManyPlayers > 3)
                     {
-                        ScoreAmount4.transform.parent.gameObject.SetActive(true);
-                        ScoreAmount4.fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
-                        ScoreAmount4.GetComponent<Image>().color = Yellow;
+                        ScoreAmount4[1].transform.parent.gameObject.SetActive(true);
+                        ScoreAmount4[1].fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
+                        ScoreAmount4[1].GetComponent<Image>().color = Yellow;
                     }
                 }
                 //...to here
@@ -276,12 +290,12 @@ public class RoundManager : MonoBehaviour
                     StatHolder.TeamRedWins += 1;
                     whoWonText.text = "Team Red won the round";
                 }
-                ScoreAmount1.transform.parent.gameObject.SetActive(false);
-                ScoreAmount4.transform.parent.gameObject.SetActive(false);
-                ScoreAmount2.fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
-                ScoreAmount2.GetComponent<Image>().color = Blue;
-                ScoreAmount3.fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
-                ScoreAmount3.GetComponent<Image>().color = Red;
+                ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
+                ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
+                ScoreAmount2[1].fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
+                ScoreAmount2[1].GetComponent<Image>().color = Blue;
+                ScoreAmount3[1].fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
+                ScoreAmount3[1].GetComponent<Image>().color = Red;
                 break;
         }
 
@@ -353,15 +367,19 @@ public class RoundManager : MonoBehaviour
                     {
                         case "Player1(Clone)":
                             whoWonText.text = "Red player won the game";
+                            ScoreAmount1[0].fillAmount = 100;
                             break;
                         case "Player2(Clone)":
                             whoWonText.text = "Blue player won the game";
+                            ScoreAmount2[0].fillAmount = 100;
                             break;
                         case "Player3(Clone)":
                             whoWonText.text = "Cyan player won the game";
+                            ScoreAmount3[0].fillAmount = 100;
                             break;
                         case "Player4(Clone)":
                             whoWonText.text = "Yellow player won the game";
+                            ScoreAmount4[0].fillAmount = 100;
                             break;
                         default:
                             print("This should never happen");
@@ -418,7 +436,12 @@ public class RoundManager : MonoBehaviour
 
     IEnumerator NextRound()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3.8f);
+        ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
+        ScoreAmount2[1].transform.parent.gameObject.SetActive(false);
+        ScoreAmount3[1].transform.parent.gameObject.SetActive(false);
+        ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
         StatHolder.RoundNumber += 1;
         NewRound();
         yield return new WaitForSeconds(0.02f);
@@ -427,7 +450,12 @@ public class RoundManager : MonoBehaviour
 
     IEnumerator BackToMenu()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3.8f);
+        ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
+        ScoreAmount2[1].transform.parent.gameObject.SetActive(false);
+        ScoreAmount3[1].transform.parent.gameObject.SetActive(false);
+        ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
         audioScript.StopPlayingSceneMusic();
         audioScript.PlaySceneMusic(0);
         sceneLoader.MenuScene();

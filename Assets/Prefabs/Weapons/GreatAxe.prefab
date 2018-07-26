@@ -29,8 +29,8 @@ GameObject:
   - component: {fileID: 136404117336899568}
   - component: {fileID: 95198469070608484}
   - component: {fileID: 108614343834437530}
-  - component: {fileID: 114874777182152112}
   - component: {fileID: 82903200371937010}
+  - component: {fileID: 114883654247249476}
   m_Layer: 8
   m_Name: GreatAxe
   m_TagString: Weapon
@@ -334,12 +334,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 1.9
   knockbackMultiplier: 0.8
   cooldownTime: 1
   knockback: 400000
---- !u!114 &114874777182152112
+  finalDamage: 0
+--- !u!114 &114883654247249476
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -347,7 +349,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1428226877098448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c821d7b332a194997270923f3d7265, type: 3}
+  m_Script: {fileID: 11500000, guid: 87ef041800ab856429320bcc69859cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114947278175791026
@@ -361,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4103816632961970}
+  weaponThrowForce: 8000
   equipped: 0
   canTake: 0
   currentWeaponState: 0

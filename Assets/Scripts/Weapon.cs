@@ -122,8 +122,7 @@ public class Weapon : MonoBehaviour {
             colliders[i].enabled = true;
         }
     }
-
-
+    
     public void SetWeaponState()
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
@@ -168,7 +167,7 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                     SoftJointLimit limit = joints[i].linearLimit;
-                    limit.limit = 0.25f;
+                    limit.limit = 0.0f;
                     joints[i].linearLimit = limit;
 
                 }
@@ -216,7 +215,24 @@ public class Weapon : MonoBehaviour {
 
                 break;
         }
-
     }
 
+    public void RayCastToGround()
+    {
+        RaycastHit hit;
+        
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
+        {
+            if (hit.transform.tag != null & hit.transform.tag == "Environment")
+            {
+                Rigidbody[] rigidBodies = GetComponentsInChildren<Rigidbody>();
+
+                foreach (Rigidbody body in rigidBodies)
+                {
+                    body.isKinematic = false;
+                    body.useGravity = false;
+                }
+            }
+        }
+    }
 }

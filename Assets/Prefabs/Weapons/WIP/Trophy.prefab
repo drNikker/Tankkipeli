@@ -66,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 1713094978983250}
   m_LocalRotation: {x: 0.000000037748954, y: 1.110223e-16, z: -1.11022296e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0415654, y: 1.0415654, z: 1.0415654}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4491800247139930}
   m_RootOrder: 0
@@ -79,7 +79,7 @@ Transform:
   m_GameObject: {fileID: 1151649300167712}
   m_LocalRotation: {x: -0.000000037748954, y: -1.110223e-16, z: 1.11022296e-16, w: 1}
   m_LocalPosition: {x: -5.71, y: 0.4, z: -5.93}
-  m_LocalScale: {x: 0.9600934, y: 0.9600934, z: 0.9600934}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4337731574336840}
   m_Father: {fileID: 0}
@@ -342,11 +342,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
-  dmgMultiplier: 1.1
-  knockbackMultiplier: 0.4
+  dmgMultiplier: 0.8
+  knockbackMultiplier: 0.6
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!114 &114900203921315078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -432,18 +434,18 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -15
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 15
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 15
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:

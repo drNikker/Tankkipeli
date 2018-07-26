@@ -50,6 +50,14 @@ public class MenuSelection : MonoBehaviour
 
 
         //(P1state.DPad.Right == ButtonState.Pressed && P1prevState.DPad.Right == ButtonState.Released) || (P2state.DPad.Right == ButtonState.Pressed && P2prevState.DPad.Right == ButtonState.Released) || (P3state.DPad.Right == ButtonState.Pressed && P3prevState.DPad.Right == ButtonState.Released) || (P4state.DPad.Right == ButtonState.Pressed && P4prevState.DPad.Right == ButtonState.Released)
+        if (menu == true)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
 
         if (inputLock == 0)
         {
@@ -81,13 +89,21 @@ public class MenuSelection : MonoBehaviour
                 {
                     if (anim.GetBool("lockLeftRight") == false)
                     {
-                        // && P1prevState.ThumbSticks.Left.X < -0.7)
-                        if ((Input.GetKeyDown(KeyCode.LeftArrow) || (P1state.Buttons.LeftShoulder == ButtonState.Pressed && P1prevState.Buttons.LeftShoulder == ButtonState.Released) || (P2state.Buttons.LeftShoulder == ButtonState.Pressed && P2prevState.Buttons.LeftShoulder == ButtonState.Released) || (P3state.Buttons.LeftShoulder == ButtonState.Pressed && P3prevState.Buttons.LeftShoulder == ButtonState.Released) || (P4state.Buttons.LeftShoulder == ButtonState.Pressed && P4prevState.Buttons.LeftShoulder == ButtonState.Released) || (P1state.DPad.Left == ButtonState.Pressed && P1prevState.DPad.Left == ButtonState.Released) || (P2state.DPad.Left == ButtonState.Pressed && P2prevState.DPad.Left == ButtonState.Released) || (P3state.DPad.Left == ButtonState.Pressed && P3prevState.DPad.Left == ButtonState.Released) || (P4state.DPad.Left == ButtonState.Pressed && P4prevState.DPad.Left == ButtonState.Released)) && menu && !open)
+                        // && P1prevState.ThumbSticks.Left.X < -0.7)  
+
+                        ////right
+                        //|| (P1state.ThumbSticks.Left.X > 0.3f && P1prevState.ThumbSticks.Left.X < 0.3f) || (P2state.ThumbSticks.Left.X > 0.3f && P2prevState.ThumbSticks.Left.X < 0.3f) || (P3state.ThumbSticks.Left.X > 0.3f && P3prevState.ThumbSticks.Left.X < 0.3f) || (P4state.ThumbSticks.Left.X > 0.3f && P4prevState.ThumbSticks.Left.X < 0.3f)
+
+                        ////left
+                        //|| (P1state.ThumbSticks.Left.X < -0.3f && P1prevState.ThumbSticks.Left.X > -0.3f) || (P2state.ThumbSticks.Left.X < -0.3f && P2prevState.ThumbSticks.Left.X > -0.3f) || (P3state.ThumbSticks.Left.X < -0.3f && P3prevState.ThumbSticks.Left.X > -0.3f) || (P4state.ThumbSticks.Left.X < -0.3f && P4prevState.ThumbSticks.Left.X > -0.3f)
+
+
+                        if ((Input.GetKeyDown(KeyCode.LeftArrow) || (P1state.Buttons.LeftShoulder == ButtonState.Pressed && P1prevState.Buttons.LeftShoulder == ButtonState.Released) || (P2state.Buttons.LeftShoulder == ButtonState.Pressed && P2prevState.Buttons.LeftShoulder == ButtonState.Released) || (P3state.Buttons.LeftShoulder == ButtonState.Pressed && P3prevState.Buttons.LeftShoulder == ButtonState.Released) || (P4state.Buttons.LeftShoulder == ButtonState.Pressed && P4prevState.Buttons.LeftShoulder == ButtonState.Released) || (P1state.DPad.Left == ButtonState.Pressed && P1prevState.DPad.Left == ButtonState.Released) || (P2state.DPad.Left == ButtonState.Pressed && P2prevState.DPad.Left == ButtonState.Released) || (P3state.DPad.Left == ButtonState.Pressed && P3prevState.DPad.Left == ButtonState.Released) || (P4state.DPad.Left == ButtonState.Pressed && P4prevState.DPad.Left == ButtonState.Released) || (P1state.ThumbSticks.Left.X < -0.3f && P1prevState.ThumbSticks.Left.X > -0.3f) || (P2state.ThumbSticks.Left.X < -0.3f && P2prevState.ThumbSticks.Left.X > -0.3f) || (P3state.ThumbSticks.Left.X < -0.3f && P3prevState.ThumbSticks.Left.X > -0.3f) || (P4state.ThumbSticks.Left.X < -0.3f && P4prevState.ThumbSticks.Left.X > -0.3f)) && menu && !open)
                         {
                             anim.SetTrigger("Left");
                             inputLock = inputTimer;
                         }
-                        if ((Input.GetKeyDown(KeyCode.RightArrow) || (P1state.Buttons.RightShoulder == ButtonState.Pressed && P1prevState.Buttons.RightShoulder == ButtonState.Released) || (P2state.Buttons.RightShoulder == ButtonState.Pressed && P2prevState.Buttons.RightShoulder == ButtonState.Released) || (P3state.Buttons.RightShoulder == ButtonState.Pressed && P3prevState.Buttons.RightShoulder == ButtonState.Released) || (P4state.Buttons.RightShoulder == ButtonState.Pressed && P4prevState.Buttons.RightShoulder == ButtonState.Released) || (P1state.DPad.Right == ButtonState.Pressed && P1prevState.DPad.Right == ButtonState.Released) || (P2state.DPad.Right == ButtonState.Pressed && P2prevState.DPad.Right == ButtonState.Released) || (P3state.DPad.Right == ButtonState.Pressed && P3prevState.DPad.Right == ButtonState.Released) || (P4state.DPad.Right == ButtonState.Pressed && P4prevState.DPad.Right == ButtonState.Released)) && menu && !open)
+                        if ((Input.GetKeyDown(KeyCode.RightArrow) || (P1state.Buttons.RightShoulder == ButtonState.Pressed && P1prevState.Buttons.RightShoulder == ButtonState.Released) || (P2state.Buttons.RightShoulder == ButtonState.Pressed && P2prevState.Buttons.RightShoulder == ButtonState.Released) || (P3state.Buttons.RightShoulder == ButtonState.Pressed && P3prevState.Buttons.RightShoulder == ButtonState.Released) || (P4state.Buttons.RightShoulder == ButtonState.Pressed && P4prevState.Buttons.RightShoulder == ButtonState.Released) || (P1state.DPad.Right == ButtonState.Pressed && P1prevState.DPad.Right == ButtonState.Released) || (P2state.DPad.Right == ButtonState.Pressed && P2prevState.DPad.Right == ButtonState.Released) || (P3state.DPad.Right == ButtonState.Pressed && P3prevState.DPad.Right == ButtonState.Released) || (P4state.DPad.Right == ButtonState.Pressed && P4prevState.DPad.Right == ButtonState.Released) || (P1state.ThumbSticks.Left.X > 0.3f && P1prevState.ThumbSticks.Left.X < 0.3f) || (P2state.ThumbSticks.Left.X > 0.3f && P2prevState.ThumbSticks.Left.X < 0.3f) || (P3state.ThumbSticks.Left.X > 0.3f && P3prevState.ThumbSticks.Left.X < 0.3f) || (P4state.ThumbSticks.Left.X > 0.3f && P4prevState.ThumbSticks.Left.X < 0.3f)) && menu && !open)
                         {
                             anim.SetTrigger("Right");
                             inputLock = inputTimer;
@@ -106,6 +122,10 @@ public class MenuSelection : MonoBehaviour
 
                                     anim.SetBool("Menu", false);
                                     menu = false;
+                                    anim.SetBool("lockLeftRight", true);
+                                    rightList = null;
+                                    anim.SetBool("SureQuit", false);
+                                    anim.SetBool("SureMenu", false);
 
                                 }
 
