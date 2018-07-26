@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     static Color Orange = new Color(0.8867924f, 0.3786893f, 0.1547704f, 1);
     static Color Lime = new Color(0.4082314f, 0.945098f, 0.2f, 1);
     static Color Pink = new Color(1, 0.259434f, 0.3445413f, 1);
-    static Color Crimson = new Color(0.5943396f, 0.02523139f, 08992239f, 1);
+    static Color Crimson = new Color(0.8018868f, 0.1080861f, 0.05673727f, 1);
     static Color LightBlue = new Color(0, 0.629f, 1, 1);
     static Color DarkBlue = new Color(0.001972034f, 0, 0.8392157f, 1);
     Color[] colorSet = { Red, Blue, Cyan, Yellow, Green, Purple, Orange, Lime };
@@ -104,10 +104,10 @@ public class PlayerHealth : MonoBehaviour
             Renderer[] rend = player.GetComponentsInChildren<Renderer>();
             rend[0].GetPropertyBlock(_propBlock);
             _propBlock.SetColor("_Color", color);
-            rend[0].SetPropertyBlock(_propBlock);
-            rend[3].SetPropertyBlock(_propBlock);
+            rend[2].SetPropertyBlock(_propBlock);
+            rend[5].SetPropertyBlock(_propBlock);
             _propBlock.SetColor("_Color", skinColor);
-            rend[10].SetPropertyBlock(_propBlock);
+            rend[12].SetPropertyBlock(_propBlock);
 
         }//change this to the upper commented one if color change system comes back
 
