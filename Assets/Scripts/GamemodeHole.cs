@@ -36,6 +36,13 @@ public class GamemodeHole : MonoBehaviour {
         }
     }
 
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag =="Player" && players.Contains(other))
+        {
+            players.Remove(other);
+            playersInHole -= 1;
+        }
+    }
 
 }
