@@ -231,8 +231,8 @@ public class PlayerJoining : MonoBehaviour {
     {
         if (StatHolder.HowManyPlayers >= 2 && gameStarting == false)
         {
-            print("get in the holes");
-            print(totalPlayersInHoles);
+            //print("get in the holes");
+            //print(totalPlayersInHoles);
             CheckPlayersInHoles();
             if (StatHolder.HowManyPlayers == totalPlayersInHoles)
             {

@@ -6,6 +6,8 @@ public class CheckersList : MonoBehaviour
 {
     public List<GameObject> checkers = new List<GameObject>();
 
+    public Weapon weaponScript;
+
     private GameObject gameObjectToDrop;
     private Rigidbody rb;
     private Animator anim;
@@ -104,6 +106,14 @@ public class CheckersList : MonoBehaviour
 
         if (waitTimerUntilDropTime <= 0)
         {
+            RayCastToUp();
+
+            if (weaponScript != null)
+            {
+                Debug.Log(weaponScript);
+                weaponScript.RayCastToGround();
+            }
+
             rb = gameObjectToDrop.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.AddForce(Vector3.down * dropSpeed);
@@ -119,4 +129,22 @@ public class CheckersList : MonoBehaviour
         }
     }
 
+    public void RayCastToUp()
+    {
+        RaycastHit hit;
+
+        if (Physics.SphereCast(gameObjectToDrop.transform.position, 10, Vector3.up, out hit, 10))
+        {
+            Debug.Log(hit);
+            if (hit.transform.tag != null && hit.transform.tag == "Weapon")
+            {
+                Debug.Log(hit.transform.tag);
+                weaponScript = hit.transform.root.GetComponent<Weapon>();
+            }
+        }
+        else
+        {
+            //Debug.Log(hit);
+        }
+    }
 }
