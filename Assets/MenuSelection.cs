@@ -107,11 +107,13 @@ public class MenuSelection : MonoBehaviour
                         {
                             anim.SetTrigger("Left");
                             inputLock = inputTimer;
+                            playSound();
                         }
                         if ((Input.GetKeyDown(KeyCode.RightArrow) || (P1state.Buttons.RightShoulder == ButtonState.Pressed && P1prevState.Buttons.RightShoulder == ButtonState.Released) || (P2state.Buttons.RightShoulder == ButtonState.Pressed && P2prevState.Buttons.RightShoulder == ButtonState.Released) || (P3state.Buttons.RightShoulder == ButtonState.Pressed && P3prevState.Buttons.RightShoulder == ButtonState.Released) || (P4state.Buttons.RightShoulder == ButtonState.Pressed && P4prevState.Buttons.RightShoulder == ButtonState.Released) || (P1state.DPad.Right == ButtonState.Pressed && P1prevState.DPad.Right == ButtonState.Released) || (P2state.DPad.Right == ButtonState.Pressed && P2prevState.DPad.Right == ButtonState.Released) || (P3state.DPad.Right == ButtonState.Pressed && P3prevState.DPad.Right == ButtonState.Released) || (P4state.DPad.Right == ButtonState.Pressed && P4prevState.DPad.Right == ButtonState.Released) || (P1state.ThumbSticks.Left.X > 0.3f && P1prevState.ThumbSticks.Left.X < 0.3f) || (P2state.ThumbSticks.Left.X > 0.3f && P2prevState.ThumbSticks.Left.X < 0.3f) || (P3state.ThumbSticks.Left.X > 0.3f && P3prevState.ThumbSticks.Left.X < 0.3f) || (P4state.ThumbSticks.Left.X > 0.3f && P4prevState.ThumbSticks.Left.X < 0.3f)) && menu && !open)
                         {
                             anim.SetTrigger("Right");
                             inputLock = inputTimer;
+                            playSound();
                         }
                     }
 
