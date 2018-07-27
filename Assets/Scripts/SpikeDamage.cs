@@ -97,7 +97,7 @@ public class SpikeDamage : MonoBehaviour
 
     private void playSound()
     {
-        currentAudioClip = audioScript.hazardAudioList[4];
+        currentAudioClip = audioScript.hazardAudioList[3];
         audioSource.clip = currentAudioClip;
         audioSource.Play();
     }

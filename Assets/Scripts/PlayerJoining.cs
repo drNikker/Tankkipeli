@@ -8,6 +8,7 @@ public class PlayerJoining : MonoBehaviour {
 
     MultiTargetCamera LevelCam;
 
+    AudioScript audioScript;
     RoundManager roundManager;
     static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
     static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
@@ -49,6 +50,7 @@ public class PlayerJoining : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
         StatHolder.CurrentMode = StatHolder.Modes.DM;
         StatHolder.HowManyPlayers = 0;
@@ -66,6 +68,7 @@ public class PlayerJoining : MonoBehaviour {
         StatHolder.Player4Color = 100;
 
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
+        audioScript.PlaySceneMusic(0);
     }
 
     // Update is called once per frame
