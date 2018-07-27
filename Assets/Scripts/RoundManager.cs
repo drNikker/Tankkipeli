@@ -131,7 +131,7 @@ public class RoundManager : MonoBehaviour
                 break;
 
             case StatHolder.Modes.TDM:
-                if (redPlayers.Count == 0 || bluePlayers.Count == 0)
+                if (redPlayers.Count == 0 && bluePlayers.Count > 0 || bluePlayers.Count == 0 && redPlayers.Count > 0)
                 {
                     RoundOver();
                 }
