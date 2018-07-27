@@ -321,77 +321,138 @@ public class Options : MonoBehaviour
         switch (playerText.text)
         {
             case "Red":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
-                    moveDirText.text = "Bumpers/Triggers";
+                    if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                    {
+                        moveDirText.text = "Bumpers/Triggers";
+                    }
+                    else
+                    {
+                        moveDirText.text = "Triggers/Bumpers";
+                    }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
                 }
-                
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+
+                if (PlayerPrefs.HasKey(playerText.text + turnDirPref))
                 {
-                    turnDirText.text = "Inverted";
+                    if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+                    {
+                        turnDirText.text = "Inverted";
+                    }
+                    else
+                    {
+                        turnDirText.text = "Normal";
+                    }
                 }
                 else
                 {
                     turnDirText.text = "Normal";
                 }
-
                 break;
+
+
             case "Blue":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
-                    moveDirText.text = "Bumpers/Triggers";
+                    if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                    {
+                        moveDirText.text = "Bumpers/Triggers";
+                    }
+                    else
+                    {
+                        moveDirText.text = "Triggers/Bumpers";
+                    }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
                 }
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+                if (PlayerPrefs.HasKey(playerText.text + turnDirPref))
                 {
-                    turnDirText.text = "Inverted";
+                    if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+                    {
+                        turnDirText.text = "Inverted";
+                    }
+                    else
+                    {
+                        turnDirText.text = "Normal";
+                    }
                 }
                 else
                 {
                     turnDirText.text = "Normal";
                 }
                 break;
+
+
             case "Cyan":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
-                    moveDirText.text = "Bumpers/Triggers";
+                    if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                    {
+                        moveDirText.text = "Bumpers/Triggers";
+                    }
+                    else
+                    {
+                        moveDirText.text = "Triggers/Bumpers";
+                    }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
                 }
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+                if (PlayerPrefs.HasKey(playerText.text + turnDirPref))
                 {
-                    turnDirText.text = "Inverted";
+                    if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+                    {
+                        turnDirText.text = "Inverted";
+                    }
+                    else
+                    {
+                        turnDirText.text = "Normal";
+                    }
                 }
                 else
                 {
                     turnDirText.text = "Normal";
                 }
                 break;
+
+
             case "Yellow":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
-                    moveDirText.text = "Bumpers/Triggers";
+                    if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
+                    {
+                        moveDirText.text = "Bumpers/Triggers";
+                    }
+                    else
+                    {
+                        moveDirText.text = "Triggers/Bumpers";
+                    }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
                 }
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+                if (PlayerPrefs.HasKey(playerText.text + turnDirPref))
                 {
-                    turnDirText.text = "Inverted";
+                    if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
+                    {
+                        turnDirText.text = "Inverted";
+                    }
+                    else
+                    {
+                        turnDirText.text = "Normal";
+                    }
                 }
                 else
                 {
