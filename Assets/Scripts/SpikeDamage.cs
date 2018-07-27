@@ -18,8 +18,14 @@ public class SpikeDamage : MonoBehaviour
     float cooldown;
     float finalDamage;
 
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         spikes = GetComponent<Rigidbody>();
         VFX = GetComponent<ParticleSystem>();
     }
@@ -45,6 +51,7 @@ public class SpikeDamage : MonoBehaviour
             finalDamageVFX = Mathf.RoundToInt(finalDamage);
             VFX.startLifetime = (0.05f * finalDamageVFX);
             VFX.Emit(5 * finalDamageVFX);
+            playSound();
         }
 
     }
@@ -86,5 +93,12 @@ public class SpikeDamage : MonoBehaviour
 
         Debug.LogWarning("Bodypart took a hit, but player tankbase was not found");
         return null;
+    }
+
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[4];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }
