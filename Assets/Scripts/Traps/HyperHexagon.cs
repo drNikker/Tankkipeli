@@ -10,9 +10,15 @@ public class HyperHexagon : MonoBehaviour
     [Space(10)]
     public float timerUntilDropTime;
 
+
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
     void Start()
     {
         timerUntilDrop = true;
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -29,6 +35,9 @@ public class HyperHexagon : MonoBehaviour
 
         if (timerUntilDropTime <= 0)
         {
+            PlaySound();
+                StartCoroutine(DelayBeeb());
+
             switch (gameObject.tag)
             {
                 case "Fist1":
@@ -55,4 +64,23 @@ public class HyperHexagon : MonoBehaviour
             timerUntilDrop = false;
         }
     }
+    IEnumerator DelayBeeb()
+    {
+        yield return new WaitForSeconds(0.65f);
+        PlaySound();
+        yield return new WaitForSeconds(0.65f);
+        PlaySound();
+        yield return new WaitForSeconds(0.65f);
+        PlaySound();
+        yield return new WaitForSeconds(0.65f);
+        PlaySound();
+    }
+
+    private void PlaySound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[4];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
+    }
+
 }
