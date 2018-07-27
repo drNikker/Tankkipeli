@@ -30,10 +30,15 @@ public class MenuSelection : MonoBehaviour
     GamePadState P4state;
     GamePadState P4prevState;
 
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
-
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -237,6 +242,13 @@ public class MenuSelection : MonoBehaviour
                 menuLists[i].enabled = true;
             }
         }
+    }
+
+    private void playSound()
+    {
+        currentAudioClip = audioScript.menuClick;
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 
 }
