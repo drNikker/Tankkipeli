@@ -7,52 +7,30 @@ public class FallingHazard1 : MonoBehaviour
 
     public float maxSpawnTime = 10;
     public float minSpawnTime = 9;
-    public bool randomPosition;
+    private bool canSpawn = true;
     public bool randomRotation;
-    public bool randomSize;
-    public float XPositionLowerLimit;
-    public float XPositionUpperLimit;
-    public float YPositionLowerLimit;
-    public float YPositionUpperLimit;
-    public float ZPositionLowerLimit;
-    public float ZPositionUpperLimit;
-    public float sizeUpperLimit;
-    public float sizeLoweLimit;
 
     public List<GameObject> objects = new List<GameObject>();
-
-    public OBJECT_SPAWN_STYLE spawnStyle;
 
 
     // Use this for initialization
     void Start()
     {
-        if (randomPosition)
-        {
-            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
-        }
+        
 
-       StartCoroutine(SpawnObject());
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Ray spawnRay = new Ray(this.gameObject.transform.position, Vector3.down);
-
-        if (!Physics.Raycast(spawnRay, out hit, 10000) && randomPosition || hit.collider.tag != "Environment" && randomPosition)
-        {
-
-            this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
-
-        }
+        
     }
 
     IEnumerator SpawnObject()
     {
-        yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
+        
         CreateFallingObject();
+        yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
     }
 
     void CreateFallingObject()
@@ -62,30 +40,12 @@ public class FallingHazard1 : MonoBehaviour
         {
             fallingObject.transform.rotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.one);
         }
-        if (randomSize)
-        {
-            fallingObject.transform.localScale = new Vector3(Random.Range(sizeLoweLimit, sizeUpperLimit), Random.Range(sizeLoweLimit, sizeUpperLimit), Random.Range(sizeLoweLimit, sizeUpperLimit));
-        }
-
-        switch (spawnStyle)
-        {
-            case OBJECT_SPAWN_STYLE.RANDOM:
-                this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
-                break;
-            case OBJECT_SPAWN_STYLE.ON_PLAYER:
-                PlayerHealth[] playerLocations = FindObjectsOfType<PlayerHealth>();
-                this.gameObject.transform.position = playerLocations[Random.Range(0, playerLocations.Length - 1)].transform.position;
-                break;
-        }
-
-
-
-        //if (randomPosition)
-        //{
-        //    this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
-        //}
-        StartCoroutine(SpawnObject());
-
+        
+        PlayerHealth[] playerLocations = FindObjectsOfType<PlayerHealth>();
+        Vector3 temp = playerLocations[Random.Range(0, playerLocations.Length - 1)].transform.position;
+        temp.y = 50;
+        this.gameObject.transform.position = temp;
+        
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -94,12 +54,6 @@ public class FallingHazard1 : MonoBehaviour
         {
             Destroy(collider.gameObject);
         }
-    }
-
-    public enum OBJECT_SPAWN_STYLE
-    {
-        RANDOM,
-        ON_PLAYER
     }
 }
 
