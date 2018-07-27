@@ -127,6 +127,8 @@ public class Options : MonoBehaviour
         }
         masterVolText.text = masterVolFloat.ToString();
         masterMixer.SetFloat("MasterVol", GetDecibel(masterVolFloat));
+        PlayerPrefs.SetFloat(masterVolumePref, masterVolFloat);
+        
         Debug.Log("MasterVol");
     }
 
@@ -142,6 +144,8 @@ public class Options : MonoBehaviour
         }
         musicVolText.text = musicVolFloat.ToString();
         masterMixer.SetFloat("MusicVol", GetDecibel(musicVolFloat));
+        PlayerPrefs.SetFloat(musicVolumePref, musicVolFloat);
+        
         Debug.Log("MusicBtn");
     }
 
@@ -157,6 +161,7 @@ public class Options : MonoBehaviour
         }
         sfxVolText.text = sfxVolFloat.ToString();
         masterMixer.SetFloat("SFXVol", GetDecibel(sfxVolFloat));
+        PlayerPrefs.SetFloat(sfxVolumePref, sfxVolFloat);
     }
 
     //Framerate setting

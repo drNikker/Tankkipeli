@@ -81,6 +81,7 @@ public class MenuSelection : MonoBehaviour
                     anim.SetBool("Menu", false);
                     menu = false;
                     anim.SetBool("lockLeftRight", true);
+                    rightList.enabled = false;
                     rightList = null;
                     anim.SetBool("SureQuit", false);
                     anim.SetBool("SureMenu", false);
@@ -130,6 +131,7 @@ public class MenuSelection : MonoBehaviour
                                     anim.SetBool("Menu", false);
                                     menu = false;
                                     anim.SetBool("lockLeftRight", true);
+                                    rightList.enabled = false;
                                     rightList = null;
                                     anim.SetBool("SureQuit", false);
                                     anim.SetBool("SureMenu", false);
@@ -139,7 +141,7 @@ public class MenuSelection : MonoBehaviour
                                 if (option == 5) //Back to lobby
                                 {
                                     anim.SetBool("SureMenu", true);
-
+                                    rightList.enabled = false;
                                     rightList = menuLists[5];
                                     anim.SetBool("lockLeftRight", true);
                                     SelectList();
@@ -151,6 +153,7 @@ public class MenuSelection : MonoBehaviour
                                 {
                                     anim.SetBool("SureQuit", true);
                                     rightList = menuLists[4];
+
                                     anim.SetBool("lockLeftRight", true);
                                     SelectList();
 

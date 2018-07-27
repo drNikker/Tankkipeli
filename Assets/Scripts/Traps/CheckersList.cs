@@ -6,10 +6,11 @@ public class CheckersList : MonoBehaviour
 {
     public List<GameObject> checkers = new List<GameObject>();
 
-    public Weapon weaponScript;
+    private Weapon weaponScript;
 
     private GameObject gameObjectToDrop;
     private Rigidbody rb;
+    private Rigidbody fenceRB;
     private Animator anim;
 
     private bool setRandomNumberTimer;
@@ -28,8 +29,15 @@ public class CheckersList : MonoBehaviour
     private bool checkForNewGameObject;
     private int checkedDroppedObjects = 0;
 
+
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         originalWaitTimerUntilDropTime = waitTimerUntilDropTime;
         originalSetRandomNumberTime = setRandomNumberTime;
 
@@ -90,7 +98,8 @@ public class CheckersList : MonoBehaviour
             }
             anim = gameObjectToDrop.GetComponent<Animator>();
             anim.SetTrigger("Blink");
-
+            PlaySound();
+            StartCoroutine(DelayBeeb());
             setRandomNumberTime = originalSetRandomNumberTime;
 
             checkedDroppedObjects++;
@@ -106,21 +115,26 @@ public class CheckersList : MonoBehaviour
 
         if (waitTimerUntilDropTime <= 0)
         {
-            RayCastToUp();
+            //RayCastToUp();
 
+            /*
             if (weaponScript != null)
             {
                 Debug.Log(weaponScript);
                 weaponScript.RayCastToGround();
             }
+            */
 
-            rb = gameObjectToDrop.GetComponent<Rigidbody>();
+            rb = gameObjectToDrop.GetComponentInParent<Rigidbody>();
+            fenceRB = gameObjectToDrop.GetComponentInChildren<Rigidbody>();
             rb.isKinematic = false;
-            rb.AddForce(Vector3.down * dropSpeed);
+            fenceRB.isKinematic = false;
+
+            rb.AddForce(Vector3.down * dropSpeed, ForceMode.Impulse);
 
             checkers.RemoveAt(pickRandomIndex);
             checkers.RemoveAll(list_item => list_item == null);
-            Destroy(gameObjectToDrop, 6);
+            Destroy(gameObjectToDrop, 5);
 
             waitTimerUntilDropTime = originalWaitTimerUntilDropTime;
 
@@ -146,5 +160,26 @@ public class CheckersList : MonoBehaviour
         {
             //Debug.Log(hit);
         }
+    }
+
+    IEnumerator DelayBeeb()
+    {
+        yield return new WaitForSeconds(0.71f);
+        PlaySound();
+        yield return new WaitForSeconds(0.71f);
+        PlaySound();
+        yield return new WaitForSeconds(0.71f);
+        PlaySound();
+        //yield return new WaitForSeconds(0.71f);
+        //PlaySound();
+        //yield return new WaitForSeconds(0.71f);
+        //PlaySound();
+    }
+
+    private void PlaySound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[4];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }

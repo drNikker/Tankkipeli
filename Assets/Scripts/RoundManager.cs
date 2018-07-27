@@ -131,7 +131,7 @@ public class RoundManager : MonoBehaviour
                 break;
 
             case StatHolder.Modes.TDM:
-                if (redPlayers.Count == 0 || bluePlayers.Count == 0)
+                if (redPlayers.Count == 0 && bluePlayers.Count > 0 || bluePlayers.Count == 0 && redPlayers.Count > 0)
                 {
                     RoundOver();
                 }
@@ -147,7 +147,7 @@ public class RoundManager : MonoBehaviour
             StatHolder.HowManyPlayers = 2;
         }
         StatHolder.WinsNeeded = 4;
-        StatHolder.WitchSet = Random.Range(1, 5);
+        StatHolder.WitchSet = Random.Range(3, 4);
         audioScript.PlaySceneMusic(StatHolder.WitchSet);
         NewRound();
     }
