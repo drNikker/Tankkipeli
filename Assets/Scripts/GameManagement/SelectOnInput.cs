@@ -24,9 +24,15 @@ public class SelectOnInput : MonoBehaviour
     GamePadState P4state;
     GamePadState P4prevState;
 
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         menuButtons = this.GetComponentsInChildren<Button>();
         menuButtons[selected].Select();
         initialized = true;
@@ -63,6 +69,7 @@ public class SelectOnInput : MonoBehaviour
                 {
                     selected++;
                     menuButtons[selected].Select();
+                    playSound();
                 }
 
             }
@@ -73,12 +80,14 @@ public class SelectOnInput : MonoBehaviour
                 {
                     selected--;
                     menuButtons[selected].Select();
+                    playSound();
                 }
 
             }
 
             if (Input.GetKeyDown(KeyCode.K) || (P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released) || (P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released) || (P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released) || (P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released))
             {
+                playConfirmSound();
                 menuButtons[selected].onClick.Invoke();
             }
             
@@ -104,5 +113,17 @@ public class SelectOnInput : MonoBehaviour
     //    menuButtons[selected].Select();
     //}
 
+    private void playSound()
+    {
+        currentAudioClip = audioScript.menuClick;
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
+    }
+    private void playConfirmSound()
+    {
+        currentAudioClip = audioScript.menuConfirm;
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
+    }
 
 }

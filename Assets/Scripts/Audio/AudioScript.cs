@@ -16,6 +16,8 @@ public class AudioScript : MonoBehaviour
     public AudioClip knockOut;
     public AudioClip roundOver;
     public AudioClip motorRumble;
+    public AudioClip menuClick;
+    public AudioClip menuConfirm;
 
     public static AudioScript Instance;
 
