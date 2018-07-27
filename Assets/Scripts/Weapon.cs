@@ -51,7 +51,7 @@ public class Weapon : MonoBehaviour {
             for (int i = 0; i < joints.Length; i++)
             {
                 SoftJointLimit limit = joints[i].linearLimit;
-                limit.limit -= 0.2f * Time.deltaTime;
+                limit.limit -= 0.1f * Time.deltaTime;
                 joints[i].linearLimit = limit;
                 if (limit.limit <= 0.01)
                 {
@@ -89,7 +89,7 @@ public class Weapon : MonoBehaviour {
 
     void GetMass()
     {
-        totalMass = 0;
+        totalMass = 0.1f;
         foreach (WeaponDamage wd in damageDealers)
         {
             Rigidbody r = wd.GetComponent<Rigidbody>();
@@ -167,7 +167,7 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                     SoftJointLimit limit = joints[i].linearLimit;
-                    limit.limit = 0.0f;
+                    limit.limit = 0.1f;
                     joints[i].linearLimit = limit;
 
                 }
