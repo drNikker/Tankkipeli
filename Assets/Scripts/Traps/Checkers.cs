@@ -23,6 +23,7 @@ public class Checkers : MonoBehaviour
         
     }
 
+    /*
     private void OnTriggerExit(Collider collider)
     {
         if (collider.gameObject.CompareTag("Weapon"))
@@ -39,4 +40,5 @@ public class Checkers : MonoBehaviour
             Debug.Log("Lattia alta.");
         }
     }
+    */
 }
