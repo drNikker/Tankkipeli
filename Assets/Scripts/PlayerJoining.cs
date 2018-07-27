@@ -247,8 +247,16 @@ public class PlayerJoining : MonoBehaviour {
                 StatHolder.CurrentMode = holes[chosen - 1].mode;
                 if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
                 {
-                    StatHolder.Player1Color = Random.Range(0, 2);
-                    StatHolder.Player2Color = Random.Range(0, 2);
+                    if (StatHolder.HowManyPlayers == 2)
+                    {
+                        StatHolder.Player1Color = 0;
+                        StatHolder.Player2Color = 1;
+                    }
+                    else
+                    {
+                        StatHolder.Player1Color = Random.Range(0, 2);
+                        StatHolder.Player2Color = Random.Range(0, 2);
+                    }
                     if (StatHolder.Player1Color == 0 && StatHolder.Player2Color == 0)
                     {
                         StatHolder.Player3Color = 1;
