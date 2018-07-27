@@ -29,8 +29,15 @@ public class CheckersList : MonoBehaviour
     private bool checkForNewGameObject;
     private int checkedDroppedObjects = 0;
 
+
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         originalWaitTimerUntilDropTime = waitTimerUntilDropTime;
         originalSetRandomNumberTime = setRandomNumberTime;
 
@@ -91,7 +98,8 @@ public class CheckersList : MonoBehaviour
             }
             anim = gameObjectToDrop.GetComponent<Animator>();
             anim.SetTrigger("Blink");
-
+            PlaySound();
+            StartCoroutine(DelayBeeb());
             setRandomNumberTime = originalSetRandomNumberTime;
 
             checkedDroppedObjects++;
@@ -152,5 +160,26 @@ public class CheckersList : MonoBehaviour
         {
             //Debug.Log(hit);
         }
+    }
+
+    IEnumerator DelayBeeb()
+    {
+        yield return new WaitForSeconds(0.71f);
+        PlaySound();
+        yield return new WaitForSeconds(0.71f);
+        PlaySound();
+        yield return new WaitForSeconds(0.71f);
+        PlaySound();
+        //yield return new WaitForSeconds(0.71f);
+        //PlaySound();
+        //yield return new WaitForSeconds(0.71f);
+        //PlaySound();
+    }
+
+    private void PlaySound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[4];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }
