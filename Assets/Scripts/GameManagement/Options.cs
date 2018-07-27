@@ -321,7 +321,7 @@ public class Options : MonoBehaviour
         switch (playerText.text)
         {
             case "Red":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
                 }
@@ -329,8 +329,9 @@ public class Options : MonoBehaviour
                 {
                     moveDirText.text = "Triggers/Bumpers";
                 }
+                
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                 {
                     turnDirText.text = "Inverted";
                 }
@@ -341,7 +342,7 @@ public class Options : MonoBehaviour
 
                 break;
             case "Blue":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
                 }
@@ -350,7 +351,7 @@ public class Options : MonoBehaviour
                     moveDirText.text = "Triggers/Bumpers";
                 }
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                 {
                     turnDirText.text = "Inverted";
                 }
@@ -360,7 +361,7 @@ public class Options : MonoBehaviour
                 }
                 break;
             case "Cyan":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
                 }
@@ -369,7 +370,7 @@ public class Options : MonoBehaviour
                     moveDirText.text = "Triggers/Bumpers";
                 }
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                 {
                     turnDirText.text = "Inverted";
                 }
@@ -379,7 +380,7 @@ public class Options : MonoBehaviour
                 }
                 break;
             case "Yellow":
-                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                 {
                     moveDirText.text = "Bumpers/Triggers";
                 }
@@ -388,7 +389,7 @@ public class Options : MonoBehaviour
                     moveDirText.text = "Triggers/Bumpers";
                 }
 
-                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 1)
+                if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                 {
                     turnDirText.text = "Inverted";
                 }
@@ -430,13 +431,13 @@ public class Options : MonoBehaviour
         if (moveDirText.text == "Triggers/Bumpers")
         {
             moveDirText.text = "Bumpers/Triggers";
-            PlayerPrefs.SetInt(playerText.text + moveDirPref, 1);
+            PlayerPrefs.SetInt(playerText.text + moveDirPref, -1);
         }
         else
         {
             moveDirText.text = "Triggers/Bumpers";
 
-            PlayerPrefs.SetInt(playerText.text + moveDirPref, -1);
+            PlayerPrefs.SetInt(playerText.text + moveDirPref, 1);
         }
         SetplayerControls();
     }
@@ -446,13 +447,13 @@ public class Options : MonoBehaviour
         if (turnDirText.text == "Normal")
         {
             turnDirText.text = "Inverted";
-            PlayerPrefs.SetInt(playerText.text + turnDirPref, 1);
+            PlayerPrefs.SetInt(playerText.text + turnDirPref, 0);
         }
         else
         {
             turnDirText.text = "Normal";
 
-            PlayerPrefs.SetInt(playerText.text + turnDirPref, 0);
+            PlayerPrefs.SetInt(playerText.text + turnDirPref, 1);
         }
         SetplayerControls();
     }
