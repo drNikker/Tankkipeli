@@ -87,6 +87,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4797296177306404}
+  - component: {fileID: 114845075978367262}
+  - component: {fileID: 65009058246378922}
+  - component: {fileID: 54147378928777496}
   m_Layer: 0
   m_Name: RaceTrackFence
   m_TagString: Untagged
@@ -187,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1398606893683330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 15.234002, y: 3.987563e-17, z: 4.56213}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4945614152201296}
@@ -477,3 +480,45 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714176333470302}
   m_Mesh: {fileID: 4300006, guid: 4143ec28720852047a84554b8c750c0e, type: 3}
+--- !u!54 &54147378928777496
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398606893683330}
+  serializedVersion: 2
+  m_Mass: 600
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65009058246378922
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398606893683330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31850433, y: 1.6420562, z: 6.4534264}
+  m_Center: {x: -0.016337395, y: 0.8225435, z: 0.008036494}
+--- !u!114 &114845075978367262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398606893683330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7823f7f50fb774b847ecba2296b551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerImpactMagnitude: 4
+  weaponImpactMagnitude: 6
+  playerPushingForce: 875000
+  fencePushingForce: 1000000
