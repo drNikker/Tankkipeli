@@ -6,10 +6,11 @@ public class CheckersList : MonoBehaviour
 {
     public List<GameObject> checkers = new List<GameObject>();
 
-    public Weapon weaponScript;
+    private Weapon weaponScript;
 
     private GameObject gameObjectToDrop;
     private Rigidbody rb;
+    private Rigidbody fenceRB;
     private Animator anim;
 
     private bool setRandomNumberTimer;
@@ -106,21 +107,26 @@ public class CheckersList : MonoBehaviour
 
         if (waitTimerUntilDropTime <= 0)
         {
-            RayCastToUp();
+            //RayCastToUp();
 
+            /*
             if (weaponScript != null)
             {
                 Debug.Log(weaponScript);
                 weaponScript.RayCastToGround();
             }
+            */
 
-            rb = gameObjectToDrop.GetComponent<Rigidbody>();
+            rb = gameObjectToDrop.GetComponentInParent<Rigidbody>();
+            fenceRB = gameObjectToDrop.GetComponentInChildren<Rigidbody>();
             rb.isKinematic = false;
-            rb.AddForce(Vector3.down * dropSpeed);
+            fenceRB.isKinematic = false;
+
+            rb.AddForce(Vector3.down * dropSpeed, ForceMode.Impulse);
 
             checkers.RemoveAt(pickRandomIndex);
             checkers.RemoveAll(list_item => list_item == null);
-            Destroy(gameObjectToDrop, 6);
+            Destroy(gameObjectToDrop, 5);
 
             waitTimerUntilDropTime = originalWaitTimerUntilDropTime;
 
