@@ -36,6 +36,7 @@ public class SelectOnInput : MonoBehaviour
         menuButtons = this.GetComponentsInChildren<Button>();
         menuButtons[selected].Select();
         initialized = true;
+        this.enabled = false;
     }
 
     // Update is called once per frame
