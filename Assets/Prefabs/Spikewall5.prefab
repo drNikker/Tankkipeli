@@ -40,8 +40,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512007681691328}
   m_LocalRotation: {x: -0.7071069, y: -0.7071067, z: -0.000000021649873, w: -0.000000022351742}
-  m_LocalPosition: {x: -12.981521, y: 4.44, z: -10.31}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -9.016548, y: 0.4, z: -2.27}
+  m_LocalScale: {x: 1.9431574, y: 1.9431567, z: 1.9431567}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 7852dcee07058c045a2cff4ea6f46515, type: 2}
   - {fileID: 2100000, guid: ada8ef1cebfcd1d4c99edfe90bc6eb0a, type: 2}
-  - {fileID: 2100000, guid: e6a62dc295addee4cb9892038de84ea5, type: 2}
+  - {fileID: 2100000, guid: f204e6a744da73a49a6605534bdadb96, type: 2}
   - {fileID: 2100000, guid: a52328f4a5502c849b30a8d34125b467, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f95fb715f836b4bb19a27d021129db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  baseDamage: 16
   cooldownTime: 1
   knockback: 1500000
   VFX: {fileID: 198725910390174056}
@@ -462,7 +462,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.1
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -837,15 +837,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 0
+    type: 15
     angle: 66.23
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: 0.89, y: 0.26, z: 0.25}
+    m_Position: {x: 1.05, y: 0.38, z: 0.46}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 1.33, y: 0.27, z: 4.42}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -862,8 +862,8 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0
-    sphericalDirectionAmount: 1
+    randomDirectionAmount: 1
+    sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
       value: 0.21658735
@@ -1095,7 +1095,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 120
+        scalar: 60
         minScalar: 0
         maxCurve:
           serializedVersion: 2

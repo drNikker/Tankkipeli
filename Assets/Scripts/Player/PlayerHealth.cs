@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
     Color[] colorSet = { Red, Blue, Cyan, Yellow, Green, Purple, Orange, Lime };
     Color color;
     Color skinColor;
+    ParticleSystem vfxWin;
 
     // Use this for initialization
     void Start()
@@ -39,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
         LevelCam.AddTarget(transform);
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
+        vfxWin = GetComponent<ParticleSystem>();
         
 
         currHealth = maxHealth;
@@ -124,6 +126,11 @@ public class PlayerHealth : MonoBehaviour
                 KillPlayer();
             }
         }
+    }
+
+    public void VFX_Win()
+    {
+        vfxWin.Emit(120);
     }
 
     void CheckHP(float hp)
