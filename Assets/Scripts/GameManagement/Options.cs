@@ -22,6 +22,10 @@ public class Options : MonoBehaviour
     public Text masterVolText;
     public Text musicVolText;
     public Text sfxVolText;
+    public Text upText;
+    public Text turnRightText;
+    public Text turnLeftText;
+    public Text downText;
 
     //Controls menu textboxes
     public Text playerText;
@@ -46,7 +50,7 @@ public class Options : MonoBehaviour
 
     private void Start()
     {
-        playerText.text = "Red";
+        playerText.text = "P1 Red";
         GetOptions();
     }
     
@@ -331,15 +335,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                     {
                         moveDirText.text = "Bumpers/Triggers";
+                        upText.text = "Backwards";
+                        downText.text = "Forwards";
                     }
                     else
                     {
                         moveDirText.text = "Triggers/Bumpers";
+                        upText.text = "Forwards";
+                        downText.text = "Backwards";
                     }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
+                    upText.text = "Forwards";
+                    downText.text = "Backwards";
                 }
 
 
@@ -348,15 +358,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                     {
                         turnDirText.text = "Inverted";
+                        turnLeftText.text = "Turn Right";
+                        turnRightText.text = "Turn Left";
                     }
                     else
                     {
                         turnDirText.text = "Normal";
+                        turnLeftText.text = "Turn Left";
+                        turnRightText.text = "Turn Right";
                     }
                 }
                 else
                 {
                     turnDirText.text = "Normal";
+                    turnLeftText.text = "Turn Left";
+                    turnRightText.text = "Turn Right";
                 }
                 break;
 
@@ -367,15 +383,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                     {
                         moveDirText.text = "Bumpers/Triggers";
+                        upText.text = "Backwards";
+                        downText.text = "Forwards";
                     }
                     else
                     {
                         moveDirText.text = "Triggers/Bumpers";
+                        upText.text = "Forwards";
+                        downText.text = "Backwards";
                     }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
+                    upText.text = "Forwards";
+                    downText.text = "Backwards";
                 }
 
                 if (PlayerPrefs.HasKey(playerText.text + turnDirPref))
@@ -383,15 +405,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                     {
                         turnDirText.text = "Inverted";
+                        turnLeftText.text = "Turn Right";
+                        turnRightText.text = "Turn Left";
                     }
                     else
                     {
                         turnDirText.text = "Normal";
+                        turnLeftText.text = "Turn Left";
+                        turnRightText.text = "Turn Right";
                     }
                 }
                 else
                 {
                     turnDirText.text = "Normal";
+                    turnLeftText.text = "Turn Left";
+                    turnRightText.text = "Turn Right";
                 }
                 break;
 
@@ -402,15 +430,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                     {
                         moveDirText.text = "Bumpers/Triggers";
+                        upText.text = "Backwards";
+                        downText.text = "Forwards";
                     }
                     else
                     {
                         moveDirText.text = "Triggers/Bumpers";
+                        upText.text = "Forwards";
+                        downText.text = "Backwards";
                     }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
+                    upText.text = "Forwards";
+                    downText.text = "Backwards";
                 }
 
                 if (PlayerPrefs.HasKey(playerText.text + turnDirPref))
@@ -418,15 +452,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                     {
                         turnDirText.text = "Inverted";
+                        turnLeftText.text = "Turn Right";
+                        turnRightText.text = "Turn Left";
                     }
                     else
                     {
                         turnDirText.text = "Normal";
+                        turnLeftText.text = "Turn Left";
+                        turnRightText.text = "Turn Right";
                     }
                 }
                 else
                 {
                     turnDirText.text = "Normal";
+                    turnLeftText.text = "Turn Left";
+                    turnRightText.text = "Turn Right";
                 }
                 break;
 
@@ -437,15 +477,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
                     {
                         moveDirText.text = "Bumpers/Triggers";
+                        upText.text = "Backwards";
+                        downText.text = "Forwards";
                     }
                     else
                     {
                         moveDirText.text = "Triggers/Bumpers";
+                        upText.text = "Forwards";
+                        downText.text = "Backwards";
                     }
                 }
                 else
                 {
                     moveDirText.text = "Triggers/Bumpers";
+                    upText.text = "Forwards";
+                    downText.text = "Backwards";
                 }
 
                 if (PlayerPrefs.HasKey(playerText.text + turnDirPref))
@@ -453,15 +499,21 @@ public class Options : MonoBehaviour
                     if (PlayerPrefs.GetInt(playerText.text + turnDirPref) == 0)
                     {
                         turnDirText.text = "Inverted";
+                        turnLeftText.text = "Turn Right";
+                        turnRightText.text = "Turn Left";
                     }
                     else
                     {
                         turnDirText.text = "Normal";
+                        turnLeftText.text = "Turn Left";
+                        turnRightText.text = "Turn Right";
                     }
                 }
                 else
                 {
                     turnDirText.text = "Normal";
+                    turnLeftText.text = "Turn Left";
+                    turnRightText.text = "Turn Right";
                 }
                 break;
         }
@@ -473,16 +525,16 @@ public class Options : MonoBehaviour
         switch (playerText.text)
         {
             case "Red":
-                playerText.text = "Blue";
+                playerText.text = "P2 Blue";
                 break;
             case "Blue":
-                playerText.text = "Cyan";
+                playerText.text = "P3 Cyan";
                 break;
             case "Cyan":
-                playerText.text = "Yellow";
+                playerText.text = "P4 Yellow";
                 break;
             case "Yellow":
-                playerText.text = "Red";
+                playerText.text = "P1 Red";
                 break;
         }
         SetControlOptions();
