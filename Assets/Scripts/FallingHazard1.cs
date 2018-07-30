@@ -7,7 +7,7 @@ public class FallingHazard1 : MonoBehaviour
 
     public float maxSpawnTime = 10;
     public float minSpawnTime = 9;
-    private bool canSpawn = true;
+    private bool canSpawn = false;
     public bool randomRotation;
 
     public List<GameObject> objects = new List<GameObject>();
@@ -16,35 +16,45 @@ public class FallingHazard1 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+        StartCoroutine(StartDelay());
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (canSpawn)
+        {
+            StartCoroutine(SpawnObject());
+        }
     }
-
     IEnumerator SpawnObject()
     {
-        
+       
+        canSpawn = false;
         CreateFallingObject();
         yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
+        canSpawn = true;
     }
 
+    IEnumerator StartDelay()
+    {
+
+        yield return new WaitForSeconds(3);
+        canSpawn = true;
+    }
     void CreateFallingObject()
     {
-        GameObject fallingObject = Instantiate(objects[Random.Range(0, objects.Count)], this.gameObject.transform.position, transform.rotation);
-        if(randomRotation)
+        
+        PlayerHealth[] playerLocations = FindObjectsOfType<PlayerHealth>();
+        Vector3 temp = playerLocations[Random.Range(0, playerLocations.Length)].transform.position;
+        temp.y = 20;
+
+        GameObject fallingObject = Instantiate(objects[Random.Range(0, objects.Count)], temp, transform.rotation);
+        if (randomRotation)
         {
             fallingObject.transform.rotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.one);
         }
-        
-        PlayerHealth[] playerLocations = FindObjectsOfType<PlayerHealth>();
-        Vector3 temp = playerLocations[Random.Range(0, playerLocations.Length - 1)].transform.position;
-        temp.y = 50;
-        this.gameObject.transform.position = temp;
         
     }
 
