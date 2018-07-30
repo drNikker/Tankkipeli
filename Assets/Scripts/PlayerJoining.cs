@@ -323,7 +323,9 @@ public class PlayerJoining : MonoBehaviour {
             if (StatHolder.HowManyPlayers == 2)
             {
                 StatHolder.Player1Color = 0;
+                StatHolder.Player1SkinColor = 0;
                 StatHolder.Player2Color = 1;
+                StatHolder.Player2SkinColor = 0;
             }
             else
             {
@@ -332,16 +334,28 @@ public class PlayerJoining : MonoBehaviour {
             }
             if (StatHolder.Player1Color == 0 && StatHolder.Player2Color == 0)
             {
+                StatHolder.Player1SkinColor = 0;
+                StatHolder.Player2SkinColor = 1;
                 StatHolder.Player3Color = 1;
+                StatHolder.Player3SkinColor = 0;
                 StatHolder.Player4Color = 1;
+                StatHolder.Player4SkinColor = 1;
             }
             else if (StatHolder.Player1Color == 1 && StatHolder.Player2Color == 1)
             {
+                StatHolder.Player1SkinColor = 0;
+                StatHolder.Player2SkinColor = 1;
                 StatHolder.Player3Color = 0;
+                StatHolder.Player3SkinColor = 0;
                 StatHolder.Player4Color = 0;
+                StatHolder.Player4SkinColor = 1;
             }
             else
             {
+                StatHolder.Player1SkinColor = 0;
+                StatHolder.Player2SkinColor = 0;
+                StatHolder.Player3SkinColor = 1;
+                StatHolder.Player4SkinColor = 1;
                 StatHolder.Player3Color = Random.Range(0, 2);
                 StatHolder.Player4Color = Random.Range(0, 2);
                 while (StatHolder.Player3Color == StatHolder.Player4Color)
