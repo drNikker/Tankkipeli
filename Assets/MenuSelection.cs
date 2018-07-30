@@ -141,7 +141,6 @@ public class MenuSelection : MonoBehaviour
                                 if (option == 5) //Back to lobby
                                 {
                                     anim.SetBool("SureMenu", true);
-                                    rightList.enabled = false;
                                     rightList = menuLists[5];
                                     anim.SetBool("lockLeftRight", true);
                                     SelectList();
