@@ -115,7 +115,7 @@ public class CarScript : MonoBehaviour {
             print(collision.gameObject.name);
             StartCoroutine(carStop());
         }
-        if(collision.gameObject.tag == "Player" && speed > 5)
+        if(collision.gameObject.tag == "Player" && speed > 5 && rb.velocity.magnitude > 1)
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
         }
