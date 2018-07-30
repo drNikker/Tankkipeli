@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
@@ -26,6 +27,8 @@ public class PhysicMovement1 : MonoBehaviour
     CharacterUpright charUpR;
     RaycastHit downRightRay;
     PlayerHealth health;
+
+    public WhirlEffect whirlEffect;
 
     //wheel colliders
     public WheelCollider leftWheelCol1;
@@ -79,7 +82,7 @@ public class PhysicMovement1 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        
         menuSel = FindObjectOfType<MenuSelection>();
         player = gameObject;
         ragdollmode = player.GetComponentInChildren<FullRagdollMode>();
@@ -149,6 +152,7 @@ public class PhysicMovement1 : MonoBehaviour
             BackToNormalTimer();
         }
 
+        SetWhirlLevel();
 
     }
 
@@ -375,12 +379,17 @@ public class PhysicMovement1 : MonoBehaviour
         else
         {
             timerUntilDizzyTime += Time.deltaTime;
+            
             timerUntilDizzy = false;
+            
+
 
             if (timerUntilDizzyTime >= originalTimerUntilDizzyTime)
             {
                 timerUntilDizzyTime = originalTimerUntilDizzyTime;
             }
+
+            
         }
 
         //DebugMovementControls();
@@ -492,8 +501,12 @@ public class PhysicMovement1 : MonoBehaviour
     {
         timerUntilDizzyTime -= Time.deltaTime;
 
+        SetWhirlLevel();
+
         if (timerUntilDizzyTime <= 0)
         {
+            whirlEffect.SetLevel(0);
+
             ragdollmode.RagdollMode();
             health.currentState = PlayerHealth.PLAYER_STATE.STUNNED;
             health.SetPlayerState();
@@ -509,6 +522,39 @@ public class PhysicMovement1 : MonoBehaviour
             backToNormalTimer = true;
             timerUntilDizzy = false;
         }
+    }
+
+    private void SetWhirlLevel()
+    {
+        //Test and send whirl effect level
+
+        if (timerUntilDizzyTime >= originalTimerUntilDizzyTime - 0.05f)
+        {
+            whirlEffect.SetLevel(0);
+        }
+
+        if (originalTimerUntilDizzyTime >= timerUntilDizzyTime && timerUntilDizzyTime >= originalTimerUntilDizzyTime / 4 * 3)
+        {
+            whirlEffect.SetLevel(1);
+        }
+
+        if (originalTimerUntilDizzyTime / 4 * 3 >= timerUntilDizzyTime && timerUntilDizzyTime >= originalTimerUntilDizzyTime / 4 * 2)
+        {
+            whirlEffect.SetLevel(2);
+        }
+
+        if (originalTimerUntilDizzyTime / 4 * 2 >= timerUntilDizzyTime && timerUntilDizzyTime >= originalTimerUntilDizzyTime / 4)
+        {
+            whirlEffect.SetLevel(3);
+        }
+
+        if (originalTimerUntilDizzyTime / 4 >= timerUntilDizzyTime && timerUntilDizzyTime >= 0.05f)
+        {
+            whirlEffect.SetLevel(4);
+        }
+
+        
+
     }
 
     private void BackToNormalTimer()
