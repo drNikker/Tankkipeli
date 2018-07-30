@@ -96,7 +96,7 @@ public class CarScript : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (speed<maxSpeed && speed >5)
+        if (speed<=maxSpeed && speed >5)
         {
             speed += acceleration;
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
@@ -113,7 +113,7 @@ public class CarScript : MonoBehaviour {
         if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player")
         {
             print(collision.gameObject.name);
-            StartCoroutine(carStop());
+            StartCoroutine(carStop(0.2f));
         }
         if(collision.gameObject.tag == "Player" && speed > 5 && rb.velocity.magnitude > 1)
         {
@@ -138,9 +138,9 @@ public class CarScript : MonoBehaviour {
     }
 
 
-    IEnumerator carStop()
+    IEnumerator carStop(float stoptime)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(stoptime);
         acceleration = 0;
         speed = 0;
         maxSpeed = 0;
