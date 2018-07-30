@@ -47,6 +47,8 @@ public class PlayerJoining : MonoBehaviour {
     GamemodeHole[] holes;
     List<int> votes;
 
+    StatHolder.Modes chosenMode;
+
     // Use this for initialization
     void Start ()
     {
@@ -247,40 +249,7 @@ public class PlayerJoining : MonoBehaviour {
                 {
                     i += votes[chosen];
                 }
-                StatHolder.CurrentMode = holes[chosen - 1].mode;
-                if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
-                {
-                    if (StatHolder.HowManyPlayers == 2)
-                    {
-                        StatHolder.Player1Color = 0;
-                        StatHolder.Player2Color = 1;
-                    }
-                    else
-                    {
-                        StatHolder.Player1Color = Random.Range(0, 2);
-                        StatHolder.Player2Color = Random.Range(0, 2);
-                    }
-                    if (StatHolder.Player1Color == 0 && StatHolder.Player2Color == 0)
-                    {
-                        StatHolder.Player3Color = 1;
-                        StatHolder.Player4Color = 1;
-                    }
-                    else if (StatHolder.Player1Color == 1 && StatHolder.Player2Color == 1)
-                    {
-                        StatHolder.Player3Color = 0;
-                        StatHolder.Player4Color = 0;
-                    }
-                    else
-                    {
-                        StatHolder.Player3Color = Random.Range(0, 2);
-                        StatHolder.Player4Color = Random.Range(0, 2);
-                        while (StatHolder.Player3Color == StatHolder.Player4Color)
-                        {
-                            StatHolder.Player4Color = Random.Range(0, 2);
-                        }
-                    }
-
-                }
+                chosenMode = holes[chosen - 1].mode;
                 timer = 3;
                 gameStarting = true;
             }
@@ -326,6 +295,8 @@ public class PlayerJoining : MonoBehaviour {
             timer -= Time.deltaTime;
             if(timer <= 0)
             {
+                StatHolder.CurrentMode = chosenMode;
+                TDMTeamAssigner();
                 gameStarting = false;
                 roundManager.NewGame();
             }
@@ -342,6 +313,43 @@ public class PlayerJoining : MonoBehaviour {
         {
             totalPlayersInHoles += holes[i].playersInHole;
             votes.Add(holes[i].playersInHole);
+        }
+    }
+
+    void TDMTeamAssigner()
+    {
+        if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
+        {
+            if (StatHolder.HowManyPlayers == 2)
+            {
+                StatHolder.Player1Color = 0;
+                StatHolder.Player2Color = 1;
+            }
+            else
+            {
+                StatHolder.Player1Color = Random.Range(0, 2);
+                StatHolder.Player2Color = Random.Range(0, 2);
+            }
+            if (StatHolder.Player1Color == 0 && StatHolder.Player2Color == 0)
+            {
+                StatHolder.Player3Color = 1;
+                StatHolder.Player4Color = 1;
+            }
+            else if (StatHolder.Player1Color == 1 && StatHolder.Player2Color == 1)
+            {
+                StatHolder.Player3Color = 0;
+                StatHolder.Player4Color = 0;
+            }
+            else
+            {
+                StatHolder.Player3Color = Random.Range(0, 2);
+                StatHolder.Player4Color = Random.Range(0, 2);
+                while (StatHolder.Player3Color == StatHolder.Player4Color)
+                {
+                    StatHolder.Player4Color = Random.Range(0, 2);
+                }
+            }
+
         }
     }
 

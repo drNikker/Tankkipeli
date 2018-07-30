@@ -165,8 +165,9 @@ public class HandControls : MonoBehaviour {
     void EquipTwoHands()
     {
         equippedWeapon.transform.position = playerObj.transform.position + front * 1f;
-        equippedWeapon.transform.parent = this.transform;
         SetStance(script.stance);
+        equippedWeapon.transform.parent = this.transform;
+
 
 
         joints[0].connectedBody = GetComponent<Rigidbody>();
@@ -261,7 +262,7 @@ public class HandControls : MonoBehaviour {
                     otherHandJoint.swing2Limit = otherLimit;
 
                     t.rotation = Quaternion.Euler(0, 0, 0);
-               //     transform.rotation = t.rotation * Quaternion.Euler(0,0,0) ;
+                    transform.rotation = t.rotation * Quaternion.Euler(-90,0,0) ;
                     otherHand.transform.rotation = t.rotation * Quaternion.Euler(-90, 0, 0);
                     /*
                     transform.Rotate(-90,0,0);
@@ -296,8 +297,8 @@ public class HandControls : MonoBehaviour {
 
 
                      t.rotation = Quaternion.Euler(0,0,0);
-                     //transform.rotation = t.rotation * Quaternion.Euler(0,0,0);
-                     otherHand.transform.rotation = t.rotation * Quaternion.Euler(90,0,0);
+                    transform.rotation = Quaternion.Euler(-90,180,0);
+                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(90,0,0); ;
                     break;
                 }
             case Weapon.Stance.FistWeapon:
