@@ -218,7 +218,7 @@ public class Options : MonoBehaviour
     }
 
 
-    //Resolution and ScreenMode setting
+    //Resolution and ScreenMode settings
     public void ResoButton()
     {
         if (resoVar < 6)
@@ -324,6 +324,11 @@ public class Options : MonoBehaviour
     }
 
     // PLAYER SETTINGS
+    
+        
+    // REMEMBER!!! player names are used in calling playerfPrefs in PhysicMovement1 Script aswell to get movement
+    // directions, so remember to change them there as well if you change player texts here.
+
     private void SetControlOptions()
     {
         
@@ -539,19 +544,10 @@ public class Options : MonoBehaviour
         }
         SetControlOptions();
     }
-
-
-
+    
     // PlayerPrefs.SetInt(resolutionChoicePref, resoVar);
-
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    
+    // move and turn dir buttons to update texts in menu and set values to playerprefs
 
     public void MoveDirButton()
     {
@@ -599,8 +595,7 @@ public class Options : MonoBehaviour
             item.SetControls();
         }
     }
-
-
+    
     public void QuitButtonYes()
     {
 #if UNITY_EDITOR
@@ -611,6 +606,7 @@ public class Options : MonoBehaviour
          Application.Quit();
 #endif
     }
+
     public void MenuButtonYes()
     {
         SceneManager.LoadScene("JoiningScene");
