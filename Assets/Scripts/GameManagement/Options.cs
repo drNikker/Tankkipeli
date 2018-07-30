@@ -329,7 +329,7 @@ public class Options : MonoBehaviour
         
         switch (playerText.text)
         {
-            case "Red":
+            case "P1 Red":
                 if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
@@ -377,7 +377,7 @@ public class Options : MonoBehaviour
                 break;
 
 
-            case "Blue":
+            case "P2 Blue":
                 if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
@@ -424,7 +424,7 @@ public class Options : MonoBehaviour
                 break;
 
 
-            case "Cyan":
+            case "P3 Cyan":
                 if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
@@ -471,7 +471,7 @@ public class Options : MonoBehaviour
                 break;
 
 
-            case "Yellow":
+            case "P4 Yellow":
                 if (PlayerPrefs.HasKey(playerText.text + moveDirPref))
                 {
                     if (PlayerPrefs.GetInt(playerText.text + moveDirPref) == -1)
@@ -524,37 +524,49 @@ public class Options : MonoBehaviour
     {
         switch (playerText.text)
         {
-            case "Red":
+            case "P1 Red":
                 playerText.text = "P2 Blue";
                 break;
-            case "Blue":
+            case "P2 Blue":
                 playerText.text = "P3 Cyan";
                 break;
-            case "Cyan":
+            case "P3 Cyan":
                 playerText.text = "P4 Yellow";
                 break;
-            case "Yellow":
+            case "P4 Yellow":
                 playerText.text = "P1 Red";
                 break;
         }
         SetControlOptions();
     }
-    
+
 
 
     // PlayerPrefs.SetInt(resolutionChoicePref, resoVar);
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public void MoveDirButton()
     {
         if (moveDirText.text == "Triggers/Bumpers")
         {
             moveDirText.text = "Bumpers/Triggers";
+            upText.text = "Backwards";
+            downText.text = "Forwards";
             PlayerPrefs.SetInt(playerText.text + moveDirPref, -1);
         }
         else
         {
             moveDirText.text = "Triggers/Bumpers";
-
+            upText.text = "Forwards";
+            downText.text = "Backwards";
             PlayerPrefs.SetInt(playerText.text + moveDirPref, 1);
         }
         SetplayerControls();
@@ -565,12 +577,15 @@ public class Options : MonoBehaviour
         if (turnDirText.text == "Normal")
         {
             turnDirText.text = "Inverted";
+            turnLeftText.text = "Turn Right";
+            turnRightText.text = "Turn Left";
             PlayerPrefs.SetInt(playerText.text + turnDirPref, 0);
         }
         else
         {
             turnDirText.text = "Normal";
-
+            turnLeftText.text = "Turn Left";
+            turnRightText.text = "Turn Right";
             PlayerPrefs.SetInt(playerText.text + turnDirPref, 1);
         }
         SetplayerControls();
