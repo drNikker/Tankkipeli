@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponParent: {fileID: 4692333612600722}
+  weaponThrowForce: 8000
   equipped: 0
   canTake: 0
   currentWeaponState: 0
@@ -554,11 +554,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 0.4
   knockbackMultiplier: 0.4
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!114 &114393576963821608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -571,11 +573,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownHP: {fileID: 0}
+  health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 0.4
   knockbackMultiplier: 0.4
   cooldownTime: 1
   knockback: 400000
+  finalDamage: 0
 --- !u!114 &114857980554142806
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -47,18 +47,17 @@ public class Weapon : MonoBehaviour {
         {
             Rigidbody rb = GetComponent<Rigidbody>();
 
-            rb.drag = 1000;
             for (int i = 0; i < joints.Length; i++)
             {
                 SoftJointLimit limit = joints[i].linearLimit;
-                limit.limit -= 0.1f * Time.deltaTime;
+                limit.limit -= 0.5f * Time.deltaTime;
                 joints[i].linearLimit = limit;
                 if (limit.limit <= 0.01)
                 {
                     timer = false;
                     limit.limit = 0;
                     joints[i].linearLimit = limit;
-                    rb.drag = 3;
+                    //rb.drag = 3;
                 }
             }
         }
@@ -116,7 +115,7 @@ public class Weapon : MonoBehaviour {
     IEnumerator CollidersOn()
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(1f);
         for (int i = 1; i <= colliders.Length - 1; i++)
         {
             colliders[i].enabled = true;
