@@ -2860,6 +2860,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.51239, y: 71.71024, z: 8.512389}
   m_Center: {x: 0, y: 35.85512, z: -0.00000023841856}
+--- !u!1 &825274658 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1262710698986124, guid: 5e32e86d782d85a4aa77457ffe9a4a61,
+    type: 2}
+  m_PrefabInternal: {fileID: 875875350}
+--- !u!114 &825274659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825274658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d76d749c8523be43a0b4ee700f821f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpawnTime: 5
+  minSpawnTime: 3
+  randomRotation: 1
+  objects:
+  - {fileID: 1250714117201902, guid: b32e09e5fde8a5a43a8ee0f718d33f93, type: 2}
+  - {fileID: 1341970356953120, guid: da4b9a136afa86245abb922c3686bf8f, type: 2}
+  - {fileID: 1506876449315582, guid: 0847815e233fbc94bb2c985853a9daab, type: 2}
+  - {fileID: 1553708717066412, guid: 68625319642998a4590010c423cefcf3, type: 2}
+  - {fileID: 1257155167573514, guid: 2cfce04b08f1e264eb4c3583769e22da, type: 2}
+  - {fileID: 1757243992589710, guid: dc888362918b4d5479ea1e7872326f63, type: 2}
+  - {fileID: 1703764148257408, guid: 32b69359f9162b94788dc0638a13b3b6, type: 2}
+  - {fileID: 1039671018644372, guid: 0adc3850a430bac4a9223577379639c3, type: 2}
+  - {fileID: 1988654790066550, guid: bb647ee4c568c2f4dba157e605ecf5a7, type: 2}
+  - {fileID: 1002122702223982, guid: 29bddc61b1278d24fbc11e9aa2daeaaa, type: 2}
 --- !u!1 &854476619
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,6 +3153,11 @@ Prefab:
         type: 2}
       propertyPath: maxSpawnTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725114583878130, guid: 5e32e86d782d85a4aa77457ffe9a4a61,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e32e86d782d85a4aa77457ffe9a4a61, type: 2}
@@ -5039,6 +5074,10 @@ Prefab:
     - target: {fileID: 4633116593727062, guid: 68625319642998a4590010c423cefcf3, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -16.682001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553708717066412, guid: 68625319642998a4590010c423cefcf3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68625319642998a4590010c423cefcf3, type: 2}
