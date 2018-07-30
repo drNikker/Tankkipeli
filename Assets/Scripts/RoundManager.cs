@@ -22,8 +22,8 @@ public class RoundManager : MonoBehaviour
     public List<Image> ScoreAmount3;
     public List<Image> ScoreAmount4;
     int playersAlive;
-
-    //bool randomMap = true;
+    [HideInInspector]
+    public bool teamWon = false;
     //bool mapSet = false;
     static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
     static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
@@ -133,7 +133,11 @@ public class RoundManager : MonoBehaviour
             case StatHolder.Modes.TDM:
                 if (redPlayers.Count == 0 && bluePlayers.Count > 0 || bluePlayers.Count == 0 && redPlayers.Count > 0)
                 {
-                    RoundOver();
+                    if (teamWon == false)
+                    {
+                        RoundOver();
+                        teamWon = true;
+                    }
                 }
                 break;
         }
