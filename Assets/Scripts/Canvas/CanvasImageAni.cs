@@ -9,51 +9,48 @@ public class CanvasImageAni : MonoBehaviour
     public List<Sprite> frames;
 
     public float fps;
-    public Image myImage;
+    private Image myImage;
     public int currentFrame;
-    public bool inverse;
+    public bool reverse;
     public bool animate = true;
-
-
 
     // Use this for initialization
     void Start()
     {
         myImage = gameObject.GetComponent<Image>();
-        ChangeFrame();
+        StartCoroutine(TimeUpdate());
     }
 
-    // Update is called once per frame
-    void ChangeFrame()
+    private IEnumerator TimeUpdate()
     {
-        if (!inverse)
-        {
-            if (frames.Count - 1 > currentFrame)
-            {
-                currentFrame += 1;
-            }
-            else
-            {
-                currentFrame = 0;
-            }
-        }
-        else
-        {
-            if (0 < currentFrame)
-            {
-                currentFrame -= 1;
-            }
-            else
-            {
-                currentFrame = frames.Count - 1;
-            }
-        }
-        myImage.sprite = frames[currentFrame];
-
         if (animate)
         {
-            Invoke("ChangeFrame", (float)1/fps);
+            if (!reverse)
+            {
+                if (frames.Count - 1 > currentFrame)
+                {
+                    currentFrame += 1;
+                }
+                else
+                {
+                    currentFrame = 0;
+                }
+            }
+            else
+            {
+                if (0 < currentFrame)
+                {
+                    currentFrame -= 1;
+                }
+                else
+                {
+                    currentFrame = frames.Count - 1;
+                }
+            }
+            myImage.sprite = frames[currentFrame];
         }
+
+        yield return new WaitForSecondsRealtime(1/fps);
+        StartCoroutine(TimeUpdate());
     }
-    
 }
