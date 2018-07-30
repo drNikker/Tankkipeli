@@ -184,9 +184,12 @@ public class PlayerHealth : MonoBehaviour
                 audioScript.PlayKnockOutSound();
             }
 
-            if (StatHolder.CurrentMode == StatHolder.Modes.TDM && roundManager.redPlayers.Count > 1 && roundManager.bluePlayers.Count > 1)
+            if (StatHolder.CurrentMode == StatHolder.Modes.TDM && roundManager.redPlayers.Count > 0 && roundManager.alivePlayers.Count > 1 || StatHolder.CurrentMode == StatHolder.Modes.TDM && roundManager.bluePlayers.Count > 0 && roundManager.alivePlayers.Count > 1)
             {
-                audioScript.PlayKnockOutSound();
+                if (roundManager.teamWon == false)
+                {
+                    audioScript.PlayKnockOutSound();
+                }
             }
         }
     }
