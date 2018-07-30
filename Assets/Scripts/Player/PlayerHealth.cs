@@ -54,21 +54,26 @@ public class PlayerHealth : MonoBehaviour
     {
         if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
         {
+            int c = 0;
             GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
         switch (player.name)
         {
             case "Player1(Clone)":
                 color = colorSet[StatHolder.Player1Color];
+                    c = StatHolder.Player1SkinColor;
                 break;
             case "Player2(Clone)":
                 color = colorSet[StatHolder.Player2Color];
-                break;
+                    c = StatHolder.Player2SkinColor;
+                    break;
             case "Player3(Clone)":
                 color = colorSet[StatHolder.Player3Color];
-                break;
+                    c = StatHolder.Player3SkinColor;
+                    break;
             case "Player4(Clone)":
                 color = colorSet[StatHolder.Player4Color];
-                break;
+                    c = StatHolder.Player4SkinColor;
+                    break;
             default:
                 color = Color.cyan;
                 break;
@@ -78,12 +83,12 @@ public class PlayerHealth : MonoBehaviour
             if (color == Blue)
             {
                 roundManager.bluePlayers.Add(this.gameObject);
-                switch (roundManager.bluePlayers.Count)
+                switch (c)
                 {
-                    case 1:
+                    case 0:
                         skinColor = LightBlue;
                         break;
-                    case 2:
+                    case 1:
                         skinColor = DarkBlue;
                         break;
                 }
@@ -91,12 +96,12 @@ public class PlayerHealth : MonoBehaviour
             else if (color == Red)
             {
                 roundManager.redPlayers.Add(this.gameObject);
-                switch (roundManager.redPlayers.Count)
+                switch (c)
                 {
-                    case 1:
+                    case 0:
                         skinColor = Pink;
                         break;
-                    case 2:
+                    case 1:
                         skinColor = Crimson;
                         break;
                 }
