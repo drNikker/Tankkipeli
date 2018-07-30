@@ -194,21 +194,25 @@ public class HandControls : MonoBehaviour {
 
         CharacterJoint armJoint = arm.GetComponent<CharacterJoint>();
         CharacterJoint elbowJoint = elbow.GetComponent<CharacterJoint>();
+        CharacterJoint handJoint = GetComponent<CharacterJoint>();
 
         SoftJointLimit armLowLimit = armJoint.lowTwistLimit;
         SoftJointLimit armHighLimit = armJoint.highTwistLimit;
         SoftJointLimit elbowLowLimit = elbowJoint.lowTwistLimit;
         SoftJointLimit elbowHighLimit = elbowJoint.highTwistLimit;
+        SoftJointLimit handSwing2Limit = handJoint.swing2Limit;
 
         armLowLimit.limit = 0;
         armHighLimit.limit = 0;
         elbowLowLimit.limit = -20;
         elbowHighLimit.limit = 0;
+        handSwing2Limit.limit = 0;
 
         armJoint.lowTwistLimit = armLowLimit;
         armJoint.highTwistLimit = armHighLimit;
         elbowJoint.lowTwistLimit = elbowLowLimit;
         elbowJoint.highTwistLimit = elbowHighLimit;
+        handJoint.swing2Limit = handSwing2Limit;
 
     }
 
@@ -292,7 +296,7 @@ public class HandControls : MonoBehaviour {
             case Weapon.Stance.OneHanded:
                 {
                     OneHandingRestricting();
-                    t.Rotate(90, 0, 0);
+                    t.rotation = transform.rotation * Quaternion.Euler(90,0,0);
                     break;
                 }
 
