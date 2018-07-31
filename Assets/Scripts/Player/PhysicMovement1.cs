@@ -84,6 +84,7 @@ public class PhysicMovement1 : MonoBehaviour
     {
         
         menuSel = FindObjectOfType<MenuSelection>();
+        print(menuSel);
         player = gameObject;
         ragdollmode = player.GetComponentInChildren<FullRagdollMode>();
         characterJoint = player.GetComponentInChildren<CharacterJoint>();
