@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class CannonBallCollider : MonoBehaviour
 {
-
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+    float cooldown;
     void Start()
     {
-
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
     {
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player" && cooldown <= Time.time)
+        {
+            playSound();
+            cooldown = Time.time + 3;
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -21,5 +33,11 @@ public class CannonBallCollider : MonoBehaviour
         {
             Destroy(collider.gameObject);
         }
+    }
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[5];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }

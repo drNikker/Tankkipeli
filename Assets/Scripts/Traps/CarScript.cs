@@ -15,9 +15,15 @@ public class CarScript : MonoBehaviour {
     public bool IsSwerwing;
     public bool nascarCar;
     int i;
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+    float cooldown;
 
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         speed = 6;
         if (nascarCar)
@@ -118,6 +124,11 @@ public class CarScript : MonoBehaviour {
         if(collision.gameObject.tag == "Player" && speed > 5 && rb.velocity.magnitude > 1)
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
+            if (cooldown <= Time.time)
+            {
+                playSound();
+                cooldown = Time.time + 2;
+            }
         }
         if (collision.gameObject.tag == "Weapon")
         {
@@ -146,5 +157,11 @@ public class CarScript : MonoBehaviour {
         maxSpeed = 0;
         IsSwerwing = false;
     }
-    
+
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[5];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
+    }
 }

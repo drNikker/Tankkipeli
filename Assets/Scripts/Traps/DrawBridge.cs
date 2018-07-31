@@ -16,14 +16,14 @@ public class DrawBridge : MonoBehaviour
     public float holdOffTimerTime;
     protected float originalHoldOffTimerTime;
 
-    private AudioScript audioScript;
-    private AudioClip currentAudioClip;
-    private AudioSource audioSource;
+    //private AudioScript audioScript;
+    //private AudioClip currentAudioClip;
+    //private AudioSource audioSource;
 
     void Start()
     {
-        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
-        audioSource = gameObject.GetComponent<AudioSource>();
+        //audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        //audioSource = gameObject.GetComponent<AudioSource>();
         waitTimer = true;
 
         originalWaitTimerTime = waitTimerTime;
@@ -56,7 +56,7 @@ public class DrawBridge : MonoBehaviour
             waitTimerTime = originalWaitTimerTime;
             holdOffTimer = true;
             waitTimer = false;
-            playSound();
+            //playSound();
         }
     }
 
@@ -70,19 +70,19 @@ public class DrawBridge : MonoBehaviour
             holdOffTimerTime = originalHoldOffTimerTime;
             waitTimer = true;
             holdOffTimer = false;
-            StartCoroutine(waitAudio());
+            //StartCoroutine(waitAudio());
         }
     }
-    IEnumerator waitAudio()
-    {
-        yield return new WaitForSeconds(1.5f);
-        playSound();
-    }
+    //IEnumerator waitAudio()
+    //{
+    //    yield return new WaitForSeconds(1.5f);
+    //    playSound();
+    //}
 
-    private void playSound()
-    {
-        currentAudioClip = audioScript.hazardAudioList[0];
-        audioSource.clip = currentAudioClip;
-        audioSource.Play();
-    }
+    //private void playSound()
+    //{
+    //    currentAudioClip = audioScript.hazardAudioList[0];
+    //    audioSource.clip = currentAudioClip;
+    //    audioSource.Play();
+    //}
 }

@@ -4,23 +4,39 @@ using UnityEngine;
 
 public class RollingBarrelCollider : MonoBehaviour
 {
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
+    float cooldown;
 
     void Start()
     {
-
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
 
-    }
-
-    
-    private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collider.CompareTag ("Untagged"))
+        if(collision.gameObject.tag == "Player" && cooldown <= Time.time)
         {
-            Destroy(collider.gameObject);
+            playSound();
+            cooldown = Time.time + 3;
         }
+    }
+
+    //private void OnTriggerEnter(Collider collider)
+    //{
+    //    if (collider.CompareTag ("Untagged"))
+    //    {
+    //        Destroy(collider.gameObject);
+    //    }
+    //}
+
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[0];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }
