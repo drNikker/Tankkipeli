@@ -25,7 +25,7 @@ public class CarScript : MonoBehaviour {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         audioSource = gameObject.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
-        speed = 6;
+        //speed = 6;
         if (nascarCar)
         {
             speed = 20;
@@ -102,8 +102,13 @@ public class CarScript : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (speed<=maxSpeed && speed >5)
+        if (speed >2)
         {
+            if (speed >= maxSpeed)
+            {
+                acceleration = 0;
+            }
+
             speed += acceleration;
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
             rb.AddForce(Vector3.down * 20000);
