@@ -225,7 +225,7 @@ public class HandControls : MonoBehaviour {
         handSwing2limit.limit = 90;
         armLowLimit.limit = 0;
         armHighLimit.limit = 0;
-        armSwing1Limit.limit = 100;
+        armSwing1Limit.limit = 120;
         handLowLimit.limit = -10;
         handHighLimit.limit = 10;
 
