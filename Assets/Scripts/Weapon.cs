@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour {
     float cooldown = 2;
     float totalMass;
     public float weaponThrowForce = 8000;
+    public float maxSpeed = 10;
 
     bool timer = false;
     bool canEquip;
@@ -41,6 +42,15 @@ public class Weapon : MonoBehaviour {
         {
             Dropped();
             transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        }
+        else if (currentWeaponState == WEAPON_STATE.THROWN)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);               
+            }
+
         }
 
         if (timer == true)

@@ -146,7 +146,6 @@ public class WeaponSpawn : MonoBehaviour
 
             case SPAWN_WEAPON.FLAIL:
                 spawnedWeapon = Instantiate(weapons[0], this.gameObject.transform.position, Quaternion.identity);
-                print(spawnedWeapon.transform.position);
 
                 break;
 
@@ -167,7 +166,6 @@ public class WeaponSpawn : MonoBehaviour
 
             case SPAWN_WEAPON.SHIELD:
                 spawnedWeapon = Instantiate(weapons[4], this.gameObject.transform.position, Quaternion.identity);
-                print(spawnedWeapon.transform.position);
 
                 break;
             case SPAWN_WEAPON.CHERRY:
@@ -182,7 +180,6 @@ public class WeaponSpawn : MonoBehaviour
 
             case SPAWN_WEAPON.NUNCHUCKS:
                 spawnedWeapon = Instantiate(weapons[7], this.gameObject.transform.position, Quaternion.identity);
-                print(spawnedWeapon.transform.position);
 
                 break;
         }
