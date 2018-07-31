@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114657502581349048}
   - component: {fileID: 199250305676396546}
   - component: {fileID: 198863867166830088}
+  - component: {fileID: 65855940540133866}
   m_Layer: 8
   m_Name: AxeCore (2)
   m_TagString: Untagged
@@ -45,8 +46,8 @@ GameObject:
   - component: {fileID: 54508042775041418}
   - component: {fileID: 82448148655374418}
   - component: {fileID: 108237100057339026}
-  - component: {fileID: 153674148167928932}
   - component: {fileID: 153337166946412340}
+  - component: {fileID: 153674148167928932}
   - component: {fileID: 65218707001290246}
   - component: {fileID: 95477874138560494}
   - component: {fileID: 114557387542270672}
@@ -64,13 +65,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106694493183466}
-  m_LocalRotation: {x: -0.000000073113846, y: 0.000000035918713, z: 0.440935, w: 0.89753914}
-  m_LocalPosition: {x: 0.36808836, y: 0.27847493, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4202413561189270}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 52.327003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4202413561189270
 Transform:
   m_ObjectHideFlags: 1
@@ -170,6 +171,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7167983, y: 2.2335322, z: 0.41508663}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65855940540133866
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1106694493183466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24771634, y: 0.21519744, z: 0.04999399}
+  m_Center: {x: -0.09551354, y: 0.90258986, z: 0.0014994144}
 --- !u!82 &82448148655374418
 AudioSource:
   m_ObjectHideFlags: 1
@@ -376,10 +389,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.05529368
-  m_Height: 0.40850604
+  m_Radius: 0.031923592
+  m_Height: 0.43176746
   m_Direction: 1
-  m_Center: {x: 0.19725671, y: 0.7234653, z: 7.117968e-15}
+  m_Center: {x: 0, y: 0.542305, z: 0}
 --- !u!138 &138707564212480002
 FixedJoint:
   m_ObjectHideFlags: 1
