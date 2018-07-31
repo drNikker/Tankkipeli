@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarScript : MonoBehaviour {
+public class CarryCarScript : MonoBehaviour {
 
     public float swerweAmount;
     public float maxSwerweAmount;
@@ -61,13 +61,13 @@ public class CarScript : MonoBehaviour {
 
         if (Physics.Raycast(transform.position, -Vector3.up* -0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
         {
-            if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea")
-            {
-                speed = 0;
-                maxSpeed = 0;
-                acceleration = 0;
-                IsSwerwing = false;
-            }
+            //if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea")
+            //{
+            //    speed = 0;
+            //    maxSpeed = 0;
+            //    acceleration = 0;
+            //    IsSwerwing = false;
+            //}
         }
         if (IsSwerwing)
         {
@@ -121,20 +121,20 @@ public class CarScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player")
-        {
-            print(collision.gameObject.name);
-            StartCoroutine(carStop(0.2f));
-        }
-        if(collision.gameObject.tag == "Player" && speed > 5 && rb.velocity.magnitude > 1)
-        {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
-            if (cooldown <= Time.time)
-            {
-                playSound();
-                cooldown = Time.time + 2;
-            }
-        }
+        //if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player")
+        //{
+        //    print(collision.gameObject.name);
+        //    StartCoroutine(carStop(0.2f));
+        //}
+        //if(collision.gameObject.tag == "Player" && speed > 5 && rb.velocity.magnitude > 1)
+        //{
+        //    collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
+        //    if (cooldown <= Time.time)
+        //    {
+        //        playSound();
+        //        cooldown = Time.time + 2;
+        //    }
+        //}
         if (collision.gameObject.tag == "Weapon")
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
@@ -154,14 +154,14 @@ public class CarScript : MonoBehaviour {
     }
 
 
-    IEnumerator carStop(float stoptime)
-    {
-        yield return new WaitForSeconds(stoptime);
-        acceleration = 0;
-        speed = 0;
-        maxSpeed = 0;
-        IsSwerwing = false;
-    }
+    //IEnumerator carStop(float stoptime)
+    //{
+    //    yield return new WaitForSeconds(stoptime);
+    //    acceleration = 0;
+    //    speed = 0;
+    //    maxSpeed = 0;
+    //    IsSwerwing = false;
+    //}
 
     private void playSound()
     {
