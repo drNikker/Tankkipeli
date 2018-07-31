@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
     public Animator anim;
     private bool menu;
     private bool open;
+    public int setAmount = 5;
 
 
     private void Start()
@@ -50,8 +51,11 @@ public class SceneLoader : MonoBehaviour
         mapSet4.Add("SpinningBeams");
         //mapSet4.Add("ConcreteMixer");
         //Map set 5
-        //mapSet5.Add("Nascar");
-       // mapSet5.Add("Smash");
+        mapSet5.Add("Nascar");
+        mapSet5.Add("Smash");
+        mapSet5.Add("Madness");
+        mapSet5.Add("RalliJump");
+        mapSet5.Add("Totally Not Stolen From Portal 2");
     }
 
     private void Update()
@@ -116,10 +120,10 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet1.Count -1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, 5);
+                    int i = Random.Range(1, setAmount + 1);
                     while (i == 1)
                     {
-                        i = Random.Range(1, 5);
+                        i = Random.Range(1, setAmount + 1);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
@@ -135,10 +139,10 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet2.Count -1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, 5);
+                    int i = Random.Range(1, setAmount + 1);
                     while (i == 2)
                     {
-                        i = Random.Range(1, 5);
+                        i = Random.Range(1, setAmount + 1);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
@@ -154,10 +158,10 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet3.Count -1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, 5);
+                    int i = Random.Range(1, setAmount + 1);
                     while (i == 3)
                     {
-                        i = Random.Range(1, 5);
+                        i = Random.Range(1, setAmount + 1);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
@@ -173,10 +177,10 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet4.Count - 1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, 5);
+                    int i = Random.Range(1, setAmount + 1);
                     while (i == 4)
                     {
-                        i = Random.Range(1, 5);
+                        i = Random.Range(1, setAmount + 1);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
@@ -192,10 +196,10 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet5.Count - 1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, 5);
+                    int i = Random.Range(1, setAmount + 1);
                     while (i == 5)
                     {
-                        i = Random.Range(1, 5);
+                        i = Random.Range(1, setAmount + 1);
                     }
                     NextSetScene(i);
                     StatHolder.WitchSet = i;
