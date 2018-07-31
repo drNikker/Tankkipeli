@@ -4883,7 +4883,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816621242037186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.986896, y: 17.398329, z: -17.138964}
+  m_LocalPosition: {x: -31.424923, y: 28.5, z: -40.321186}
   m_LocalScale: {x: 1.7450684, y: 1.7450683, z: 1.7450683}
   m_Children:
   - {fileID: 224075666790629002}
@@ -6288,9 +6288,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e8b7b612be8329e4797f39864e92cf56, type: 3}
   - {fileID: 21300000, guid: 4b498ed1345728740b517454ec99de3c, type: 3}
   fps: 30
-  myImage: {fileID: 0}
   currentFrame: 0
-  inverse: 0
+  reverse: 0
   animate: 1
 --- !u!114 &114070873523566290
 MonoBehaviour:
@@ -6636,9 +6635,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e8b7b612be8329e4797f39864e92cf56, type: 3}
   - {fileID: 21300000, guid: 4b498ed1345728740b517454ec99de3c, type: 3}
   fps: 30
-  myImage: {fileID: 0}
   currentFrame: 0
-  inverse: 0
+  reverse: 0
   animate: 1
 --- !u!114 &114154410120196530
 MonoBehaviour:
@@ -7268,6 +7266,7 @@ MonoBehaviour:
   - {fileID: 114582068142412516}
   - {fileID: 114409462801216668}
   - {fileID: 114311438722145846}
+  teamWon: 0
   whoWonText: {fileID: 114004851757128668}
   roundWon: {fileID: 1905495306845122}
   weaponSpawnTimer: 0
@@ -11222,9 +11221,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e8b7b612be8329e4797f39864e92cf56, type: 3}
   - {fileID: 21300000, guid: 4b498ed1345728740b517454ec99de3c, type: 3}
   fps: 30
-  myImage: {fileID: 0}
   currentFrame: 0
-  inverse: 0
+  reverse: 0
   animate: 1
 --- !u!114 &114607527921603212
 MonoBehaviour:
@@ -11535,9 +11533,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e8b7b612be8329e4797f39864e92cf56, type: 3}
   - {fileID: 21300000, guid: 4b498ed1345728740b517454ec99de3c, type: 3}
   fps: 30
-  myImage: {fileID: 0}
   currentFrame: 0
-  inverse: 0
+  reverse: 0
   animate: 1
 --- !u!114 &114620208905042278
 MonoBehaviour:
@@ -13623,9 +13620,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e8b7b612be8329e4797f39864e92cf56, type: 3}
   - {fileID: 21300000, guid: 4b498ed1345728740b517454ec99de3c, type: 3}
   fps: 30
-  myImage: {fileID: 0}
   currentFrame: 0
-  inverse: 0
+  reverse: 0
   animate: 1
 --- !u!114 &114865773251427622
 MonoBehaviour:
@@ -13965,9 +13961,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e8b7b612be8329e4797f39864e92cf56, type: 3}
   - {fileID: 21300000, guid: 4b498ed1345728740b517454ec99de3c, type: 3}
   fps: 30
-  myImage: {fileID: 0}
   currentFrame: 0
-  inverse: 0
+  reverse: 0
   animate: 1
 --- !u!114 &114892600234789790
 MonoBehaviour:
@@ -17238,7 +17233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -405.8, y: -146.99998}
+  m_AnchoredPosition: {x: -405.8, y: -225}
   m_SizeDelta: {x: 187.8, y: 281.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224122499066621962
@@ -17513,7 +17508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 165, y: -146.99998}
+  m_AnchoredPosition: {x: 165, y: -225}
   m_SizeDelta: {x: 187.8, y: 281.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224174930727900814
@@ -19183,7 +19178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00031661987, y: 166.99998}
+  m_AnchoredPosition: {x: 0.00031661987, y: -462}
   m_SizeDelta: {x: 1343.5, y: 170.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224488151731343168
@@ -19278,7 +19273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 474.8, y: -147}
+  m_AnchoredPosition: {x: 474.8, y: -225}
   m_SizeDelta: {x: 187.8, y: 281.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224497328022438324
@@ -20793,7 +20788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109.1, y: -146.99998}
+  m_AnchoredPosition: {x: -109.1, y: -225}
   m_SizeDelta: {x: 187.8, y: 281.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224787151638673988
