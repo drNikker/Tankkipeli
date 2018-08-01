@@ -482,11 +482,12 @@ public class PhysicMovement1 : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Platform")
         {
             transform.parent = other.transform;
+            print("i am working");
         }
     }
 
