@@ -37,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569360781215206}
-  m_LocalRotation: {x: 0, y: 0.8870109, z: 0, w: 0.46174863}
-  m_LocalPosition: {x: -30.57, y: -0.3, z: 29.98}
-  m_LocalScale: {x: 2.532573, y: 1, z: 5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.461462, y: -0.84, z: -20.17342}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 125, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23568422758546662
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -59,7 +59,18 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
+  - {fileID: 2100000, guid: ee327d500db554b40b11953a16b76e8a, type: 2}
+  - {fileID: 2100000, guid: ffde6b868dde7a44588d6a5d32545276, type: 2}
   - {fileID: 2100000, guid: 8cec3ebff4430874ba10de5b2a8f4163, type: 2}
+  - {fileID: 2100000, guid: 8cec3ebff4430874ba10de5b2a8f4163, type: 2}
+  - {fileID: 2100000, guid: 85948f546bb1e444983c88ebe3b25f51, type: 2}
+  - {fileID: 2100000, guid: 8cec3ebff4430874ba10de5b2a8f4163, type: 2}
+  - {fileID: 2100000, guid: 85948f546bb1e444983c88ebe3b25f51, type: 2}
+  - {fileID: 2100000, guid: 8a0a4533f42e4a648a3d85d287b73f95, type: 2}
+  - {fileID: 2100000, guid: e2e624c8679b05745b8f5e14a7cafb75, type: 2}
+  - {fileID: 2100000, guid: 8a0a4533f42e4a648a3d85d287b73f95, type: 2}
+  - {fileID: 2100000, guid: ffde6b868dde7a44588d6a5d32545276, type: 2}
+  - {fileID: 2100000, guid: ffde6b868dde7a44588d6a5d32545276, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,7 +96,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569360781215206}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300004, guid: e9982a70ea14030478e511a91c48d4bb, type: 3}
 --- !u!54 &54281552116738288
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -111,8 +122,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.15, y: 0.13, z: 0.36}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &114056727290766690
 MonoBehaviour:
   m_ObjectHideFlags: 1
