@@ -54,24 +54,29 @@ public class PlayerHealth : MonoBehaviour
     {
         if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
         {
+            int colorInt = 0;
             int c = 0;
             GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
         switch (player.name)
         {
             case "Player1(Clone)":
                 color = colorSet[StatHolder.Player1Color];
+                    colorInt = StatHolder.Player1Color;
                     c = StatHolder.Player1SkinColor;
-                break;
+                    break;
             case "Player2(Clone)":
                 color = colorSet[StatHolder.Player2Color];
+                    colorInt = StatHolder.Player2Color;
                     c = StatHolder.Player2SkinColor;
                     break;
             case "Player3(Clone)":
                 color = colorSet[StatHolder.Player3Color];
+                    colorInt = StatHolder.Player3Color;
                     c = StatHolder.Player3SkinColor;
                     break;
             case "Player4(Clone)":
                 color = colorSet[StatHolder.Player4Color];
+                    colorInt = StatHolder.Player4Color;
                     c = StatHolder.Player4SkinColor;
                     break;
             default:
@@ -80,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
         }
             //move the start of the above if statement here, if the color change system comes back
 
-            if (color == Blue)
+            if (colorInt == 1)
             {
                 roundManager.bluePlayers.Add(this.gameObject);
                 switch (c)
@@ -93,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
                         break;
                 }
             }
-            else if (color == Red)
+            else if (colorInt == 0)
             {
                 roundManager.redPlayers.Add(this.gameObject);
                 switch (c)
@@ -114,7 +119,7 @@ public class PlayerHealth : MonoBehaviour
             rend[2].SetPropertyBlock(_propBlock);
             rend[5].SetPropertyBlock(_propBlock);
             _propBlock.SetColor("_Color", skinColor);
-            rend[12].SetPropertyBlock(_propBlock);
+            rend[16].SetPropertyBlock(_propBlock);
 
         }//change this to the upper commented one if color change system comes back
 
