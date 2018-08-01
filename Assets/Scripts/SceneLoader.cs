@@ -49,7 +49,7 @@ public class SceneLoader : MonoBehaviour
         mapSet4.Add("WreckingBall");
         mapSet4.Add("FallingShit");
         mapSet4.Add("SpinningBeams");
-        mapSet4.Add("ConstructionInDisguise");
+       // mapSet4.Add("ConstructionInDisguise");
         //Map set 5
         mapSet5.Add("Nascar");
         mapSet5.Add("Totally Not Stolen From Portal 2");
