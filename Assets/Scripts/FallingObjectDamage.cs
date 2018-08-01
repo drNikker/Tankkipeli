@@ -19,9 +19,14 @@ public class FallingObjectDamage : MonoBehaviour
     float cooldown;
     float finalDamage;
     private bool canDamage = true;
+    private AudioScript audioScript;
+    private AudioClip currentAudioClip;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         VFX = GetComponent<ParticleSystem>();
         startCooldown = Time.time + 2;
@@ -48,6 +53,7 @@ public class FallingObjectDamage : MonoBehaviour
             finalDamageVFX = Mathf.RoundToInt(finalDamage);
             VFX.startLifetime = (0.05f * finalDamageVFX);
             VFX.Emit(5 * finalDamageVFX);
+            playSound();
         } else if (rb.velocity.magnitude <= 1 && Time.time > startCooldown)
         {
             canDamage = false;
@@ -92,5 +98,11 @@ public class FallingObjectDamage : MonoBehaviour
 
         Debug.LogWarning("Bodypart took a hit, but player tankbase was not found");
         return null;
+    }
+    private void playSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[5];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
     }
 }

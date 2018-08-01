@@ -22,10 +22,11 @@ public class WeaponAudio : MonoBehaviour
 
     public void RandomizeWeaponAudio()
     {
-        randomIndex = Random.Range(0, audioScript.weaponAudioList.Count);
+        randomIndex = Random.Range(0, 3);
 
         currentAudioClip = audioScript.weaponAudioList[randomIndex];
         audioSource.clip = currentAudioClip;
         audioSource.Play();
     }
+
 }

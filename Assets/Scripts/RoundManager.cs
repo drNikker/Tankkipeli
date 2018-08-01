@@ -151,7 +151,7 @@ public class RoundManager : MonoBehaviour
             StatHolder.HowManyPlayers = 2;
         }
         StatHolder.WinsNeeded = 4;
-        StatHolder.WitchSet = Random.Range(1, 5);
+        StatHolder.WitchSet = Random.Range(1, sceneLoader.setAmount + 1);
         audioScript.PlaySceneMusic(StatHolder.WitchSet);
         NewRound();
     }

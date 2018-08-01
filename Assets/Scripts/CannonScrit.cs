@@ -15,7 +15,7 @@ public class CannonScrit : MonoBehaviour
         rotate = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (rotate == true)
         {
