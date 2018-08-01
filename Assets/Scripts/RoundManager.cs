@@ -245,18 +245,23 @@ public class RoundManager : MonoBehaviour
                         print("This should never happen");
                         break;
                 }
-                ScoreAmount1[2].GetComponent<Image>().color = Red;
-                ScoreAmount2[2].GetComponent<Image>().color = Blue;
-                ScoreAmount3[2].GetComponent<Image>().color = Cyan;
-                ScoreAmount4[2].GetComponent<Image>().color = Yellow;
-                ScoreAmount1[0].GetComponent<Image>().color = Red;
-                ScoreAmount2[0].GetComponent<Image>().color = Blue;
-                ScoreAmount3[0].GetComponent<Image>().color = Cyan;
-                ScoreAmount4[0].GetComponent<Image>().color = Yellow;
-                ScoreAmount1[0].fillAmount = 0;
-                ScoreAmount2[0].fillAmount = 0;
-                ScoreAmount3[0].fillAmount = 0;
-                ScoreAmount4[0].fillAmount = 0;
+                for(int i = 0; i < ScoreAmount1.Count; i++)
+                {
+                    ScoreAmount1[i].GetComponent<Image>().color = Red;
+                }
+                for (int i = 0; i < ScoreAmount2.Count; i++)
+                {
+                    ScoreAmount2[i].GetComponent<Image>().color = Blue;
+                }
+                for (int i = 0; i < ScoreAmount3.Count; i++)
+                {
+                    ScoreAmount3[i].GetComponent<Image>().color = Cyan;
+                }
+                for (int i = 0; i < ScoreAmount4.Count; i++)
+                {
+                    ScoreAmount4[i].GetComponent<Image>().color = Yellow;
+                }
+
                 //if color change comes back delete the below since other code below adresses this. From here...
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount2[1].transform.parent.gameObject.SetActive(true);
@@ -308,6 +313,15 @@ public class RoundManager : MonoBehaviour
                 ScoreAmount3[1].GetComponent<Image>().color = Blue;
                 break;
         }
+        print(ScoreAmount1[1].GetComponent<Image>().fillAmount * 100);
+        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount* ScoreAmount1[1].GetComponent<RectTransform>().rect.height-100, 0);
+        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount* ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 50, 0);
+        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount* ScoreAmount2[1].GetComponent<RectTransform>().rect.height -100, 0);
+        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount* ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 50, 0);
+        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount3[1].GetComponent<Image>().fillAmount * 0, 0, 0);
+        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount3[1].GetComponent<Image>().fillAmount * 100 - 50, 0, 0);
+        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount4[1].GetComponent<Image>().fillAmount * 100 - 50, 0, 0);
+        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount4[1].GetComponent<Image>().fillAmount * 100 - 50, 0, 0);
 
         //if (StatHolder.CurrentMode == StatHolder.Modes.DM)
         //{
