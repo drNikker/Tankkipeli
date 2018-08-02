@@ -225,7 +225,7 @@ public class PhysicMovement1 : MonoBehaviour
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
         middleTread = Mathf.Clamp(middleTread, -topSpeed, topSpeed);
 
-        //set motortorque to 0 wwhen no input is given
+        //set motortorque to 0 when no input is given
         if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
             rightTread = 0;

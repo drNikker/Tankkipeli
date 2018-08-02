@@ -7,13 +7,12 @@ using XInputDotNetPure;
 
 public class SelectOnInput : MonoBehaviour
 {
-
     private int selected = 0;
 
     Button[] menuButtons;
 
     private bool initialized = false;
-    private bool isFirstFrame = true;
+    private bool isFirstFrame = true; // used so that input can't be give on first frame of being enabled
 
     GamePadState P1state;
     GamePadState P1prevState;
@@ -50,16 +49,7 @@ public class SelectOnInput : MonoBehaviour
         P2state = GamePad.GetState(PlayerIndex.Two);
         P3state = GamePad.GetState(PlayerIndex.Three);
         P4state = GamePad.GetState(PlayerIndex.Four);
-
-        //Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false
-
-        ////up
-        //|| (P1state.ThumbSticks.Left.Y > 0.3f && P1prevState.ThumbSticks.Left.Y < 0.3f) || (P2state.ThumbSticks.Left.Y > 0.3f && P2prevState.ThumbSticks.Left.Y < 0.3f) || (P3state.ThumbSticks.Left.Y > 0.3f && P3prevState.ThumbSticks.Left.Y < 0.3f) || (P4state.ThumbSticks.Left.Y > 0.3f && P4prevState.ThumbSticks.Left.Y < 0.3f)
-
-        ////down
-        //|| (P1state.ThumbSticks.Left.Y < -0.3f && P1prevState.ThumbSticks.Left.Y > -0.3f) || (P2state.ThumbSticks.Left.Y < -0.3f && P2prevState.ThumbSticks.Left.Y > -0.3f) || (P3state.ThumbSticks.Left.Y < -0.3f && P3prevState.ThumbSticks.Left.Y > -0.3f) || (P4state.ThumbSticks.Left.Y < -0.3f && P4prevState.ThumbSticks.Left.Y > -0.3f)
-
-
+        
         if (isFirstFrame == false)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow) || (P1state.DPad.Down == ButtonState.Pressed && P1prevState.DPad.Down == ButtonState.Released) || (P2state.DPad.Down == ButtonState.Pressed && P2prevState.DPad.Down == ButtonState.Released) || (P3state.DPad.Down == ButtonState.Pressed && P3prevState.DPad.Down == ButtonState.Released) || (P4state.DPad.Down == ButtonState.Pressed && P4prevState.DPad.Down == ButtonState.Released) || (P1state.ThumbSticks.Left.Y < -0.3f && P1prevState.ThumbSticks.Left.Y > -0.3f) || (P2state.ThumbSticks.Left.Y < -0.3f && P2prevState.ThumbSticks.Left.Y > -0.3f) || (P3state.ThumbSticks.Left.Y < -0.3f && P3prevState.ThumbSticks.Left.Y > -0.3f) || (P4state.ThumbSticks.Left.Y < -0.3f && P4prevState.ThumbSticks.Left.Y > -0.3f))
@@ -91,11 +81,10 @@ public class SelectOnInput : MonoBehaviour
                 playConfirmSound();
                 menuButtons[selected].onClick.Invoke();
             }
-            
-
         }
         isFirstFrame = false;
     }
+
 
     private void OnEnable()
     {
@@ -107,13 +96,7 @@ public class SelectOnInput : MonoBehaviour
         }
         isFirstFrame = true;
     }
-
-    //private void OnDisable()
-    //{
-    //    selected = 0;
-    //    menuButtons[selected].Select();
-    //}
-
+    
     private void playSound()
     {
         currentAudioClip = audioScript.menuClick;
@@ -126,5 +109,4 @@ public class SelectOnInput : MonoBehaviour
         audioSource.clip = currentAudioClip;
         audioSource.Play();
     }
-
 }
