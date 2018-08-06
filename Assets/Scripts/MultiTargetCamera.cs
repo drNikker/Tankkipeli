@@ -48,6 +48,7 @@ public class MultiTargetCamera : MonoBehaviour {
 
         Debug.DrawRay(GetCenterPoint(), Vector3.up, Color.red);
 
+        //sets camera immediately to the position it should be in the beginning no matter where it is first in scene
         if (beginCameraSet == false)
         {
             Vector3 centerPoint = GetCenterPoint();
@@ -64,7 +65,6 @@ public class MultiTargetCamera : MonoBehaviour {
 
         Move();
         Rotate();
-        //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
         Zoom();
         
     }
@@ -101,7 +101,6 @@ public class MultiTargetCamera : MonoBehaviour {
 
     void Rotate()
     {
-        
         Vector3 centerPoint = GetCenterPoint();
         centerPoint += centerPointOffset;
 
@@ -115,7 +114,6 @@ public class MultiTargetCamera : MonoBehaviour {
         var targetRotation = Quaternion.LookRotation(centerPoint - transform.position, Vector3.up);
         targetRotation.y = 0; targetRotation.z = 0;
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
-        
     }
 
     //Get greatest distance on X axis between players

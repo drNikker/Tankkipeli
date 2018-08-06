@@ -110,7 +110,7 @@ public class CannonBall : MonoBehaviour
             GameObject spawnedCannonBall = Instantiate(cannonBall, cannonBallPosition, Quaternion.identity);
             cannonBalls[i] = spawnedCannonBall;
 
-            Destroy(spawnedCannonBall, 5);
+            Destroy(spawnedCannonBall, 30);
         }
     }
 

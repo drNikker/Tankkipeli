@@ -24,7 +24,21 @@ public class CannonBallCollider : MonoBehaviour
         {
             playSound();
             cooldown = Time.time + 3;
+        } else if (collision.gameObject.tag == "PlayArea")
+        {
+            Destroy(gameObject);
+        } else if (collision.gameObject.tag == "Environment")
+        {
+            GetComponent<SpikeDamage>().enabled = false;
+
+        } else
+        {
+            GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().useGravity = true;
         }
+
+        
+
     }
 
     private void OnTriggerEnter(Collider collider)

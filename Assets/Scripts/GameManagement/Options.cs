@@ -54,7 +54,7 @@ public class Options : MonoBehaviour
         GetOptions();
     }
     
-    //SET AND GET
+    //SET AND GET options
 
     public void SetOptions()
     {
@@ -90,7 +90,7 @@ public class Options : MonoBehaviour
 
     }
 
-
+    // set options textboxes
     private void SetTextBoxes()
     {
         SetResoText();
@@ -117,7 +117,7 @@ public class Options : MonoBehaviour
         return decibel;
     }
 
-    //Volume buttons
+    //Volume buttons. Increases values and immediately sets and saves values to playerprefs
 
     public void MasterVolumeButton()
     {
@@ -169,7 +169,7 @@ public class Options : MonoBehaviour
     }
 
     //Framerate setting
-
+    //updates framerate variable
     public void FramerateButton()
     {
         switch(targetFramerate)
@@ -194,7 +194,7 @@ public class Options : MonoBehaviour
 
         SetFramerateText();
     }
-
+    //updates framerate textbox
     private void SetFramerateText()
     {
         switch (targetFramerate)
@@ -233,7 +233,7 @@ public class Options : MonoBehaviour
         Debug.Log(resoVar);
     }
 
-
+    //sets resolution text boxes according to resoVar
     private void SetResoText()
     {
         switch (resoVar)
@@ -266,6 +266,7 @@ public class Options : MonoBehaviour
         }
     }
 
+    //actually sets resolution and window mode
     private void SetReso()
     {
         switch (resoVar)
@@ -548,7 +549,7 @@ public class Options : MonoBehaviour
     // PlayerPrefs.SetInt(resolutionChoicePref, resoVar);
     
     // move and turn dir buttons to update texts in menu and set values to playerprefs
-
+    //move dir changes which way bumpers and triggers move the treads
     public void MoveDirButton()
     {
         if (moveDirText.text == "Triggers/Bumpers")
@@ -568,6 +569,7 @@ public class Options : MonoBehaviour
         SetplayerControls();
     }
 
+    //turn dir changes which side each side of triggers andd bumpers controls
     public void TurnDirButton()
     {
         if (turnDirText.text == "Normal")
@@ -587,6 +589,7 @@ public class Options : MonoBehaviour
         SetplayerControls();
     }
     
+    //sets players controls when called.
     private void SetplayerControls()
     {
         PhysicMovement1[] PM1List = FindObjectsOfType<PhysicMovement1>();
