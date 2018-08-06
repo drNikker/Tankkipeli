@@ -245,44 +245,25 @@ public class RoundManager : MonoBehaviour
                         print("This should never happen");
                         break;
                 }
-                for(int i = 0; i < ScoreAmount1.Count; i++)
-                {
-                    ScoreAmount1[i].GetComponent<Image>().color = Red;
-                }
-                for (int i = 0; i < ScoreAmount2.Count; i++)
-                {
-                    ScoreAmount2[i].GetComponent<Image>().color = Blue;
-                }
-                for (int i = 0; i < ScoreAmount3.Count; i++)
-                {
-                    ScoreAmount3[i].GetComponent<Image>().color = Cyan;
-                }
-                for (int i = 0; i < ScoreAmount4.Count; i++)
-                {
-                    ScoreAmount4[i].GetComponent<Image>().color = Yellow;
-                }
+
 
                 //if color change comes back delete the below since other code below adresses this. From here...
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount2[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount1[1].fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
-                ScoreAmount1[1].GetComponent<Image>().color = Red;
 
                 ScoreAmount2[1].fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
-                ScoreAmount2[1].GetComponent<Image>().color = Blue;
                 ScoreAmount3[1].transform.parent.gameObject.SetActive(false);
                 ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
                 if (StatHolder.HowManyPlayers > 2)
                 {
                     ScoreAmount3[1].transform.parent.gameObject.SetActive(true);
                     ScoreAmount3[1].fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
-                    ScoreAmount3[1].GetComponent<Image>().color = Cyan;
 
                     if (StatHolder.HowManyPlayers > 3)
                     {
                         ScoreAmount4[1].transform.parent.gameObject.SetActive(true);
                         ScoreAmount4[1].fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
-                        ScoreAmount4[1].GetComponent<Image>().color = Yellow;
                     }
                 }
                 //...to here
@@ -314,14 +295,14 @@ public class RoundManager : MonoBehaviour
                 break;
         }
         print(ScoreAmount1[1].GetComponent<Image>().fillAmount * 100);
-        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount* ScoreAmount1[1].GetComponent<RectTransform>().rect.height-100, 0);
-        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount* ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount* ScoreAmount2[1].GetComponent<RectTransform>().rect.height -100, 0);
-        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount* ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount3[1].GetComponent<Image>().fillAmount * 0, 0, 0);
-        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount3[1].GetComponent<Image>().fillAmount * 100 - 50, 0, 0);
-        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount4[1].GetComponent<Image>().fillAmount * 100 - 50, 0, 0);
-        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(ScoreAmount4[1].GetComponent<Image>().fillAmount * 100 - 50, 0, 0);
+        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height-100, 0);
+        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 50, 0);
+        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height -100, 0);
+        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 50, 0);
+        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height - 100, 0);
+        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height + 50, 0);
+        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 100, 0);
+        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 50, 0);
 
         //if (StatHolder.CurrentMode == StatHolder.Modes.DM)
         //{
