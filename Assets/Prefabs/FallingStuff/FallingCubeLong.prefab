@@ -9,18 +9,16 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1757243992589710}
+  m_RootGameObject: {fileID: 1114370564409986}
   m_IsPrefabParent: 1
---- !u!1 &1757243992589710
+--- !u!1 &1114370564409986
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4661934952423442}
-  - component: {fileID: 33817541955672192}
-  - component: {fileID: 23556856796202140}
+  - component: {fileID: 4039298560583784}
   - component: {fileID: 65832917373886004}
   - component: {fileID: 54766730048062478}
   - component: {fileID: 114632007390210392}
@@ -34,6 +32,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1757243992589710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4661934952423442}
+  - component: {fileID: 33817541955672192}
+  - component: {fileID: 23556856796202140}
+  m_Layer: 0
+  m_Name: FallingCubeLong (1)
+  m_TagString: FallingStuff
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4039298560583784
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1114370564409986}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4661934952423442}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4661934952423442
 Transform:
   m_ObjectHideFlags: 1
@@ -41,10 +70,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757243992589710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7328556, y: 1.2792254e-16, z: -3.2811189}
-  m_LocalScale: {x: 3.2222855, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.222286, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4039298560583784}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23556856796202140
@@ -94,7 +123,7 @@ Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757243992589710}
+  m_GameObject: {fileID: 1114370564409986}
   serializedVersion: 2
   m_Mass: 50
   m_Drag: 0
@@ -109,19 +138,19 @@ BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757243992589710}
+  m_GameObject: {fileID: 1114370564409986}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.014641, y: 0.7999999, z: 1.9999998}
+  m_Size: {x: 12.9984865, y: 0.7999999, z: 1.9999998}
   m_Center: {x: -0.0073205233, y: 0.39999995, z: 0}
 --- !u!82 &82337012243332186
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757243992589710}
+  m_GameObject: {fileID: 1114370564409986}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243184452331675244, guid: 1cb113691e2a58b42afb10f17db4b139,
@@ -217,7 +246,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757243992589710}
+  m_GameObject: {fileID: 1114370564409986}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d30aef58959d59448a94d5c5059c3f12, type: 3}
@@ -232,7 +261,7 @@ ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757243992589710}
+  m_GameObject: {fileID: 1114370564409986}
   serializedVersion: 5
   lengthInSec: 1
   simulationSpeed: 2
@@ -306,7 +335,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
+      scalar: 0.12
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -850,19 +879,19 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 0
+    type: 15
     angle: 66.23
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: 0.89, y: 0.26, z: 0.25}
+    m_Position: {x: 0, y: 0.39, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 13.019071, y: 0.91891503, z: 2.0405705}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
-    m_Mesh: {fileID: 0}
+    m_Mesh: {fileID: 4300000, guid: b21453b18d597d34fadc6e556308c1f6, type: 3}
     m_MeshRenderer: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
     m_UseMeshMaterialIndex: 0
@@ -875,11 +904,11 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0
-    sphericalDirectionAmount: 1
+    randomDirectionAmount: 1
+    sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.21658735
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -4010,7 +4039,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.27
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4821,7 +4850,7 @@ ParticleSystemRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1757243992589710}
+  m_GameObject: {fileID: 1114370564409986}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
