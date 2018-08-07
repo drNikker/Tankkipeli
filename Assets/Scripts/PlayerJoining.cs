@@ -30,7 +30,11 @@ public class PlayerJoining : MonoBehaviour {
     bool wait3;
     bool wait4;
 
+    public GameObject TDMText;
+    public GameObject DMText;
+
     bool gameStarting = false;
+    bool startTimerOn = false;
     int totalPlayersInHoles = 0;
     float timer;
 
@@ -252,6 +256,7 @@ public class PlayerJoining : MonoBehaviour {
                 chosenMode = holes[chosen - 1].mode;
                 timer = 3;
                 gameStarting = true;
+                startTimerOn = true;
             }
         }
     }
@@ -283,12 +288,13 @@ public class PlayerJoining : MonoBehaviour {
 
     void StartTimer()
     {
-        if (gameStarting == true)
+        if (gameStarting == true && startTimerOn == true)
         {
             CheckPlayersInHoles();
             if (totalPlayersInHoles != StatHolder.HowManyPlayers)
             {
                 gameStarting = false;
+                startTimerOn = false;
                 return;
             }
             print(timer);
@@ -297,10 +303,23 @@ public class PlayerJoining : MonoBehaviour {
             {
                 StatHolder.CurrentMode = chosenMode;
                 TDMTeamAssigner();
-                gameStarting = false;
-                roundManager.NewGame();
+                startTimerOn = false;
+                if (chosenMode == StatHolder.Modes.DM)
+                {
+                    Instantiate(DMText, new Vector3(0, 15, 0), Quaternion.identity);
+                }
+                else if(chosenMode == StatHolder.Modes.TDM)
+                {
+                    Instantiate(TDMText, new Vector3(0, 15, 0), Quaternion.identity);
+                }
+                Invoke("StartGame", 4);
             }
         }
+    }
+
+    void StartGame()
+    {
+        roundManager.NewGame();
     }
 
     void CheckPlayersInHoles()
