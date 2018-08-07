@@ -44,6 +44,7 @@ public class PlayerStateEffect : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
         //Spawnes ste star structure at the start
         Theta = 0f;
@@ -119,6 +120,9 @@ public class PlayerStateEffect : MonoBehaviour
 
         if (showNoStart)
         {
+            showNoUpdate = true;
+            showNoStart = false;
+            spawnedPNo.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
 
         }
 
@@ -129,6 +133,8 @@ public class PlayerStateEffect : MonoBehaviour
             dizzyUpdate = false;
             criticalUpdate = false;
             deadUpdate = false;
+            showNoUpdate = false;
+
             effectStop = false;
         }
         
@@ -136,7 +142,7 @@ public class PlayerStateEffect : MonoBehaviour
 
 
         //Effect rotating and scaling. 
-        if (!hided && !deadUpdate && !criticalUpdate)
+        if (!hided && !deadUpdate && !criticalUpdate && !showNoUpdate)
         {
             {
                 for (int i = 0; i < spawnedStars.Count; i++)
@@ -180,6 +186,8 @@ public class PlayerStateEffect : MonoBehaviour
             {
                 float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
                 transform.localScale = new Vector3(newScale, newScale, newScale);
+                spawnedDeath.transform.LookAt(Camera.main.transform.position, Vector3.up);
+                spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
                 hided = false;
 
             }
@@ -188,6 +196,7 @@ public class PlayerStateEffect : MonoBehaviour
                 float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
                 transform.localScale = new Vector3(newScale, newScale, newScale);
                 hided = false;
+                spawnedDeath.transform.LookAt(Camera.main.transform.position, Vector3.up);
             }
 
         }
@@ -205,14 +214,6 @@ public class PlayerStateEffect : MonoBehaviour
             spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
 
         }
-
-        if (deadUpdate)
-        {
-            spawnedDeath.transform.LookAt(Camera.main.transform.position, Vector3.up);
-            spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
-
-        }
-
 
     }
     
