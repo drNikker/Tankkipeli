@@ -231,15 +231,18 @@ public class Weapon : MonoBehaviour {
     {
         RaycastHit hit;
         
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 4) && currentWeaponState == WEAPON_STATE.DROPPED)
         {
             Dropped();
         }
 
         else
         {
+            if (currentWeaponState == WEAPON_STATE.DROPPED)
+            {
+                Destroy(gameObject);
+            }
 
-            Destroy(gameObject);
             //if (hit.transform == false && currentWeaponState == WEAPON_STATE.DROPPED)
             //{
             //    Rigidbody[] rigidBodies = GetComponentsInChildren<Rigidbody>();
