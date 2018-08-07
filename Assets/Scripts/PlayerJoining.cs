@@ -306,11 +306,11 @@ public class PlayerJoining : MonoBehaviour {
                 startTimerOn = false;
                 if (chosenMode == StatHolder.Modes.DM)
                 {
-                    Instantiate(DMText, new Vector3(0, 15, 0), Quaternion.identity);
+                    Instantiate(DMText, new Vector3(0, 40, 0), Quaternion.identity);
                 }
                 else if(chosenMode == StatHolder.Modes.TDM)
                 {
-                    Instantiate(TDMText, new Vector3(0, 15, 0), Quaternion.identity);
+                    Instantiate(TDMText, new Vector3(0, 40, 0), Quaternion.identity);
                 }
                 Invoke("StartGame", 4);
             }
