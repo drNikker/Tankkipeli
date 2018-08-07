@@ -20,6 +20,8 @@ public class CarScript : MonoBehaviour {
     private AudioSource audioSource;
     float cooldown;
 
+    public List<Material> colorMats;
+
     void Start()
     {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
@@ -46,12 +48,38 @@ public class CarScript : MonoBehaviour {
         {
             acceleration = Random.Range(0.02f, 0.05f);
         }
-        swerweAmount = Random.Range(minSwerweAmount, maxSwerweAmount);
-        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
-        Renderer[] rend = this.gameObject.GetComponentsInChildren<Renderer>();
-        rend[0].GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", Random.ColorHSV());
-        rend[0].SetPropertyBlock(_propBlock);
+        //swerweAmount = Random.Range(minSwerweAmount, maxSwerweAmount);
+        //MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        //Renderer[] rend = this.gameObject.GetComponentsInChildren<Renderer>();
+        //rend[0].GetPropertyBlock(_propBlock);
+        //_propBlock.SetColor("_Color", Random.ColorHSV());
+        //rend[0].SetPropertyBlock(_propBlock);
+        //_propBlock.SetColor("_Color", Color.red);
+        //rend[1].SetPropertyBlock(_propBlock);
+        //rend[2].SetPropertyBlock(_propBlock);
+        //rend[3].SetPropertyBlock(_propBlock);
+        //rend[4].SetPropertyBlock(_propBlock);
+        //rend[5].SetPropertyBlock(_propBlock);
+        //rend[6].SetPropertyBlock(_propBlock);
+        //rend[7].SetPropertyBlock(_propBlock);
+        //rend[8].SetPropertyBlock(_propBlock);
+        
+        var myRend = gameObject.transform.Find("NascarCarMesh").GetComponent<SkinnedMeshRenderer>();
+        Material[] tempMats = myRend.materials;
+
+        int rndNo1 = Random.Range(0, colorMats.Count);
+        tempMats[0] = colorMats[rndNo1];
+
+        int rndNo2 = Random.Range(0, colorMats.Count);
+
+        while (rndNo1 == rndNo2)
+        {
+            rndNo2 = Random.Range(0, colorMats.Count);
+        }
+        
+        tempMats[2] = colorMats[rndNo2];
+
+        myRend.materials = tempMats;
 
 
     }
@@ -59,10 +87,12 @@ public class CarScript : MonoBehaviour {
     {
         RaycastHit hit ;
 
-        if (Physics.Raycast(transform.position, -Vector3.up* -0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
+        if (Physics.Raycast(transform.position, Vector3.up* -0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
         {
             if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea")
             {
+                Debug.DrawRay(transform.position, Vector3.up* -05f, Color.green);
+                Debug.LogWarning("aaaaa");
                 speed = 0;
                 maxSpeed = 0;
                 acceleration = 0;

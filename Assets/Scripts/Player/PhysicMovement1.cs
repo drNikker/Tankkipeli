@@ -49,7 +49,7 @@ public class PhysicMovement1 : MonoBehaviour
     public float topSpeed;
     public float accel;
     public float brakingForce;
-    public float upRightCounter;
+    public float upRightCounter = 0;
 
     //"BOOLS" FOR PLAYER CONTROLS SWITCHING
     //Controls which direction buttons rotate treads
@@ -453,12 +453,14 @@ public class PhysicMovement1 : MonoBehaviour
         middleWheelCol2.motorTorque = middleTread;
         middleWheelCol3.motorTorque = middleTread;
     }
+    
 
     void TurnUpRight()
     {
         Physics.Raycast(transform.localPosition, Vector3.down, out downRightRay, 3);
         //Debug.DrawRay(transform.localPosition, Vector3.down, Color.red,3);
-        if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
+
+        if (((Mathf.Abs(transform.rotation.eulerAngles.x) % 360) >= 60) || ((Mathf.Abs(transform.rotation.eulerAngles.z) % 360) >= 60))
         {
             upRightCounter += Time.deltaTime;
             if (upRightCounter >= 4)
@@ -472,6 +474,23 @@ public class PhysicMovement1 : MonoBehaviour
             upRightCounter = 0;
             charUpR.keepUpright = false;
         }
+
+        //OLD but remainder of the failures of the past ages
+
+        //if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
+        //{
+        //    upRightCounter += Time.deltaTime;
+        //    if (upRightCounter >= 4)
+        //    {
+        //        charUpR.keepUpright = true;
+        //        upRightCounter = 0;
+        //    }
+        //}
+        //else
+        //{
+        //    upRightCounter = 0;
+        //    charUpR.keepUpright = false;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -479,7 +498,7 @@ public class PhysicMovement1 : MonoBehaviour
         if (other.gameObject.tag == "Platform")
         {
             transform.parent = other.transform;
-            print("i am working");
+            //print("i am working");
         }
         if (other.gameObject.tag == "TipTheScalesPlat")
         {
@@ -487,6 +506,7 @@ public class PhysicMovement1 : MonoBehaviour
             {
                 prevScale = other.transform.parent.localScale;
             }
+            
         }
     }
 

@@ -20,14 +20,14 @@ public class TrailerCamera : MonoBehaviour
         if (Input.GetKey("c"))
         {
             //transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);  // you can set the position as a whole, just not individual fields
-            transform.Translate(new Vector3(0, -3 * Time.deltaTime, 0));
-            transform.Rotate(Time.deltaTime * -27, 0, 0);
+            transform.Translate(new Vector3(0, 1 * Time.deltaTime, 0));
+            transform.Rotate(Time.deltaTime * 12, 0, 0);
 
         }
         if (Input.GetKey("x"))
         {
             //transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);  // you can set the position as a whole, just not individual fields
-            transform.Translate(new Vector3(0, 0, 3 * Time.deltaTime));
+            transform.Translate(new Vector3(0, 0, -1 * Time.deltaTime));
 
         }
 
