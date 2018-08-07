@@ -306,8 +306,8 @@ public class RoundManager : MonoBehaviour
                 ScoreAmount2[2].GetComponent<Image>().sprite = ScoreAmount1[2].GetComponent<Image>().sprite;
                 ScoreAmount2[3].GetComponent<Image>().sprite = ScoreAmount1[3].GetComponent<Image>().sprite;
 
-                ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player2Wins), 0, 3)];
-                ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player3Wins), 0, 3) + 4];
+                ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamRedWins), 0, 3)];
+                ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamBlueWins), 0, 3) + 4];
 
                 break;
         }
