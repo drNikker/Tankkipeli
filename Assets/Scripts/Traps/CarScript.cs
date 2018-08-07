@@ -87,11 +87,11 @@ public class CarScript : MonoBehaviour {
     {
         RaycastHit hit ;
 
-        if (Physics.Raycast(transform.position, Vector3.up* -0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
+        if (Physics.Raycast(transform.position, Vector3.up* 0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
         {
             if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea")
             {
-                Debug.DrawRay(transform.position, Vector3.up* -05f, Color.green);
+                Debug.DrawRay(transform.position, Vector3.up* 0.5f, Color.green);
                 Debug.LogWarning("aaaaa");
                 speed = 0;
                 maxSpeed = 0;
