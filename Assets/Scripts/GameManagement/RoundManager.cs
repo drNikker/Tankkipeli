@@ -272,6 +272,11 @@ public class RoundManager : MonoBehaviour
                         ScoreAmount4[1].fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
                     }
                 }
+                StatHolder.MostWins = Mathf.RoundToInt(Mathf.Max(StatHolder.Player1Wins, StatHolder.Player2Wins, StatHolder.Player3Wins, StatHolder.Player4Wins));
+                ScoreAmount1[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player1Wins), 0, 3)];
+                ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player2Wins), 0, 3) + 4];
+                ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player3Wins), 0, 3) + 8];
+                ScoreAmount4[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player4Wins), 0, 3) + 12];
                 //...to here
                 break;
 
@@ -288,12 +293,22 @@ public class RoundManager : MonoBehaviour
                 }
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
                 ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
-                ScoreAmount2[0].fillAmount = 0;
-                ScoreAmount3[0].fillAmount = 0;
                 ScoreAmount2[1].fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
-                ScoreAmount2[1].GetComponent<Image>().color = Red;
                 ScoreAmount3[1].fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
-                ScoreAmount3[1].GetComponent<Image>().color = Blue;
+
+                StatHolder.MostWins = Mathf.RoundToInt(Mathf.Max(StatHolder.TeamRedWins, StatHolder.TeamBlueWins));
+                ScoreAmount3[0].GetComponent<Image>().sprite = ScoreAmount2[0].GetComponent<Image>().sprite;
+                ScoreAmount3[1].GetComponent<Image>().sprite = ScoreAmount2[1].GetComponent<Image>().sprite;
+                ScoreAmount3[2].GetComponent<Image>().sprite = ScoreAmount2[2].GetComponent<Image>().sprite;
+                ScoreAmount3[3].GetComponent<Image>().sprite = ScoreAmount2[3].GetComponent<Image>().sprite;
+                ScoreAmount2[0].GetComponent<Image>().sprite = ScoreAmount1[0].GetComponent<Image>().sprite;
+                ScoreAmount2[1].GetComponent<Image>().sprite = ScoreAmount1[1].GetComponent<Image>().sprite;
+                ScoreAmount2[2].GetComponent<Image>().sprite = ScoreAmount1[2].GetComponent<Image>().sprite;
+                ScoreAmount2[3].GetComponent<Image>().sprite = ScoreAmount1[3].GetComponent<Image>().sprite;
+
+                ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player2Wins), 0, 3)];
+                ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player3Wins), 0, 3) + 4];
+
                 break;
         }
 
@@ -306,27 +321,6 @@ public class RoundManager : MonoBehaviour
         ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 107, 0);
         ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 50, 0);
 
-        StatHolder.MostWins = Mathf.RoundToInt(Mathf.Max(StatHolder.Player1Wins, StatHolder.Player2Wins, StatHolder.Player3Wins, StatHolder.Player4Wins));
-        print(StatHolder.MostWins);
-
-
-
-        //for (int i = Mathf.RoundToInt(StatHolder.Player1Wins); i < StatHolder.MostWins; i++)
-        //{
-            ScoreAmount1[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player1Wins),0,3)];
-        //}
-        //for (int i = Mathf.RoundToInt(StatHolder.Player2Wins); i < StatHolder.MostWins; i++)
-        //{
-            ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player2Wins), 0, 3) + 4];
-        //}
-        //for (int i = Mathf.RoundToInt(StatHolder.Player3Wins); i < StatHolder.MostWins; i++)
-        //{
-            ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player3Wins), 0, 3) + 8];
-        //}
-        //for (int i = Mathf.RoundToInt(StatHolder.Player4Wins); i < StatHolder.MostWins; i++)
-        //{
-            ScoreAmount4[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player4Wins), 0, 3) + 12];
-        //}
 
         //if (StatHolder.CurrentMode == StatHolder.Modes.DM)
         //{
