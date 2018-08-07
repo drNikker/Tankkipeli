@@ -71,6 +71,12 @@ public class CarScript : MonoBehaviour {
         tempMats[0] = colorMats[rndNo1];
 
         int rndNo2 = Random.Range(0, colorMats.Count);
+
+        while (rndNo1 == rndNo2)
+        {
+            rndNo2 = Random.Range(0, colorMats.Count);
+        }
+        
         tempMats[2] = colorMats[rndNo2];
 
         myRend.materials = tempMats;
