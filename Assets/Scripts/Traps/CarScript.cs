@@ -81,6 +81,7 @@ public class CarScript : MonoBehaviour {
 
         myRend.materials = tempMats;
 
+        StartCoroutine(carDespawn(10));
 
     }
     private void Update()
@@ -158,9 +159,10 @@ public class CarScript : MonoBehaviour {
         }
         if(collision.gameObject.tag == "Player" && speed > 5 && rb.velocity.magnitude > 1)
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
             if (cooldown <= Time.time)
             {
+
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(speed*baseDamage);
                 playSound();
                 cooldown = Time.time + 2;
             }
@@ -191,6 +193,11 @@ public class CarScript : MonoBehaviour {
         speed = 0;
         maxSpeed = 0;
         IsSwerwing = false;
+    }
+    IEnumerator carDespawn(float despawnTime)
+    {
+        yield return new WaitForSeconds(despawnTime);
+        Destroy(this.gameObject);
     }
 
     private void playSound()
