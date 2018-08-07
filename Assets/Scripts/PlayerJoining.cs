@@ -312,10 +312,14 @@ public class PlayerJoining : MonoBehaviour {
                 {
                     Instantiate(TDMText, new Vector3(0, 15, 0), Quaternion.identity);
                 }
-
-                //roundManager.NewGame();
+                Invoke("StartGame", 4);
             }
         }
+    }
+
+    void StartGame()
+    {
+        roundManager.NewGame();
     }
 
     void CheckPlayersInHoles()
