@@ -71,6 +71,7 @@ public class Weapon : MonoBehaviour {
                 }
             }
         }
+        RayCastToGround();
     }
 
     public void Equip()
@@ -232,16 +233,23 @@ public class Weapon : MonoBehaviour {
         
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 2))
         {
-            if (hit.transform.tag != null & hit.transform.tag == "Environment")
-            {
-                Rigidbody[] rigidBodies = GetComponentsInChildren<Rigidbody>();
+            Dropped();
+        }
 
-                foreach (Rigidbody body in rigidBodies)
-                {
-                    body.isKinematic = false;
-                    body.useGravity = false;
-                }
-            }
+        else
+        {
+
+            Destroy(gameObject);
+            //if (hit.transform == false && currentWeaponState == WEAPON_STATE.DROPPED)
+            //{
+            //    Rigidbody[] rigidBodies = GetComponentsInChildren<Rigidbody>();
+
+            //    foreach (Rigidbody body in rigidBodies)
+            //    {
+            //        body.isKinematic = false;
+            //        body.useGravity = false;
+            //    }
+            //}
         }
     }
 }
