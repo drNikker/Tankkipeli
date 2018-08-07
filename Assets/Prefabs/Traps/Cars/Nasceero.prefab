@@ -202,8 +202,8 @@ GameObject:
   - component: {fileID: 95152761817235738}
   - component: {fileID: 54556016738388358}
   - component: {fileID: 82569426352117964}
-  - component: {fileID: 65803831423187044}
   - component: {fileID: 114475410014426550}
+  - component: {fileID: 64133866677133358}
   m_Layer: 0
   m_Name: Nasceero
   m_TagString: Car
@@ -4952,18 +4952,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65803831423187044
-BoxCollider:
+--- !u!64 &64133866677133358
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116965821704908}
-  m_Material: {fileID: 13400000, guid: 219aaaa14add28c41aa8046680f65c56, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.15, y: 4.162237, z: 9.611125}
-  m_Center: {x: -0.0000000071202617, y: 2.104208, z: -0.3194356}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 453104670d0642d4784443bcbd588695, type: 3}
 --- !u!82 &82569426352117964
 AudioSource:
   m_ObjectHideFlags: 1
@@ -5104,8 +5106,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c4ba31473ff991242917c5e04f1629da, type: 2}
   - {fileID: 2100000, guid: 82b194cd6e918d44a9a0dbe0eb18df33, type: 2}
   - {fileID: 2100000, guid: d0f006d09486c5246a864c65292a2f3c, type: 2}
-  - {fileID: 2100000, guid: ee327d500db554b40b11953a16b76e8a, type: 2}
-  - {fileID: 2100000, guid: aa687d6bd6f17b045b42459425070bba, type: 2}
+  - {fileID: 2100000, guid: 8cec3ebff4430874ba10de5b2a8f4163, type: 2}
 --- !u!137 &137097746712693634
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
