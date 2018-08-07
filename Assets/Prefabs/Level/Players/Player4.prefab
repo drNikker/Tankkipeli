@@ -1930,7 +1930,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087165382232540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.186171, y: -0.09, z: -1.6922145}
+  m_LocalPosition: {x: -11.54959, y: 4.009344, z: -9.558477}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4656093826678296}
@@ -3961,16 +3961,20 @@ MonoBehaviour:
   dizzyStart: 0
   criticalStart: 0
   deadStart: 0
+  showNoStart: 0
   effectStop: 0
   dizzyUpdate: 0
   criticalUpdate: 0
   deadUpdate: 0
+  showNoUpdate: 0
   DeathSprite: {fileID: 1007366199425074, guid: ced71147f3ca9e04db5e22358d8f4962,
     type: 2}
   StarSprite: {fileID: 1007366199425074, guid: 71a7f3139a0a83c4c98e5124713c27ab, type: 2}
+  PlayerNoSprite: {fileID: 0}
   starCount: 5
   spawnedStars: []
   spawnedDeath: {fileID: 0}
+  spawnedPNo: {fileID: 0}
   dizzyRotSpeed: 5
   yOffset: 0.75
   radius: 0.5
@@ -19045,7 +19049,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -23576,7 +23580,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
