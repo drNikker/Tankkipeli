@@ -110,7 +110,7 @@ public class CannonBall : MonoBehaviour
             GameObject spawnedCannonBall = Instantiate(cannonBall, cannonBallPosition, Quaternion.identity);
             cannonBalls[i] = spawnedCannonBall;
 
-            Destroy(spawnedCannonBall, 5);
+            Destroy(spawnedCannonBall, 30);
         }
     }
 
@@ -120,8 +120,8 @@ public class CannonBall : MonoBehaviour
 
         if (currentCannonBallTimer <= 0)
         {
-            SpawnCannonBalls();
-            playSound();
+            StartCoroutine(CannonShootWithDelay());
+            
             currentCannonBallTimer = cannonBallTimerTime;
         }
     }
@@ -130,5 +130,12 @@ public class CannonBall : MonoBehaviour
         currentAudioClip = audioScript.hazardAudioList[2];
         audioSource.clip = currentAudioClip;
         audioSource.Play();
+    }
+
+    IEnumerator CannonShootWithDelay()
+    {
+        playSound();
+        yield return new WaitForSeconds(1.5f);
+        SpawnCannonBalls();
     }
 }

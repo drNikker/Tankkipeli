@@ -38,6 +38,7 @@ public class SceneLoader : MonoBehaviour
         mapSet2.Add("TheSlice");
         mapSet2.Add("CannonShuffle");
         mapSet2.Add("RotatingHoleInWall");
+        mapSet2.Add("Normandy");
         //Map set 3
         mapSet3.Add("HyperHexagon");
         mapSet3.Add("Rotat-o-Maze");
@@ -49,7 +50,8 @@ public class SceneLoader : MonoBehaviour
         mapSet4.Add("WreckingBall");
         mapSet4.Add("FallingShit");
         mapSet4.Add("SpinningBeams");
-       // mapSet4.Add("ConstructionInDisguise");
+        mapSet4.Add("ConstructionInDisguise");
+        mapSet4.Add("Squiggly");
         //Map set 5
         mapSet5.Add("Nascar");
         mapSet5.Add("Totally Not Stolen From Portal 2");

@@ -11,17 +11,22 @@ public class WeaponSpawn : MonoBehaviour
     public bool startWeapon;
     public bool randomWeapon;
     public bool randomPosition;
+    public bool showGizmos;
 
     bool pickedUp;
 
-    [Range(0, 100)] public int FlailChanceWeight;
-    [Range(0, 100)] public int GreatAxeChanceWeight;
-    [Range(0, 100)] public int HammerChanceWeight;
-    [Range(0, 100)] public int StickChanceWeight;
-    [Range(0, 100)] public int ShieldChanceWeight;
-    [Range(0, 100)] public int CherryChanceWeight;
-    [Range(0, 100)] public int GuitarChanceWeight;
-    [Range(0, 100)] public int NunchucksChanceWeight;
+    [Range(0, 100)] public int FlailChanceWeight0;
+    [Range(0, 100)] public int GreatAxeChanceWeight1;
+    [Range(0, 100)] public int HammerChanceWeight2;
+    [Range(0, 100)] public int GladiatorChanceWeight3;
+    [Range(0, 100)] public int ShieldChanceWeight4;
+    [Range(0, 100)] public int CherryChanceWeight5;
+    [Range(0, 100)] public int GuitarChanceWeight6;
+    [Range(0, 100)] public int NunchucksChanceWeight7;
+    [Range(0, 100)] public int TrophyChanceWeight8;
+    [Range(0, 100)] public int LadleChanceWeight9;
+    [Range(0, 100)] public int HockeyChanceWeight10;
+    [Range(0, 100)] public int FistChanceWeight11;
 
     public int XPositionLowerLimit;
     public int XPositionUpperLimit;
@@ -42,14 +47,18 @@ public class WeaponSpawn : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        chances.Add(FlailChanceWeight);
-        chances.Add(GreatAxeChanceWeight);
-        chances.Add(HammerChanceWeight);
-        chances.Add(StickChanceWeight);
-        chances.Add(ShieldChanceWeight);
-        chances.Add(CherryChanceWeight);
-        chances.Add(GuitarChanceWeight);
-        chances.Add(NunchucksChanceWeight);
+        chances.Add(FlailChanceWeight0);
+        chances.Add(GreatAxeChanceWeight1);
+        chances.Add(HammerChanceWeight2);
+        chances.Add(GladiatorChanceWeight3);
+        chances.Add(ShieldChanceWeight4);
+        chances.Add(CherryChanceWeight5);
+        chances.Add(GuitarChanceWeight6);
+        chances.Add(NunchucksChanceWeight7);
+        chances.Add(TrophyChanceWeight8);
+        chances.Add(LadleChanceWeight9);
+        chances.Add(HockeyChanceWeight10);
+        chances.Add(FistChanceWeight11);
 
         if (randomPosition)
         {
@@ -108,11 +117,15 @@ public class WeaponSpawn : MonoBehaviour
         FLAIL,
         GREATAXE,
         HAMMER,
-        STICK,
+        GLADIATOR,
         SHIELD,
         CHERRY,
         GUITAR,
-        NUNCHUCKS
+        NUNCHUCKS,
+        TROPHY,
+        LADLE,
+        HOCKEY,
+        FIST
     }
 
 
@@ -159,7 +172,7 @@ public class WeaponSpawn : MonoBehaviour
 
                 break;
 
-            case SPAWN_WEAPON.STICK:
+            case SPAWN_WEAPON.GLADIATOR:
                 spawnedWeapon = Instantiate(weapons[3], this.gameObject.transform.position, Quaternion.identity);
 
                 break;
@@ -182,6 +195,26 @@ public class WeaponSpawn : MonoBehaviour
                 spawnedWeapon = Instantiate(weapons[7], this.gameObject.transform.position, Quaternion.identity);
 
                 break;
+
+            case SPAWN_WEAPON.TROPHY:
+                spawnedWeapon = Instantiate(weapons[8], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.LADLE:
+                spawnedWeapon = Instantiate(weapons[9], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.HOCKEY:
+                spawnedWeapon = Instantiate(weapons[10], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.FIST:
+                spawnedWeapon = Instantiate(weapons[11], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
         }
 
         if (randomPosition)
@@ -191,5 +224,13 @@ public class WeaponSpawn : MonoBehaviour
 
         pickedUp = false;
 
+
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (showGizmos)
+            Gizmos.DrawWireCube(new Vector3((XPositionLowerLimit + XPositionUpperLimit) / 2, 0, (ZPositionLowerLimit + ZPositionUpperLimit) / 2), new Vector3(XPositionUpperLimit - XPositionLowerLimit, 0, ZPositionUpperLimit - ZPositionLowerLimit));
     }
 }

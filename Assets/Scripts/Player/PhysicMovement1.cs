@@ -10,8 +10,7 @@ public class PhysicMovement1 : MonoBehaviour
     public PlayerIndex playerIndex;
     GamePadState state;
     GamePadState prevState;
-    public PlayerStateEffect playerStateEffect;
-    public TankTextureSpeed tankTextureSpeed;
+
 
     //OTHER
     private GameObject player;
@@ -23,10 +22,14 @@ public class PhysicMovement1 : MonoBehaviour
     private SoftJointLimit highTwistLimitOriginal;
 
     private Rigidbody rb;
-    public Vector3 com;
-    CharacterUpright charUpR;
-    RaycastHit downRightRay;
-    PlayerHealth health;
+    public Vector3 com; // center of mass
+    private CharacterUpright charUpR;
+    private RaycastHit downRightRay;
+    private PlayerHealth health;
+
+    public PlayerStateEffect playerStateEffect;
+    public TankTextureSpeed tankTextureSpeed;
+
 
     public WhirlEffect whirlEffect;
 
@@ -46,7 +49,7 @@ public class PhysicMovement1 : MonoBehaviour
     public float topSpeed;
     public float accel;
     public float brakingForce;
-    public float upRightCounter;
+    public float upRightCounter = 0;
 
     //"BOOLS" FOR PLAYER CONTROLS SWITCHING
     //Controls which direction buttons rotate treads
@@ -67,6 +70,7 @@ public class PhysicMovement1 : MonoBehaviour
     bool brakeLeft = true;
     bool brakeMiddle = true;
 
+    //Dizzy variables
     private bool timerUntilDizzy;
     public float timerUntilDizzyTime = 3;
     private float originalTimerUntilDizzyTime;
@@ -76,15 +80,13 @@ public class PhysicMovement1 : MonoBehaviour
     private float originalBackToNormalTimerTime;
 
     public bool canMove;
-
-    new protected Rigidbody rigidbody;
+    
+    Vector3 prevScale;
 
     // Use this for initialization
     void Start()
     {
-        
         menuSel = FindObjectOfType<MenuSelection>();
-        print(menuSel);
         player = gameObject;
         ragdollmode = player.GetComponentInChildren<FullRagdollMode>();
         characterJoint = player.GetComponentInChildren<CharacterJoint>();
@@ -98,17 +100,15 @@ public class PhysicMovement1 : MonoBehaviour
         originalBackToNormalTimerTime = backToNormalTimerTime;
 
         canMove = true;
-
         SetControls();
 
         brakeTorqu = brakingForce;
         rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = com;
+        rb.centerOfMass = com; 
         charUpR = GetComponent<CharacterUpright>();
-
         charUpR.keepUpright = false;
 
-        //Setting wheeldamping to each wheel because its broken otherwise
+        //Setting wheeldamping to each wheel because it doest work through unity editor otherwise
         leftWheelCol1.wheelDampingRate = wheelDamp;
         leftWheelCol2.wheelDampingRate = wheelDamp;
         leftWheelCol3.wheelDampingRate = wheelDamp;
@@ -125,7 +125,6 @@ public class PhysicMovement1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         prevState = state;
         state = GamePad.GetState(playerIndex);
         if (menuSel.menu == false)
@@ -152,11 +151,10 @@ public class PhysicMovement1 : MonoBehaviour
         {
             BackToNormalTimer();
         }
-
         SetWhirlLevel();
-
     }
 
+    //normal controls
     void KeyPress()
     {
         //Tread speed increase
@@ -209,6 +207,7 @@ public class PhysicMovement1 : MonoBehaviour
                 tankTextureSpeed.speedR = 0.99f * invertSpeed;
             }
         }
+
         //LT
         if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))          //LT
         {
@@ -220,14 +219,13 @@ public class PhysicMovement1 : MonoBehaviour
                 tankTextureSpeed.speedL = 0.99f * invertSpeed;
             }
         }
-
-
+        
         //Clamping tread speeds
         rightTread = Mathf.Clamp(rightTread, -topSpeed, topSpeed);
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
         middleTread = Mathf.Clamp(middleTread, -topSpeed, topSpeed);
 
-        //set motortorque to 0 wwhen no input is given
+        //set motortorque to 0 when no input is given
         if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
         {
             rightTread = 0;
@@ -269,10 +267,10 @@ public class PhysicMovement1 : MonoBehaviour
                 timerUntilDizzyTime = originalTimerUntilDizzyTime;
             }
         }
-
         //DebugMovementControls();
     }
 
+    //Inverted controls
     void KeyPressInvert()
     {
         //Tread speed increase
@@ -325,6 +323,7 @@ public class PhysicMovement1 : MonoBehaviour
                 tankTextureSpeed.speedR = 0.99f * invertSpeed;
             }
         }
+
         //RT 
         if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))
         {
@@ -336,8 +335,7 @@ public class PhysicMovement1 : MonoBehaviour
                 tankTextureSpeed.speedL = 0.99f * invertSpeed;
             }
         }
-
-
+        
         //Clamping tread speeds
         rightTread = Mathf.Clamp(rightTread, -topSpeed, topSpeed);
         leftTread = Mathf.Clamp(leftTread, -topSpeed, topSpeed);
@@ -380,19 +378,13 @@ public class PhysicMovement1 : MonoBehaviour
         else
         {
             timerUntilDizzyTime += Time.deltaTime;
-            
             timerUntilDizzy = false;
             
-
-
             if (timerUntilDizzyTime >= originalTimerUntilDizzyTime)
             {
                 timerUntilDizzyTime = originalTimerUntilDizzyTime;
             }
-
-            
         }
-
         //DebugMovementControls();
     }
 
@@ -461,12 +453,14 @@ public class PhysicMovement1 : MonoBehaviour
         middleWheelCol2.motorTorque = middleTread;
         middleWheelCol3.motorTorque = middleTread;
     }
+    
 
     void TurnUpRight()
     {
         Physics.Raycast(transform.localPosition, Vector3.down, out downRightRay, 3);
         //Debug.DrawRay(transform.localPosition, Vector3.down, Color.red,3);
-        if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
+
+        if (((Mathf.Abs(transform.rotation.eulerAngles.x) % 360) >= 60) || ((Mathf.Abs(transform.rotation.eulerAngles.z) % 360) >= 60))
         {
             upRightCounter += Time.deltaTime;
             if (upRightCounter >= 4)
@@ -480,6 +474,23 @@ public class PhysicMovement1 : MonoBehaviour
             upRightCounter = 0;
             charUpR.keepUpright = false;
         }
+
+        //OLD but remainder of the failures of the past ages
+
+        //if (rightWheelCol1.isGrounded == false && rightWheelCol2.isGrounded == false && leftWheelCol1.isGrounded == false && leftWheelCol2.isGrounded == false && downRightRay.collider != null)
+        //{
+        //    upRightCounter += Time.deltaTime;
+        //    if (upRightCounter >= 4)
+        //    {
+        //        charUpR.keepUpright = true;
+        //        upRightCounter = 0;
+        //    }
+        //}
+        //else
+        //{
+        //    upRightCounter = 0;
+        //    charUpR.keepUpright = false;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -487,7 +498,36 @@ public class PhysicMovement1 : MonoBehaviour
         if (other.gameObject.tag == "Platform")
         {
             transform.parent = other.transform;
-            print("i am working");
+            //print("i am working");
+        }
+        if (other.gameObject.tag == "TipTheScalesPlat")
+        {
+            if (prevScale != other.transform.parent.localScale)
+            {
+                prevScale = other.transform.parent.localScale;
+            }
+            
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "TipTheScalesPlat")
+        {
+            //get unit vector between player and platform center
+            Vector3 POunit = Vector3.Normalize(other.transform.position - this.transform.position);
+            // difference between the scale of the platfom on previous frame and this frame. if same scalediff = 0
+            float scaleDiff = prevScale.x - other.transform.parent.localScale.x;
+            if (scaleDiff != 0)
+            {
+
+            Vector3 POmove = POunit * scaleDiff * 0.5f;
+            //set Y to zero because we dont want to move on that axis
+            POmove.y = 0;
+            transform.position += POmove;
+
+            prevScale = other.transform.parent.localScale;
+            }
         }
     }
 
@@ -555,7 +595,7 @@ public class PhysicMovement1 : MonoBehaviour
             whirlEffect.SetLevel(4);
         }
 
-        
+
 
     }
 
