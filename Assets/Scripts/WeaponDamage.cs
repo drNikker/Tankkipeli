@@ -17,6 +17,7 @@ public class WeaponDamage : MonoBehaviour
     public float knockbackMultiplier = 1f;
     public float cooldownTime = 1;
     public float knockback = 400000;
+    MultiTargetCamera MultiTargetCamera;
 
     // Hit Particles-------------
     ParticleSystem hitParticle;
@@ -30,6 +31,7 @@ public class WeaponDamage : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        MultiTargetCamera = GameObject.Find("Main Camera").GetComponent<MultiTargetCamera>();
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         weaponAudio = gameObject.GetComponentInParent<WeaponAudio>();
         hitParticle = GetComponent<ParticleSystem>();
@@ -50,6 +52,7 @@ public class WeaponDamage : MonoBehaviour
             if (ownHP != health)
             {
                 finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(GetWeaponVelocity(), 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
+
 
                 // Hit Particles--------------------------------------
                 finalDamageVFX = Mathf.RoundToInt(finalDamage);
@@ -97,7 +100,12 @@ public class WeaponDamage : MonoBehaviour
     float GetWeaponVelocity()
     {
         float speed = GetComponent<Rigidbody>().velocity.magnitude;
+        if (speed >= 15)
+        {
+            MultiTargetCamera.shakeDuration = 0.3f;
+        }
         return speed;
+        
     }
 
     static PlayerHealth FindHP(Collision col)                  //Finds the enemy players hp

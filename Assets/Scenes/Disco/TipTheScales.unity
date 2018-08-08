@@ -15117,6 +15117,7 @@ MonoBehaviour:
   upperLimitZ: 4
   lowerLimitZ: 1
   showGizmos: 1
+  shakeDuration: 0
   shakeAmount: 0.2
   decreaseFactor: 1.5
   targets: []
@@ -34156,6 +34157,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114452113966440546, guid: a0c0a3bde6c7bd64abf972875d0d91b9,
+        type: 2}
+      propertyPath: knockOut
+      value: 
+      objectReference: {fileID: 8300000, guid: 2730ace99f5dada4a8fac9a1e49e50b6, type: 3}
+    - target: {fileID: 114452113966440546, guid: a0c0a3bde6c7bd64abf972875d0d91b9,
+        type: 2}
+      propertyPath: roundOver
+      value: 
+      objectReference: {fileID: 8300000, guid: 48a4d780fc5cd5c40a5e5307abe431dc, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0c0a3bde6c7bd64abf972875d0d91b9, type: 2}
   m_IsPrefabParent: 0
@@ -62935,8 +62946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 613116095}
   tileanim: {fileID: 1204394891}
-  timeBeforeMakingSmall: 10
-  timeBeforeMakingBig: 10
+  timeBeforeMakingSmall: 15
+  timeBeforeMakingBig: 8
 --- !u!1001 &1208176033
 Prefab:
   m_ObjectHideFlags: 0
@@ -77610,8 +77621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 613116095}
   tileanim: {fileID: 1677132153}
-  timeBeforeMakingSmall: 10
-  timeBeforeMakingBig: 10
+  timeBeforeMakingSmall: 15
+  timeBeforeMakingBig: 8
 --- !u!1 &1705338269
 GameObject:
   m_ObjectHideFlags: 0
@@ -82293,11 +82304,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -82336,117 +82342,43 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
-      propertyPath: randomPosition
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: spawnTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: startWeapon
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ShieldChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: NunchucksChanceWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: FlailChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: HammerChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[7]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[6]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[3]
-      value: 
-      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GuitarChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: StickChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GreatAxeChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
       propertyPath: FlailChanceWeight0
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: HammerChanceWeight2
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: ShieldChanceWeight4
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: CherryChanceWeight5
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: NunchucksChanceWeight7
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: TrophyChanceWeight8
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: LadleChanceWeight9
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: FistChanceWeight11
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
