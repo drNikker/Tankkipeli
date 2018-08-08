@@ -28,6 +28,7 @@ public class PhysicMovement1 : MonoBehaviour
     private PlayerHealth health;
 
     public PlayerStateEffect playerStateEffect;
+    public PlayerIconScript playerIcon;
     public TankTextureSpeed tankTextureSpeed;
 
 
@@ -80,6 +81,7 @@ public class PhysicMovement1 : MonoBehaviour
     private float originalBackToNormalTimerTime;
 
     public bool canMove;
+    private bool firstFrame = true;
     
     Vector3 prevScale;
 
@@ -92,6 +94,7 @@ public class PhysicMovement1 : MonoBehaviour
         characterJoint = player.GetComponentInChildren<CharacterJoint>();
         health = GetComponent<PlayerHealth>();
         playerStateEffect = gameObject.GetComponentInChildren<PlayerStateEffect>();
+        playerIcon = gameObject.GetComponentInChildren<PlayerIconScript>();
         tankTextureSpeed = gameObject.GetComponentInChildren<TankTextureSpeed>();
 
         lowTwistLimitOriginal = characterJoint.lowTwistLimit;
@@ -152,7 +155,17 @@ public class PhysicMovement1 : MonoBehaviour
             BackToNormalTimer();
         }
         SetWhirlLevel();
+        if (!firstFrame)
+        {
+            ShowPlayerIcons();
+        }
+        
+
+        firstFrame = false;
     }
+
+
+    
 
     //normal controls
     void KeyPress()
@@ -617,6 +630,19 @@ public class PhysicMovement1 : MonoBehaviour
         }
     }
 
+    //Show player icons.
+    private void ShowPlayerIcons()
+    {
+        if (state.Buttons.Y == ButtonState.Pressed && prevState.Buttons.Y == ButtonState.Released)
+        {
+            playerIcon.ShowPIcons();
+        }
+        if (state.Buttons.Y == ButtonState.Released && prevState.Buttons.Y == ButtonState.Pressed)
+        {
+            playerIcon.HidePIcons();
+        }
+        
+    }
 
     //private void DebugMovementControls()
     //{
