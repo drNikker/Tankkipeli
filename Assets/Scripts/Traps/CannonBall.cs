@@ -9,6 +9,7 @@ public class CannonBall : MonoBehaviour
     public GameObject[] cannonBalls;
     public int sizeOfTheList;
 
+
     private Vector3 cannonBallPosition;
     [Space(10)]
     public int cannonBallPositionMinX;
@@ -27,7 +28,9 @@ public class CannonBall : MonoBehaviour
     [Space(10)]
     public float cannonBallTimerTime; //Max time the timer will reset to
     private float currentCannonBallTimer; //Displays current time
-    
+
+    [Space(10)]
+    public Animator anim;
     private bool generateNewRandom;
 
     private AudioScript audioScript;
@@ -39,6 +42,7 @@ public class CannonBall : MonoBehaviour
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         audioSource = gameObject.GetComponent<AudioSource>();
         cannonBalls = new GameObject[sizeOfTheList];
+        
 
         randomedCannonBallPositionX = 0;
         randomedCannonBallPositionZ = 0;
@@ -120,8 +124,8 @@ public class CannonBall : MonoBehaviour
 
         if (currentCannonBallTimer <= 0)
         {
-            SpawnCannonBalls();
-            playSound();
+            StartCoroutine(CannonShootWithDelay());
+            
             currentCannonBallTimer = cannonBallTimerTime;
         }
     }
@@ -130,5 +134,13 @@ public class CannonBall : MonoBehaviour
         currentAudioClip = audioScript.hazardAudioList[2];
         audioSource.clip = currentAudioClip;
         audioSource.Play();
+    }
+
+    IEnumerator CannonShootWithDelay()
+    {
+        playSound();
+        anim.SetTrigger("Light");
+        yield return new WaitForSeconds(1.5f);
+        SpawnCannonBalls();
     }
 }

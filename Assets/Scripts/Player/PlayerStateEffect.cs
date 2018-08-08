@@ -11,19 +11,26 @@ public class PlayerStateEffect : MonoBehaviour
     public bool dizzyStart;
     public bool criticalStart;
     public bool deadStart;
+    public bool showNoStart;
+
     public bool effectStop;
 
     [SerializeField] public bool dizzyUpdate;
     [SerializeField] public bool criticalUpdate;
     [SerializeField] public bool deadUpdate;
+    [SerializeField] public bool showNoUpdate;
 
     private bool hided;
 
     public GameObject DeathSprite;
     public GameObject StarSprite;
+    public GameObject PlayerNoSprite;
+
     public int starCount = 5;
     public List<GameObject> spawnedStars;
     public GameObject spawnedDeath;
+    public GameObject spawnedPNo;
+
     public float dizzyRotSpeed;
     public float yOffset;
 
@@ -66,6 +73,13 @@ public class PlayerStateEffect : MonoBehaviour
 
         spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
 
+        //Spawns and hides player number icon
+        spawnedPNo = Instantiate(PlayerNoSprite, new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), transform.rotation);
+        spawnedPNo.transform.parent = gameObject.transform;
+
+        spawnedPNo.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
+
+
         //Critical particles Off
         smokePartObj01.GetComponent<ParticleSystem>().Stop();
         //Death particles Off
@@ -102,6 +116,12 @@ public class PlayerStateEffect : MonoBehaviour
             dizzyUpdate = false;
             deadStart = false;
         }
+
+        if (showNoStart)
+        {
+
+        }
+
         if (effectStop)
         {
             smokePartObj01.GetComponent<ParticleSystem>().Stop();
@@ -111,6 +131,7 @@ public class PlayerStateEffect : MonoBehaviour
             deadUpdate = false;
             effectStop = false;
         }
+        
 
 
 
@@ -161,6 +182,12 @@ public class PlayerStateEffect : MonoBehaviour
                 transform.localScale = new Vector3(newScale, newScale, newScale);
                 hided = false;
 
+            }
+            if(showNoUpdate)
+            {
+                float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
+                transform.localScale = new Vector3(newScale, newScale, newScale);
+                hided = false;
             }
 
         }

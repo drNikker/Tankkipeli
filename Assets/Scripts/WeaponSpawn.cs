@@ -11,6 +11,7 @@ public class WeaponSpawn : MonoBehaviour
     public bool startWeapon;
     public bool randomWeapon;
     public bool randomPosition;
+    public bool showGizmos;
 
     bool pickedUp;
 
@@ -223,5 +224,13 @@ public class WeaponSpawn : MonoBehaviour
 
         pickedUp = false;
 
+
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (showGizmos)
+            Gizmos.DrawWireCube(new Vector3((XPositionLowerLimit + XPositionUpperLimit) / 2, 0, (ZPositionLowerLimit + ZPositionUpperLimit) / 2), new Vector3(XPositionUpperLimit - XPositionLowerLimit, 0, ZPositionUpperLimit - ZPositionLowerLimit));
     }
 }
