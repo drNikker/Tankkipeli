@@ -304,14 +304,14 @@ public class RoundManager : MonoBehaviour
                 break;
         }
 
-        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height - 107, 0);
-        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height - 107, 0);
-        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height - 107, 0);
-        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 107, 0);
-        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 50, 0);
+        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
+        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
+        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
+        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
 
 
 
