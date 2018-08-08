@@ -246,7 +246,7 @@ public class RoundManager : MonoBehaviour
                         print("This should never happen");
                         break;
                 }
-
+                alivePlayers[0].GetComponent<PlayerHealth>().VFX_Win();
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount2[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount1[1].fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;

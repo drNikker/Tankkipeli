@@ -40,8 +40,7 @@ public class PlayerHealth : MonoBehaviour
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
         LevelCam.AddTarget(transform);
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
-        vfxWin = GetComponent<ParticleSystem>();
-        
+        vfxWin = this.gameObject.transform.Find("VFX_Win").gameObject.GetComponent<ParticleSystem>();
 
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);
@@ -83,7 +82,6 @@ public class PlayerHealth : MonoBehaviour
                 color = Color.cyan;
                 break;
         }
-            //move the start of the above if statement here, if the color change system comes back
 
             if (colorInt == 1)
             {
@@ -121,7 +119,7 @@ public class PlayerHealth : MonoBehaviour
             _propBlock.SetColor("_Color", skinColor);
             rend[16].SetPropertyBlock(_propBlock);
 
-        }//change this to the upper commented one if color change system comes back
+        }
 
     }
 
