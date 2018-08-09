@@ -138,7 +138,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void VFX_Win()
     {
-        vfxWin.Emit(120);
+        vfxWin.Play();
     }
 
     void CheckHP(float hp)
