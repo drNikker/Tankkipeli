@@ -246,7 +246,7 @@ public class RoundManager : MonoBehaviour
                         print("This should never happen");
                         break;
                 }
-
+                alivePlayers[0].GetComponent<PlayerHealth>().VFX_Win();
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount2[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount1[1].fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
@@ -276,11 +276,19 @@ public class RoundManager : MonoBehaviour
                 if (redPlayers.Count == 0)
                 {
                     StatHolder.TeamBlueWins += 1;
+                    foreach(GameObject Player in bluePlayers)
+                    {
+                        Player.GetComponent<PlayerHealth>().VFX_Win();
+                    }
                     whoWonText.text = "Team Blue won the round";
                 }
                 else if (bluePlayers.Count == 0)
                 {
                     StatHolder.TeamRedWins += 1;
+                    foreach (GameObject Player in redPlayers)
+                    {
+                        Player.GetComponent<PlayerHealth>().VFX_Win();
+                    }
                     whoWonText.text = "Team Red won the round";
                 }
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
