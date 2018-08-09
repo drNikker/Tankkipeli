@@ -29,7 +29,7 @@ public class PlayerIconScript : MonoBehaviour
         {
             float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
             transform.localScale = new Vector3(newScale, newScale, newScale);
-            spawnedPNo.transform.LookAt(-Camera.main.transform.position, Vector3.up);
+            spawnedPNo.transform.LookAt(Camera.main.transform.position, Vector3.up);
             spawnedPNo.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
         }
 

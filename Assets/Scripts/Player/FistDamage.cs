@@ -64,7 +64,6 @@ public class FistDamage : MonoBehaviour {
                     health.TakeDamage(baseDamage);
                 }
 
-                print("Somebody got slapped LUL");
                 cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
             }
 

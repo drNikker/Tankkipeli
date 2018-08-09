@@ -162,10 +162,24 @@ public class PhysicMovement1 : MonoBehaviour
         
 
         firstFrame = false;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down * 0.5f, out hit) && hit.collider.gameObject.name == "TankMesh" || hit.collider.gameObject.name == "FallDeathtrigger")
+        {
+            tankTextureSpeed.speedR = 0;
+            tankTextureSpeed.speedL = 0;
+            tankTextureSpeed.wheelParticlesFR.Clear();
+            tankTextureSpeed.wheelParticlesFL.Clear();
+            tankTextureSpeed.wheelParticlesBR.Clear();
+            tankTextureSpeed.wheelParticlesBL.Clear();
+        }
+
+
     }
 
 
-    
+
 
     //normal controls
     void KeyPress()
@@ -182,6 +196,7 @@ public class PhysicMovement1 : MonoBehaviour
             {
                 tankTextureSpeed.speedR = -0.99f * invertSpeed;
             }
+
         }
 
         //LB
