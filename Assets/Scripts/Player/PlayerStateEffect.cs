@@ -11,14 +11,12 @@ public class PlayerStateEffect : MonoBehaviour
     public bool dizzyStart;
     public bool criticalStart;
     public bool deadStart;
-    public bool showNoStart;
 
     public bool effectStop;
 
     [SerializeField] public bool dizzyUpdate;
     [SerializeField] public bool criticalUpdate;
     [SerializeField] public bool deadUpdate;
-    [SerializeField] public bool showNoUpdate;
 
     private bool hided;
 
@@ -29,7 +27,6 @@ public class PlayerStateEffect : MonoBehaviour
     public int starCount = 5;
     public List<GameObject> spawnedStars;
     public GameObject spawnedDeath;
-    public GameObject spawnedPNo;
 
     public float dizzyRotSpeed;
     public float yOffset;
@@ -44,6 +41,7 @@ public class PlayerStateEffect : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
         //Spawnes ste star structure at the start
         Theta = 0f;
@@ -58,7 +56,6 @@ public class PlayerStateEffect : MonoBehaviour
             GameObject newStar = Instantiate(StarSprite, new Vector3(x, transform.position.y + yOffset, z), transform.rotation);
             newStar.transform.parent = gameObject.transform;
             spawnedStars.Add(newStar);
-
         }
 
         //Hides stars at the start
@@ -70,16 +67,8 @@ public class PlayerStateEffect : MonoBehaviour
         //Spawns and hides dead icon
         spawnedDeath = Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), transform.rotation);
         spawnedDeath.transform.parent = gameObject.transform;
-
         spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
-
-        //Spawns and hides player number icon
-        spawnedPNo = Instantiate(PlayerNoSprite, new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), transform.rotation);
-        spawnedPNo.transform.parent = gameObject.transform;
-
-        spawnedPNo.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
-
-
+        
         //Critical particles Off
         smokePartObj01.GetComponent<ParticleSystem>().Stop();
         //Death particles Off
@@ -113,15 +102,11 @@ public class PlayerStateEffect : MonoBehaviour
         {
             deadUpdate = true;
             smokePartObj02.GetComponent<ParticleSystem>().Play();
+            smokePartObj01.GetComponent<ParticleSystem>().Stop();
             dizzyUpdate = false;
             deadStart = false;
         }
-
-        if (showNoStart)
-        {
-
-        }
-
+        
         if (effectStop)
         {
             smokePartObj01.GetComponent<ParticleSystem>().Stop();
@@ -129,13 +114,11 @@ public class PlayerStateEffect : MonoBehaviour
             dizzyUpdate = false;
             criticalUpdate = false;
             deadUpdate = false;
+
             effectStop = false;
         }
-        
 
-
-
-        //Effect rotating and scaling. 
+        //Effect rotating and scaling.
         if (!hided && !deadUpdate && !criticalUpdate)
         {
             {
@@ -143,18 +126,20 @@ public class PlayerStateEffect : MonoBehaviour
                 {
                     spawnedStars[i].transform.LookAt(Camera.main.transform.position, Vector3.up);
                 }
-
-                transform.Rotate(0, dizzyRotSpeed, 0 * Time.deltaTime);
+                if (dizzyUpdate)
+                {
+                    transform.Rotate(0, dizzyRotSpeed, 0 * Time.deltaTime);
+                }
+                
             }
         }
-
+        
         if (!dizzyUpdate && !deadUpdate && !criticalUpdate)
         {
             float newScale = Mathf.SmoothDamp(transform.localScale.x, 0, ref velocity, 10f * Time.deltaTime);
             transform.localScale = new Vector3(newScale, newScale, newScale);
         }
-
-
+        
         //Scale to 1
         if (transform.localScale.x < 1)
         {
@@ -180,18 +165,13 @@ public class PlayerStateEffect : MonoBehaviour
             {
                 float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
                 transform.localScale = new Vector3(newScale, newScale, newScale);
+                spawnedDeath.transform.LookAt(Camera.main.transform.position, Vector3.up);
+                spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
                 hided = false;
 
             }
-            if(showNoUpdate)
-            {
-                float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
-                transform.localScale = new Vector3(newScale, newScale, newScale);
-                hided = false;
-            }
-
         }
-
+        
         //If hided
         if (transform.localScale.x < 0.05f)
         {
@@ -199,20 +179,9 @@ public class PlayerStateEffect : MonoBehaviour
             for (int i = 0; i < spawnedStars.Count; i++)
             {
                 spawnedStars[i].GetComponent<SpriteRenderer>().enabled = false;
-
             }
-
             spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
-
         }
-
-        if (deadUpdate)
-        {
-            spawnedDeath.transform.LookAt(Camera.main.transform.position, Vector3.up);
-            spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
-
-        }
-
 
     }
     

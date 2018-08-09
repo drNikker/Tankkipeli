@@ -30,7 +30,7 @@ public class FallingObjectDamage : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         VFX = GetComponent<ParticleSystem>();
         startCooldown = Time.time + 2;
-        Destroy(gameObject, 60);
+        Destroy(gameObject, 45);
     }
 
 
