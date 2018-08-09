@@ -41,10 +41,10 @@ public class MultiTargetCamera : MonoBehaviour {
 
     private void LateUpdate()
     {
-        if (targets.Count == 0)
-        {
-            return;
-        }
+        //if (targets.Count == 0)
+        //{
+        //    return;
+        //}
 
         Debug.DrawRay(GetCenterPoint(), Vector3.up, Color.red);
 
@@ -71,8 +71,16 @@ public class MultiTargetCamera : MonoBehaviour {
 
     void Zoom()
     {
-        float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
+        if (targets.Count == 0)
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, minZoom, Time.deltaTime); ;
+        }
+        else
+        {
+            float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
+        }
+        
     }
 
     void Move()
@@ -119,6 +127,11 @@ public class MultiTargetCamera : MonoBehaviour {
     //Get greatest distance on X axis between players
     float GetGreatestDistance()
     {
+        if (targets.Count == 0)
+        {
+            return 1;
+        }
+
         var bounds = new Bounds(targets[0].position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
@@ -130,6 +143,10 @@ public class MultiTargetCamera : MonoBehaviour {
     //get center position between all players
     Vector3 GetCenterPoint()
     {
+        if (targets.Count == 0)
+        {
+            return new Vector3((lowerLimitX + upperLimitX) / 2, 0, (lowerLimitZ + upperLimitZ) / 2);
+        }
         if (targets.Count == 1)
         {
             return targets[0].position;
@@ -140,6 +157,7 @@ public class MultiTargetCamera : MonoBehaviour {
             bounds.Encapsulate(targets[i].position);
         }
         return bounds.center;
+        
     }
 
     //add player to targets list
