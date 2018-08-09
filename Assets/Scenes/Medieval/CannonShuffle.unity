@@ -1616,7 +1616,7 @@ Transform:
   m_LocalScale: {x: 0.70384526, y: 0.70384496, z: 0.70384526}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 32.058002, y: -419.925, z: -285.964}
 --- !u!4 &354337913 stripped
 Transform:
@@ -1798,6 +1798,71 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52b458cd6a6f54940adf21fdf4d0b61a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &473360110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 473360111}
+  - component: {fileID: 473360112}
+  m_Layer: 0
+  m_Name: Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &473360111
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473360110}
+  m_LocalRotation: {x: -0, y: -0, z: -0.000000004656613, w: 1}
+  m_LocalPosition: {x: -1.59, y: 3.73, z: -35.47166}
+  m_LocalScale: {x: 0.20292717, y: 0.20292711, z: 0.20292711}
+  m_Children: []
+  m_Father: {fileID: 1765783900}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &473360112
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473360110}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.42406237, b: 0, a: 1}
+  m_Intensity: 0
+  m_Range: 26.69
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1001 &478737054
 Prefab:
   m_ObjectHideFlags: 0
@@ -1877,11 +1942,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1740355997}
     m_Modifications:
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: 10.32
@@ -1914,114 +1974,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionLowerLimit
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionUpperLimit
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionLowerLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionUpperLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionLowerLimit
-      value: -6
-      objectReference: {fileID: 0}
     - target: {fileID: 1929190938650706, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_Name
       value: WeaponSpawn (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionUpperLimit
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: randomPosition
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: spawnTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: startWeapon
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: FlailChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GreatAxeChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: HammerChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: StickChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: CherryChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GuitarChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: NunchucksChanceWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[7]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[6]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[3]
-      value: 
-      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -2035,6 +1991,7 @@ GameObject:
   - component: {fileID: 495422961}
   - component: {fileID: 495422960}
   - component: {fileID: 495422962}
+  - component: {fileID: 495422963}
   m_Layer: 0
   m_Name: CannonBallSpawner Left AntiCheese (2)
   m_TagString: Untagged
@@ -2063,6 +2020,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 20
   timerOffset: 25
   cannonBallTimerTime: 40
+  anim: {fileID: 495422963}
 --- !u!4 &495422961
 Transform:
   m_ObjectHideFlags: 0
@@ -2173,6 +2131,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &495422963
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495422959}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653e12da35c256847b9978dc99f75364, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &502154136
 Prefab:
   m_ObjectHideFlags: 0
@@ -2257,7 +2233,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4268056460681068, guid: 177db6dc248c41f4fb892689667b8f40, type: 2}
       propertyPath: m_LocalScale.x
@@ -2644,71 +2620,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55f7954e54e7d1f49b7e6ebd1cd85a8f, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &630296920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 630296922}
-  - component: {fileID: 630296921}
-  m_Layer: 0
-  m_Name: Point Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &630296921
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 630296920}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 1, g: 0.7530705, b: 0, a: 1}
-  m_Intensity: 1.38
-  m_Range: 26.69
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &630296922
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 630296920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.5, y: 5.8, z: 15.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 73
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632568656 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1546700930828376, guid: 177db6dc248c41f4fb892689667b8f40,
@@ -2860,11 +2771,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1740355997}
     m_Modifications:
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: -11.93
@@ -2897,114 +2803,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionLowerLimit
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionUpperLimit
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionLowerLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionUpperLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionLowerLimit
-      value: -6
-      objectReference: {fileID: 0}
     - target: {fileID: 1929190938650706, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_Name
       value: WeaponSpawn (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionUpperLimit
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: randomPosition
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: spawnTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: startWeapon
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: FlailChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GreatAxeChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: HammerChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: StickChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: CherryChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GuitarChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: NunchucksChanceWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[7]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[6]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[3]
-      value: 
-      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -3255,6 +3057,7 @@ GameObject:
   - component: {fileID: 796408368}
   - component: {fileID: 796408367}
   - component: {fileID: 796408369}
+  - component: {fileID: 796408370}
   m_Layer: 0
   m_Name: CannonBallSpawner Right AntiCheese (2)
   m_TagString: Untagged
@@ -3283,6 +3086,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 20
   timerOffset: 5
   cannonBallTimerTime: 40
+  anim: {fileID: 495422963}
 --- !u!4 &796408368
 Transform:
   m_ObjectHideFlags: 0
@@ -3295,7 +3099,7 @@ Transform:
   m_Children:
   - {fileID: 519344917}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &796408369
 AudioSource:
@@ -3393,6 +3197,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &796408370
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796408366}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653e12da35c256847b9978dc99f75364, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &809816003
 Prefab:
   m_ObjectHideFlags: 0
@@ -4769,6 +4591,71 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3552ce2e4c6f93243ad8554d87e74990, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1097116496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1097116497}
+  - component: {fileID: 1097116498}
+  m_Layer: 0
+  m_Name: Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1097116497
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1097116496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.00697, y: 3.7479053, z: -35.121334}
+  m_LocalScale: {x: 0.21069844, y: 0.2106985, z: 0.2106985}
+  m_Children: []
+  m_Father: {fileID: 1832967143}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1097116498
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1097116496}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.42406237, b: 0, a: 1}
+  m_Intensity: 0
+  m_Range: 26.69
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!4 &1108377849 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4799549841054350, guid: 55f7954e54e7d1f49b7e6ebd1cd85a8f,
@@ -5228,7 +5115,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4662956896832698, guid: ebf31dafd49c1ce46a3c01962558ca93, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebf31dafd49c1ce46a3c01962558ca93, type: 2}
@@ -5364,11 +5251,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1740355997}
     m_Modifications:
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: -12.24
@@ -5401,110 +5283,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionLowerLimit
-      value: -12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionUpperLimit
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionLowerLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionUpperLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionLowerLimit
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionUpperLimit
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: randomPosition
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: spawnTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: startWeapon
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: FlailChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GreatAxeChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: HammerChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: StickChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: CherryChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GuitarChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: NunchucksChanceWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[7]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[6]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[3]
-      value: 
-      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -5593,6 +5371,7 @@ GameObject:
   - component: {fileID: 1421655219}
   - component: {fileID: 1421655218}
   - component: {fileID: 1421655220}
+  - component: {fileID: 1421655221}
   m_Layer: 0
   m_Name: CannonBallSpawner Right AntiCheese (1)
   m_TagString: Untagged
@@ -5621,6 +5400,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 18
   timerOffset: 5
   cannonBallTimerTime: 40
+  anim: {fileID: 495422963}
 --- !u!4 &1421655219
 Transform:
   m_ObjectHideFlags: 0
@@ -5633,7 +5413,7 @@ Transform:
   m_Children:
   - {fileID: 1442915713}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1421655220
 AudioSource:
@@ -5731,6 +5511,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1421655221
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1421655217}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653e12da35c256847b9978dc99f75364, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1427675866
 Prefab:
   m_ObjectHideFlags: 0
@@ -6505,7 +6303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1765783900}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1596329626
 MonoBehaviour:
@@ -7062,7 +6860,7 @@ Transform:
   - {fileID: 6586894}
   - {fileID: 1085796255}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1762054401
 Prefab:
@@ -7186,6 +6984,7 @@ GameObject:
   - component: {fileID: 1765783900}
   - component: {fileID: 1765783899}
   - component: {fileID: 1765783901}
+  - component: {fileID: 1765783902}
   m_Layer: 0
   m_Name: CannonBallSpawner Right
   m_TagString: Untagged
@@ -7214,6 +7013,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 15
   timerOffset: 5
   cannonBallTimerTime: 40
+  anim: {fileID: 1765783902}
 --- !u!4 &1765783900
 Transform:
   m_ObjectHideFlags: 0
@@ -7224,9 +7024,10 @@ Transform:
   m_LocalPosition: {x: 17.892, y: -12.569, z: 190.3}
   m_LocalScale: {x: 4.9278765, y: 4.9278784, z: 4.9278784}
   m_Children:
+  - {fileID: 473360111}
   - {fileID: 1596329625}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1765783901
 AudioSource:
@@ -7324,6 +7125,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1765783902
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765783898}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87cb0179586d0464eae11c5416165db5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1794505695
 GameObject:
   m_ObjectHideFlags: 0
@@ -7528,6 +7347,7 @@ GameObject:
   - component: {fileID: 1832967143}
   - component: {fileID: 1832967144}
   - component: {fileID: 1832967145}
+  - component: {fileID: 1832967146}
   m_Layer: 0
   m_Name: CannonBallSpawner Left
   m_TagString: Untagged
@@ -7546,6 +7366,7 @@ Transform:
   m_LocalScale: {x: 4.7461195, y: 4.7461185, z: 4.7461185}
   m_Children:
   - {fileID: 906756905}
+  - {fileID: 1097116497}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7570,6 +7391,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 15
   timerOffset: 25
   cannonBallTimerTime: 40
+  anim: {fileID: 1832967146}
 --- !u!82 &1832967145
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7656,7 +7478,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 1.1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7666,6 +7488,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1832967146
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1832967142}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b903c082e9de77499db0fae6f46213c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1835880485
 Prefab:
   m_ObjectHideFlags: 0
@@ -7883,11 +7723,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1740355997}
     m_Modifications:
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4605075930404774, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_LocalPosition.x
       value: 11.27
@@ -7920,114 +7755,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionLowerLimit
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: XPositionUpperLimit
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionLowerLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: YPositionUpperLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionLowerLimit
-      value: -6
-      objectReference: {fileID: 0}
     - target: {fileID: 1929190938650706, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
       propertyPath: m_Name
       value: WeaponSpawn (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: ZPositionUpperLimit
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: randomPosition
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: spawnTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: startWeapon
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: FlailChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GreatAxeChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: HammerChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: StickChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: CherryChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: GuitarChanceWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: NunchucksChanceWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[7]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[6]
-      value: 
-      objectReference: {fileID: 4259429765429146, guid: eac619c0e98893e4c8fa5093d469760e,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[3]
-      value: 
-      objectReference: {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba,
-        type: 2}
-    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
-        type: 2}
-      propertyPath: weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 4491800247139930, guid: 65c1550895c704f4885ea6e798a12fe6,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
   m_IsPrefabParent: 0
@@ -8200,6 +7931,7 @@ GameObject:
   - component: {fileID: 1959481874}
   - component: {fileID: 1959481873}
   - component: {fileID: 1959481875}
+  - component: {fileID: 1959481876}
   m_Layer: 0
   m_Name: CannonBallSpawner Left AntiCheese
   m_TagString: Untagged
@@ -8228,6 +7960,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 16
   timerOffset: 25
   cannonBallTimerTime: 40
+  anim: {fileID: 495422963}
 --- !u!4 &1959481874
 Transform:
   m_ObjectHideFlags: 0
@@ -8338,6 +8071,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1959481876
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1959481872}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653e12da35c256847b9978dc99f75364, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1976125618
 Prefab:
   m_ObjectHideFlags: 0
@@ -8461,6 +8212,7 @@ GameObject:
   - component: {fileID: 2041421162}
   - component: {fileID: 2041421161}
   - component: {fileID: 2041421163}
+  - component: {fileID: 2041421164}
   m_Layer: 0
   m_Name: CannonBallSpawner Left AntiCheese (1)
   m_TagString: Untagged
@@ -8489,6 +8241,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 18
   timerOffset: 25
   cannonBallTimerTime: 40
+  anim: {fileID: 495422963}
 --- !u!4 &2041421162
 Transform:
   m_ObjectHideFlags: 0
@@ -8599,6 +8352,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2041421164
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041421160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653e12da35c256847b9978dc99f75364, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2042939189
 Prefab:
   m_ObjectHideFlags: 0
@@ -8676,6 +8447,7 @@ GameObject:
   - component: {fileID: 2048003275}
   - component: {fileID: 2048003274}
   - component: {fileID: 2048003276}
+  - component: {fileID: 2048003277}
   m_Layer: 0
   m_Name: CannonBallSpawner Right AntiCheese
   m_TagString: Untagged
@@ -8704,6 +8476,7 @@ MonoBehaviour:
   cannonBallPositionMaxZ: 16
   timerOffset: 5
   cannonBallTimerTime: 40
+  anim: {fileID: 495422963}
 --- !u!4 &2048003275
 Transform:
   m_ObjectHideFlags: 0
@@ -8716,7 +8489,7 @@ Transform:
   m_Children:
   - {fileID: 636676608}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2048003276
 AudioSource:
@@ -8814,6 +8587,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2048003277
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2048003273}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653e12da35c256847b9978dc99f75364, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2061733344
 GameObject:
   m_ObjectHideFlags: 0
@@ -8920,8 +8711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74e9827bd5f97e4192a2ae518ba5b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperLimitX: 6
-  lowerLimitX: -6
+  upperLimitX: 4
+  lowerLimitX: -4
   upperLimitZ: -7
   lowerLimitZ: -10
   showGizmos: 1

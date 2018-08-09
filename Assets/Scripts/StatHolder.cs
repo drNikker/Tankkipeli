@@ -1,6 +1,6 @@
 ﻿public static class StatHolder
 {
-    private static int howManyPlayers, roundNumber, witchSet, player1Color, player2Color, player3Color, player4Color, teamRedWins, teamBlueWins, player1SkinColor, player2SkinColor, player3SkinColor, player4SkinColor;
+    private static int howManyPlayers, roundNumber, witchSet, player1Color, player2Color, player3Color, player4Color, teamRedWins, teamBlueWins, player1SkinColor, player2SkinColor, player3SkinColor, player4SkinColor, mostWins;
     private static float player1Wins, player2Wins, player3Wins, player4Wins, winsNeeded = 4;
     public enum Modes { DM, TDM};
     public static Modes CurrentMode = Modes.DM;
@@ -205,6 +205,17 @@
         set
         {
             player4SkinColor = value;
+        }
+    }
+    public static int MostWins
+    {
+        get
+        {
+            return mostWins;
+        }
+        set
+        {
+            mostWins = value;
         }
     }
 }

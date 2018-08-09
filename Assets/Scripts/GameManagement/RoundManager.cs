@@ -17,10 +17,16 @@ public class RoundManager : MonoBehaviour
     public GameObject playerPrefab4;
     public GameObject startMenu;
 
+    [HideInInspector]
     public List<Image> ScoreAmount1;
+    [HideInInspector]
     public List<Image> ScoreAmount2;
+    [HideInInspector]
     public List<Image> ScoreAmount3;
+    [HideInInspector]
     public List<Image> ScoreAmount4;
+    public List<Sprite> PlayerEmotions;
+
     int playersAlive;
     [HideInInspector]
     public bool teamWon = false;
@@ -214,7 +220,6 @@ public class RoundManager : MonoBehaviour
         //Freeze eveything or do some other kind of ending stuff. Maybe a cool animation?
 
         //Add a win to the player/team who won the round and announce that winner
-        //int c = 5;
         switch (StatHolder.CurrentMode)
         {
             case StatHolder.Modes.DM:
@@ -224,30 +229,24 @@ public class RoundManager : MonoBehaviour
                     case "Player1(Clone)":
                         StatHolder.Player1Wins += 1;
                         whoWonText.text = "Red player won the round";
-                        //c = StatHolder.Player1Color;
                         break;
                     case "Player2(Clone)":
                         StatHolder.Player2Wins += 1;
                         whoWonText.text = "Blue player won the round";
-                        //c = StatHolder.Player2Color;
                         break;
                     case "Player3(Clone)":
                         StatHolder.Player3Wins += 1;
                         whoWonText.text = "Cyan player won the round";
-                        //c = StatHolder.Player3Color;
                         break;
                     case "Player4(Clone)":
                         StatHolder.Player4Wins += 1;
                         whoWonText.text = "Yellow player won the round";
-                        //c = StatHolder.Player4Color;
                         break;
                     default:
                         print("This should never happen");
                         break;
                 }
 
-
-                //if color change comes back delete the below since other code below adresses this. From here...
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount2[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount1[1].fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
@@ -266,7 +265,11 @@ public class RoundManager : MonoBehaviour
                         ScoreAmount4[1].fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
                     }
                 }
-                //...to here
+                StatHolder.MostWins = Mathf.RoundToInt(Mathf.Max(StatHolder.Player1Wins, StatHolder.Player2Wins, StatHolder.Player3Wins, StatHolder.Player4Wins));
+                ScoreAmount1[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player1Wins), 0, 3)];
+                ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player2Wins), 0, 3) + 4];
+                ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player3Wins), 0, 3) + 8];
+                ScoreAmount4[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player4Wins), 0, 3) + 12];
                 break;
 
             case StatHolder.Modes.TDM:
@@ -282,81 +285,36 @@ public class RoundManager : MonoBehaviour
                 }
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
                 ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
-                ScoreAmount2[0].fillAmount = 0;
-                ScoreAmount3[0].fillAmount = 0;
-                ScoreAmount2[0].GetComponent<Image>().color = Red;
-                ScoreAmount3[0].GetComponent<Image>().color = Blue;
-                ScoreAmount2[2].GetComponent<Image>().color = Red;
-                ScoreAmount3[2].GetComponent<Image>().color = Blue;
                 ScoreAmount2[1].fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
-                ScoreAmount2[1].GetComponent<Image>().color = Red;
                 ScoreAmount3[1].fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
-                ScoreAmount3[1].GetComponent<Image>().color = Blue;
+
+                StatHolder.MostWins = Mathf.RoundToInt(Mathf.Max(StatHolder.TeamRedWins, StatHolder.TeamBlueWins));
+                ScoreAmount3[0].GetComponent<Image>().sprite = ScoreAmount2[0].GetComponent<Image>().sprite;
+                ScoreAmount3[1].GetComponent<Image>().sprite = ScoreAmount2[1].GetComponent<Image>().sprite;
+                ScoreAmount3[2].GetComponent<Image>().sprite = ScoreAmount2[2].GetComponent<Image>().sprite;
+                ScoreAmount3[3].GetComponent<Image>().sprite = ScoreAmount2[3].GetComponent<Image>().sprite;
+                ScoreAmount2[0].GetComponent<Image>().sprite = ScoreAmount1[0].GetComponent<Image>().sprite;
+                ScoreAmount2[1].GetComponent<Image>().sprite = ScoreAmount1[1].GetComponent<Image>().sprite;
+                ScoreAmount2[2].GetComponent<Image>().sprite = ScoreAmount1[2].GetComponent<Image>().sprite;
+                ScoreAmount2[3].GetComponent<Image>().sprite = ScoreAmount1[3].GetComponent<Image>().sprite;
+
+                ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamRedWins), 0, 3)];
+                ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamBlueWins), 0, 3) + 4];
+
                 break;
         }
-        print(ScoreAmount1[1].GetComponent<Image>().fillAmount * 100);
-        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height-100, 0);
-        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height -100, 0);
-        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height - 100, 0);
-        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height + 50, 0);
-        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 100, 0);
-        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(0, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 50, 0);
 
-        //if (StatHolder.CurrentMode == StatHolder.Modes.DM)
-        //{
-        //    switch(c)
-        //    {
-        //        case 0:
-        //            whoWonText.text = "Red player won the round";
-        //            break;
-        //        case 1:
-        //            whoWonText.text = "Blue player won the round";
-        //            break;
-        //        case 2:
-        //            whoWonText.text = "Cyan player won the round";
-        //            break;
-        //        case 3:
-        //            whoWonText.text = "Yellow player won the round";
-        //            break;
-        //        case 4:
-        //            whoWonText.text = "Green player won the round";
-        //            break;
-        //        case 5:
-        //            whoWonText.text = "Purple player won the round";
-        //            break;
-        //        case 6:
-        //            whoWonText.text = "Orange player won the round";
-        //            break;
-        //        case 7:
-        //            whoWonText.text = "Lime player won the round";
-        //            break;
+        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
+        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
+        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
+        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
+        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
 
-        //    }
 
-        //    ScoreAmount1.fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
-        //    ScoreAmount1.GetComponent<Image>().color = colorSet[StatHolder.Player1Color];
 
-        //    ScoreAmount2.fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
-        //    ScoreAmount2.GetComponent<Image>().color = colorSet[StatHolder.Player2Color];
-        //    ScoreAmount3.transform.parent.gameObject.SetActive(false);
-        //    ScoreAmount4.transform.parent.gameObject.SetActive(false);
-        //    if (StatHolder.HowManyPlayers > 2)
-        //    {
-        //        ScoreAmount3.transform.parent.gameObject.SetActive(true);
-        //        ScoreAmount3.fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
-        //        ScoreAmount3.GetComponent<Image>().color = colorSet[StatHolder.Player3Color];
-
-        //        if (StatHolder.HowManyPlayers > 3)
-        //        {
-        //            ScoreAmount4.transform.parent.gameObject.SetActive(true);
-        //            ScoreAmount4.fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
-        //            ScoreAmount4.GetComponent<Image>().color = colorSet[StatHolder.Player4Color];
-        //        }
-        //    }
-
-        //}
 
         roundWon.SetActive(true);
 
@@ -372,63 +330,30 @@ public class RoundManager : MonoBehaviour
                     {
                         case "Player1(Clone)":
                             whoWonText.text = "Red player won the game";
-                            ScoreAmount1[0].fillAmount = 100;
                             break;
                         case "Player2(Clone)":
                             whoWonText.text = "Blue player won the game";
-                            ScoreAmount2[0].fillAmount = 100;
                             break;
                         case "Player3(Clone)":
                             whoWonText.text = "Cyan player won the game";
-                            ScoreAmount3[0].fillAmount = 100;
                             break;
                         case "Player4(Clone)":
                             whoWonText.text = "Yellow player won the game";
-                            ScoreAmount4[0].fillAmount = 100;
                             break;
                         default:
                             print("This should never happen");
                             break;
                     }
-                    //switch (c)
-                    //{
-                    //    case 0:
-                    //        whoWonText.text = "Red player won the game";
-                    //        break;
-                    //    case 1:
-                    //        whoWonText.text = "Blue player won the game";
-                    //        break;
-                    //    case 2:
-                    //        whoWonText.text = "Cyan player won the game";
-                    //        break;
-                    //    case 3:
-                    //        whoWonText.text = "Yellow player won the game";
-                    //        break;
-                    //    case 4:
-                    //        whoWonText.text = "Green player won the game";
-                    //        break;
-                    //    case 5:
-                    //        whoWonText.text = "Purple player won the game";
-                    //        break;
-                    //    case 6:
-                    //        whoWonText.text = "Orange player won the game";
-                    //        break;
-                    //    case 7:
-                    //        whoWonText.text = "Lime player won the game";
-                    //        break;
-                    //}
                     break;
 
                 case StatHolder.Modes.TDM:
                     if (redPlayers.Count == 0)
                     {
                         whoWonText.text = "Team Blue won the game";
-                        ScoreAmount3[0].fillAmount = 100;
                     }
                     else if (bluePlayers.Count == 0)
                     {
                         whoWonText.text = "Team Red won the game";
-                        ScoreAmount2[0].fillAmount = 100;
                     }
                     break;
             }

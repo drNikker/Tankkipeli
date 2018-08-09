@@ -57,7 +57,7 @@ public class SceneLoader : MonoBehaviour
         mapSet5.Add("Totally Not Stolen From Portal 2");
         mapSet5.Add("Smash");
         mapSet5.Add("RalliJump");
-        mapSet5.Add("Madness");
+        //mapSet5.Add("Madness");
     }
 
     private void Update()
