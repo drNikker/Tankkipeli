@@ -169,7 +169,6 @@ public class PhysicMovement1 : MonoBehaviour
         {
             tankTextureSpeed.speedR = 0;
             tankTextureSpeed.speedL = 0;
-            tankTextureSpeed.particleEmissionMult = 0;
             tankTextureSpeed.wheelParticlesFR.Clear();
             tankTextureSpeed.wheelParticlesFL.Clear();
             tankTextureSpeed.wheelParticlesBR.Clear();
