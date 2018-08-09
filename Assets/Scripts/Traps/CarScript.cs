@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour {
 
+    public bool raycast = true;
     public float swerweAmount;
     public float maxSwerweAmount;
     public float minSwerweAmount;
@@ -87,17 +88,22 @@ public class CarScript : MonoBehaviour {
     private void Update()
     {
         RaycastHit hit ;
-
-        if (Physics.Raycast(transform.position, Vector3.up* 0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
+        if (raycast)
         {
-            if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea" && hit.collider.tag != "Car")
+            if (Physics.Raycast(transform.position, Vector3.up * 0.5f, out hit) || hit.collider != null && hit.collider.gameObject.tag != "Environment")
             {
-                Debug.DrawRay(transform.position, Vector3.up* -05f, Color.green);
-
-                speed = 0;
-                maxSpeed = 0;
-                acceleration = 0;
-                IsSwerwing = false;
+                if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea" && hit.collider.tag != "Car")
+                {
+                    Debug.DrawRay(transform.position, Vector3.up * 5f, Color.green);
+                    if (hit.collider.tag == "Untagged")
+                    {
+                        Debug.LogWarning("Stop");
+                    }
+                    speed = 0;
+                    maxSpeed = 0;
+                    acceleration = 0;
+                    IsSwerwing = false;
+                }
             }
         }
         if (IsSwerwing)
