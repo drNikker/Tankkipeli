@@ -149,7 +149,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 3 join
-        if (joined3 == false && wait3 == false && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released)
+        if (joined3 == false && wait3 == false && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released || joined3 == false && Input.GetKeyDown("d"))
         {
             wait3 = true;
             StartCoroutine(Player3Joined());
@@ -171,7 +171,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 4 join
-        if (joined4 == false && wait4 == false && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released)
+        if (joined4 == false && wait4 == false && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released || joined4 == false && Input.GetKeyDown("s"))
         {
             wait4 = true;
             StatHolder.HowManyPlayers++;

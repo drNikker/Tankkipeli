@@ -112,12 +112,11 @@ public class PlayerHealth : MonoBehaviour
             //}
             MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
             Renderer[] rend = player.GetComponentsInChildren<Renderer>();
-            rend[0].GetPropertyBlock(_propBlock);
             _propBlock.SetColor("_Color", color);
-            rend[2].SetPropertyBlock(_propBlock);
-            rend[5].SetPropertyBlock(_propBlock);
+            rend[6].SetPropertyBlock(_propBlock); //Base
+            rend[3].SetPropertyBlock(_propBlock); //Helmet
             _propBlock.SetColor("_Color", skinColor);
-            rend[16].SetPropertyBlock(_propBlock);
+            rend[17].SetPropertyBlock(_propBlock);
 
         }
 
