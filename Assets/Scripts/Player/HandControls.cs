@@ -114,7 +114,7 @@ public class HandControls : MonoBehaviour {
         Weapon temp = wpn.GetComponent<Weapon>();
         if (weaponInHand == false)
         {
-            if (/*otherHandScript.weaponInHand == true && otherHandScript.weapon == wpn*/ temp.canTake == false)
+            if (temp.canTake == false)
             {
                 weapon = null;
             }
@@ -151,7 +151,7 @@ public class HandControls : MonoBehaviour {
 
     void EquipOneHand()
     {
-        equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
+        equippedWeapon.transform.position = playerObj.transform.position + new Vector3(0, 1, 0) + front * 1f;
         SetStance(script.stance);
         equippedWeapon.transform.parent = this.transform;
         joints[0].connectedBody = GetComponent<Rigidbody>();
@@ -164,7 +164,7 @@ public class HandControls : MonoBehaviour {
     void EquipTwoHands()
     {
 
-        equippedWeapon.transform.position = playerObj.transform.position + front * 0.5f;
+        equippedWeapon.transform.position = playerObj.transform.position + new Vector3(0, 1, 0) + front * 1f;
         SetStance(script.stance);
         equippedWeapon.transform.parent = this.transform;
 
@@ -222,12 +222,12 @@ public class HandControls : MonoBehaviour {
         SoftJointLimit handLowLimit = handJoint.lowTwistLimit;
         SoftJointLimit handHighLimit = handJoint.highTwistLimit;
 
-        handSwing2limit.limit = 90;
+        handSwing2limit.limit = 0;
         armLowLimit.limit = 0;
         armHighLimit.limit = 0;
         armSwing1Limit.limit = 120;
-        handLowLimit.limit = -5;
-        handHighLimit.limit = 5;
+        handLowLimit.limit = 0;
+        handHighLimit.limit = 0;
 
         handJoint.swing2Limit = handSwing2limit;
         armJoint.lowTwistLimit = armLowLimit;
@@ -235,7 +235,9 @@ public class HandControls : MonoBehaviour {
         armJoint.swing1Limit = armSwing1Limit;
         handJoint.lowTwistLimit = handLowLimit;
         handJoint.highTwistLimit = handHighLimit;
+
     }
+
 
     void FistRestricting()
     {
@@ -327,19 +329,20 @@ public class HandControls : MonoBehaviour {
                     otherHandScript.TwoHandingRestricting();
 
                     t.rotation = Quaternion.Euler(0, -90, 0);
-                    transform.rotation =  Quaternion.Euler(-90,0,0) ;
-                    otherHand.transform.rotation =  Quaternion.Euler(-90, 0, 0);
+                    transform.rotation = t.rotation * Quaternion.Euler(-90, 0, 0) * Quaternion.Euler(0, 0, playerObj.transform.eulerAngles.y);
+                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(-90, 0, 0) * Quaternion.Euler(0, 0, -playerObj.transform.eulerAngles.y);
+
                     break;
                 }
             case Weapon.Stance.TwoHandedTwinblade:
                 {
-
                     TwoHandingRestricting();
                     otherHandScript.TwoHandingRestricting();
 
                     t.rotation = Quaternion.Euler(0,0,0);
-                    transform.rotation = Quaternion.Euler(-90,180,0);
-                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(90,0,0); ;
+                    transform.rotation = t.rotation * Quaternion.Euler(-90,180,0) * Quaternion.Euler(0,0, playerObj.transform.eulerAngles.y);
+                    otherHand.transform.rotation = t.rotation * Quaternion.Euler(90,0,0) * Quaternion.Euler(0, 0, -playerObj.transform.eulerAngles.y);
+                    t.rotation = Quaternion.Euler(0,90 + playerObj.transform.eulerAngles.y,0);
                     break;
                 }
             case Weapon.Stance.FistWeapon:
@@ -398,10 +401,19 @@ public class HandControls : MonoBehaviour {
         {
             cd = Time.time + 1;
             otherHandScript.cd = Time.time + 1;
-            equippedWeapon = weapon;
             script = weapon.GetComponentInChildren<Weapon>();
+            if (equippedWeapon == null && script.canTake == false)
+            {
+                return;
+            }
+            else if (equippedWeapon == null && script.canTake == true)
+            {
+                script.canTake = false;
+            }
+            equippedWeapon = weapon;
             t = weapon.GetComponent<Transform>();
             joints = weapon.GetComponents<ConfigurableJoint>();
+
             if (weaponInHand == false && joints.Length == 1)
             {
                 script.canTake = false;

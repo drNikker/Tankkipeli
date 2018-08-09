@@ -67,7 +67,6 @@ public class Weapon : MonoBehaviour {
                     timer = false;
                     limit.limit = 0;
                     joints[i].linearLimit = limit;
-                    //rb.drag = 3;
                 }
             }
         }
@@ -177,7 +176,7 @@ public class Weapon : MonoBehaviour {
                     joints[i].angularYMotion = ConfigurableJointMotion.Limited;
                     joints[i].angularZMotion = ConfigurableJointMotion.Limited;
                     SoftJointLimit limit = joints[i].linearLimit;
-                    limit.limit = 0.1f;
+                    limit.limit = 0;
                     joints[i].linearLimit = limit;
 
                 }
