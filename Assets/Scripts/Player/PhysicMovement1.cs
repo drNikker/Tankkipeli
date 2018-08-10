@@ -52,7 +52,7 @@ public class PhysicMovement1 : MonoBehaviour
     public float brakingForce;
     public float upRightCounter = 0;
 
-    //"BOOLS" FOR PLAYER CONTROLS SWITCHING
+    //"BOOLS" FOR PLAYER CONTROLS switchING
     //Controls which direction buttons rotate treads
     private int invertSpeed = 1;
     //used to set invert speed

@@ -157,26 +157,25 @@ public class RoundManager : MonoBehaviour
             StatHolder.HowManyPlayers = 2;
         }
         StatHolder.WinsNeeded = 4;
-        StatHolder.WitchSet = Random.Range(1, sceneLoader.setAmount + 1);
-        audioScript.PlaySceneMusic(StatHolder.WitchSet);
+        StatHolder.WhichSet = Random.Range(1, sceneLoader.setAmount + 1);
+        while (StatHolder.usedSets.Contains(StatHolder.WhichSet))
+        {
+            StatHolder.WhichSet = Random.Range(1, sceneLoader.setAmount + 1);
+        }
+        StatHolder.usedSets.Add(StatHolder.WhichSet);
+        audioScript.PlaySceneMusic(StatHolder.WhichSet);
         NewRound();
     }
 
     public void NewRound()
     {
+        for(int i = 0; i < StatHolder.usedSets.Count; i++)
+        {
+            Debug.LogWarning(StatHolder.usedSets[i]);
+        }
 
-        //if (randomMap == true)
-        //    {
-        //        sceneLoader.NewRandomScene();
-        //        RoundStart();
-        //    }
 
-        //else
-        //{
-        //    sceneLoader.ReloadScene();
-        //}
-
-        switch (StatHolder.WitchSet)
+        switch (StatHolder.WhichSet)
         {
             case 1:
                 sceneLoader.NextSetScene(1);

@@ -101,7 +101,7 @@ Shader "Hidden/Post FX/Lut Generator"
             // Lut is in LogC
             half3 colorLogC = color * _LutParams.w;
 
-            // Switch back to unity linear and color grade
+            // switch back to unity linear and color grade
             half3 colorLinear = LogCToLinear(colorLogC);
             half3 graded = ColorGrade(colorLinear);
 
