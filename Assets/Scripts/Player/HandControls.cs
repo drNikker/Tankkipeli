@@ -29,7 +29,7 @@ public class HandControls : MonoBehaviour {
     ConfigurableJoint[] joints;
 
     public GameObject weapon;
-    GameObject equippedWeapon;
+    public GameObject equippedWeapon;
     GameObject playerObj;
 
     public float cd;
@@ -384,7 +384,10 @@ public class HandControls : MonoBehaviour {
         //weapon removal from hand
         SetStance(Weapon.Stance.NoStance);
         if (joints.Length == 2)
-        { otherHandScript.weaponInHand = false;
+        {
+            otherHandScript.weaponInHand = false;
+            otherHandScript.equippedWeapon = null;
+            otherHandScript.weapon = null;
             otherHandScript.SetStance(Weapon.Stance.NoStance);
         }
         weaponInHand = false;
@@ -402,15 +405,16 @@ public class HandControls : MonoBehaviour {
             cd = Time.time + 1;
             otherHandScript.cd = Time.time + 1;
             script = weapon.GetComponentInChildren<Weapon>();
-            if (equippedWeapon == null && script.canTake == false)
+            if (equippedWeapon == null && script.taken == true)
             {
                 return;
             }
-            else if (equippedWeapon == null && script.canTake == true)
+            else if (equippedWeapon == null && script.taken == false)
             {
-                script.canTake = false;
+                script.taken = true;
             }
             equippedWeapon = weapon;
+            otherHandScript.equippedWeapon = weapon;
             t = weapon.GetComponent<Transform>();
             joints = weapon.GetComponents<ConfigurableJoint>();
 
@@ -444,8 +448,17 @@ public class HandControls : MonoBehaviour {
         {
             cd = Time.time + 1;
             otherHandScript.cd = Time.time + 1;
-            equippedWeapon = weapon;
             script = weapon.GetComponentInChildren<Weapon>();
+            if (equippedWeapon == null && script.taken == true)
+            {
+                return;
+            }
+            else if (equippedWeapon == null && script.taken == false)
+            {
+                script.taken = true;
+            }
+            equippedWeapon = weapon;
+            otherHandScript.equippedWeapon = weapon;
             t = weapon.GetComponent<Transform>();
             joints = weapon.GetComponents<ConfigurableJoint>();
             if (weaponInHand == false && joints.Length == 1)

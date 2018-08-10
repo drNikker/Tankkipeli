@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour {
     bool canEquip;
     [HideInInspector] public bool equipped;
     [HideInInspector] public bool canTake = false;
+    [HideInInspector] public bool taken = false;
 
     public WEAPON_STATE currentWeaponState;
     public Stance stance;

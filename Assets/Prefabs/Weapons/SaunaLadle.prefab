@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 95375195868198944}
   - component: {fileID: 114310738470853686}
   - component: {fileID: 114626503681566866}
+  - component: {fileID: 136059918207378202}
   m_Layer: 8
   m_Name: SaunaLadle
   m_TagString: Weapon
@@ -77,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1007806211846690}
   m_LocalRotation: {x: -0.00000003774895, y: -1.110223e-16, z: 1.11022296e-16, w: 1}
-  m_LocalPosition: {x: -14.588863, y: 0.45459616, z: 2.6913185}
+  m_LocalPosition: {x: -0, y: 0.28, z: -7.69}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4322156703963890}
@@ -365,6 +366,7 @@ MonoBehaviour:
   maxSpeed: 5
   equipped: 0
   canTake: 0
+  taken: 0
   currentWeaponState: 0
   stance: 1
 --- !u!135 &135261856285688138
@@ -379,6 +381,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.34
   m_Center: {x: -6.859948e-24, y: 1.4135658, z: -0.08}
+--- !u!136 &136059918207378202
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007806211846690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.020857874
+  m_Height: 0.7278633
+  m_Direction: 1
+  m_Center: {x: 0.003935277, y: 0.69700533, z: 0.00073951005}
 --- !u!138 &138570733413067854
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -402,7 +417,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.8312237, y: 17.620886, z: -7.899806}
+  m_ConnectedAnchor: {x: 0, y: 0.28, z: -7.69}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -475,7 +490,7 @@ ConfigurableJoint:
     positionSpring: 0
     positionDamper: 0
     maximumForce: 3.4028233e+38
-  m_ProjectionMode: 0
+  m_ProjectionMode: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_ConfiguredInWorldSpace: 0
