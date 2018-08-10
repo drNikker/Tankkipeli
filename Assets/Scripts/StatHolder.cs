@@ -1,9 +1,12 @@
-﻿public static class StatHolder
+﻿using System.Collections.Generic;
+
+public static class StatHolder
 {
-    private static int howManyPlayers, roundNumber, witchSet, player1Color, player2Color, player3Color, player4Color, teamRedWins, teamBlueWins, player1SkinColor, player2SkinColor, player3SkinColor, player4SkinColor, mostWins;
+    private static int howManyPlayers, roundNumber, whichSet, player1Color, player2Color, player3Color, player4Color, teamRedWins, teamBlueWins, player1SkinColor, player2SkinColor, player3SkinColor, player4SkinColor, mostWins;
     private static float player1Wins, player2Wins, player3Wins, player4Wins, winsNeeded = 4;
     public enum Modes { DM, TDM};
     public static Modes CurrentMode = Modes.DM;
+    public static List<int> usedSets = new List<int>();
 
 
 
@@ -107,15 +110,15 @@
             roundNumber = value;
         }
     }
-    public static int WitchSet
+    public static int WhichSet
     {
         get
         {
-            return witchSet;
+            return whichSet;
         }
         set
         {
-            witchSet = value;
+            whichSet = value;
         }
     }
 

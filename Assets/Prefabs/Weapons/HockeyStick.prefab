@@ -79,7 +79,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396035375660352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2524207, y: 3.1610003, z: 2.077607}
+  m_LocalPosition: {x: -1.584762, y: 0.90999985, z: 0.70502853}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4121243323548236}
@@ -169,8 +169,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7167983, y: 2.2335322, z: 0.41508663}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0889593, y: 2.342861, z: 0.41508663}
+  m_Center: {x: -0.18608052, y: 0.054664254, z: 0}
 --- !u!65 &65855940540133866
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -181,8 +181,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2824602, y: 0.24972582, z: 0.06931472}
-  m_Center: {x: -0.10494113, y: 0.9035022, z: 0.0022159815}
+  m_Size: {x: 0.72682273, y: 0.33480072, z: 0.06931472}
+  m_Center: {x: -0.2746634, y: 0.9460397, z: 0.0022159815}
 --- !u!82 &82448148655374418
 AudioSource:
   m_ObjectHideFlags: 1
@@ -344,10 +344,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponThrowForce: 8000
-  maxSpeed: 5
+  weaponThrowForce: 4000
+  maxSpeed: 3
   equipped: 0
   canTake: 0
+  taken: 0
   currentWeaponState: 0
   stance: 3
 --- !u!114 &114557387542270672
@@ -389,10 +390,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.43176746
+  m_Radius: 0.0548729
+  m_Height: 0.6564666
   m_Direction: 1
-  m_Center: {x: 0, y: 0.542305, z: 0}
+  m_Center: {x: 0.0029217005, y: 0.42995542, z: 0.0031997263}
 --- !u!138 &138707564212480002
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -416,7 +417,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.8, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.2524207, y: 2.3610003, z: 2.077607}
+  m_ConnectedAnchor: {x: -1.584762, y: 0.109999835, z: 0.70502853}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -489,7 +490,7 @@ ConfigurableJoint:
     positionSpring: 0
     positionDamper: 0
     maximumForce: 3.4028233e+38
-  m_ProjectionMode: 0
+  m_ProjectionMode: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_ConfiguredInWorldSpace: 0
@@ -510,7 +511,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.15, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.2524207, y: 3.0110002, z: 2.077607}
+  m_ConnectedAnchor: {x: -1.584762, y: 0.7599999, z: 0.70502853}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -583,7 +584,7 @@ ConfigurableJoint:
     positionSpring: 0
     positionDamper: 0
     maximumForce: 3.4028233e+38
-  m_ProjectionMode: 0
+  m_ProjectionMode: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_ConfiguredInWorldSpace: 0

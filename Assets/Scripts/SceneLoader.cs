@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 
 public class SceneLoader : MonoBehaviour
@@ -62,12 +63,12 @@ public class SceneLoader : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown("space"))
-        {
-            StatHolder.CurrentMode = StatHolder.Modes.DM;
-            SceneManager.LoadScene("JoiningScene");
-            audioScript.PlaySceneMusic(0);
-        }
+        //if(Input.GetKeyDown("space"))
+        //{
+        //    StatHolder.CurrentMode = StatHolder.Modes.DM;
+        //    SceneManager.LoadScene("JoiningScene");
+        //    audioScript.PlaySceneMusic(0);
+        //}
         if (Input.GetKeyDown("t"))
         {
             StatHolder.CurrentMode = StatHolder.Modes.TDM;
@@ -107,30 +108,36 @@ public class SceneLoader : MonoBehaviour
         roundManager.RoundStart();
     }
 
-    //Assigns a random scene to load (excluding the menu scene)
+    //Assigns a Random scene to load (excluding the menu scene)
     public void NewRandomScene()
     {
-        SceneManager.LoadScene(Random.Range(1, 12));
+        SceneManager.LoadScene(UnityEngine.Random.Range(1, 12));
     }
 
     //Loads the next scene in a given set of scenes (arenas)
     public void NextSetScene(int setNumber)
     {
+        if (StatHolder.usedSets.Count >= setAmount)
+        {
+            StatHolder.usedSets.Clear();
+        }
         switch (setNumber)
         {
+
             case 1:
                 if (StatHolder.RoundNumber > mapSet1.Count -1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, setAmount + 1);
-                    while (i == 1)
+                    int i = UnityEngine.Random.Range(1, setAmount + 1);
+                    while (i == 1 || StatHolder.usedSets.Contains(i))
                     {
-                        i = Random.Range(1, setAmount + 1);
+                        i = UnityEngine.Random.Range(1, setAmount + 1);
                     }
+                    StatHolder.usedSets.Add(i);
                     NextSetScene(i);
-                    StatHolder.WitchSet = i;
+                    StatHolder.WhichSet = i;
                     audioScript.StopPlayingSceneMusic();
-                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
+                    audioScript.PlaySceneMusic(StatHolder.WhichSet);
                 }
                 else
                 {
@@ -141,15 +148,16 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet2.Count -1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, setAmount + 1);
-                    while (i == 2)
+                    int i = UnityEngine.Random.Range(1, setAmount + 1);
+                    while (i == 2 || StatHolder.usedSets.Contains(i))
                     {
-                        i = Random.Range(1, setAmount + 1);
+                        i = UnityEngine.Random.Range(1, setAmount + 1);
                     }
+                    StatHolder.usedSets.Add(i);
                     NextSetScene(i);
-                    StatHolder.WitchSet = i;
+                    StatHolder.WhichSet = i;
                     audioScript.StopPlayingSceneMusic();
-                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
+                    audioScript.PlaySceneMusic(StatHolder.WhichSet);
                 }
                 else
                 {
@@ -160,15 +168,16 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet3.Count -1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, setAmount + 1);
-                    while (i == 3)
+                    int i = UnityEngine.Random.Range(1, setAmount + 1);
+                    while (i == 3 || StatHolder.usedSets.Contains(i))
                     {
-                        i = Random.Range(1, setAmount + 1);
+                        i = UnityEngine.Random.Range(1, setAmount + 1);
                     }
+                    StatHolder.usedSets.Add(i);
                     NextSetScene(i);
-                    StatHolder.WitchSet = i;
+                    StatHolder.WhichSet = i;
                     audioScript.StopPlayingSceneMusic();
-                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
+                    audioScript.PlaySceneMusic(StatHolder.WhichSet);
                 }
                 else
                 {
@@ -179,15 +188,16 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet4.Count - 1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, setAmount + 1);
-                    while (i == 4)
+                    int i = UnityEngine.Random.Range(1, setAmount + 1);
+                    while (i == 4 || StatHolder.usedSets.Contains(i))
                     {
-                        i = Random.Range(1, setAmount + 1);
+                        i = UnityEngine.Random.Range(1, setAmount + 1);
                     }
+                    StatHolder.usedSets.Add(i);
                     NextSetScene(i);
-                    StatHolder.WitchSet = i;
+                    StatHolder.WhichSet = i;
                     audioScript.StopPlayingSceneMusic();
-                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
+                    audioScript.PlaySceneMusic(StatHolder.WhichSet);
                 }
                 else
                 {
@@ -198,15 +208,16 @@ public class SceneLoader : MonoBehaviour
                 if (StatHolder.RoundNumber > mapSet5.Count - 1)
                 {
                     StatHolder.RoundNumber = 0;
-                    int i = Random.Range(1, setAmount + 1);
-                    while (i == 5)
+                    int i = UnityEngine.Random.Range(1, setAmount + 1);
+                    while (i == 5 || StatHolder.usedSets.Contains(i))
                     {
-                        i = Random.Range(1, setAmount + 1);
+                        i = UnityEngine.Random.Range(1, setAmount + 1);
                     }
+                    StatHolder.usedSets.Add(i);
                     NextSetScene(i);
-                    StatHolder.WitchSet = i;
+                    StatHolder.WhichSet = i;
                     audioScript.StopPlayingSceneMusic();
-                    audioScript.PlaySceneMusic(StatHolder.WitchSet);
+                    audioScript.PlaySceneMusic(StatHolder.WhichSet);
                 }
                 else
                 {

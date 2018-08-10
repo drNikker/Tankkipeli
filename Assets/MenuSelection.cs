@@ -66,7 +66,7 @@ public class MenuSelection : MonoBehaviour
 
         if (inputLock == 0)
         {
-            if ((Input.GetKeyDown(KeyCode.O) || (P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released) || (P2state.Buttons.Start == ButtonState.Pressed && P2prevState.Buttons.Start == ButtonState.Released) || (P3state.Buttons.Start == ButtonState.Pressed && P3prevState.Buttons.Start == ButtonState.Released) || (P4state.Buttons.Start == ButtonState.Pressed && P4prevState.Buttons.Start == ButtonState.Released)))
+            if ((Input.GetKeyDown(KeyCode.Escape) || (P1state.Buttons.Start == ButtonState.Pressed && P1prevState.Buttons.Start == ButtonState.Released) || (P2state.Buttons.Start == ButtonState.Pressed && P2prevState.Buttons.Start == ButtonState.Released) || (P3state.Buttons.Start == ButtonState.Pressed && P3prevState.Buttons.Start == ButtonState.Released) || (P4state.Buttons.Start == ButtonState.Pressed && P4prevState.Buttons.Start == ButtonState.Released)))
             {
 
                 if (!menu)
@@ -120,7 +120,7 @@ public class MenuSelection : MonoBehaviour
 
                     if (inputLock == 0)
                     {
-                        if (Input.GetKeyDown(KeyCode.K) || (P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released || P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released) && menu)
+                        if (Input.GetKeyDown(KeyCode.Return) || (P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released || P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released) && menu)
 
                         {
                             if (!open)
