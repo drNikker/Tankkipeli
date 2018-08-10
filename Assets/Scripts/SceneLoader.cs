@@ -62,12 +62,12 @@ public class SceneLoader : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown("space"))
-        {
-            StatHolder.CurrentMode = StatHolder.Modes.DM;
-            SceneManager.LoadScene("JoiningScene");
-            audioScript.PlaySceneMusic(0);
-        }
+        //if(Input.GetKeyDown("space"))
+        //{
+        //    StatHolder.CurrentMode = StatHolder.Modes.DM;
+        //    SceneManager.LoadScene("JoiningScene");
+        //    audioScript.PlaySceneMusic(0);
+        //}
         if (Input.GetKeyDown("t"))
         {
             StatHolder.CurrentMode = StatHolder.Modes.TDM;
