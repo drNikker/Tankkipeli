@@ -196,7 +196,7 @@ public class HandControls : MonoBehaviour {
 
         armLowLimit.limit = 0;
         armHighLimit.limit = 0;
-        elbowLowLimit.limit = -20;
+        elbowLowLimit.limit = -50;
         elbowHighLimit.limit = 0;
         handSwing2Limit.limit = 0;
 
@@ -393,6 +393,7 @@ public class HandControls : MonoBehaviour {
         weaponInHand = false;
         weapon = null;
         equippedWeapon = null;
+        script.taken = false;
 
         //target direction and speed (rotation?)
         script.Thrown(front);
