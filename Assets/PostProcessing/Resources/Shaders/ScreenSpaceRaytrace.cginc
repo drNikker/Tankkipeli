@@ -124,7 +124,7 @@ bool castDenseScreenSpaceRay
     float2 P0 = H0.xy * k0;
     float2 P1 = H1.xy * k1;
 
-    // Switch the original points to values that interpolate linearly in 2D:
+    // switch the original points to values that interpolate linearly in 2D:
     float3 Q0 = csOrigin * k0;
     float3 Q1 = csEndPoint * k1;
 
