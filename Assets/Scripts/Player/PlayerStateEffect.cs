@@ -68,7 +68,8 @@ public class PlayerStateEffect : MonoBehaviour
         spawnedDeath = Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), transform.rotation);
         spawnedDeath.transform.parent = gameObject.transform;
         spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
-        
+        spawnedDeath.transform.Find("DeathMesh").GetComponent<MeshRenderer>().enabled = false;
+
         //Critical particles Off
         smokePartObj01.GetComponent<ParticleSystem>().Stop();
         //Death particles Off
@@ -167,6 +168,7 @@ public class PlayerStateEffect : MonoBehaviour
                 transform.localScale = new Vector3(newScale, newScale, newScale);
                 spawnedDeath.transform.LookAt(Camera.main.transform.position, Vector3.up);
                 spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = true;
+                spawnedDeath.transform.Find("DeathMesh").GetComponent<MeshRenderer>().enabled = true;
                 hided = false;
 
             }
