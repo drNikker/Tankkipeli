@@ -6,37 +6,25 @@ public class CharacterUpright : MonoBehaviour
 
     new protected Rigidbody rigidbody;
     public bool keepUpright = false;
-    public float uprightForce = 10;
+    public float uprightForce = 1000;
+    public float addUprightForce = 100;
     public float uprightOffset = 1.45f;
-    public float additionalUpwardForce = 10;
-    public float dampenAngularForce = 0;
-    //
-    //
+    
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        rigidbody.maxAngularVelocity = 40; // **** CANNOT APPLY HIGH ANGULAR FORCES UNLESS THE MAXANGULAR VELOCITY IS INCREASED ****
+        rigidbody.maxAngularVelocity = 40; 
     }
-    //
+
     void FixedUpdate()
     {
-        if (keepUpright)
+        if (keepUpright) // when true, adds upward and downward force to player model to set it upright.
         {
-            // ***** USE TWO FORCES PULLING UP AND DOWN AT THE TOP AND BOTTOM OF THE OBJECT RESPECTIVELY TO PULL IT UPRIGHT ***
-            //
-            //  *** THIS TECHNIQUE CAN BE USED FOR PULLING AN OBJECT TO FACE ANY VECTOR ***
-            //
-            rigidbody.AddForceAtPosition(new Vector3(0, (uprightForce + additionalUpwardForce), 0),
-                transform.position + transform.TransformPoint(new Vector3(0, uprightOffset, 0)), ForceMode.Force);
-            //
-            rigidbody.AddForceAtPosition(new Vector3(0, -uprightForce, 0),
-                transform.position + transform.TransformPoint(new Vector3(0, -uprightOffset, 0)), ForceMode.Force);
-            //  
+            //upward
+            rigidbody.AddForceAtPosition(new Vector3(0, (uprightForce + addUprightForce), 0), transform.position + transform.TransformPoint(new Vector3(0, uprightOffset, 0)), ForceMode.Force);
 
-        }
-        if (dampenAngularForce > 0)
-        {
-            rigidbody.angularVelocity *= (1 - Time.deltaTime * dampenAngularForce);
+            //downward
+            rigidbody.AddForceAtPosition(new Vector3(0, -uprightForce, 0), transform.position + transform.TransformPoint(new Vector3(0, -uprightOffset, 0)), ForceMode.Force);
         }
     }
 }

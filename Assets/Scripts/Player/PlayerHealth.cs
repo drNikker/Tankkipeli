@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     //level camera for multicam
     MultiTargetCamera LevelCam;
     public PlayerStateEffect playerStateEffect;
-
+    ParticleSystem winParticles;
     float maxHealth = 100;
     public float currHealth = 100;
     bool lastStand = false;
@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        winParticles = gameObject.transform.Find("VFX_Win").GetComponent<ParticleSystem>();
         playerStateEffect = gameObject.GetComponentInChildren<PlayerStateEffect>();
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
@@ -56,7 +57,8 @@ public class PlayerHealth : MonoBehaviour
             int colorInt = 0;
             int c = 0;
             GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
-        switch (player.name)
+            ParticleSystem.MainModule winMain = winParticles.main;
+            switch (player.name)
         {
             case "Player1(Clone)":
                 color = colorSet[StatHolder.Player1Color];
@@ -86,6 +88,8 @@ public class PlayerHealth : MonoBehaviour
             if (colorInt == 1)
             {
                 roundManager.bluePlayers.Add(this.gameObject);
+                winMain.startColor = new ParticleSystem.MinMaxGradient(Blue, Color.white);
+
                 switch (c)
                 {
                     case 0:
@@ -99,6 +103,7 @@ public class PlayerHealth : MonoBehaviour
             else if (colorInt == 0)
             {
                 roundManager.redPlayers.Add(this.gameObject);
+                winMain.startColor = new ParticleSystem.MinMaxGradient(Color.red, Color.white);
                 switch (c)
                 {
                     case 0:

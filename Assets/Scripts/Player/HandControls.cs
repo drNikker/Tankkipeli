@@ -371,12 +371,13 @@ public class HandControls : MonoBehaviour {
         script.Dropped();
         SetStance(Weapon.Stance.NoStance);
         if (joints.Length == 2)
-        { otherHandScript.weaponInHand = false;
+        {
+            otherHandScript.weaponInHand = false;
             otherHandScript.SetStance(Weapon.Stance.NoStance);
         }
-        weaponInHand = false;
-        weapon = null;
-        equippedWeapon = null;
+       // weapon = null;
+        //equippedWeapon = null;
+        script.taken = false;
     }
 
     public void ThrowWeapon()
@@ -415,7 +416,6 @@ public class HandControls : MonoBehaviour {
                 script.taken = true;
             }
             equippedWeapon = weapon;
-            otherHandScript.equippedWeapon = weapon;
             t = weapon.GetComponent<Transform>();
             joints = weapon.GetComponents<ConfigurableJoint>();
 
@@ -435,6 +435,8 @@ public class HandControls : MonoBehaviour {
                 { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
+                otherHandScript.equippedWeapon = weapon;
+                otherHandScript.weapon = weapon;
                 offset = 0.04f;
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);
@@ -459,7 +461,6 @@ public class HandControls : MonoBehaviour {
                 script.taken = true;
             }
             equippedWeapon = weapon;
-            otherHandScript.equippedWeapon = weapon;
             t = weapon.GetComponent<Transform>();
             joints = weapon.GetComponents<ConfigurableJoint>();
             if (weaponInHand == false && joints.Length == 1)
@@ -475,6 +476,8 @@ public class HandControls : MonoBehaviour {
                 { otherHandScript.DropWeapon(); }
                 weaponInHand = true;
                 otherHandScript.weaponInHand = true;
+                otherHandScript.equippedWeapon = weapon;
+                otherHandScript.weapon = weapon;
                 offset = -0.04f;
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);

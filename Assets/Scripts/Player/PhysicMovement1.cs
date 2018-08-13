@@ -11,6 +11,7 @@ public class PhysicMovement1 : MonoBehaviour
     GamePadState state;
     GamePadState prevState;
 
+    bool test = false;
 
     //OTHER
     private GameObject player;
@@ -486,9 +487,9 @@ public class PhysicMovement1 : MonoBehaviour
     void TurnUpRight()
     {
         Physics.Raycast(transform.localPosition, Vector3.down, out downRightRay, 3);
-        //Debug.DrawRay(transform.localPosition, Vector3.down, Color.red,3);
-
-        if (((Mathf.Abs(transform.rotation.eulerAngles.x) % 360) >= 60) || ((Mathf.Abs(transform.rotation.eulerAngles.z) % 360) >= 60))
+        
+        // 60 < X < 300
+        if ((60 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) || (60 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300))
         {
             upRightCounter += Time.deltaTime;
             if (upRightCounter >= 4)
