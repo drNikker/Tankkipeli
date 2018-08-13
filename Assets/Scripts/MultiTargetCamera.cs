@@ -32,6 +32,7 @@ public class MultiTargetCamera : MonoBehaviour
     public float winSmoothTime = 1f;
     public float minZoom = 40f;
     public float maxZoom = 30f;
+    public float winZoom = 10f;
     public float zoomLimiter = 50F;
 
     private Vector3 velocity;
@@ -83,7 +84,6 @@ public class MultiTargetCamera : MonoBehaviour
         }
         else if (targets.Count == 1 && prevTargetsCount == 2 && targetsCount == 1 && StatHolder.CurrentMode == StatHolder.Modes.DM) //winzoom
         {
-            float winZoom = 10;
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, winZoom, Time.deltaTime);
         }
         else
