@@ -370,7 +370,7 @@ public class RoundManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         roundWon.SetActive(true);
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(4.8f);
         ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
         ScoreAmount2[1].transform.parent.gameObject.SetActive(false);
         ScoreAmount3[1].transform.parent.gameObject.SetActive(false);
@@ -386,7 +386,7 @@ public class RoundManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         roundWon.SetActive(true);
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(4.8f);
         ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
         ScoreAmount2[1].transform.parent.gameObject.SetActive(false);
         ScoreAmount3[1].transform.parent.gameObject.SetActive(false);
