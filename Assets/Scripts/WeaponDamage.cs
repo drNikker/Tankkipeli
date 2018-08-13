@@ -54,13 +54,6 @@ public class WeaponDamage : MonoBehaviour
                 finalDamage = baseDamage * dmgMultiplier * (Mathf.Clamp(GetWeaponVelocity(), 1, 15) / 10);       //Deal damage based on the damage values and the force of the impact
 
 
-                // Hit Particles--------------------------------------
-                finalDamageVFX = Mathf.RoundToInt(finalDamage);
-                hitParticle.startLifetime = (0.05f * finalDamageVFX);
-                hitParticle.startSpeed = (1f * finalDamageVFX);
-                hitParticle.Emit(5 * finalDamageVFX);
-                // Hit Particles--------------------------------------
-
                 if (StatHolder.CurrentMode == StatHolder.Modes.TDM)
                 {
                     if ((!roundManager.redPlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.redPlayers.Contains(collision.transform.root.gameObject)) || (!roundManager.bluePlayers.Contains(this.gameObject.transform.root.gameObject) && roundManager.bluePlayers.Contains(collision.transform.root.gameObject)))
@@ -90,6 +83,13 @@ public class WeaponDamage : MonoBehaviour
                 dir.y = 0;
                 tankBase.AddForce(dir.normalized * (knockback * Mathf.Clamp(GetWeaponVelocity(), 1, 15) * knockbackMultiplier));
                 cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
+
+                // Hit Particles--------------------------------------
+                finalDamageVFX = Mathf.RoundToInt(finalDamage);
+                hitParticle.startLifetime = (0.05f * finalDamageVFX);
+                hitParticle.startSpeed = (1f * finalDamageVFX);
+                hitParticle.Emit(5 * finalDamageVFX);
+                // Hit Particles--------------------------------------
             }
 
         }
