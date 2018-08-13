@@ -169,10 +169,6 @@ public class RoundManager : MonoBehaviour
 
     public void NewRound()
     {
-        for(int i = 0; i < StatHolder.usedSets.Count; i++)
-        {
-            Debug.LogWarning(StatHolder.usedSets[i]);
-        }
 
 
         switch (StatHolder.WhichSet)
@@ -322,9 +318,6 @@ public class RoundManager : MonoBehaviour
 
 
 
-
-        roundWon.SetActive(true);
-
         //Check if anyone has enough points to win the game and announce the winner if they do
         if (StatHolder.Player1Wins >= StatHolder.WinsNeeded || StatHolder.Player2Wins >= StatHolder.WinsNeeded || StatHolder.Player3Wins >= StatHolder.WinsNeeded || StatHolder.Player4Wins >= StatHolder.WinsNeeded || StatHolder.TeamRedWins >= StatHolder.WinsNeeded || StatHolder.TeamBlueWins >= StatHolder.WinsNeeded)
         {
@@ -375,6 +368,8 @@ public class RoundManager : MonoBehaviour
 
     IEnumerator NextRound()
     {
+        yield return new WaitForSeconds(1.5f);
+        roundWon.SetActive(true);
         yield return new WaitForSeconds(3.8f);
         ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
         ScoreAmount2[1].transform.parent.gameObject.SetActive(false);
@@ -389,6 +384,8 @@ public class RoundManager : MonoBehaviour
 
     IEnumerator BackToMenu()
     {
+        yield return new WaitForSeconds(1.5f);
+        roundWon.SetActive(true);
         yield return new WaitForSeconds(3.8f);
         ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
         ScoreAmount2[1].transform.parent.gameObject.SetActive(false);
