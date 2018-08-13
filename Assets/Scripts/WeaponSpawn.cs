@@ -75,6 +75,7 @@ public class WeaponSpawn : MonoBehaviour
             else
             {
                 StartCoroutine(SpawnWeapon());
+                generatingNewWeapon = true;
             }
         }
 
