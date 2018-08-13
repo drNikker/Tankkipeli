@@ -81,14 +81,14 @@ public class TankTextureSpeed : MonoBehaviour
         if (speedL > 0.0019f || speedL < -0.0019f)
         {
             //TRACKS L
-            newTrackOffsetL = new Vector2(newTrackOffsetL.x, gameObject.GetComponent<MeshRenderer>().materials[trackMatNoL].GetTextureOffset("_MainTex").y - speedL / 10);
+            newTrackOffsetL = new Vector2(newTrackOffsetL.x, gameObject.GetComponent<MeshRenderer>().materials[trackMatNoL].GetTextureOffset("_MainTex").y - speedL / 50);
             gameObject.GetComponent<MeshRenderer>().materials[trackMatNoL].SetTextureOffset("_MainTex", newTrackOffsetL);
 
             //WHEEL SIDE L
-            gameObject.GetComponent<MeshRenderer>().materials[wheelsMatNoL].SetFloat("_RotationSpeed", speedL * 1000f);
+            gameObject.GetComponent<MeshRenderer>().materials[wheelsMatNoL].SetFloat("_RotationSpeed", speedL * 100f);
 
             //WHEELS CYLINDER L
-            newCylinderOffsetL = new Vector2(newCylinderOffsetL.x, gameObject.GetComponent<MeshRenderer>().materials[cylinderMatNoL].GetTextureOffset("_MainTex").y - speedL / 10 * 1.25f);
+            newCylinderOffsetL = new Vector2(newCylinderOffsetL.x, gameObject.GetComponent<MeshRenderer>().materials[cylinderMatNoL].GetTextureOffset("_MainTex").y - speedL / 50 * 1.25f);
             gameObject.GetComponent<MeshRenderer>().materials[cylinderMatNoL].SetTextureOffset("_MainTex", newCylinderOffsetL);
 
             SetParticleStrenght(0, speedL * -1);
@@ -105,15 +105,15 @@ public class TankTextureSpeed : MonoBehaviour
         if (speedR > 0.0019f || speedR < -0.0019f)
         {
             //TRACKS R
-            newTrackOffsetR = new Vector2(newTrackOffsetR.x, gameObject.GetComponent<MeshRenderer>().materials[trackMatNoR].GetTextureOffset("_MainTex").y - speedR / 10);
+            newTrackOffsetR = new Vector2(newTrackOffsetR.x, gameObject.GetComponent<MeshRenderer>().materials[trackMatNoR].GetTextureOffset("_MainTex").y - speedR / 50);
             gameObject.GetComponent<MeshRenderer>().materials[trackMatNoR].SetTextureOffset("_MainTex", newTrackOffsetR);
 
             //WHEEL SIDE R
-            gameObject.GetComponent<MeshRenderer>().materials[wheelsMatNoR].SetFloat("_RotationSpeed", speedR * 1000f);
+            gameObject.GetComponent<MeshRenderer>().materials[wheelsMatNoR].SetFloat("_RotationSpeed", speedR * 100f );
             //Debug.Log("Heres");
 
             //WHEELS CYLINDER R
-            newCylinderOffsetR = new Vector2(newCylinderOffsetR.x, gameObject.GetComponent<MeshRenderer>().materials[cylinderMatNoR].GetTextureOffset("_MainTex").y - speedR / 10 * 1.25f);
+            newCylinderOffsetR = new Vector2(newCylinderOffsetR.x, gameObject.GetComponent<MeshRenderer>().materials[cylinderMatNoR].GetTextureOffset("_MainTex").y - speedR / 50 * 1.25f);
             gameObject.GetComponent<MeshRenderer>().materials[cylinderMatNoR].SetTextureOffset("_MainTex", newCylinderOffsetR);
 
             SetParticleStrenght(1, speedR * - 1);
