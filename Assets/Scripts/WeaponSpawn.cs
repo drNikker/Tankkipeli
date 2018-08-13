@@ -14,6 +14,7 @@ public class WeaponSpawn : MonoBehaviour
     public bool showGizmos;
 
     bool pickedUp;
+    bool generatingNewWeapon = false;
 
     [Range(0, 100)] public int FlailChanceWeight0;
     [Range(0, 100)] public int GreatAxeChanceWeight1;
@@ -86,9 +87,8 @@ public class WeaponSpawn : MonoBehaviour
         RaycastHit hit;
         Ray spawnRay = new Ray(this.gameObject.transform.position, Vector3.down);
 
-        if (!Physics.Raycast(spawnRay, out hit, 10000) && randomPosition || hit.collider.tag != "Environment" && randomPosition)
+        if ((!Physics.Raycast(spawnRay, out hit, 10000) && randomPosition) || (hit.collider.tag != "Environment" && randomPosition))
         {
-
             this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
 
         }
@@ -103,12 +103,18 @@ public class WeaponSpawn : MonoBehaviour
                 }
             }
         }
+        else if (spawnedWeapon == null && generatingNewWeapon == false)
+        {
+            StartCoroutine(SpawnWeapon());
+            generatingNewWeapon = true;
+        }
     }
 
     IEnumerator SpawnWeapon()
     {
         yield return new WaitForSeconds(spawnTime);
         CreateWeapon();
+        generatingNewWeapon = false;
     }
 
 
