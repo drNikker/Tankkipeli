@@ -7,6 +7,7 @@ public class FlipperBumper : MonoBehaviour
     public float force;
     public Animator anim;
     private Rigidbody rb;
+    PhysicMovement1 physicMovement;
 
     private AudioScript audioScript;
     private AudioClip currentAudioClip;
@@ -27,6 +28,10 @@ public class FlipperBumper : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            physicMovement = collider.gameObject.GetComponent<PhysicMovement1>();
+            physicMovement.StopAllCoroutines();
+            physicMovement.edgeRecovery = false;
+            physicMovement.RecoveryTimer(3);
             rb = collider.gameObject.GetComponent<Rigidbody>();
             anim.SetTrigger("Bump");
             Vector3 dir = collider.contacts[0].point - transform.position;

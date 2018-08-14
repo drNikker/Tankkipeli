@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     RoundManager roundManager;
+    PhysicMovement1 movement;
     AudioScript audioScript;
     //level camera for multicam
     MultiTargetCamera LevelCam;
     public PlayerStateEffect playerStateEffect;
-    ParticleSystem winParticles;
     float maxHealth = 100;
     public float currHealth = 100;
     bool lastStand = false;
@@ -31,20 +31,17 @@ public class PlayerHealth : MonoBehaviour
     Color color;
     Color skinColor;
     ParticleSystem vfxWin;
-    ParticleSystem vfxWin2;
 
     // Use this for initialization
     void Start()
     {
-        winParticles = gameObject.transform.Find("VFX_Win").GetComponent<ParticleSystem>();
-
         playerStateEffect = gameObject.GetComponentInChildren<PlayerStateEffect>();
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
+        movement = GetComponent<PhysicMovement1>();
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
         LevelCam.AddTarget(transform);
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         vfxWin = this.gameObject.transform.Find("VFX_Win").gameObject.GetComponent<ParticleSystem>();
-        vfxWin2 = this.gameObject.transform.Find("VFX_Win2").gameObject.GetComponent<ParticleSystem>();
 
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);
@@ -60,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
             int colorInt = 0;
             int c = 0;
             GameObject player = roundManager.alivePlayers[roundManager.alivePlayers.Count - 1];
-            ParticleSystem.MainModule winMain = winParticles.main;
+            ParticleSystem.MainModule winMain = vfxWin.main;
             switch (player.name)
         {
             case "Player1(Clone)":
@@ -134,6 +131,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentState != PLAYER_STATE.DEAD)
         {
+            movement.StopAllCoroutines();
+            movement.edgeRecovery = false;
+            StartCoroutine(movement.RecoveryTimer(4));
             currHealth -= damage;
             CheckHP(currHealth);
             if (currHealth <= 0)            //If out of hp, kill player
@@ -146,7 +146,6 @@ public class PlayerHealth : MonoBehaviour
     public void VFX_Win()
     {
         vfxWin.Play();
-        vfxWin2.Play();
     }
 
     void CheckHP(float hp)
