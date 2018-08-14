@@ -13,6 +13,7 @@ public class SpikeDamage : MonoBehaviour
     public float cooldownTime = 1;
     public float knockback = 400000;
     public ParticleSystem VFX;
+    private ParticleSystem.MainModule vfx_Main;
     int finalDamageVFX;
 
     float cooldown;
@@ -28,6 +29,8 @@ public class SpikeDamage : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         spikes = GetComponent<Rigidbody>();
         VFX = GetComponent<ParticleSystem>();
+
+        vfx_Main = VFX.main;
     }
 
 
@@ -49,7 +52,9 @@ public class SpikeDamage : MonoBehaviour
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
 
             finalDamageVFX = Mathf.RoundToInt(finalDamage);
-            VFX.startLifetime = (0.05f * finalDamageVFX);
+            //VFX.startLifetime = (0.05f * finalDamageVFX);
+            vfx_Main.startLifetime = (0.05f * finalDamageVFX);
+
             VFX.Emit(5 * finalDamageVFX);
             playSound();
         }
