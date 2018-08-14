@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class Options : MonoBehaviour
 {
 
-    
+
     public AudioMixer masterMixer;
 
     public Animator anim;
@@ -26,6 +26,8 @@ public class Options : MonoBehaviour
     public Text turnRightText;
     public Text turnLeftText;
     public Text downText;
+    public Text vSyncText;
+    public Text qualityText;
 
     //Controls menu textboxes
     public Text playerText;
@@ -38,6 +40,8 @@ public class Options : MonoBehaviour
     private int targetFramerate = 30;
     private int resoVar;
     private bool fullScreen = true;
+    private int vSyncBool = 1;
+    private int qualityLevel = 0;
 
     private string resolutionChoicePref = "ResolutionChoicePref_";
     private string masterVolumePref = "MasterVolPref_";
@@ -47,32 +51,49 @@ public class Options : MonoBehaviour
     private string moveDirPref = "_MoveDirPref_";
     private string turnDirPref = "_TurnDirPref_";
 
-
     private void Start()
     {
         playerText.text = "P1 Red";
         GetOptions();
+        Debug.Log("quality" + qualityLevel + " qua2 " + QualitySettings.GetQualityLevel());
+        if (QualitySettings.GetQualityLevel() != qualityLevel)
+        {
+            QualitySettings.SetQualityLevel(qualityLevel, true);
+        }
+        if (QualitySettings.vSyncCount != vSyncBool)
+        {
+            QualitySettings.vSyncCount = vSyncBool;
+        }
     }
-    
+
     //SET AND GET options
 
     public void SetOptions()
     {
+        SetQuality();
+        SetVsync();
+        SetReso();
+        Application.targetFrameRate = targetFramerate;
+
         PlayerPrefs.SetFloat(masterVolumePref, masterVolFloat);
         PlayerPrefs.SetFloat(musicVolumePref, musicVolFloat);
         PlayerPrefs.SetFloat(sfxVolumePref, sfxVolFloat);
         PlayerPrefs.SetInt(frameratePref, targetFramerate);
         PlayerPrefs.SetInt(resolutionChoicePref, resoVar);
 
-        SetReso();
-        Application.targetFrameRate = targetFramerate;
-
+        
         PlayerPrefs.Save();
+        Debug.Log("quality" + qualityLevel + " qua2 " + QualitySettings.GetQualityLevel());
 
     }
 
     public void GetOptions()
     {
+        qualityLevel = PlayerPrefs.GetInt("UnityGraphicsQuality", 1);
+        resoVar = PlayerPrefs.GetInt(resolutionChoicePref, 2);
+        targetFramerate = PlayerPrefs.GetInt(frameratePref, 30);
+        vSyncBool = QualitySettings.vSyncCount;
+
         masterVolFloat = PlayerPrefs.GetFloat(masterVolumePref, 50f);
         masterMixer.SetFloat("MasterVol", GetDecibel(masterVolFloat));
 
@@ -81,13 +102,9 @@ public class Options : MonoBehaviour
 
         sfxVolFloat = PlayerPrefs.GetFloat(sfxVolumePref, 50f);
         masterMixer.SetFloat("SFXVol", GetDecibel(sfxVolFloat));
-
-        resoVar = PlayerPrefs.GetInt(resolutionChoicePref, 2);
-        targetFramerate = PlayerPrefs.GetInt(frameratePref, 30);
-
+        
         SetTextBoxes();
         SetControlOptions();
-
     }
 
     // set options textboxes
@@ -96,6 +113,8 @@ public class Options : MonoBehaviour
         SetResoText();
         SetFramerateText();
         SetScreenMode();
+        SetVsyncText();
+        SetQualityText();
         masterVolText.text = masterVolFloat.ToString();
         musicVolText.text = musicVolFloat.ToString();
         sfxVolText.text = sfxVolFloat.ToString();
@@ -132,7 +151,7 @@ public class Options : MonoBehaviour
         masterVolText.text = masterVolFloat.ToString();
         masterMixer.SetFloat("MasterVol", GetDecibel(masterVolFloat));
         PlayerPrefs.SetFloat(masterVolumePref, masterVolFloat);
-        
+
         Debug.Log("MasterVol");
     }
 
@@ -149,7 +168,7 @@ public class Options : MonoBehaviour
         musicVolText.text = musicVolFloat.ToString();
         masterMixer.SetFloat("MusicVol", GetDecibel(musicVolFloat));
         PlayerPrefs.SetFloat(musicVolumePref, musicVolFloat);
-        
+
         Debug.Log("MusicBtn");
     }
 
@@ -172,7 +191,7 @@ public class Options : MonoBehaviour
     //updates framerate variable
     public void FramerateButton()
     {
-        switch(targetFramerate)
+        switch (targetFramerate)
         {
             case 30:
                 targetFramerate = 60;
@@ -324,15 +343,84 @@ public class Options : MonoBehaviour
         }
     }
 
+    public void VSyncButton()
+    {
+        if (vSyncBool == 0)
+        {
+            vSyncBool = 1;
+        }
+        else
+        {
+            vSyncBool = 0;
+        }
+        SetVsyncText();
+    }
+
+    private void SetVsyncText()
+    {
+        if (vSyncBool == 1)
+        {
+            vSyncText.text = "VSync On";
+        }
+        else
+        {
+            vSyncText.text = "VSync Off";
+        }
+    }
+    private void SetVsync()
+    {
+        QualitySettings.vSyncCount = vSyncBool;
+    }
+
+    public void QualityButton()
+    {
+        if (qualityLevel < 2)
+        {
+            qualityLevel++;
+        }
+        else
+        {
+            qualityLevel = 0;
+        }
+        SetQualityText();
+    }
+
+    private void SetQuality()
+    {
+        QualitySettings.SetQualityLevel(qualityLevel, true);
+        PlayerPrefs.SetInt("UnityGraphicsQuality", qualityLevel);
+    }
+
+    private void SetQualityText()
+    {
+        switch (qualityLevel)
+        {
+            case 0:
+                qualityText.text = "Low";
+                break;
+            case 1:
+                qualityText.text = "Medium";
+                break;
+            case 2:
+                qualityText.text = "High";
+                break;
+            
+            default:
+                qualityText.text = "-";
+                Debug.Log("This shouldn't happen");
+                break;
+        }
+    }
+
     // PLAYER SETTINGS
-    
-        
+
+
     // REMEMBER!!! player names are used in calling playerfPrefs in PhysicMovement1 Script aswell to get movement
     // directions, so remember to change them there as well if you change player texts here.
 
     private void SetControlOptions()
     {
-        
+
         switch (playerText.text)
         {
             case "P1 Red":
@@ -523,7 +611,7 @@ public class Options : MonoBehaviour
                 }
                 break;
         }
-        
+
     }
 
     public void ChangePlayerButton()
@@ -545,9 +633,9 @@ public class Options : MonoBehaviour
         }
         SetControlOptions();
     }
-    
+
     // PlayerPrefs.SetInt(resolutionChoicePref, resoVar);
-    
+
     // move and turn dir buttons to update texts in menu and set values to playerprefs
     //move dir changes which way bumpers and triggers move the treads
     public void MoveDirButton()
@@ -588,7 +676,7 @@ public class Options : MonoBehaviour
         }
         SetplayerControls();
     }
-    
+
     //sets players controls when called.
     private void SetplayerControls()
     {
@@ -598,7 +686,7 @@ public class Options : MonoBehaviour
             item.SetControls();
         }
     }
-    
+
     public void QuitButtonYes()
     {
 #if UNITY_EDITOR
@@ -615,6 +703,6 @@ public class Options : MonoBehaviour
         SceneManager.LoadScene("JoiningScene");
     }
 
- 
+
 }
 
