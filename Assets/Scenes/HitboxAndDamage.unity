@@ -911,6 +911,7 @@ GameObject:
   - component: {fileID: 620624231}
   - component: {fileID: 620624227}
   - component: {fileID: 620624229}
+  - component: {fileID: 620624236}
   m_Layer: 8
   m_Name: Bucket
   m_TagString: Weapon
@@ -924,14 +925,14 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: fa9011f2b138b5643b247e312fa744a2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 620624224}
-  m_LocalRotation: {x: -0.00000046692608, y: -3.3306688e-16, z: -1.110224e-16, w: 1}
-  m_LocalPosition: {x: -0.66, y: 0.921, z: -5.029}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.66, y: 0.6232596, z: -5.54329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963936876}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!82 &620624226
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1112,10 +1113,10 @@ ConfigurableJoint:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 620624224}
   m_ConnectedBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.030235887, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.66, y: 0.9512359, z: -5.029}
+  m_ConnectedAnchor: {x: -0.66, y: 0.921, z: -5.029}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -1188,7 +1189,7 @@ ConfigurableJoint:
     positionSpring: 0
     positionDamper: 0
     maximumForce: 3.4028233e+38
-  m_ProjectionMode: 0
+  m_ProjectionMode: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_ConfiguredInWorldSpace: 0
@@ -1206,7 +1207,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 620624224}
   serializedVersion: 2
-  m_Mass: 0.01
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1277,6 +1278,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 620624224}
   m_Mesh: {fileID: 4300004, guid: fa9011f2b138b5643b247e312fa744a2, type: 3}
+--- !u!136 &620624236
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 620624224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.03521031
+  m_Height: 0.43464676
+  m_Direction: 0
+  m_Center: {x: -0.0058315843, y: -0.02318795, z: -0.000000059604645}
 --- !u!1 &678198674
 GameObject:
   m_ObjectHideFlags: 0
@@ -10900,7 +10914,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4367140983902150, guid: 8f6f408a6399cc44291ee17d71c3c931, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.94
+      value: 1.879
       objectReference: {fileID: 0}
     - target: {fileID: 4367140983902150, guid: 8f6f408a6399cc44291ee17d71c3c931, type: 2}
       propertyPath: m_LocalPosition.y
@@ -10908,7 +10922,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4367140983902150, guid: 8f6f408a6399cc44291ee17d71c3c931, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.15
+      value: -4.943
       objectReference: {fileID: 0}
     - target: {fileID: 4367140983902150, guid: 8f6f408a6399cc44291ee17d71c3c931, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11113,10 +11127,10 @@ HingeJoint:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 963936875}
   m_ConnectedBody: {fileID: 620624232}
-  m_Anchor: {x: 0, y: 0.00001001358, z: 0}
+  m_Anchor: {x: 0, y: -0.52, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.22346e-21, y: 0.00001001358, z: 9.351204e-12}
+  m_ConnectedAnchor: {x: 1.1546312e-16, y: -0.52, z: -0.0000004856031}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -11127,10 +11141,10 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
-    max: 100
+    min: -90
+    max: 90
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
