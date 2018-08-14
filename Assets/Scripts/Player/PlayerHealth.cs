@@ -31,17 +31,20 @@ public class PlayerHealth : MonoBehaviour
     Color color;
     Color skinColor;
     ParticleSystem vfxWin;
+    ParticleSystem vfxWin2;
 
     // Use this for initialization
     void Start()
     {
         winParticles = gameObject.transform.Find("VFX_Win").GetComponent<ParticleSystem>();
+
         playerStateEffect = gameObject.GetComponentInChildren<PlayerStateEffect>();
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
         LevelCam.AddTarget(transform);
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         vfxWin = this.gameObject.transform.Find("VFX_Win").gameObject.GetComponent<ParticleSystem>();
+        vfxWin2 = this.gameObject.transform.Find("VFX_Win2").gameObject.GetComponent<ParticleSystem>();
 
         currHealth = maxHealth;
         roundManager.alivePlayers.Add(this.gameObject);
@@ -143,6 +146,7 @@ public class PlayerHealth : MonoBehaviour
     public void VFX_Win()
     {
         vfxWin.Play();
+        vfxWin2.Play();
     }
 
     void CheckHP(float hp)

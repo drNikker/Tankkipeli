@@ -5,11 +5,12 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Camera))]
-public class MultiTargetCamera : MonoBehaviour {
+public class MultiTargetCamera : MonoBehaviour
+{
 
 
     // Set camera limits to be the size of the play area in the inspector. When Game starts Initialize() 
-    [SerializeField] private float upperLimitX = 0, lowerLimitX  = 0;
+    [SerializeField] private float upperLimitX = 0, lowerLimitX = 0;
     [SerializeField] private float upperLimitZ = 0, lowerLimitZ = 0;
     [SerializeField] private bool showGizmos;
 
@@ -20,23 +21,29 @@ public class MultiTargetCamera : MonoBehaviour {
     public float shakeAmount = 0.2f;
     public float decreaseFactor = 1.5f;
 
+    //winzoom
+    private int targetsCount = 0;
+    private int prevTargetsCount = 0;
+
     public List<Transform> targets;
     public Vector3 offset;
     public Vector3 centerPointOffset;
     public float smoothTime = 0.5f;
+    public float winSmoothTime = 1f;
     public float minZoom = 40f;
     public float maxZoom = 30f;
+    public float winZoom = 10f;
     public float zoomLimiter = 50F;
 
     private Vector3 velocity;
     private Camera cam;
 
     bool beginCameraSet = false;
-    
+
     private void Start()
     {
         cam = GetComponent<Camera>();
-        
+
     }
 
     private void LateUpdate()
@@ -59,14 +66,14 @@ public class MultiTargetCamera : MonoBehaviour {
 
             float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
             cam.fieldOfView = newZoom;
-            
+
             beginCameraSet = true;
         }
 
         Move();
         Rotate();
         Zoom();
-        
+
     }
 
     void Zoom()
@@ -75,19 +82,33 @@ public class MultiTargetCamera : MonoBehaviour {
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, minZoom, Time.deltaTime); ;
         }
+        else if (targets.Count == 1 && prevTargetsCount == 2 && targetsCount == 1 && StatHolder.CurrentMode == StatHolder.Modes.DM) //winzoom
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, winZoom, Time.deltaTime);
+        }
         else
         {
             float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
         }
-        
+
     }
 
     void Move()
     {
         Vector3 centerPoint = GetCenterPoint();
-        
+
+        //winzoom
+        if (targets.Count == 1 && prevTargetsCount == 2 && targetsCount == 1 && StatHolder.CurrentMode == StatHolder.Modes.DM) //winzoom
+        {
+            centerPoint.x = targets[0].position.x;
+        }
+        else
+        {
         centerPoint.x = Mathf.Clamp(centerPoint.x, lowerLimitX, upperLimitX);
+        }
+
+
         centerPoint.z = Mathf.Clamp(centerPoint.z, lowerLimitZ, upperLimitZ);
 
         Vector3 newPosition = centerPoint + offset;
@@ -109,19 +130,30 @@ public class MultiTargetCamera : MonoBehaviour {
 
     void Rotate()
     {
-        Vector3 centerPoint = GetCenterPoint();
-        centerPoint += centerPointOffset;
+        //win zoom
+        if (targets.Count == 1 && prevTargetsCount == 2 && targetsCount == 1 && StatHolder.CurrentMode == StatHolder.Modes.DM)
+        {
+            var finalTargetRotation = Quaternion.LookRotation(targets[0].position - transform.position, Vector3.up);
+            finalTargetRotation.y = 0; finalTargetRotation.z = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, finalTargetRotation, Time.deltaTime * 2.0f);
+        }
+        else
+        {
 
-        centerPoint.x = Mathf.Clamp(centerPoint.x, lowerLimitX, upperLimitX);
-        centerPoint.z = Mathf.Clamp(centerPoint.z, lowerLimitZ, upperLimitZ);
-        centerPoint.y = 0;
-        
-        Debug.DrawRay(centerPoint, Vector3.up, Color.red);
+            Vector3 centerPoint = GetCenterPoint();
+            centerPoint += centerPointOffset;
 
-        // Smoothly rotates towards target 
-        var targetRotation = Quaternion.LookRotation(centerPoint - transform.position, Vector3.up);
-        targetRotation.y = 0; targetRotation.z = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
+            centerPoint.x = Mathf.Clamp(centerPoint.x, lowerLimitX, upperLimitX);
+            centerPoint.z = Mathf.Clamp(centerPoint.z, lowerLimitZ, upperLimitZ);
+            centerPoint.y = 0;
+
+            Debug.DrawRay(centerPoint, Vector3.up, Color.red);
+
+            // Smoothly rotates towards target 
+            var targetRotation = Quaternion.LookRotation(centerPoint - transform.position, Vector3.up);
+            targetRotation.y = 0; targetRotation.z = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
+        }
     }
 
     //Get greatest distance on X axis between players
@@ -157,13 +189,15 @@ public class MultiTargetCamera : MonoBehaviour {
             bounds.Encapsulate(targets[i].position);
         }
         return bounds.center;
-        
+
     }
 
     //add player to targets list
     public void AddTarget(Transform targetToAdd)
     {
         targets.Add(targetToAdd);
+
+        targetsCount++;
     }
 
     //remove player from targets list
@@ -172,6 +206,15 @@ public class MultiTargetCamera : MonoBehaviour {
         Transform targetToRemove = targets.Single(targ => targ.name == targetName);
         targets.Remove(targetToRemove);
         shakeDuration = 0.5f;
+
+        prevTargetsCount = targetsCount;
+        targetsCount--;
+
+        //säädetään myöhemmin
+        if (prevTargetsCount == 2 && targetsCount == 1)
+        {
+            smoothTime = winSmoothTime;
+        }
     }
 
     private void OnDrawGizmos()

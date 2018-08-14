@@ -14,26 +14,35 @@ public class HandControls : MonoBehaviour {
     public GameObject otherHand;
     HandControls otherHandScript;
 
-    public float power = 10;
-    float offset;
+    public float power = 10;        //Power used to move the hand
+    float offset;                   //Offset for weapon placement
 
+    //Vectors for directions the hands should be pointing, and front of the player
     Vector3 p1LeftHand;
     Vector3 p1RightHand;
     Vector3 front;
+
+    //"Weapon" script in the equipped weapon
     Weapon script;
 
+    //Player number and which hand this is attached to
     public string player;
     public string LRHand;
 
+    //weapons transform and joints used to equip
     Transform t;
     ConfigurableJoint[] joints;
 
+    //the weapon players can equip, and the one that is equipped
     public GameObject weapon;
     public GameObject equippedWeapon;
+    //player, found with "player"-tag
     GameObject playerObj;
-
+    //cooldown for equip/throw to avoid spam
     public float cd;
+    //does player have a weapon
     bool weaponInHand = false;
+    //should the hand be moved infront of the player
     [HideInInspector]public bool guidingHand = false;
 
     private void Start()
@@ -53,29 +62,34 @@ public class HandControls : MonoBehaviour {
 
     private void FixedUpdate()
     {
+
+        //          VVVVVVVVVVVVVVVV__USE THESE FOR WORLDCENTRIC HAND MOVEMENT__VVVVVVVVVVVVVVVVVVVV
         //p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
         //p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
-
         //Quaternion.Euler(playerObj.transform.rotation.eulerAngles) *
+
+        //Basic hand movement
 
         p1LeftHand =  new Vector3(state.ThumbSticks.Left.X, 0, state.ThumbSticks.Left.Y);
         p1RightHand =  new Vector3(state.ThumbSticks.Right.X, 0, state.ThumbSticks.Right.Y);
 
         front = playerObj.transform.forward;
 
-        if (LRHand == "R" && guidingHand == false)
+        if (LRHand == "R" && guidingHand == false)      //IF Right Hand
         {
             if ((Mathf.Abs(p1RightHand.x) > 0.2 || Mathf.Abs(p1RightHand.z) > 0.2))
             {
                 rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1RightHand * power * Time.deltaTime);
             }
             Debug.DrawRay(transform.position, Quaternion.Euler(playerObj.transform.rotation.eulerAngles)* p1RightHand);
-        }
-        else if (LRHand == "R" && guidingHand == true)
+        }  
+        
+        else if (LRHand == "R" && guidingHand == true)      //When Equipping
         {
             rb.MovePosition(transform.position + front * power*2 * Time.deltaTime);
         }
-        else if (LRHand == "L" && guidingHand == false)
+        
+        else if (LRHand == "L" && guidingHand == false)     //IF Left Hand
         {
             if ((Mathf.Abs(p1LeftHand.x) > 0.2 || Mathf.Abs(p1LeftHand.z) > 0.2))
             {
@@ -83,7 +97,8 @@ public class HandControls : MonoBehaviour {
             }
             Debug.DrawRay(transform.position, Quaternion.Euler(playerObj.transform.rotation.eulerAngles)*p1LeftHand, Color.red);
         }
-        else if (LRHand == "L" && guidingHand == true)
+        
+        else if (LRHand == "L" && guidingHand == true)      //When Equipping
         {
             rb.MovePosition(transform.position + front * power*2 * Time.deltaTime);
         }
