@@ -71,8 +71,8 @@ public class PhysicMovement1 : MonoBehaviour
     bool brakeRight = true;
     bool brakeLeft = true;
     bool brakeMiddle = true;
-
-    bool edgeRecovery = false;
+    [HideInInspector]
+    public bool edgeRecovery = false;
 
     //Dizzy variables
     private bool timerUntilDizzy;
@@ -126,7 +126,7 @@ public class PhysicMovement1 : MonoBehaviour
         middleWheelCol1.wheelDampingRate = wheelDamp;
         middleWheelCol2.wheelDampingRate = wheelDamp;
         middleWheelCol3.wheelDampingRate = wheelDamp;
-        StartCoroutine(RecoveryTimer());
+        StartCoroutine(RecoveryTimer(3));
     }
 
     // Update is called once per frame
@@ -336,26 +336,12 @@ public class PhysicMovement1 : MonoBehaviour
         if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
             middleTread -= accel * invertSpeed * Time.deltaTime;
-            //if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3) || edgeRecovery && (30 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
-            //{
-            //    GetComponent<Rigidbody>().AddForce(-transform.forward * 2500, ForceMode.Impulse);
-            //    edgeRecovery = false;
-            //    StartCoroutine(RecoveryTimer());
-            //}
-
         brakeMiddle = false;
         }
 
         if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
         {
             middleTread += accel * invertSpeed * Time.deltaTime;
-            //if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3) || edgeRecovery && (30 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
-            //{
-            //    GetComponent<Rigidbody>().AddForce(transform.forward * 3500, ForceMode.Impulse);
-            //    edgeRecovery = false;
-            //    StartCoroutine(RecoveryTimer());
-            //}
-
             brakeMiddle = false;
         }
 
@@ -503,15 +489,15 @@ public class PhysicMovement1 : MonoBehaviour
     }
     void EdgeRecovery()
     {
-        if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
-        {
-            if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
+        //if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
+        //{
+            if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 180) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
 
                 GetComponent<Rigidbody>().AddForce(Vector3.up * 1500, ForceMode.Impulse);
-                GetComponent<Rigidbody>().AddForce(-transform.forward * 2000, ForceMode.Impulse);
+                GetComponent<Rigidbody>().AddForce(-transform.forward * 1500, ForceMode.Impulse);
                 edgeRecovery = false;
-                StartCoroutine(RecoveryTimer());
+                StartCoroutine(RecoveryTimer(4));
             }
             if(edgeRecovery && (30 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
@@ -525,35 +511,38 @@ public class PhysicMovement1 : MonoBehaviour
                     GetComponent<Rigidbody>().AddForce(transform.right * 2000, ForceMode.Impulse);
                 }
                 edgeRecovery = false;
-                StartCoroutine(RecoveryTimer());
+                StartCoroutine(RecoveryTimer(4));
             }
 
-        }
+        //}
 
-        if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
-        {
-            if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
+        //if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
+        //{
+            if (edgeRecovery && (180 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 330) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
+            Debug.Log("juu");
                 GetComponent<Rigidbody>().AddForce(Vector3.up * 1500, ForceMode.Impulse);
-                GetComponent<Rigidbody>().AddForce(transform.forward * 2000, ForceMode.Impulse);
+                GetComponent<Rigidbody>().AddForce(transform.forward * 1500, ForceMode.Impulse);
                 edgeRecovery = false;
-                StartCoroutine(RecoveryTimer());
+                StartCoroutine(RecoveryTimer(4));
             }
             if (edgeRecovery && (30 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
-                GetComponent<Rigidbody>().AddForce(Vector3.up * 1500, ForceMode.Impulse);
+                GetComponent<Rigidbody>().AddForce(Vector3.up * 1700, ForceMode.Impulse);
                 if (transform.rotation.eulerAngles.z > 180 && transform.rotation.eulerAngles.z < 360)
                 {
-                    GetComponent<Rigidbody>().AddForce(transform.right * 2000, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(transform.right * 1700, ForceMode.Impulse);
                 }
                 else if (transform.rotation.eulerAngles.z > 0 && transform.rotation.eulerAngles.z < 180)
                 {
-                    GetComponent<Rigidbody>().AddForce(-transform.right * 2000, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(-transform.right * 1700, ForceMode.Impulse);
                 }
                 edgeRecovery = false;
-                StartCoroutine(RecoveryTimer());
+                StartCoroutine(RecoveryTimer(4));
             }
-        }
+        //}
+        //if(gameObject.transform.rotation == new Vector3(0, transform.rotation.y, 0))
+        //{ }
     }
 
     void TurnUpRight()
@@ -787,10 +776,24 @@ public class PhysicMovement1 : MonoBehaviour
             invertSpeed = PlayerPrefs.GetInt("P4 Yellow_MoveDirPref_", 1);
         }
     }
-
-    IEnumerator RecoveryTimer()
+    private void OnCollisionEnter(Collision collision)
     {
-        yield return new WaitForSeconds(2);
+        if(collision.transform.tag == "Drawbridge")
+        {
+            StopAllCoroutines();
+            edgeRecovery = false;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.tag == "Drawbridge")
+        {
+            RecoveryTimer(3);
+        }
+    }
+    public IEnumerator RecoveryTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
         edgeRecovery = true;
     }
 }
