@@ -11,6 +11,7 @@ public class HandControls : MonoBehaviour {
 
 
     Rigidbody rb;
+    //Players other hand and the script in it
     public GameObject otherHand;
     HandControls otherHandScript;
 
@@ -63,11 +64,6 @@ public class HandControls : MonoBehaviour {
     private void FixedUpdate()
     {
 
-        //          VVVVVVVVVVVVVVVV__USE THESE FOR WORLDCENTRIC HAND MOVEMENT__VVVVVVVVVVVVVVVVVVVV
-        //p1LeftHand = new Vector3(Input.GetAxis(player + "LeftHandX"), 0f, Input.GetAxis(player + "LeftHandZ"));
-        //p1RightHand = new Vector3(Input.GetAxis(player + "RightHandX"), 0f, Input.GetAxis(player + "RightHandZ"));
-        //Quaternion.Euler(playerObj.transform.rotation.eulerAngles) *
-
         //Basic hand movement
 
         p1LeftHand =  new Vector3(state.ThumbSticks.Left.X, 0, state.ThumbSticks.Left.Y);
@@ -107,6 +103,7 @@ public class HandControls : MonoBehaviour {
         //Debug.Log(Input.GetAxis("P1LeftHandX") + " " + Input.GetAxis("P1LeftHandZ") + " Right " + Input.GetAxis("P1RightHandX") + " " + Input.GetAxis("P1RightHandZ"));
     }
 
+    //Finds the player so front vector can be defined
     GameObject FindPlayerObj()
     {
         Transform t = transform;
@@ -122,8 +119,7 @@ public class HandControls : MonoBehaviour {
         return null;
     }
 
-
-
+    //Called from PickupDetection when new weapon can be equipped...
     public void WeaponInReach(GameObject wpn)
     {
         Weapon temp = wpn.GetComponent<Weapon>();
@@ -138,6 +134,7 @@ public class HandControls : MonoBehaviour {
         }
     }
 
+    //...and when it is out of pickup range
     public void WeaponOutOfReach()
     {
         if (weaponInHand == false)
@@ -146,7 +143,7 @@ public class HandControls : MonoBehaviour {
         }
     }
 
-
+    //These are used to move hand(s) in fornt of the player during pickup
     IEnumerator MoveHand()
     {
         guidingHand = true;
@@ -163,7 +160,7 @@ public class HandControls : MonoBehaviour {
         otherHandScript.guidingHand = false;
     }
 
-
+    //Sets weapons parent to hand, attaches the joints in the weapon and tells weapon to equip
     void EquipOneHand()
     {
         equippedWeapon.transform.position = playerObj.transform.position + new Vector3(0, 1, 0) + front * 1f;
@@ -193,7 +190,7 @@ public class HandControls : MonoBehaviour {
         script.Equip();
     }
 
-
+    //Limits and frees the arms joint limits based on the weapon stance so the swinging would be as smooth as possible
     void OneHandingRestricting()
     {
         Transform arm = transform.parent.parent;
@@ -252,7 +249,6 @@ public class HandControls : MonoBehaviour {
         handJoint.highTwistLimit = handHighLimit;
 
     }
-
 
     void FistRestricting()
     {
@@ -320,6 +316,7 @@ public class HandControls : MonoBehaviour {
         handJoint.highTwistLimit = handHighLimit;
     }
 
+    //Adjusts the grip with the weapon based on the stance given for the weapon
     void SetStance(Weapon.Stance stance)
     {
         switch(stance)
@@ -381,6 +378,7 @@ public class HandControls : MonoBehaviour {
         }
     }
 
+    //Drops the weapon on the ground when taking 2H while having 1H equipped
     public void DropWeapon()
     {
         script.Dropped();
@@ -390,14 +388,12 @@ public class HandControls : MonoBehaviour {
             otherHandScript.weaponInHand = false;
             otherHandScript.SetStance(Weapon.Stance.NoStance);
         }
-       // weapon = null;
-        //equippedWeapon = null;
         script.taken = false;
     }
 
+    //Unequips the weapon and tells weapon-script to throw the weapon
     public void ThrowWeapon()
     {
-        //weapon removal from hand
         SetStance(Weapon.Stance.NoStance);
         if (joints.Length == 2)
         {
@@ -411,13 +407,14 @@ public class HandControls : MonoBehaviour {
         equippedWeapon = null;
         script.taken = false;
 
-        //target direction and speed (rotation?)
         script.Thrown(front);
     }
 
+    //Controlstick pressing detection
     void KeyPresses()
     {
-        if (state.Buttons.RightStick == ButtonState.Pressed && prevState.Buttons.RightStick == ButtonState.Released && LRHand == "R" && weapon != null && cd < Time.time)
+        //Right hand
+        if (state.Buttons.RightStick == ButtonState.Pressed && prevState.Buttons.RightStick == ButtonState.Released && LRHand == "R" && weapon != null && cd < Time.time)   //If weapon available
         {
             cd = Time.time + 1;
             otherHandScript.cd = Time.time + 1;
@@ -434,7 +431,7 @@ public class HandControls : MonoBehaviour {
             t = weapon.GetComponent<Transform>();
             joints = weapon.GetComponents<ConfigurableJoint>();
 
-            if (weaponInHand == false && joints.Length == 1)
+            if (weaponInHand == false && joints.Length == 1)    //1H weapon
             {
                 script.canTake = false;
                 weaponInHand = true;
@@ -443,7 +440,7 @@ public class HandControls : MonoBehaviour {
                 Invoke("EquipOneHand", 0.2f);
 
             }
-            else if (joints.Length == 2 && weaponInHand == false)
+            else if (joints.Length == 2 && weaponInHand == false)       //2H weapon
             {
                 script.canTake = false;
                 if (otherHandScript.weaponInHand == true)
@@ -456,13 +453,15 @@ public class HandControls : MonoBehaviour {
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);
             }
-            else if (weaponInHand == true)
+            else if (weaponInHand == true)      //throw
             {
                 ThrowWeapon();
             }
 
         }
-        else if (state.Buttons.LeftStick == ButtonState.Pressed && prevState.Buttons.LeftStick == ButtonState.Released && LRHand == "L" && weapon != null && cd < Time.time)
+
+        //Left hand
+        else if (state.Buttons.LeftStick == ButtonState.Pressed && prevState.Buttons.LeftStick == ButtonState.Released && LRHand == "L" && weapon != null && cd < Time.time)    //if weapon available
         {
             cd = Time.time + 1;
             otherHandScript.cd = Time.time + 1;
@@ -478,14 +477,16 @@ public class HandControls : MonoBehaviour {
             equippedWeapon = weapon;
             t = weapon.GetComponent<Transform>();
             joints = weapon.GetComponents<ConfigurableJoint>();
-            if (weaponInHand == false && joints.Length == 1)
+
+            if (weaponInHand == false && joints.Length == 1)        //1H weapon
             {
                 weaponInHand = true;
                 offset = -0.04f;
                 StartCoroutine("MoveHand");
                 Invoke("EquipOneHand", 0.2f);
             }
-            else if (weaponInHand == false && joints.Length == 2)
+
+            else if (weaponInHand == false && joints.Length == 2)       //2H weapon
             {
                 if (otherHandScript.weaponInHand == true)
                 { otherHandScript.DropWeapon(); }
@@ -497,7 +498,7 @@ public class HandControls : MonoBehaviour {
                 StartCoroutine("MoveBothHands");
                 Invoke("EquipTwoHands", 0.2f);
             }
-            else if (weaponInHand == true)
+            else if (weaponInHand == true)      //throw weapon
             {
                 ThrowWeapon();
             }
