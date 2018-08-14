@@ -12478,6 +12478,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 114947862651434482, guid: 1b76cf72b4840d94eba2727bb53ba5c1,
+        type: 2}
+      propertyPath: power
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114290412854828116, guid: 1b76cf72b4840d94eba2727bb53ba5c1,
+        type: 2}
+      propertyPath: power
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b76cf72b4840d94eba2727bb53ba5c1, type: 2}
   m_IsPrefabParent: 0
@@ -12717,8 +12727,10 @@ MonoBehaviour:
   offset: {x: 0, y: 80, z: -45}
   centerPointOffset: {x: 0, y: 0, z: 0}
   smoothTime: 0.5
+  winSmoothTime: 1
   minZoom: 40
   maxZoom: 10
+  winZoom: 10
   zoomLimiter: 50
 --- !u!1001 &1798440998
 Prefab:
