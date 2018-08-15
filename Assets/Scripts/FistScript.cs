@@ -5,7 +5,7 @@ using UnityEngine;
 public class FistScript : MonoBehaviour
 {
     public Animator anim;
-    private Rigidbody punchRB;
+    //private Rigidbody punchRB;
 
     [HideInInspector]
     public bool punchTimer, holdOffTimer, waitTimer;
@@ -28,7 +28,7 @@ public class FistScript : MonoBehaviour
 
     protected virtual void Start()
     {
-        punchRB = gameObject.GetComponent<Rigidbody>();
+        //punchRB = gameObject.GetComponent<Rigidbody>();
 
         waitTimer = true;
 

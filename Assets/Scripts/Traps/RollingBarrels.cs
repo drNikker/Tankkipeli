@@ -51,7 +51,8 @@ public class RollingBarrels : MonoBehaviour
     {
         pickRandomPositionX = Random.Range(barrelPositionMinX, barrelPositionMaxX);
         barrelPosition = new Vector3(pickRandomPositionX, barrelPositionY, BarrelpositionZ);
-        GameObject spawnedRollingBarrel = Instantiate(rollingBarrel, barrelPosition, Quaternion.Euler(rotation));
+        //GameObject spawnedRollingBarrel =    <--- gave warning about spawnedRollingBarrel not being used to I commented it -Eero
+        Instantiate(rollingBarrel, barrelPosition, Quaternion.Euler(rotation));
 
         canSpawn = false;
     }
