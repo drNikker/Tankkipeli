@@ -47,7 +47,7 @@ public class CarScript : MonoBehaviour {
             }
             else
             {
-                baseDamage = 0.10f;
+                baseDamage = 10;
                 acceleration = Random.Range(0.024f, 0.026f);
             }
         }
