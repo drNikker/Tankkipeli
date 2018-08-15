@@ -11,8 +11,6 @@ public class PhysicMovement1 : MonoBehaviour
     GamePadState state;
     GamePadState prevState;
 
-    bool test = false;
-
     //OTHER
     private GameObject player;
     private FullRagdollMode ragdollmode;
@@ -25,7 +23,6 @@ public class PhysicMovement1 : MonoBehaviour
     private Rigidbody rb;
     public Vector3 com; // center of mass
     private CharacterUpright charUpR;
-    private RaycastHit downRightRay;
     private PlayerHealth health;
 
     public PlayerStateEffect playerStateEffect;
@@ -546,7 +543,6 @@ public class PhysicMovement1 : MonoBehaviour
 
     void TurnUpRight()
     {
-        Physics.Raycast(transform.localPosition, Vector3.down, out downRightRay, 3);
         
         // 60 < X < 300
         if ((60 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) || (60 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300))

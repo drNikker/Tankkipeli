@@ -13,6 +13,7 @@ public class FallingObjectDamage : MonoBehaviour
     public float cooldownTime = 1;
     public float knockback = 400000;
     public ParticleSystem VFX;
+    private ParticleSystem.MainModule VFXmain;
     int finalDamageVFX;
     private float startCooldown;
 
@@ -29,8 +30,11 @@ public class FallingObjectDamage : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         VFX = GetComponent<ParticleSystem>();
+        VFXmain = VFX.main;
         startCooldown = Time.time + 2;
         Destroy(gameObject, 45);
+
+
     }
 
 
@@ -51,7 +55,8 @@ public class FallingObjectDamage : MonoBehaviour
             cooldown = Time.time + cooldownTime;                             //Puts the weapon on cooldown to avoid spam
 
             finalDamageVFX = Mathf.RoundToInt(finalDamage);
-            VFX.startLifetime = (0.05f * finalDamageVFX);
+            VFXmain.startLifetime = (0.05f * finalDamageVFX);
+            //VFX.startLifetime = (0.05f * finalDamageVFX);
             VFX.Emit(5 * finalDamageVFX);
             playSound();
         } else if (rb.velocity.magnitude <= 1 && Time.time > startCooldown)

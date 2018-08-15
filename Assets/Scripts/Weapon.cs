@@ -58,7 +58,7 @@ public class Weapon : MonoBehaviour {
         //Smoothens equipping of the weapons
         if (timer == true)
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
+            // Rigidbody rb = GetComponent<Rigidbody>(); <--- gave warning because it wasnt used -Eero
 
             for (int i = 0; i < joints.Length; i++)
             {

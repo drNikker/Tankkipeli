@@ -6,7 +6,7 @@ public class Lava : MonoBehaviour
 {
 
     PlayerHealth health;
-    Rigidbody spikes;
+    //Rigidbody spikes;
     Rigidbody tankBase;
 
     public float baseDamage = 5;
@@ -19,7 +19,7 @@ public class Lava : MonoBehaviour
 
     void Start()
     {
-        spikes = GetComponent<Rigidbody>();
+        //spikes = GetComponent<Rigidbody>();
     }
 
 
