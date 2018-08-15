@@ -50,10 +50,12 @@ public class Options : MonoBehaviour
     private string frameratePref = "FrameratePref_";
     private string moveDirPref = "_MoveDirPref_";
     private string turnDirPref = "_TurnDirPref_";
+    private string vSyncPref = "VSyncPref_";
 
     private void Start()
     {
         playerText.text = "P1 Red";
+        Debug.Log("quality" + qualityLevel + " qua2 " + QualitySettings.GetQualityLevel());
         GetOptions();
         Debug.Log("quality" + qualityLevel + " qua2 " + QualitySettings.GetQualityLevel());
         if (QualitySettings.GetQualityLevel() != qualityLevel)
@@ -89,10 +91,11 @@ public class Options : MonoBehaviour
 
     public void GetOptions()
     {
-        qualityLevel = PlayerPrefs.GetInt("UnityGraphicsQuality", 1);
+        qualityLevel = PlayerPrefs.GetInt("UnityGraphicsQuality", 2);
+        fullScreen = Screen.fullScreen;
         resoVar = PlayerPrefs.GetInt(resolutionChoicePref, 2);
         targetFramerate = PlayerPrefs.GetInt(frameratePref, 30);
-        vSyncBool = QualitySettings.vSyncCount;
+        vSyncBool = PlayerPrefs.GetInt(vSyncPref, 1);
 
         masterVolFloat = PlayerPrefs.GetFloat(masterVolumePref, 50f);
         masterMixer.SetFloat("MasterVol", GetDecibel(masterVolFloat));
@@ -323,10 +326,12 @@ public class Options : MonoBehaviour
         if (fullScreen == false)
         {
             fullScreen = true;
+            windowMode.text = "Windowed";
         }
         else
         {
             fullScreen = false;
+            windowMode.text = "FullScreen";
         }
         SetScreenMode();
     }
@@ -360,15 +365,17 @@ public class Options : MonoBehaviour
     {
         if (vSyncBool == 1)
         {
-            vSyncText.text = "VSync On";
+            vSyncText.text = "On";
         }
         else
         {
-            vSyncText.text = "VSync Off";
+            vSyncText.text = "Off";
         }
     }
     private void SetVsync()
     {
+        
+        PlayerPrefs.SetInt(vSyncPref, vSyncBool);
         QualitySettings.vSyncCount = vSyncBool;
     }
 
@@ -387,8 +394,9 @@ public class Options : MonoBehaviour
 
     private void SetQuality()
     {
-        QualitySettings.SetQualityLevel(qualityLevel, true);
+        
         PlayerPrefs.SetInt("UnityGraphicsQuality", qualityLevel);
+        QualitySettings.SetQualityLevel(qualityLevel, true);
     }
 
     private void SetQualityText()
