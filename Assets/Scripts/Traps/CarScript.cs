@@ -161,7 +161,7 @@ public class CarScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player")
+        if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player" && collision.gameObject.transform.root.tag != "Weapon")
         {
             print(collision.gameObject.name);
             StartCoroutine(carStop(0.2f));
@@ -176,7 +176,7 @@ public class CarScript : MonoBehaviour {
                 cooldown = Time.time + 2;
             }
         }
-        if (collision.gameObject.tag == "Weapon")
+        if (collision.gameObject.tag == "Weapon" || collision.gameObject.transform.root.tag == "Weapon")
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
         }
@@ -187,7 +187,7 @@ public class CarScript : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Weapon")
+        if (other.gameObject.transform.root.tag == "Weapon" || other.gameObject.tag == "Weapon")
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), other);
         }
