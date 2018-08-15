@@ -526,13 +526,25 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4329955238587018, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -60
+      value: -61.1
       objectReference: {fileID: 0}
     - target: {fileID: 4541241894723348, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5.1
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4541241894723348, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253722017192652, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -21.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384000576687478, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 23.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329955238587018, guid: df14a99e2ddbd9e42bccfde91f58f90d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.36
       objectReference: {fileID: 0}
@@ -2133,8 +2145,10 @@ MonoBehaviour:
   offset: {x: 0, y: 30, z: -25}
   centerPointOffset: {x: 0, y: 0, z: -2}
   smoothTime: 2
+  winSmoothTime: 1
   minZoom: 50
   maxZoom: 25
+  winZoom: 10
   zoomLimiter: 50
 --- !u!4 &469051307 stripped
 Transform:
@@ -9135,6 +9149,16 @@ Prefab:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
       value: 9.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 9.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c0079502d71c2f4d8e038efdac90016, type: 2}
   m_IsPrefabParent: 0
@@ -10832,6 +10856,16 @@ Prefab:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
       value: 9.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 9.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c0079502d71c2f4d8e038efdac90016, type: 2}
   m_IsPrefabParent: 0
@@ -11514,6 +11548,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: ffde6b868dde7a44588d6a5d32545276, type: 2}
+    - target: {fileID: 100000, guid: 73f6d2902cf51554bbc683eb969b2a50, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73f6d2902cf51554bbc683eb969b2a50, type: 3}
   m_IsPrefabParent: 0
@@ -12502,6 +12540,16 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startColor.maxGradient.atime0
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30.0000
       objectReference: {fileID: 0}
     - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
         type: 2}
@@ -15430,6 +15478,16 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startColor.maxGradient.atime0
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30.0000
       objectReference: {fileID: 0}
     - target: {fileID: 198435567568211322, guid: 9c0079502d71c2f4d8e038efdac90016,
         type: 2}
