@@ -129,7 +129,7 @@ public class PlayerStateEffect : MonoBehaviour
                 }
                 if (dizzyUpdate)
                 {
-                    transform.Rotate(0, dizzyRotSpeed, 0 * Time.deltaTime);
+                    transform.Rotate(0, dizzyRotSpeed * Time.deltaTime,  0);
                 }
                 
             }
