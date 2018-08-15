@@ -699,7 +699,7 @@ public class PhysicMovement1 : MonoBehaviour
             backToNormalTimerTime = originalBackToNormalTimerTime;
             health.currentState = PlayerHealth.PLAYER_STATE.ALIVE;
             health.SetPlayerState();
-            playerStateEffect.effectStop = true;
+            playerStateEffect.dizzyUpdate = false;
 
             canMove = true;
             backToNormalTimer = false;
