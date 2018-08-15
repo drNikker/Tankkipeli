@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 108635781522704196}
   - component: {fileID: 82705814070464186}
   - component: {fileID: 114549049736697920}
+  - component: {fileID: 136928975355116164}
   m_Layer: 8
   m_Name: GreatAxeScaled
   m_TagString: Weapon
@@ -79,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1745737419211482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.57, y: 0.5671119, z: -7.48}
+  m_LocalPosition: {x: 3.4972186, y: 0.78736293, z: 2.2605543}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1}
   m_Children:
   - {fileID: 4687623875210450}
@@ -138,7 +139,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982909774408874}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -397,6 +398,19 @@ CapsuleCollider:
   m_Height: 1.053
   m_Direction: 1
   m_Center: {x: 0.37825304, y: 0.8775, z: 0}
+--- !u!136 &136928975355116164
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1745737419211482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.026455516
+  m_Height: 2.005633
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.12545347, z: -0.00000035762787}
 --- !u!138 &138279255497904236
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -420,7 +434,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.8, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.57, y: -0.2328881, z: -7.48}
+  m_ConnectedAnchor: {x: 3.4972186, y: -0.012637079, z: 2.2605543}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -514,7 +528,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.15, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.57, y: 0.4171119, z: -7.48}
+  m_ConnectedAnchor: {x: 3.4972186, y: 0.63736296, z: 2.2605543}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
