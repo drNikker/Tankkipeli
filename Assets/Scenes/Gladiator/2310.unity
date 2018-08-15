@@ -85868,8 +85868,10 @@ MonoBehaviour:
   offset: {x: 0, y: 35, z: -25}
   centerPointOffset: {x: 0, y: 0, z: 0}
   smoothTime: 3
+  winSmoothTime: 1
   minZoom: 40
   maxZoom: 25
+  winZoom: 10
   zoomLimiter: 50
 --- !u!4 &1565419266 stripped
 Transform:
@@ -87716,6 +87718,11 @@ Prefab:
         type: 2}
       propertyPath: GreatAxeChanceWeight1
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: spawnTime
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
@@ -96895,7 +96902,7 @@ Prefab:
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
       propertyPath: GreatAxeChanceWeight1
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
         type: 2}
@@ -96911,6 +96918,21 @@ Prefab:
         type: 2}
       propertyPath: HockeyChanceWeight10
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: BucketChanceWeight12
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: TackChanceWeight13
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152498787001320, guid: 87ade304a6fe2f8489b06a9fb3c07576,
+        type: 2}
+      propertyPath: DoubleFlailChanceWeight14
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87ade304a6fe2f8489b06a9fb3c07576, type: 2}
@@ -99508,6 +99530,11 @@ Prefab:
     - target: {fileID: 1468680694792376, guid: 3c134f323fa9ce144ac0b14124acf1a1, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198818283749803240, guid: 3c134f323fa9ce144ac0b14124acf1a1,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30.0000
       objectReference: {fileID: 0}
     - target: {fileID: 198818283749803240, guid: 3c134f323fa9ce144ac0b14124acf1a1,
         type: 2}

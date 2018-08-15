@@ -489,8 +489,8 @@ public class PhysicMovement1 : MonoBehaviour
     }
     void EdgeRecovery()
     {
-        //if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
-        //{
+        if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
+        {
             if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 180) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
 
@@ -514,13 +514,12 @@ public class PhysicMovement1 : MonoBehaviour
                 StartCoroutine(RecoveryTimer(4));
             }
 
-        //}
+        }
 
-        //if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
-        //{
+        if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
+        {
             if (edgeRecovery && (180 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 330) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
-            Debug.Log("juu");
                 GetComponent<Rigidbody>().AddForce(Vector3.up * 1500, ForceMode.Impulse);
                 GetComponent<Rigidbody>().AddForce(transform.forward * 1500, ForceMode.Impulse);
                 edgeRecovery = false;
@@ -540,7 +539,7 @@ public class PhysicMovement1 : MonoBehaviour
                 edgeRecovery = false;
                 StartCoroutine(RecoveryTimer(4));
             }
-        //}
+        }
         //if(gameObject.transform.rotation == new Vector3(0, transform.rotation.y, 0))
         //{ }
     }

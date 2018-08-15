@@ -129,7 +129,7 @@ public class PlayerStateEffect : MonoBehaviour
                 }
                 if (dizzyUpdate)
                 {
-                    transform.Rotate(0, dizzyRotSpeed, 0 * Time.deltaTime);
+                    transform.Rotate(0, dizzyRotSpeed * Time.deltaTime,  0);
                 }
                 
             }
@@ -152,6 +152,7 @@ public class PlayerStateEffect : MonoBehaviour
                 for (int i = 0; i < spawnedStars.Count; i++)
                 {
                     spawnedStars[i].GetComponent<SpriteRenderer>().enabled = true;
+                    spawnedStars[1].GetComponentInChildren<MeshRenderer>().enabled = true;
                 }
             }
 
@@ -181,6 +182,7 @@ public class PlayerStateEffect : MonoBehaviour
             for (int i = 0; i < spawnedStars.Count; i++)
             {
                 spawnedStars[i].GetComponent<SpriteRenderer>().enabled = false;
+                spawnedStars[i].GetComponentInChildren<MeshRenderer>().enabled = false;
             }
             spawnedDeath.transform.Find("Sprite").GetComponent<SpriteRenderer>().enabled = false;
         }

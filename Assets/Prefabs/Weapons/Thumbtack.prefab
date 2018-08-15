@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 199326262772143216}
   - component: {fileID: 198436172158437696}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1333377272272306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27362752, y: 1.57, z: -4.24}
+  m_LocalPosition: {x: -2.081, y: 1.57, z: -7.974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4497246706135018}
@@ -417,8 +417,8 @@ MonoBehaviour:
   ownHP: {fileID: 0}
   health: {fileID: 0}
   baseDamage: 16
-  dmgMultiplier: 0.6
-  knockbackMultiplier: 0.6
+  dmgMultiplier: 1.1
+  knockbackMultiplier: 0.4
   cooldownTime: 1
   knockback: 400000
   finalDamage: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
   health: {fileID: 0}
   baseDamage: 16
   dmgMultiplier: 0.1
-  knockbackMultiplier: 0.4
+  knockbackMultiplier: 0.35
   cooldownTime: 1
   knockback: 400000
   finalDamage: 0
@@ -514,7 +514,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0.1}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.27362752, y: 1.57, z: -4.14}
+  m_ConnectedAnchor: {x: -2.081, y: 1.57, z: -7.874}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: -1, z: 0}
   m_XMotion: 0
@@ -534,18 +534,18 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -15
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 15
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 15
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:

@@ -20,6 +20,8 @@ public class CarScript : MonoBehaviour {
     private AudioClip currentAudioClip;
     private AudioSource audioSource;
     float cooldown;
+    ParticleSystem Nitro1;
+    ParticleSystem Nitro2;
 
     public List<Material> colorMats;
 
@@ -28,6 +30,9 @@ public class CarScript : MonoBehaviour {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         audioSource = gameObject.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
+        Nitro1 = gameObject.transform.Find("NascarNitroPartSys").GetComponent<ParticleSystem>();
+        Nitro2 = gameObject.transform.Find("NascarNitroPartSys (1)").GetComponent<ParticleSystem>();
+
         //speed = 6;
         if (nascarCar)
         {
@@ -35,13 +40,14 @@ public class CarScript : MonoBehaviour {
             i = Random.Range(0, 30);
             if (i < 1)
             {
+                playHonkSound();
                 acceleration = 0.00015f;
                 maxSpeed = 20.14f;
                 baseDamage = 0.6f;
             }
             else
             {
-                baseDamage = 10;
+                baseDamage = 0.10f;
                 acceleration = Random.Range(0.024f, 0.026f);
             }
         }
@@ -94,6 +100,8 @@ public class CarScript : MonoBehaviour {
             {
                 if (hit.collider.tag != "Weapon" && hit.collider.tag != "PlayArea" && hit.collider.tag != "Car")
                 {
+                    Nitro1.Stop();
+                    Nitro2.Stop();
                     Debug.DrawRay(transform.position, Vector3.up * 5f, Color.green);
                     if (hit.collider.tag == "Untagged")
                     {
@@ -132,9 +140,18 @@ public class CarScript : MonoBehaviour {
         }
         if(transform.position.y < -10)
         {
+
             Destroy(this.gameObject);
         }
-        
+        if (70 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 200)
+        {
+            StartCoroutine(carStop(0.2f));
+        }
+        if (70 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 290)
+        {
+            
+        }
+
     }
 
     void FixedUpdate()
@@ -158,7 +175,7 @@ public class CarScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player")
+        if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player" && collision.gameObject.transform.root.tag != "Weapon")
         {
             print(collision.gameObject.name);
             StartCoroutine(carStop(0.2f));
@@ -173,7 +190,7 @@ public class CarScript : MonoBehaviour {
                 cooldown = Time.time + 2;
             }
         }
-        if (collision.gameObject.tag == "Weapon")
+        if (collision.gameObject.tag == "Weapon" || collision.gameObject.transform.root.tag == "Weapon")
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
         }
@@ -184,7 +201,7 @@ public class CarScript : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Weapon")
+        if (other.gameObject.transform.root.tag == "Weapon" || other.gameObject.tag == "Weapon")
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), other);
         }
@@ -199,6 +216,8 @@ public class CarScript : MonoBehaviour {
         speed = 0;
         maxSpeed = 0;
         IsSwerwing = false;
+        Nitro1.Stop();
+        Nitro2.Stop();
     }
     IEnumerator carDespawn(float despawnTime)
     {
@@ -209,6 +228,12 @@ public class CarScript : MonoBehaviour {
     private void playSound()
     {
         currentAudioClip = audioScript.hazardAudioList[5];
+        audioSource.clip = currentAudioClip;
+        audioSource.Play();
+    }
+    private void playHonkSound()
+    {
+        currentAudioClip = audioScript.hazardAudioList[6];
         audioSource.clip = currentAudioClip;
         audioSource.Play();
     }
