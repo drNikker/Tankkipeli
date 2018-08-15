@@ -2836,7 +2836,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1780852511067650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6502426, y: 2, z: -1.78}
+  m_LocalPosition: {x: -1.5310256, y: 24.430607, z: -7.8763647}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4757827880829152}
@@ -5005,6 +5005,7 @@ MonoBehaviour:
   speed: 3
   IsSwerwing: 1
   nascarCar: 0
+  despawnParticles: {fileID: 0}
   colorMats: []
 --- !u!114 &114495286496644626
 MonoBehaviour:
@@ -5024,7 +5025,7 @@ MonoBehaviour:
   randomPosition: 0
   showGizmos: 0
   FlailChanceWeight0: 100
-  GreatAxeChanceWeight1: 10
+  GreatAxeChanceWeight1: 20
   HammerChanceWeight2: 100
   GladiatorChanceWeight3: 100
   ShieldChanceWeight4: 100
@@ -5035,6 +5036,9 @@ MonoBehaviour:
   LadleChanceWeight9: 100
   HockeyChanceWeight10: 100
   FistChanceWeight11: 100
+  BucketChanceWeight12: 100
+  TackChanceWeight13: 100
+  DoubleFlailChanceWeight14: 10
   XPositionLowerLimit: -12
   XPositionUpperLimit: -12
   YPositionLowerLimit: 1
@@ -5055,6 +5059,9 @@ MonoBehaviour:
   - {fileID: 4628810092925634, guid: 8df6baa871d9a02428c3f591200680ba, type: 2}
   - {fileID: 4202413561189270, guid: 2646e0a28cdbe1c4ca091fde60b1364f, type: 2}
   - {fileID: 4262994974152590, guid: f2e9e3caba14a4a42a31241259dd16ac, type: 2}
+  - {fileID: 4451391754836578, guid: 6eecb49cbdeadec4b9e1dc84108302b8, type: 2}
+  - {fileID: 4115371431485050, guid: 572519926a41fc347bccf49ccc7b0631, type: 2}
+  - {fileID: 4999581783886782, guid: b0e00956b19b84c49a4fc8b43d525abf, type: 2}
 --- !u!137 &137514276904865144
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

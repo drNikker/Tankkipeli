@@ -28,6 +28,9 @@ public class WeaponSpawn : MonoBehaviour
     [Range(0, 100)] public int LadleChanceWeight9;
     [Range(0, 100)] public int HockeyChanceWeight10;
     [Range(0, 100)] public int FistChanceWeight11;
+    [Range(0, 100)] public int BucketChanceWeight12;
+    [Range(0, 100)] public int TackChanceWeight13;
+    [Range(0, 100)] public int DoubleFlailChanceWeight14;
 
     public int XPositionLowerLimit;
     public int XPositionUpperLimit;
@@ -60,6 +63,9 @@ public class WeaponSpawn : MonoBehaviour
         chances.Add(LadleChanceWeight9);
         chances.Add(HockeyChanceWeight10);
         chances.Add(FistChanceWeight11);
+        chances.Add(BucketChanceWeight12);
+        chances.Add(TackChanceWeight13);
+        chances.Add(DoubleFlailChanceWeight14);
 
         if (randomPosition)
         {
@@ -132,7 +138,10 @@ public class WeaponSpawn : MonoBehaviour
         TROPHY,
         LADLE,
         HOCKEY,
-        FIST
+        FIST,
+        BUCKET,
+        TACK,
+        DOUBLEFLAIL
     }
 
 
@@ -220,6 +229,21 @@ public class WeaponSpawn : MonoBehaviour
 
             case SPAWN_WEAPON.FIST:
                 spawnedWeapon = Instantiate(weapons[11], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.BUCKET:
+                spawnedWeapon = Instantiate(weapons[12], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.TACK:
+                spawnedWeapon = Instantiate(weapons[13], this.gameObject.transform.position, Quaternion.identity);
+
+                break;
+
+            case SPAWN_WEAPON.DOUBLEFLAIL:
+                spawnedWeapon = Instantiate(weapons[14], this.gameObject.transform.position, Quaternion.identity);
 
                 break;
         }
