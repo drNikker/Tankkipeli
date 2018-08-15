@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-    WeaponDamage[] damageDealers;
-    ConfigurableJoint[] joints;
+    WeaponDamage[] damageDealers;       //Damaging parts of the weapon
+    ConfigurableJoint[] joints;         //Joints used to equip the weapon
 
-    float baseCooldown = 4;
-    float cooldown = 2;
-    float totalMass;
-    public float weaponThrowForce = 8000;
-    public float maxSpeed = 10;
+    float baseCooldown = 4;     //The time it takes for weapon to be pickable after throw
+    float cooldown = 2;         //Variable used to store the current cooldown
+    float totalMass;            //Total mass of all rigidbodies in the weapon
+    public float weaponThrowForce = 8000;       //The force applied during throw
+    public float maxSpeed = 10;                 //Desired maximum throw speed
 
-    bool timer = false;
-    bool canEquip;
-    [HideInInspector] public bool equipped;
-    [HideInInspector] public bool canTake = false;
-    [HideInInspector] public bool taken = false;
+    bool timer = false;     //Is timer being used
+    bool canEquip;          //CAN this weapon be equipped
+    [HideInInspector] public bool equipped; //IS this weapon equipped
+    [HideInInspector] public bool canTake = false;  
+    [HideInInspector] public bool taken = false;    //Is this weapon taken. Used to double check in HandControls, not same as canEquip
 
     public WEAPON_STATE currentWeaponState;
     public Stance stance;
 
-    Animator dropAnimation;
-    Light dropLight;
+    Animator dropAnimation; //Dropped animation
+    Light dropLight;        //Dropped lighting
 
 	// Use this for initialization
 	void Start ()
@@ -39,11 +39,13 @@ public class Weapon : MonoBehaviour {
 
     private void Update()
     {
+        //If weapon is thrown, return to dropped after the cooldown time
         if (currentWeaponState == WEAPON_STATE.THROWN && cooldown <= Time.time)
         {
             Dropped();
             transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         }
+        //If thrown weapon has too much speed, it will be clamped to max speed
         else if (currentWeaponState == WEAPON_STATE.THROWN)
         {
             Rigidbody rb = GetComponent<Rigidbody>();
@@ -53,7 +55,7 @@ public class Weapon : MonoBehaviour {
             }
 
         }
-
+        //Smoothens equipping of the weapons
         if (timer == true)
         {
             Rigidbody rb = GetComponent<Rigidbody>();
@@ -74,18 +76,21 @@ public class Weapon : MonoBehaviour {
         RayCastToGround();
     }
 
+    //Equip
     public void Equip()
     {
         currentWeaponState = WEAPON_STATE.WIELDED;
         SetWeaponState();
     }
 
+    //Drop
     public void Dropped()
     {
         currentWeaponState = WEAPON_STATE.DROPPED;
         SetWeaponState();
     }
 
+    //Throw in given direction
     public void Thrown(Vector3 front)
     {
         GetMass();
@@ -97,6 +102,7 @@ public class Weapon : MonoBehaviour {
         rb.AddForce((front + new Vector3(0,0.1f,0)) * weaponThrowForce * totalMass);
     }
 
+    //Calculate the total mass of the rigidbodies
     void GetMass()
     {
         totalMass = 0.1f;
@@ -107,6 +113,7 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    //Different weapon stances used for weapon grip
     public enum Stance
     {
         NoStance,
@@ -116,6 +123,7 @@ public class Weapon : MonoBehaviour {
         FistWeapon,
     }
 
+    //Different states the weapon can be in
     public enum WEAPON_STATE
     {
         DROPPED,
@@ -123,6 +131,7 @@ public class Weapon : MonoBehaviour {
         THROWN,
     }
 
+    //Enables weapons colliders after a small delay
     IEnumerator CollidersOn()
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
@@ -133,6 +142,7 @@ public class Weapon : MonoBehaviour {
         }
     }
     
+    //Sets the weapon to its desired state
     public void SetWeaponState()
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
@@ -141,6 +151,7 @@ public class Weapon : MonoBehaviour {
 
         switch (currentWeaponState)
         {
+            //Dropped, no collision, floats and can be picked up
             case WEAPON_STATE.DROPPED:
                 canTake = true;
                 for (int i = 1; i <= colliders.Length -1; i++)
@@ -165,6 +176,7 @@ public class Weapon : MonoBehaviour {
 
                 break;
 
+                //Wielded, collision and rigidbodies enabled, animations and lights disabled
             case WEAPON_STATE.WIELDED:
                 canTake = false;
                 GetComponent<BoxCollider>().enabled = false;
@@ -197,6 +209,7 @@ public class Weapon : MonoBehaviour {
                 timer = true;
                 break;
 
+                //Thrown, colliders and rigidbodies enabled, joints free for all kind of movement
             case WEAPON_STATE.THROWN:
                 canTake = false;
 
@@ -226,33 +239,14 @@ public class Weapon : MonoBehaviour {
                 break;
         }
     }
-
+    //Check if there is something to be on during dropped state. If not, destroy weapon
     public void RayCastToGround()
     {
         RaycastHit hit;
         
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 4) && currentWeaponState == WEAPON_STATE.DROPPED)
+        if (!Physics.Raycast(transform.position, Vector3.down, out hit, 4) && currentWeaponState == WEAPON_STATE.DROPPED)
         {
-            Dropped();
-        }
-
-        else
-        {
-            if (currentWeaponState == WEAPON_STATE.DROPPED)
-            {
-                Destroy(gameObject);
-            }
-
-            //if (hit.transform == false && currentWeaponState == WEAPON_STATE.DROPPED)
-            //{
-            //    Rigidbody[] rigidBodies = GetComponentsInChildren<Rigidbody>();
-
-            //    foreach (Rigidbody body in rigidBodies)
-            //    {
-            //        body.isKinematic = false;
-            //        body.useGravity = false;
-            //    }
-            //}
+            Destroy(gameObject);
         }
     }
 }

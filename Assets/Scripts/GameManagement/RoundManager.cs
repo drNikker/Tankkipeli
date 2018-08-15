@@ -349,11 +349,11 @@ public class RoundManager : MonoBehaviour
                 case StatHolder.Modes.TDM:
                     if (redPlayers.Count == 0)
                     {
-                        whoWonText.text = "Team Blue won the game";
+                        whoWonText.text = "Blue Team won the game";
                     }
                     else if (bluePlayers.Count == 0)
                     {
-                        whoWonText.text = "Team Red won the game";
+                        whoWonText.text = "Red Team won the game";
                     }
                     break;
             }

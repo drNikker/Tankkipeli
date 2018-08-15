@@ -21,6 +21,8 @@ public class CarScript : MonoBehaviour {
     private AudioSource audioSource;
     float cooldown;
 
+    public GameObject despawnParticles;
+
     public List<Material> colorMats;
 
     void Start()
@@ -132,6 +134,7 @@ public class CarScript : MonoBehaviour {
         }
         if(transform.position.y < -10)
         {
+
             Destroy(this.gameObject);
         }
         
@@ -203,6 +206,7 @@ public class CarScript : MonoBehaviour {
     IEnumerator carDespawn(float despawnTime)
     {
         yield return new WaitForSeconds(despawnTime);
+        Instantiate(despawnParticles, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }
 
