@@ -141,6 +141,24 @@ ModelImporter:
     3300000: //RootNode
     3300002: SwampFace
     4300000: SwampFace
+    7400000: SwampFaceArmature|Camera.002Action
+    7400002: SwampFaceArmature|CubeAction
+    7400004: SwampFaceArmature|CubeAction.001
+    7400006: SwampFaceArmature|CubeAction.002
+    7400008: SwampFaceArmature|CubeAction.004
+    7400010: SwampFaceArmature|CubeAction.005
+    7400012: SwampFaceArmature|Cylinder.001Action
+    7400014: SwampFaceArmature|CylinderAction
+    7400016: SwampFaceArmature|EmoteCameraAction
+    7400018: SwampFaceArmature|GladiatorCircleAction
+    7400020: SwampFaceArmature|Greataxe.001Action
+    7400022: SwampFaceArmature|GreataxeAction
+    7400024: SwampFaceArmature|PlaneAction
+    7400026: SwampFaceArmature|PlaneAction.001
+    7400028: SwampFaceArmature|PlayerArmatureAction.008
+    7400030: SwampFaceArmature|SunAction
+    11100000: //RootNode
+    13700000: SwampFace
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -168,7 +186,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SwampFaceArmature|PlayerArmatureAction.008
+      takeName: SwampFaceArmature|PlayerArmatureAction.008
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -213,10 +259,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
