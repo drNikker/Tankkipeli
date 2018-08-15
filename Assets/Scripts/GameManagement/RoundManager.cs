@@ -17,7 +17,7 @@ public class RoundManager : MonoBehaviour
     public GameObject playerPrefab4;
     public GameObject startMenu;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Image> ScoreAmount1;
     [HideInInspector]
     public List<Image> ScoreAmount2;
@@ -25,21 +25,14 @@ public class RoundManager : MonoBehaviour
     public List<Image> ScoreAmount3;
     [HideInInspector]
     public List<Image> ScoreAmount4;
+
     public List<Sprite> PlayerEmotions;
+    public List<Sprite> PlayerTorsos;
 
     int playersAlive;
     [HideInInspector]
     public bool teamWon = false;
-    //bool mapSet = false;
-    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
-    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
-    static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
-    static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
-    static Color Green = new Color(0, 0.1886792f, 0.0004195716f, 1);
-    static Color Purple = new Color(0.4823529f, 0.1176471f, 0.479214f, 1);
-    static Color Orange = new Color(0.8867924f, 0.3786893f, 0.1547704f, 1);
-    static Color Lime = new Color(0.4082314f, 0.945098f, 0.2f, 1);
-    Color[] colorSet = { Red, Blue, Cyan, Yellow, Green, Purple, Orange, Lime };
+
 
     public Text whoWonText;
 
@@ -244,20 +237,20 @@ public class RoundManager : MonoBehaviour
                 alivePlayers[0].GetComponent<PlayerHealth>().VFX_Win();
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(true);
                 ScoreAmount2[1].transform.parent.gameObject.SetActive(true);
-                ScoreAmount1[1].fillAmount = StatHolder.Player1Wins / StatHolder.WinsNeeded;
+                ScoreAmount1[1].fillAmount = 0.2f + StatHolder.Player1Wins * 0.2f;
 
-                ScoreAmount2[1].fillAmount = StatHolder.Player2Wins / StatHolder.WinsNeeded;
+                ScoreAmount2[1].fillAmount = 0.2f + StatHolder.Player2Wins * 0.2f;
                 ScoreAmount3[1].transform.parent.gameObject.SetActive(false);
                 ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
                 if (StatHolder.HowManyPlayers > 2)
                 {
                     ScoreAmount3[1].transform.parent.gameObject.SetActive(true);
-                    ScoreAmount3[1].fillAmount = StatHolder.Player3Wins / StatHolder.WinsNeeded;
+                    ScoreAmount3[1].fillAmount = 0.2f + StatHolder.Player3Wins * 0.2f;
 
                     if (StatHolder.HowManyPlayers > 3)
                     {
                         ScoreAmount4[1].transform.parent.gameObject.SetActive(true);
-                        ScoreAmount4[1].fillAmount = StatHolder.Player4Wins / StatHolder.WinsNeeded;
+                        ScoreAmount4[1].fillAmount = 0.2f + StatHolder.Player4Wins * 0.2f;
                     }
                 }
                 StatHolder.MostWins = Mathf.RoundToInt(Mathf.Max(StatHolder.Player1Wins, StatHolder.Player2Wins, StatHolder.Player3Wins, StatHolder.Player4Wins));
@@ -265,6 +258,10 @@ public class RoundManager : MonoBehaviour
                 ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player2Wins), 0, 3) + 4];
                 ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player3Wins), 0, 3) + 8];
                 ScoreAmount4[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player4Wins), 0, 3) + 12];
+                ScoreAmount1[3].GetComponent<Image>().sprite = PlayerTorsos[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player1Wins), 0, 3)];
+                ScoreAmount2[3].GetComponent<Image>().sprite = PlayerTorsos[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player2Wins), 0, 3) + 4];
+                ScoreAmount3[3].GetComponent<Image>().sprite = PlayerTorsos[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player3Wins), 0, 3) + 8];
+                ScoreAmount4[3].GetComponent<Image>().sprite = PlayerTorsos[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.Player4Wins), 0, 3) + 12];
                 break;
 
             case StatHolder.Modes.TDM:
@@ -288,8 +285,8 @@ public class RoundManager : MonoBehaviour
                 }
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
                 ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
-                ScoreAmount2[1].fillAmount = StatHolder.TeamRedWins / StatHolder.WinsNeeded;
-                ScoreAmount3[1].fillAmount = StatHolder.TeamBlueWins / StatHolder.WinsNeeded;
+                ScoreAmount2[1].fillAmount = 0.2f + StatHolder.TeamRedWins * 0.2f;
+                ScoreAmount3[1].fillAmount = 0.2f + StatHolder.TeamBlueWins * 0.2f;
 
                 StatHolder.MostWins = Mathf.RoundToInt(Mathf.Max(StatHolder.TeamRedWins, StatHolder.TeamBlueWins));
                 ScoreAmount3[0].GetComponent<Image>().sprite = ScoreAmount2[0].GetComponent<Image>().sprite;
@@ -307,14 +304,14 @@ public class RoundManager : MonoBehaviour
                 break;
         }
 
-        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
-        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
-        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
-        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
-        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
-        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
-        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 110-5, 0);
-        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 47-5, 0);
+        ScoreAmount1[3].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height - 65 - ScoreAmount1[1].GetComponent<Image>().fillAmount * 100, 0);
+        ScoreAmount1[4].GetComponent<RectTransform>().localPosition = new Vector3(-300, ScoreAmount1[1].GetComponent<Image>().fillAmount * ScoreAmount1[1].GetComponent<RectTransform>().rect.height + 75 - ScoreAmount1[1].GetComponent<Image>().fillAmount * 100, 0);
+        ScoreAmount2[3].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height - 65 - ScoreAmount2[1].GetComponent<Image>().fillAmount * 100, 0);
+        ScoreAmount2[4].GetComponent<RectTransform>().localPosition = new Vector3(-100, ScoreAmount2[1].GetComponent<Image>().fillAmount * ScoreAmount2[1].GetComponent<RectTransform>().rect.height + 75 - ScoreAmount2[1].GetComponent<Image>().fillAmount * 100, 0);
+        ScoreAmount3[3].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height - 65 - ScoreAmount3[1].GetComponent<Image>().fillAmount * 100, 0);
+        ScoreAmount3[4].GetComponent<RectTransform>().localPosition = new Vector3(100, ScoreAmount3[1].GetComponent<Image>().fillAmount * ScoreAmount3[1].GetComponent<RectTransform>().rect.height + 75 - ScoreAmount3[1].GetComponent<Image>().fillAmount * 100, 0);
+        ScoreAmount4[3].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height - 65 - ScoreAmount4[1].GetComponent<Image>().fillAmount * 100, 0);
+        ScoreAmount4[4].GetComponent<RectTransform>().localPosition = new Vector3(300, ScoreAmount4[1].GetComponent<Image>().fillAmount * ScoreAmount4[1].GetComponent<RectTransform>().rect.height + 75 - ScoreAmount4[1].GetComponent<Image>().fillAmount * 100, 0);
 
 
 
