@@ -32,6 +32,7 @@ public class SceneLoader : MonoBehaviour
         mapSet1.Add("2310");
         mapSet1.Add("FlipperBox");
         mapSet1.Add("TheDefault");
+        mapSet4.Add("Squiggly");
         mapSet1.Add("WeaponThrow");
         //Map set 2
         mapSet2.Add("QuadBridge");
@@ -52,7 +53,6 @@ public class SceneLoader : MonoBehaviour
         mapSet4.Add("FallingShit");
         mapSet4.Add("SpinningBeams");
         mapSet4.Add("ConstructionInDisguise");
-        mapSet4.Add("Squiggly");
         //Map set 5
         mapSet5.Add("Nascar");
         mapSet5.Add("Totally Not Stolen From Portal 2");
