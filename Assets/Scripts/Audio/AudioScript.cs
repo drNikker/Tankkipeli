@@ -32,11 +32,12 @@ public class AudioScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+
         audioSourceChild = gameObject.GetComponentInChildren<AudioSource>();
         audioSourceChild2 = gameObject.transform.Find("MotorRumbleAudioSource").GetComponent<AudioSource>();
         PlayRumbleSound();
