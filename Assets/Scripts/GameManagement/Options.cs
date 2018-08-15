@@ -55,9 +55,7 @@ public class Options : MonoBehaviour
     private void Start()
     {
         playerText.text = "P1 Red";
-        Debug.Log("quality" + qualityLevel + " qua2 " + QualitySettings.GetQualityLevel());
         GetOptions();
-        Debug.Log("quality" + qualityLevel + " qua2 " + QualitySettings.GetQualityLevel());
         if (QualitySettings.GetQualityLevel() != qualityLevel)
         {
             QualitySettings.SetQualityLevel(qualityLevel, true);
@@ -85,7 +83,6 @@ public class Options : MonoBehaviour
 
         
         PlayerPrefs.Save();
-        Debug.Log("quality" + qualityLevel + " qua2 " + QualitySettings.GetQualityLevel());
 
     }
 
