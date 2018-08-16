@@ -67,7 +67,7 @@ public class WeaponDamage : MonoBehaviour
                 {
                     health.TakeDamage(finalDamage);
                 }
-                if (collision.relativeVelocity.magnitude >= 4)
+                if (collision.relativeVelocity.magnitude >= 5)
                 {
                     if (gameObject.transform.parent.name == "GreatAxe(Clone)" || gameObject.transform.parent.name == "GreatAxeScaled(Clone)")
                     {

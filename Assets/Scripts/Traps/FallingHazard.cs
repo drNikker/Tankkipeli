@@ -43,7 +43,6 @@ public class FallingHazard : MonoBehaviour
         {
 
             this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
-
         }
     }
 
@@ -56,7 +55,9 @@ public class FallingHazard : MonoBehaviour
     void CreateFallingObject()
     {
         GameObject fallingObject = Instantiate(objects[Random.Range(0, objects.Count)], this.gameObject.transform.position, transform.rotation);
-        if(randomRotation)
+        print(fallingObject.transform.position);
+
+        if (randomRotation)
         {
             fallingObject.transform.rotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.one);
         }
