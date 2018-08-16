@@ -119,12 +119,14 @@ public class CarScript : MonoBehaviour {
             if (nascarCar)
             {
 
-                if (i > 1)
+                if (i >= 1)
                 {
                     transform.Rotate(0, Time.deltaTime * 100, 0);
                 }
                 else
                 {
+                    print(i);
+                    print("prkl");
                     transform.Rotate(0, Time.deltaTime * Random.Range(40,50), 0);
                 }
 

@@ -55,7 +55,6 @@ public class FallingHazard : MonoBehaviour
     void CreateFallingObject()
     {
         GameObject fallingObject = Instantiate(objects[Random.Range(0, objects.Count)], this.gameObject.transform.position, transform.rotation);
-        print(fallingObject.transform.position);
 
         if (randomRotation)
         {
