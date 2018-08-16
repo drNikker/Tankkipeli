@@ -40,12 +40,12 @@ public class PlayerJoining : MonoBehaviour {
     GamePadState P4prevState;
 
     GamemodeHole[] holes;
-    List<int> votes;
+    public List<int> votes;
 
     StatHolder.Modes chosenMode;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
@@ -66,6 +66,10 @@ public class PlayerJoining : MonoBehaviour {
 
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         audioScript.PlaySceneMusic(0);
+
+        votes = new List<int>();
+        votes.Add(0);
+        votes.Add(0);
     }
 
     // Update is called once per frame
@@ -188,10 +192,9 @@ public class PlayerJoining : MonoBehaviour {
 
     void GameStarter()
     {
+        CheckPlayersInHoles();
         if (StatHolder.HowManyPlayers >= 2 && gameStarting == false)
         {
-
-            CheckPlayersInHoles();
             if (StatHolder.HowManyPlayers == totalPlayersInHoles)
             {
                 int mode = Random.Range(1, totalPlayersInHoles + 1);

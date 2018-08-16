@@ -6,32 +6,32 @@ public class Votelight : MonoBehaviour {
 
 
 
-    public Animator VoteLight;
-    public float count = 0;
-    public Collider Box;
+ //   public Animator VoteLight;
+ //   public float count = 0;
+ //   public Collider Box;
 
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Spine01")
-        {
+ //   void OnTriggerEnter(Collider other)
+ //   {
+ //       if (other.gameObject.name == "Spine01")
+ //       {
            
-            count++;
+ //           count++;
 
-        }
+ //       }
         
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.name == "Spine01")
-        {
-            count--;
-        }
-    }
+ //   }
+ //   private void OnTriggerExit(Collider other)
+ //   {
+ //       if(other.gameObject.name == "Spine01")
+ //       {
+ //           count--;
+ //       }
+ //   }
 
 
-    void Update ()
-    {
-        VoteLight.SetFloat("Blend", count);
-	}
+ //   void Update ()
+ //   {
+ //       VoteLight.SetFloat("Blend", count);
+	//}
 }
