@@ -67,6 +67,11 @@ ModelImporter:
     100122: Tongue03
     100124: Tongue04
     100126: Tongue04_end
+    100128: Eyebrow02.R_end_end
+    100130: MouthSide.L_end_end
+    100132: MouthSide.R_end_end
+    100134: SwampFaceMesh
+    100136: Tongue04_end_end
     400000: //RootNode
     400002: Base
     400004: Eye.L
@@ -131,16 +136,23 @@ ModelImporter:
     400122: Tongue03
     400124: Tongue04
     400126: Tongue04_end
+    400128: Eyebrow02.R_end_end
+    400130: MouthSide.L_end_end
+    400132: MouthSide.R_end_end
+    400134: SwampFaceMesh
+    400136: Tongue04_end_end
     2100000: Teeth
     2100002: Eyes(Emission)
     2100004: PrimaryColor(P2)(Emission)
     2100006: Thrird Color(P2)
     2100008: Secondary Color(P2)
+    2100010: Material.002
     2300000: //RootNode
     2300002: SwampFace
     3300000: //RootNode
     3300002: SwampFace
     4300000: SwampFace
+    4300002: SwampFaceMesh
     7400000: SwampFaceArmature|Camera.002Action
     7400002: SwampFaceArmature|CubeAction
     7400004: SwampFaceArmature|CubeAction.001
@@ -155,10 +167,17 @@ ModelImporter:
     7400022: SwampFaceArmature|GreataxeAction
     7400024: SwampFaceArmature|PlaneAction
     7400026: SwampFaceArmature|PlaneAction.001
-    7400028: SwampFaceArmature|PlayerArmatureAction.008
+    7400028: SwampFace_OpenEyes
     7400030: SwampFaceArmature|SunAction
+    7400032: SwampFace_CloseEyes
+    7400034: SwampFace_EyesOpen
+    7400036: SwampFace_ClosedEyes
+    7400038: SwampFace_Loop
+    9500000: //RootNode
     11100000: //RootNode
     13700000: SwampFace
+    13700002: SwampFaceMesh
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -179,7 +198,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -188,17 +207,129 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: SwampFaceArmature|PlayerArmatureAction.008
-      takeName: SwampFaceArmature|PlayerArmatureAction.008
+      name: SwampFace_OpenEyes
+      takeName: SwampFaceArmature|SwampFaceArmatureAction
       firstFrame: 0
-      lastFrame: 35
+      lastFrame: 5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 1
       hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SwampFace_CloseEyes
+      takeName: SwampFaceArmature|SwampFaceArmatureAction
+      firstFrame: 30
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SwampFace_EyesOpen
+      takeName: SwampFaceArmature|SwampFaceArmatureAction
+      firstFrame: 8
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SwampFace_ClosedEyes
+      takeName: SwampFaceArmature|SwampFaceArmatureAction
+      firstFrame: 105
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SwampFace_Loop
+      takeName: SwampFaceArmature|SwampFaceArmatureAction
+      firstFrame: 0
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -262,7 +393,7 @@ ModelImporter:
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
