@@ -8,10 +8,10 @@ public class TrailerCamera : MonoBehaviour
     // Use this for initialization
     public float smoothTime = 500f;
     private Vector3 velocity;
-    private Vector3 newPosition;
+    //private Vector3 newPosition;
     private void Start()
     {
-        newPosition = new Vector3(transform.position.x, transform.position.y - 20, transform.position.z);
+        //newPosition = new Vector3(transform.position.x, transform.position.y - 20, transform.position.z);
     }
 
     // Update is called once per frame

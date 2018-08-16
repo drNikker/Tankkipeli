@@ -90,7 +90,7 @@ public class PlayerHealth : MonoBehaviour
             if (colorInt == 1)
             {
                 roundManager.bluePlayers.Add(this.gameObject);
-                winMain.startColor = new ParticleSystem.MinMaxGradient(Blue, Color.white);
+                winMain.startColor = new ParticleSystem.MinMaxGradient(Blue, LightBlue);
 
                 switch (c)
                 {
@@ -105,7 +105,7 @@ public class PlayerHealth : MonoBehaviour
             else if (colorInt == 0)
             {
                 roundManager.redPlayers.Add(this.gameObject);
-                winMain.startColor = new ParticleSystem.MinMaxGradient(Color.red, Color.white);
+                winMain.startColor = new ParticleSystem.MinMaxGradient(Color.red, Red);
                 switch (c)
                 {
                     case 0:

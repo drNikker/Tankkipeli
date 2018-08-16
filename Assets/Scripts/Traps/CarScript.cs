@@ -47,7 +47,7 @@ public class CarScript : MonoBehaviour {
             }
             else
             {
-                baseDamage = 0.10f;
+                baseDamage = 10;
                 acceleration = Random.Range(0.024f, 0.026f);
             }
         }
@@ -119,12 +119,14 @@ public class CarScript : MonoBehaviour {
             if (nascarCar)
             {
 
-                if (i > 1)
+                if (i >= 1)
                 {
                     transform.Rotate(0, Time.deltaTime * 100, 0);
                 }
                 else
                 {
+                    print(i);
+                    print("prkl");
                     transform.Rotate(0, Time.deltaTime * Random.Range(40,50), 0);
                 }
 
@@ -142,14 +144,6 @@ public class CarScript : MonoBehaviour {
         {
 
             Destroy(this.gameObject);
-        }
-        if (70 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 200)
-        {
-            StartCoroutine(carStop(0.2f));
-        }
-        if (70 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 290)
-        {
-            
         }
 
     }
@@ -216,6 +210,7 @@ public class CarScript : MonoBehaviour {
         speed = 0;
         maxSpeed = 0;
         IsSwerwing = false;
+        GetComponent<Rigidbody>().AddForce(transform.forward * 20, ForceMode.Impulse);
         Nitro1.Stop();
         Nitro2.Stop();
     }

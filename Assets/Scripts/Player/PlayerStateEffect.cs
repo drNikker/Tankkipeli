@@ -12,7 +12,7 @@ public class PlayerStateEffect : MonoBehaviour
     public bool criticalStart;
     public bool deadStart;
 
-    public bool effectStop;
+    //public bool effectStop;
 
     [SerializeField] public bool dizzyUpdate;
     [SerializeField] public bool criticalUpdate;
@@ -83,12 +83,10 @@ public class PlayerStateEffect : MonoBehaviour
         //Start part
         if (dizzyStart)
         {
-            if (deadUpdate)
+            if (!deadUpdate)
             {
-                effectStop = true;
-                deadUpdate = false;
+                dizzyUpdate = true;
             }
-            dizzyUpdate = true;
             dizzyStart = false;
         }
 
@@ -105,22 +103,29 @@ public class PlayerStateEffect : MonoBehaviour
             smokePartObj02.GetComponent<ParticleSystem>().Play();
             smokePartObj01.GetComponent<ParticleSystem>().Stop();
             dizzyUpdate = false;
+
+            for (int i = 0; i < spawnedStars.Count; i++)
+            {
+                spawnedStars[i].GetComponent<SpriteRenderer>().enabled = false;
+                spawnedStars[i].GetComponentInChildren<MeshRenderer>().enabled = false;
+            }
+
             deadStart = false;
         }
         
-        if (effectStop)
-        {
-            smokePartObj01.GetComponent<ParticleSystem>().Stop();
-            smokePartObj02.GetComponent<ParticleSystem>().Stop();
-            dizzyUpdate = false;
-            criticalUpdate = false;
-            deadUpdate = false;
+        //if (effectStop)
+        //{
+        //    smokePartObj01.GetComponent<ParticleSystem>().Stop();
+        //    smokePartObj02.GetComponent<ParticleSystem>().Stop();
+        //    dizzyUpdate = false;
+        //    criticalUpdate = false;
+        //    deadUpdate = false;
 
-            effectStop = false;
-        }
+        //    effectStop = false;
+        //}
 
         //Effect rotating and scaling.
-        if (!hided && !deadUpdate && !criticalUpdate)
+        if (!hided && !deadUpdate)
         {
             {
                 for (int i = 0; i < spawnedStars.Count; i++)
@@ -135,7 +140,7 @@ public class PlayerStateEffect : MonoBehaviour
             }
         }
         
-        if (!dizzyUpdate && !deadUpdate && !criticalUpdate)
+        if (!dizzyUpdate && !deadUpdate)
         {
             float newScale = Mathf.SmoothDamp(transform.localScale.x, 0, ref velocity, 10f * Time.deltaTime);
             transform.localScale = new Vector3(newScale, newScale, newScale);
@@ -156,13 +161,13 @@ public class PlayerStateEffect : MonoBehaviour
                 }
             }
 
-            if (criticalUpdate)
-            {
-                float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
-                transform.localScale = new Vector3(newScale, newScale, newScale);
-                hided = false;
+            //if (criticalUpdate)
+            //{
+            //    float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);
+            //    transform.localScale = new Vector3(newScale, newScale, newScale);
+            //    hided = false;
 
-            }
+            //}
             if (deadUpdate)
             {
                 float newScale = Mathf.SmoothDamp(transform.localScale.x, 1, ref velocity, 10f * Time.deltaTime);

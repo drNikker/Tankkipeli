@@ -16,6 +16,7 @@ public class FistDamage : MonoBehaviour {
 
     // Hit Particles-------------
     ParticleSystem hitParticle;
+    ParticleSystem.MainModule hitPartMain;
     int finalDamageVFX;
     // Hit Particles-------------
 
@@ -28,6 +29,7 @@ public class FistDamage : MonoBehaviour {
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         weaponAudio = gameObject.GetComponentInParent<WeaponAudio>();
         hitParticle = GetComponent<ParticleSystem>();
+        hitPartMain = hitParticle.main;
         if (weaponAudio == null)
         {
             weaponAudio = transform.root.GetComponent<WeaponAudio>();
@@ -47,8 +49,8 @@ public class FistDamage : MonoBehaviour {
 
                 // Hit Particles--------------------------------------
                 finalDamageVFX = Mathf.RoundToInt(baseDamage);
-                hitParticle.startLifetime = (0.05f * finalDamageVFX);
-                hitParticle.startSpeed = (1f * finalDamageVFX);
+                hitPartMain.startLifetime = (0.05f * finalDamageVFX);
+                hitPartMain.startSpeed = (1f * finalDamageVFX);
                 hitParticle.Emit(5 * finalDamageVFX);
                 // Hit Particles--------------------------------------
 

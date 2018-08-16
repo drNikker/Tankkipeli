@@ -6,7 +6,7 @@ public class SpikeDamage : MonoBehaviour
 {
 
     PlayerHealth health;
-    Rigidbody spikes;
+    //Rigidbody spikes;
     Rigidbody tankBase;
 
     public float baseDamage = 16;
@@ -27,7 +27,7 @@ public class SpikeDamage : MonoBehaviour
     {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        spikes = GetComponent<Rigidbody>();
+        //spikes = GetComponent<Rigidbody>();
         VFX = GetComponent<ParticleSystem>();
 
         vfx_Main = VFX.main;

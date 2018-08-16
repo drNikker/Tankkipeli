@@ -78,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1007806211846690}
   m_LocalRotation: {x: -0.00000003774895, y: -1.110223e-16, z: 1.11022296e-16, w: 1}
-  m_LocalPosition: {x: -0, y: 0.28, z: -7.69}
+  m_LocalPosition: {x: 8.439687, y: 0.6665492, z: -6.9600286}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4322156703963890}
@@ -102,7 +102,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: ee327d500db554b40b11953a16b76e8a, type: 2}
   - {fileID: 2100000, guid: 5f6e9ad8c9ab3984e92f252f12ad3c46, type: 2}
-  - {fileID: 2100000, guid: 4c3bf9c28992cff46b38afd72dac61c8, type: 2}
+  - {fileID: 2100000, guid: ada8ef1cebfcd1d4c99edfe90bc6eb0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -363,7 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponThrowForce: 8000
-  maxSpeed: 5
+  maxSpeed: 10
+  FixMovement: 0
   equipped: 0
   canTake: 0
   taken: 0
@@ -417,7 +418,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.28, z: -7.69}
+  m_ConnectedAnchor: {x: 8.439687, y: 0.6665492, z: -6.9600286}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0

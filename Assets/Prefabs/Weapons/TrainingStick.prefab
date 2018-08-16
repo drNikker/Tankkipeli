@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 95666755321384648}
   - component: {fileID: 114447770849793882}
   - component: {fileID: 114663073537291926}
+  - component: {fileID: 136135177024804938}
   m_Layer: 8
   m_Name: TrainingStick
   m_TagString: Weapon
@@ -105,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847416637298542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5280726, y: 18.59835, z: -15.509497}
+  m_LocalPosition: {x: -4.42, y: 1.1100225, z: 1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4194098633798288}
@@ -286,7 +287,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1073231869872890}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -301,7 +302,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1469097225604964}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -546,13 +547,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5b254a16135c4baea8951a6e71d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponThrowForce: 8000
-  maxSpeed: 5
+  weaponThrowForce: 15000
+  maxSpeed: 10
+  FixMovement: 0
   equipped: 0
   canTake: 0
   taken: 0
   currentWeaponState: 0
   stance: 3
+--- !u!136 &136135177024804938
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847416637298542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.035947442
+  m_Height: 1.0788448
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136792490636022382
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -615,7 +630,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5280726, y: 18.09835, z: -15.509497}
+  m_ConnectedAnchor: {x: -4.42, y: 0.61002254, z: 1.17}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -709,7 +724,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5280726, y: 19.09835, z: -15.509497}
+  m_ConnectedAnchor: {x: -4.42, y: 1.6100225, z: 1.17}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0

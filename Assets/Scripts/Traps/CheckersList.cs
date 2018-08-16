@@ -6,7 +6,7 @@ public class CheckersList : MonoBehaviour
 {
     public List<GameObject> checkers = new List<GameObject>();
 
-    private Weapon weaponScript;
+    //private Weapon weaponScript;
 
     private GameObject gameObjectToDrop;
     private Rigidbody rb;
@@ -153,7 +153,7 @@ public class CheckersList : MonoBehaviour
             if (hit.transform.tag != null && hit.transform.tag == "Weapon")
             {
                 Debug.Log(hit.transform.tag);
-                weaponScript = hit.transform.root.GetComponent<Weapon>();
+                //weaponScript = hit.transform.root.GetComponent<Weapon>();
             }
         }
         else

@@ -77,6 +77,7 @@ public class WeaponSpawn : MonoBehaviour
             if (startWeapon)
             {
                 CreateWeapon();
+                generatingNewWeapon = true;
             }
             else
             {
@@ -107,6 +108,7 @@ public class WeaponSpawn : MonoBehaviour
                 if (independent)
                 {
                     StartCoroutine(SpawnWeapon());
+                    generatingNewWeapon = true;
                 }
             }
         }
@@ -243,8 +245,7 @@ public class WeaponSpawn : MonoBehaviour
                 break;
 
             case SPAWN_WEAPON.DOUBLEFLAIL:
-                spawnedWeapon = Instantiate(weapons[14], this.gameObject.transform.position, Quaternion.identity);
-
+                spawnedWeapon = Instantiate(weapons[14], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
                 break;
         }
 

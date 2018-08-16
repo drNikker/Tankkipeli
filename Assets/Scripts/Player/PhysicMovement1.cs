@@ -11,8 +11,6 @@ public class PhysicMovement1 : MonoBehaviour
     GamePadState state;
     GamePadState prevState;
 
-    bool test = false;
-
     //OTHER
     private GameObject player;
     private FullRagdollMode ragdollmode;
@@ -25,7 +23,6 @@ public class PhysicMovement1 : MonoBehaviour
     private Rigidbody rb;
     public Vector3 com; // center of mass
     private CharacterUpright charUpR;
-    private RaycastHit downRightRay;
     private PlayerHealth health;
 
     public PlayerStateEffect playerStateEffect;
@@ -491,7 +488,7 @@ public class PhysicMovement1 : MonoBehaviour
     {
         if (state.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
-            if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 180) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
+            if (edgeRecovery && (30 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 150) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
 
                 GetComponent<Rigidbody>().AddForce(Vector3.up * 1500, ForceMode.Impulse);
@@ -499,7 +496,7 @@ public class PhysicMovement1 : MonoBehaviour
                 edgeRecovery = false;
                 StartCoroutine(RecoveryTimer(4));
             }
-            if(edgeRecovery && (30 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
+            if(edgeRecovery && (30 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 150) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
                 GetComponent<Rigidbody>().AddForce(Vector3.up * 1500, ForceMode.Impulse);
                 if (transform.rotation.eulerAngles.z > 180 && transform.rotation.eulerAngles.z < 360)
@@ -518,14 +515,14 @@ public class PhysicMovement1 : MonoBehaviour
 
         if (state.Triggers.Right > 0.0 && state.Triggers.Left > 0.0)
         {
-            if (edgeRecovery && (180 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 330) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
+            if (edgeRecovery && (210 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 330) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
                 GetComponent<Rigidbody>().AddForce(Vector3.up * 1500, ForceMode.Impulse);
                 GetComponent<Rigidbody>().AddForce(transform.forward * 1500, ForceMode.Impulse);
                 edgeRecovery = false;
                 StartCoroutine(RecoveryTimer(4));
             }
-            if (edgeRecovery && (30 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
+            if (edgeRecovery && (210 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 330) && (leftWheelCol1.isGrounded || leftWheelCol2.isGrounded || leftWheelCol3.isGrounded || leftWheelCol4.isGrounded || rightWheelCol1.isGrounded || rightWheelCol2.isGrounded || rightWheelCol3.isGrounded || rightWheelCol4.isGrounded || middleWheelCol1 || middleWheelCol2 || middleWheelCol3))
             {
                 GetComponent<Rigidbody>().AddForce(Vector3.up * 1700, ForceMode.Impulse);
                 if (transform.rotation.eulerAngles.z > 180 && transform.rotation.eulerAngles.z < 360)
@@ -546,7 +543,6 @@ public class PhysicMovement1 : MonoBehaviour
 
     void TurnUpRight()
     {
-        Physics.Raycast(transform.localPosition, Vector3.down, out downRightRay, 3);
         
         // 60 < X < 300
         if ((60 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) || (60 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300))
@@ -699,7 +695,7 @@ public class PhysicMovement1 : MonoBehaviour
             backToNormalTimerTime = originalBackToNormalTimerTime;
             health.currentState = PlayerHealth.PLAYER_STATE.ALIVE;
             health.SetPlayerState();
-            playerStateEffect.effectStop = true;
+            playerStateEffect.dizzyUpdate = false;
 
             canMove = true;
             backToNormalTimer = false;

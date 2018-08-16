@@ -10,15 +10,7 @@ public class PlayerJoining : MonoBehaviour {
 
     AudioScript audioScript;
     RoundManager roundManager;
-    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
-    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
-    static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
-    static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
-    static Color Green = new Color(0, 0.1886792f, 0.0004195716f, 1);
-    static Color Purple = new Color(0.4823529f, 0.1176471f, 0.479214f, 1);
-    static Color Orange = new Color(0.8867924f, 0.3786893f, 0.1547704f, 1);
-    static Color Lime = new Color(0.4082314f, 0.945098f, 0.2f, 1);
-    Color[] colorSet = { Red, Blue, Cyan, Yellow, Green, Purple, Orange, Lime };
+    
 
     bool joined1;
     bool joined2;
@@ -48,12 +40,12 @@ public class PlayerJoining : MonoBehaviour {
     GamePadState P4prevState;
 
     GamemodeHole[] holes;
-    List<int> votes;
+    public List<int> votes;
 
     StatHolder.Modes chosenMode;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         LevelCam = GameObject.FindWithTag("MainCamera").GetComponent<MultiTargetCamera>();
@@ -74,6 +66,10 @@ public class PlayerJoining : MonoBehaviour {
 
         roundManager = GameObject.Find("GameManager1").GetComponent<RoundManager>();
         audioScript.PlaySceneMusic(0);
+
+        votes = new List<int>();
+        votes.Add(0);
+        votes.Add(0);
     }
 
     // Update is called once per frame
@@ -196,10 +192,9 @@ public class PlayerJoining : MonoBehaviour {
 
     void GameStarter()
     {
+        CheckPlayersInHoles();
         if (StatHolder.HowManyPlayers >= 2 && gameStarting == false)
         {
-
-            CheckPlayersInHoles();
             if (StatHolder.HowManyPlayers == totalPlayersInHoles)
             {
                 int mode = Random.Range(1, totalPlayersInHoles + 1);
