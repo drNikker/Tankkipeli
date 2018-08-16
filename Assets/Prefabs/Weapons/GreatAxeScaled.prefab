@@ -30,7 +30,6 @@ GameObject:
   - component: {fileID: 108635781522704196}
   - component: {fileID: 82705814070464186}
   - component: {fileID: 114549049736697920}
-  - component: {fileID: 136928975355116164}
   m_Layer: 8
   m_Name: GreatAxeScaled
   m_TagString: Weapon
@@ -337,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponThrowForce: 4000
   maxSpeed: 3
+  FixMovement: 0
   equipped: 0
   canTake: 0
   taken: 0
@@ -398,19 +398,6 @@ CapsuleCollider:
   m_Height: 1.053
   m_Direction: 1
   m_Center: {x: 0.37825304, y: 0.8775, z: 0}
---- !u!136 &136928975355116164
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1745737419211482}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.026455516
-  m_Height: 1.0512555
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.35173535, z: -0.00000035762787}
 --- !u!138 &138279255497904236
 FixedJoint:
   m_ObjectHideFlags: 1

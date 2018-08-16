@@ -77,6 +77,7 @@ public class WeaponSpawn : MonoBehaviour
             if (startWeapon)
             {
                 CreateWeapon();
+                generatingNewWeapon = true;
             }
             else
             {
@@ -107,6 +108,7 @@ public class WeaponSpawn : MonoBehaviour
                 if (independent)
                 {
                     StartCoroutine(SpawnWeapon());
+                    generatingNewWeapon = true;
                 }
             }
         }
@@ -119,6 +121,7 @@ public class WeaponSpawn : MonoBehaviour
 
     IEnumerator SpawnWeapon()
     {
+        print("lets " + name);
         yield return new WaitForSeconds(spawnTime);
         CreateWeapon();
         generatingNewWeapon = false;

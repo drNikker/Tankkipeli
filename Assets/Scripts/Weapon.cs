@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour {
     public float weaponThrowForce = 8000;       //The force applied during throw
     public float maxSpeed = 10;                 //Desired maximum throw speed
 
+    public bool FixMovement = false;     //"Fixes" some movement problems, DO NOT JUST RANDOMLY USE
+
     bool timer = false;     //Is timer being used
     bool canEquip;          //CAN this weapon be equipped
     [HideInInspector] public bool equipped; //IS this weapon equipped
@@ -22,12 +24,15 @@ public class Weapon : MonoBehaviour {
     public WEAPON_STATE currentWeaponState;
     public Stance stance;
 
+    Rigidbody rb;
+
     Animator dropAnimation; //Dropped animation
     Light dropLight;        //Dropped lighting
 
 	// Use this for initialization
 	void Start ()
     {
+        rb = GetComponent<Rigidbody>();
         dropAnimation = GetComponent<Animator>();
         dropLight = GetComponent<Light>();
         damageDealers = GetComponentsInChildren<WeaponDamage>();
@@ -48,7 +53,6 @@ public class Weapon : MonoBehaviour {
         //If thrown weapon has too much speed, it will be clamped to max speed
         else if (currentWeaponState == WEAPON_STATE.THROWN)
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
             if (rb.velocity.magnitude > maxSpeed)
             {
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);               
@@ -58,7 +62,6 @@ public class Weapon : MonoBehaviour {
         //Smoothens equipping of the weapons
         if (timer == true)
         {
-            // Rigidbody rb = GetComponent<Rigidbody>(); <--- gave warning because it wasnt used -Eero
 
             for (int i = 0; i < joints.Length; i++)
             {
@@ -97,7 +100,6 @@ public class Weapon : MonoBehaviour {
         cooldown = Time.time + baseCooldown;
         currentWeaponState = WEAPON_STATE.THROWN;
         SetWeaponState();
-        Rigidbody rb = GetComponent<Rigidbody>();
         rb.drag = 1;
         rb.AddForce((front + new Vector3(0,0.1f,0)) * weaponThrowForce * totalMass);
     }
@@ -141,6 +143,14 @@ public class Weapon : MonoBehaviour {
             colliders[i].enabled = true;
         }
     }
+
+    //Disables and enables weaponcore, which somehow fixes shit
+    void MovementFixer()
+    {
+        Transform fixthis = transform.GetChild(0);
+        fixthis.gameObject.SetActive(false);
+        fixthis.gameObject.SetActive(true);
+    }
     
     //Sets the weapon to its desired state
     public void SetWeaponState()
@@ -179,6 +189,8 @@ public class Weapon : MonoBehaviour {
                 //Wielded, collision and rigidbodies enabled, animations and lights disabled
             case WEAPON_STATE.WIELDED:
                 canTake = false;
+                if (FixMovement == true)
+                { MovementFixer(); }
                 GetComponent<BoxCollider>().enabled = false;
                 for (int i = 0; i < joints.Length; i++)
                 {
