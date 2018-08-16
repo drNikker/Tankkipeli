@@ -45,19 +45,19 @@ public class SceneLoader : MonoBehaviour
         mapSet3.Add("HyperHexagon");
         mapSet3.Add("Rotat-o-Maze");
         mapSet3.Add("Checkers");
-        mapSet3.Add("CrushingWall");
         mapSet3.Add("TipTheScales");
+        mapSet3.Add("CrushingWall");
         //Map set 4
-        mapSet4.Add("Roof");
-        mapSet4.Add("WreckingBall");
         mapSet4.Add("FallingShit");
         mapSet4.Add("SpinningBeams");
+        mapSet4.Add("Roof");
         mapSet4.Add("ConstructionInDisguise");
+        mapSet4.Add("WreckingBall");
         //Map set 5
         mapSet5.Add("Nascar");
+        mapSet5.Add("RalliJump");
         mapSet5.Add("Totally Not Stolen From Portal 2");
         mapSet5.Add("Smash");
-        mapSet5.Add("RalliJump");
         //mapSet5.Add("Madness");
     }
 
