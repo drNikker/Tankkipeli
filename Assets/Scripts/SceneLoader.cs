@@ -56,7 +56,7 @@ public class SceneLoader : MonoBehaviour
         //Map set 5
         mapSet5.Add("Nascar");
         mapSet5.Add("RalliJump");
-        mapSet5.Add("Totally Not Stolen From Portal 2");
+        mapSet5.Add("DualRace");
         mapSet5.Add("Smash");
         //mapSet5.Add("Madness");
     }

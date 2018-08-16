@@ -189,7 +189,7 @@ public class PhysicMovement1 : MonoBehaviour
         //Tread speed increase
 
         //RB
-        if ((state.Buttons.RightShoulder == ButtonState.Pressed) && (state.Triggers.Right > 0.0))            //RB
+        if ((state.Buttons.RightShoulder == ButtonState.Pressed) && !(state.Triggers.Right > 0.0))            //RB
         {
             rightTread -= accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
@@ -202,7 +202,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //LB
-        if (( state.Buttons.LeftShoulder == ButtonState.Pressed) && (state.Triggers.Left > 0.0))              //LB
+        if (( state.Buttons.LeftShoulder == ButtonState.Pressed) && !(state.Triggers.Left > 0.0))              //LB
         {
             leftTread -= accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
