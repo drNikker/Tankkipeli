@@ -121,7 +121,6 @@ public class WeaponSpawn : MonoBehaviour
 
     IEnumerator SpawnWeapon()
     {
-        print("lets " + name);
         yield return new WaitForSeconds(spawnTime);
         CreateWeapon();
         generatingNewWeapon = false;
@@ -246,8 +245,7 @@ public class WeaponSpawn : MonoBehaviour
                 break;
 
             case SPAWN_WEAPON.DOUBLEFLAIL:
-                spawnedWeapon = Instantiate(weapons[14], this.gameObject.transform.position, Quaternion.identity);
-
+                spawnedWeapon = Instantiate(weapons[14], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
                 break;
         }
 
