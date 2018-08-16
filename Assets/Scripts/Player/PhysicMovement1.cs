@@ -189,7 +189,7 @@ public class PhysicMovement1 : MonoBehaviour
         //Tread speed increase
 
         //RB
-        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))            //RB
+        if ((state.Buttons.RightShoulder == ButtonState.Pressed) && (state.Triggers.Right > 0.0))            //RB
         {
             rightTread -= accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
@@ -202,7 +202,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //LB
-        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))              //LB
+        if (( state.Buttons.LeftShoulder == ButtonState.Pressed) && (state.Triggers.Left > 0.0))              //LB
         {
             leftTread -= accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
@@ -227,7 +227,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //RT
-        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))        //RT
+        if ((state.Triggers.Right > 0.0) && !(state.Buttons.RightShoulder == ButtonState.Pressed))        //RT
         {
             rightTread += accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
@@ -239,7 +239,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //LT
-        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))          //LT
+        if (( state.Triggers.Left > 0.0) && !( state.Buttons.LeftShoulder == ButtonState.Pressed))          //LT
         {
             leftTread += accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
@@ -256,7 +256,7 @@ public class PhysicMovement1 : MonoBehaviour
         middleTread = Mathf.Clamp(middleTread, -topSpeed, topSpeed);
 
         //set motortorque to 0 when no input is given
-        if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
+        if (!( state.Buttons.RightShoulder == ButtonState.Pressed) && !( state.Triggers.Right > 0.0))
         {
             rightTread = 0;
             brakeRight = true;
@@ -269,7 +269,7 @@ public class PhysicMovement1 : MonoBehaviour
             }
         }
 
-        if (!(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
+        if (!( state.Buttons.LeftShoulder == ButtonState.Pressed) && !(state.Triggers.Left > 0.0))
         {
             leftTread = 0;
             brakeLeft = true;
@@ -306,7 +306,7 @@ public class PhysicMovement1 : MonoBehaviour
         //Tread speed increase
 
         //LB
-        if ((Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
+        if (( state.Buttons.LeftShoulder == ButtonState.Pressed) && !( state.Triggers.Left > 0.0))
         {
             rightTread -= accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
@@ -318,7 +318,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //RB 
-        if ((Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
+        if (( state.Buttons.RightShoulder == ButtonState.Pressed) && !( state.Triggers.Right > 0.0))
         {
             leftTread -= accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
@@ -343,7 +343,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //LT
-        if ((Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0) && !(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed))
+        if (( state.Triggers.Left > 0.0) && !( state.Buttons.LeftShoulder == ButtonState.Pressed))
         {
             rightTread += accel * invertSpeed * Time.deltaTime;
             brakeRight = false;
@@ -355,7 +355,7 @@ public class PhysicMovement1 : MonoBehaviour
         }
 
         //RT 
-        if ((Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0) && !(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed))
+        if (( state.Triggers.Right > 0.0) && !( state.Buttons.RightShoulder == ButtonState.Pressed))
         {
             leftTread += accel * invertSpeed * Time.deltaTime;
             brakeLeft = false;
@@ -372,7 +372,7 @@ public class PhysicMovement1 : MonoBehaviour
         middleTread = Mathf.Clamp(middleTread, -topSpeed, topSpeed);
 
         //set motortorque to 0 wwhen no input is given
-        if (!(Input.GetKey(KeyCode.Keypad7) || state.Buttons.LeftShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad4) || state.Triggers.Left > 0.0))
+        if (!( state.Buttons.LeftShoulder == ButtonState.Pressed) && !( state.Triggers.Left > 0.0))
         {
             rightTread = 0;
             brakeRight = true;
@@ -387,7 +387,7 @@ public class PhysicMovement1 : MonoBehaviour
 
 
         //  (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
-        if (!(Input.GetKey(KeyCode.Keypad9) || state.Buttons.RightShoulder == ButtonState.Pressed) && !(Input.GetKey(KeyCode.Keypad6) || state.Triggers.Right > 0.0))
+        if (!( state.Buttons.RightShoulder == ButtonState.Pressed) && !( state.Triggers.Right > 0.0))
         {
             leftTread = 0;
             brakeLeft = true;

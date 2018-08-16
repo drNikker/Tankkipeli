@@ -69,21 +69,6 @@ public class SceneLoader : MonoBehaviour
         //    SceneManager.LoadScene("JoiningScene");
         //    audioScript.PlaySceneMusic(0);
         //}
-        if (Input.GetKeyDown("t"))
-        {
-            StatHolder.CurrentMode = StatHolder.Modes.TDM;
-            SceneManager.LoadScene("JoiningScene");
-            audioScript.PlaySceneMusic(0);
-        }
-        if (Input.GetKeyDown("h"))
-        {
-            MenuScene();
-
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            ReloadScene();
-        }
     }
 
     //Loads the menu scene and sets all win counters to zero
