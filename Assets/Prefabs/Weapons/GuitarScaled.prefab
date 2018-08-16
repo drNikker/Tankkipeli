@@ -78,14 +78,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149198327843400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.8410975, y: -0.23554078, z: 0.11947797, w: 0.4720176}
   m_LocalPosition: {x: 4.886497, y: 0.92087495, z: 3.337285}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1}
   m_Children:
   - {fileID: 4397298528245250}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -47.539, y: -141.164, z: 131.061}
 --- !u!23 &23897628985563468
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -101,8 +101,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: aa687d6bd6f17b045b42459425070bba, type: 2}
-  - {fileID: 2100000, guid: e6a62dc295addee4cb9892038de84ea5, type: 2}
+  - {fileID: 2100000, guid: 64c7f884de7ec2c4797aeb6ee0e49f16, type: 2}
+  - {fileID: 2100000, guid: cd33bd0ada2a93c4ca42a474dc924ef1, type: 2}
   - {fileID: 2100000, guid: ccf4dfac50c43ee4f9c3ca9fcaf82497, type: 2}
   - {fileID: 2100000, guid: ada8ef1cebfcd1d4c99edfe90bc6eb0a, type: 2}
   - {fileID: 2100000, guid: ffde6b868dde7a44588d6a5d32545276, type: 2}
@@ -380,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponThrowForce: 15000
   maxSpeed: 10
+  FixMovement: 0
   equipped: 0
   canTake: 0
   taken: 0
@@ -421,7 +422,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.15, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 4.886497, y: 0.770875, z: 3.337285}
+  m_ConnectedAnchor: {x: 4.8439817, y: 0.98739094, z: 3.4648314}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -515,7 +516,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.7911, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 4.886497, y: 0.12977493, z: 3.337285}
+  m_ConnectedAnchor: {x: 4.6622725, y: 1.2716804, z: 4.009965}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
