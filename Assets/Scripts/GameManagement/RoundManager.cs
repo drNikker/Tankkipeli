@@ -50,6 +50,10 @@ public class RoundManager : MonoBehaviour
     public List<GameObject> redPlayers;
     [HideInInspector]
     public List<GameObject> bluePlayers;
+    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
+    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
+    static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
+    static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
 
     private void Start()
     {
@@ -217,18 +221,22 @@ public class RoundManager : MonoBehaviour
                     case "Player1(Clone)":
                         StatHolder.Player1Wins += 1;
                         whoWonText.text = "Red player won the round";
+                        whoWonText.color = Red;
                         break;
                     case "Player2(Clone)":
                         StatHolder.Player2Wins += 1;
                         whoWonText.text = "Blue player won the round";
+                        whoWonText.color = Blue;
                         break;
                     case "Player3(Clone)":
                         StatHolder.Player3Wins += 1;
                         whoWonText.text = "Cyan player won the round";
+                        whoWonText.color = Cyan;
                         break;
                     case "Player4(Clone)":
                         StatHolder.Player4Wins += 1;
                         whoWonText.text = "Yellow player won the round";
+                        whoWonText.color = Yellow;
                         break;
                     default:
                         print("This should never happen");
@@ -273,6 +281,7 @@ public class RoundManager : MonoBehaviour
                         Player.GetComponent<PlayerHealth>().VFX_Win();
                     }
                     whoWonText.text = "Team Blue won the round";
+                    whoWonText.color = Blue;
                 }
                 else if (bluePlayers.Count == 0)
                 {
@@ -282,6 +291,7 @@ public class RoundManager : MonoBehaviour
                         Player.GetComponent<PlayerHealth>().VFX_Win();
                     }
                     whoWonText.text = "Team Red won the round";
+                    whoWonText.color = Red;
                 }
                 ScoreAmount1[1].transform.parent.gameObject.SetActive(false);
                 ScoreAmount4[1].transform.parent.gameObject.SetActive(false);
@@ -300,6 +310,8 @@ public class RoundManager : MonoBehaviour
 
                 ScoreAmount2[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamRedWins), 0, 3)];
                 ScoreAmount3[4].GetComponent<Image>().sprite = PlayerEmotions[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamBlueWins), 0, 3) + 4];
+                ScoreAmount2[3].GetComponent<Image>().sprite = PlayerTorsos[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamRedWins), 0, 3)];
+                ScoreAmount3[3].GetComponent<Image>().sprite = PlayerTorsos[Mathf.Clamp(Mathf.RoundToInt(StatHolder.MostWins - StatHolder.TeamBlueWins), 0, 3) + 4];
 
                 break;
         }
