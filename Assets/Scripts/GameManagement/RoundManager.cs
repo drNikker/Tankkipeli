@@ -50,10 +50,10 @@ public class RoundManager : MonoBehaviour
     public List<GameObject> redPlayers;
     [HideInInspector]
     public List<GameObject> bluePlayers;
-    static Color Red = new Color(0.3962264f, 0.03551085f, 0.08502093f, 1);
-    static Color Blue = new Color(0.115744f, 0.1928815f, 0.4811321f, 1);
-    static Color Cyan = new Color(0.05793876f, 0.5849056f, 0.429675f, 1);
-    static Color Yellow = new Color(0.9433962f, 0.9042832f, 0.2002492f, 1);
+    static Color Red = new Color(0.8113208f, 0.1339445f, 0.1519923f, 1);
+    static Color Blue = new Color(0.245283f, 0.4317109f, 0.9811321f, 1);
+    static Color Cyan = new Color(0.3163937f, 0.8490566f, 0.7672837f, 1);
+    static Color Yellow = new Color(0.8509804f, 0.8040705f, 0.3176471f, 1);
 
     private void Start()
     {
