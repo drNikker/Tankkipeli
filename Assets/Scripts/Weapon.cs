@@ -258,6 +258,7 @@ public class Weapon : MonoBehaviour {
         
         if (!Physics.Raycast(transform.position, Vector3.down, out hit, 4) && currentWeaponState == WEAPON_STATE.DROPPED)
         {
+            print("poof");
             Destroy(gameObject);
         }
     }
