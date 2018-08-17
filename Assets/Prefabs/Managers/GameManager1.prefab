@@ -1710,6 +1710,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1269362437999108
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224731564345816972}
+  - component: {fileID: 222156472440531218}
+  - component: {fileID: 114496196096903856}
+  m_Layer: 5
+  m_Name: Musicn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1272143431507198
 GameObject:
   m_ObjectHideFlags: 1
@@ -3023,7 +3040,7 @@ GameObject:
   - component: {fileID: 222332685385455852}
   - component: {fileID: 114275834115084024}
   m_Layer: 5
-  m_Name: Musicn
+  m_Name: cc3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5350,7 +5367,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816621242037186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.0316, y: 16.6339, z: -4.2029}
+  m_LocalPosition: {x: -7.9711475, y: -0.169, z: 5.244455}
   m_LocalScale: {x: 1.1999778, y: 1.1999776, z: 1.1999776}
   m_Children:
   - {fileID: 224075666790629002}
@@ -7710,7 +7727,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 2.4
   m_Text: Nikke Marjomaa
 --- !u!114 &114175458837130286
@@ -8108,7 +8125,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 2.4
+    m_LineSpacing: 2
   m_Text: 'Ossi Manninen
 
     Henry Siukola
@@ -8953,18 +8970,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2f8fb6231bb3183438b9141a88bf7867, type: 3}
-    m_FontSize: 112
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 2.4
-  m_Text: By Antti Luode
+    m_VerticalOverflow: 1
+    m_LineSpacing: 2
+  m_Text: (CC 3.0)
 --- !u!114 &114276435732548500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10535,7 +10552,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 2.4
   m_Text: "Sampo Ker\xE4nen\nEero Kinnunen\nJanne Viitala"
 --- !u!114 &114456297277240410
@@ -10781,6 +10798,43 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114496196096903856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269362437999108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.36078432, g: 0.3647059, b: 0.28235295, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 2f8fb6231bb3183438b9141a88bf7867, type: 3}
+    m_FontSize: 112
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 300
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 2
+  m_Text: 'Kristian Kallio
+
+    Touko Niininen
+
+    Antti Luode'
 --- !u!114 &114501985181327118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13799,7 +13853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Music used
+  m_Text: Music by
 --- !u!114 &114773101423992774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13844,7 +13898,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 2.4
   m_Text: Kristian Kallio
 --- !u!114 &114776812179891536
@@ -16227,6 +16281,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1475159656742416}
+--- !u!222 &222156472440531218
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269362437999108}
 --- !u!222 &222156902266309186
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -18329,7 +18389,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 9, y: -229}
-  m_SizeDelta: {x: 799.4, y: 123.3}
+  m_SizeDelta: {x: 865, y: 167.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224087788525353080
 RectTransform:
@@ -18447,15 +18507,15 @@ RectTransform:
   m_GameObject: {fileID: 1506149266340808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6921308, y: 1.6921308, z: 1.6921308}
+  m_LocalScale: {x: 1.6921384, y: 1.6921386, z: 1.6921386}
   m_Children: []
   m_Father: {fileID: 224504274414769322}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: -281}
-  m_SizeDelta: {x: -1120.6001, y: -2800.5}
+  m_AnchoredPosition: {x: 9, y: -880}
+  m_SizeDelta: {x: -1121, y: -2751.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224118395959031770
 RectTransform:
@@ -19230,7 +19290,7 @@ RectTransform:
   m_LocalScale: {x: 0.9999901, y: 0.9999901, z: 0.9999901}
   m_Children: []
   m_Father: {fileID: 224504274414769322}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20655,6 +20715,7 @@ RectTransform:
   - {fileID: 224086378819486436}
   - {fileID: 224519343828919118}
   - {fileID: 224951034188386938}
+  - {fileID: 224731564345816972}
   - {fileID: 224112042528033672}
   - {fileID: 224230259619170754}
   - {fileID: 224586585628130970}
@@ -20663,7 +20724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1416.0007, y: 0}
+  m_AnchoredPosition: {x: 1423, y: 0}
   m_SizeDelta: {x: 0, y: 1900}
   m_Pivot: {x: 0.49999997, y: 0.5}
 --- !u!224 &224505423883330872
@@ -21049,7 +21110,7 @@ RectTransform:
   m_Children:
   - {fileID: 224873000695423288}
   m_Father: {fileID: 224504274414769322}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21910,6 +21971,24 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -53}
   m_SizeDelta: {x: 291, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224731564345816972
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269362437999108}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.6921308, y: 1.6921308, z: 1.6921308}
+  m_Children: []
+  m_Father: {fileID: 224504274414769322}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 9, y: -513}
+  m_SizeDelta: {x: -1121, y: -1928}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224734324371133508
 RectTransform:
   m_ObjectHideFlags: 1
@@ -22127,8 +22206,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: -246.8}
-  m_SizeDelta: {x: 799.4, y: 877.7}
+  m_AnchoredPosition: {x: 9, y: -412}
+  m_SizeDelta: {x: 872, y: 1042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224759911286546048
 RectTransform:

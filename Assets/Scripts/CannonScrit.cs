@@ -19,7 +19,7 @@ public class CannonScrit : MonoBehaviour
     {
         if (rotate == true)
         {
-            boneToRot.transform.Rotate(0, rotationSpeed, 0 * Time.deltaTime);
+            boneToRot.transform.Rotate(0, rotationSpeed, 0 * Time.fixedDeltaTime);
         }
     }
 }

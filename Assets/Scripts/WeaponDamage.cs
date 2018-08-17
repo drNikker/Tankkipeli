@@ -78,9 +78,6 @@ public class WeaponDamage : MonoBehaviour
                         weaponAudio.RandomizeWeaponAudio();
                     }
                 }  
-
-                print(Mathf.Clamp(GetWeaponVelocity(), 1, 15) + " weapons speed during impact");
-                print(finalDamage + " damage dealt");
                 Vector3 dir = collision.transform.position - transform.position;
                 dir.y = 0;
                 tankBase.AddForce(dir.normalized * (knockback * Mathf.Clamp(GetWeaponVelocity(), 1, 15) * knockbackMultiplier));

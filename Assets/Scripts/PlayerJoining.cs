@@ -99,7 +99,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 1 join
-        if (joined1 == false && wait1 == false && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released || joined1 == false && Input.GetKeyDown("g"))
+        if (joined1 == false && wait1 == false && P1state.Buttons.A == ButtonState.Pressed && P1prevState.Buttons.A == ButtonState.Released)
         {
             wait1 = true;
             StartCoroutine(Player1Joined());
@@ -122,7 +122,7 @@ public class PlayerJoining : MonoBehaviour {
 
 
         //Player 2 join
-        if (joined2 == false && wait2 == false && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released || joined2 == false && Input.GetKeyDown("f"))
+        if (joined2 == false && wait2 == false && P2state.Buttons.A == ButtonState.Pressed && P2prevState.Buttons.A == ButtonState.Released)
         {
             wait2 = true;
             StartCoroutine(Player2Joined());
@@ -145,7 +145,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 3 join
-        if (joined3 == false && wait3 == false && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released || joined3 == false && Input.GetKeyDown("d"))
+        if (joined3 == false && wait3 == false && P3state.Buttons.A == ButtonState.Pressed && P3prevState.Buttons.A == ButtonState.Released )
         {
             wait3 = true;
             StartCoroutine(Player3Joined());
@@ -167,7 +167,7 @@ public class PlayerJoining : MonoBehaviour {
         }
 
         //Player 4 join
-        if (joined4 == false && wait4 == false && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released || joined4 == false && Input.GetKeyDown("s"))
+        if (joined4 == false && wait4 == false && P4state.Buttons.A == ButtonState.Pressed && P4prevState.Buttons.A == ButtonState.Released )
         {
             wait4 = true;
             StatHolder.HowManyPlayers++;
@@ -249,7 +249,6 @@ public class PlayerJoining : MonoBehaviour {
                 startTimerOn = false;
                 return;
             }
-            print(timer);
             timer -= Time.deltaTime;
             if(timer <= 0)
             {

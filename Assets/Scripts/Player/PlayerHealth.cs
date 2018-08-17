@@ -155,6 +155,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentState != PLAYER_STATE.DEAD)
         {
+            movement.edgeRecovery = false;
+            movement.StopAllCoroutines();
+            movement.RecoveryTimer(4);
             if (hp <= 25 && lastStand == false)
             {
                 lastStand = true;

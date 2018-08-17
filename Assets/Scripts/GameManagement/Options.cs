@@ -64,6 +64,9 @@ public class Options : MonoBehaviour
         {
             QualitySettings.vSyncCount = vSyncBool;
         }
+
+        Cursor.visible = false;
+
     }
 
     //SET AND GET options

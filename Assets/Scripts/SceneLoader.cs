@@ -56,7 +56,7 @@ public class SceneLoader : MonoBehaviour
         //Map set 5
         mapSet5.Add("Nascar");
         mapSet5.Add("RalliJump");
-        mapSet5.Add("Totally Not Stolen From Portal 2");
+        mapSet5.Add("DualRace");
         mapSet5.Add("Smash");
         //mapSet5.Add("Madness");
     }
@@ -69,21 +69,6 @@ public class SceneLoader : MonoBehaviour
         //    SceneManager.LoadScene("JoiningScene");
         //    audioScript.PlaySceneMusic(0);
         //}
-        if (Input.GetKeyDown("t"))
-        {
-            StatHolder.CurrentMode = StatHolder.Modes.TDM;
-            SceneManager.LoadScene("JoiningScene");
-            audioScript.PlaySceneMusic(0);
-        }
-        if (Input.GetKeyDown("h"))
-        {
-            MenuScene();
-
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            ReloadScene();
-        }
     }
 
     //Loads the menu scene and sets all win counters to zero
