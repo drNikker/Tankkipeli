@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwampFace : MonoBehaviour {
 
+    static int openState = Animator.StringToHash(""); 
+
     private Animator myAnim;
     public Animator bridgeAni;
 
@@ -15,10 +17,10 @@ public class SwampFace : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(bridgeAni.GetBool("Open/Close") == true)
+		if(bridgeAni.GetCurrentAnimatorStateInfo(0).nameHash == openState)
         {
             myAnim.SetBool("openEyes", true);
-            myAnim.SetBool("openEyes", false);
+           
         }
 	}
 }
