@@ -75,28 +75,28 @@ public class HandControls : MonoBehaviour {
         {
             if ((Mathf.Abs(p1RightHand.x) > 0.2 || Mathf.Abs(p1RightHand.z) > 0.2))
             {
-                rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1RightHand * power * Time.deltaTime);
+                rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1RightHand * power * Time.fixedDeltaTime);
             }
             Debug.DrawRay(transform.position, Quaternion.Euler(playerObj.transform.rotation.eulerAngles)* p1RightHand);
         }  
         
         else if (LRHand == "R" && guidingHand == true)      //When Equipping
         {
-            rb.MovePosition(transform.position + front * power*2 * Time.deltaTime);
+            rb.MovePosition(transform.position + front * power*2 * Time.fixedDeltaTime);
         }
         
         else if (LRHand == "L" && guidingHand == false)     //IF Left Hand
         {
             if ((Mathf.Abs(p1LeftHand.x) > 0.2 || Mathf.Abs(p1LeftHand.z) > 0.2))
             {
-                rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1LeftHand * power * Time.deltaTime);
+                rb.MovePosition(transform.position + Quaternion.Euler(playerObj.transform.rotation.eulerAngles) * p1LeftHand * power * Time.fixedDeltaTime);
             }
             Debug.DrawRay(transform.position, Quaternion.Euler(playerObj.transform.rotation.eulerAngles)*p1LeftHand, Color.red);
         }
         
         else if (LRHand == "L" && guidingHand == true)      //When Equipping
         {
-            rb.MovePosition(transform.position + front * power*2 * Time.deltaTime);
+            rb.MovePosition(transform.position + front * power*2 * Time.fixedDeltaTime);
         }
 
 

@@ -135,7 +135,7 @@ public class PlayerHealth : MonoBehaviour
         {
             movement.StopAllCoroutines();
             movement.edgeRecovery = false;
-            StartCoroutine(movement.RecoveryTimer(2));
+            StartCoroutine(movement.RecoveryTimer(4));
             currHealth -= damage;
             CheckHP(currHealth);
             if (currHealth <= 0)            //If out of hp, kill player

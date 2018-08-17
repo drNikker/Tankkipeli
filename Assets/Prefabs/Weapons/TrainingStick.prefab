@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 95666755321384648}
   - component: {fileID: 114447770849793882}
   - component: {fileID: 114663073537291926}
-  - component: {fileID: 136135177024804938}
+  - component: {fileID: 136844851092964184}
   m_Layer: 8
   m_Name: TrainingStick
   m_TagString: Weapon
@@ -106,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847416637298542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.42, y: 1.1100225, z: 1.17}
+  m_LocalPosition: {x: -0.5617727, y: 7.677, z: 0.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4194098633798288}
@@ -318,7 +318,7 @@ Rigidbody:
   m_GameObject: {fileID: 1847416637298542}
   serializedVersion: 2
   m_Mass: 0.1
-  m_Drag: 3
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -555,19 +555,6 @@ MonoBehaviour:
   taken: 0
   currentWeaponState: 0
   stance: 3
---- !u!136 &136135177024804938
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1847416637298542}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.035947442
-  m_Height: 1.0788448
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136792490636022382
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -594,6 +581,19 @@ CapsuleCollider:
   m_Height: 0.9550408
   m_Direction: 1
   m_Center: {x: 0, y: -1.95, z: 0}
+--- !u!136 &136844851092964184
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847416637298542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.04742968
+  m_Height: 1.0640547
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.010344386, z: 0}
 --- !u!138 &138453550355912276
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -630,7 +630,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -4.42, y: 0.61002254, z: 1.17}
+  m_ConnectedAnchor: {x: -0.5617727, y: 7.177, z: 0.56}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -640,29 +640,29 @@ ConfigurableJoint:
   m_AngularYMotion: 0
   m_AngularZMotion: 0
   m_LinearLimitSpring:
-    spring: 10000
-    damper: 100
+    spring: 100
+    damper: 5
   m_LinearLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
+    spring: 100
     damper: 5
   m_LowAngularXLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
+    spring: 100
     damper: 5
   m_AngularYLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
     limit: 0
@@ -724,7 +724,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -4.42, y: 1.6100225, z: 1.17}
+  m_ConnectedAnchor: {x: -0.5617727, y: 8.177, z: 0.56}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -734,33 +734,33 @@ ConfigurableJoint:
   m_AngularYMotion: 0
   m_AngularZMotion: 0
   m_LinearLimitSpring:
-    spring: 10000
-    damper: 100
+    spring: 100
+    damper: 5
   m_LinearLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
+    spring: 100
     damper: 5
   m_LowAngularXLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
+    spring: 100
     damper: 5
   m_AngularYLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
     limit: 0
-    bounciness: 0.5
+    bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
