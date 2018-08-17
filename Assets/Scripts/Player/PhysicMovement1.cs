@@ -547,7 +547,7 @@ public class PhysicMovement1 : MonoBehaviour
         // 60 < X < 300
         if ((60 < transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x < 300) || (60 < transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z < 300))
         {
-            upRightCounter += Time.deltaTime;
+            upRightCounter += Time.fixedDeltaTime;
             if (upRightCounter >= 4)
             {
                 charUpR.keepUpright = true;
