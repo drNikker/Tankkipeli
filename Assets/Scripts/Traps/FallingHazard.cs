@@ -10,6 +10,8 @@ public class FallingHazard : MonoBehaviour
     public bool randomPosition;
     public bool randomRotation;
     public bool randomSize;
+    public bool tucTuc;
+
     public float XPositionLowerLimit;
     public float XPositionUpperLimit;
     public float YPositionLowerLimit;
@@ -28,6 +30,11 @@ public class FallingHazard : MonoBehaviour
         if (randomPosition)
         {
             this.gameObject.transform.position = new Vector3(Random.Range(XPositionLowerLimit, XPositionUpperLimit), Random.Range(YPositionLowerLimit, YPositionUpperLimit), Random.Range(ZPositionLowerLimit, ZPositionUpperLimit));
+        }
+
+        if (tucTuc == true)
+        { CreateFallingObject();
+            StopAllCoroutines();
         }
 
        StartCoroutine(SpawnObject());

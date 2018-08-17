@@ -15,6 +15,7 @@ public class CarScript : MonoBehaviour {
     Rigidbody rb;
     public bool IsSwerwing;
     public bool nascarCar;
+    public bool tucTuc;
     int i;
     private AudioScript audioScript;
     private AudioClip currentAudioClip;
@@ -30,8 +31,30 @@ public class CarScript : MonoBehaviour {
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioScript>();
         audioSource = gameObject.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
-        Nitro1 = gameObject.transform.Find("NascarNitroPartSys").GetComponent<ParticleSystem>();
-        Nitro2 = gameObject.transform.Find("NascarNitroPartSys (1)").GetComponent<ParticleSystem>();
+        if (tucTuc == false)
+        {
+            Nitro1 = gameObject.transform.Find("NascarNitroPartSys").GetComponent<ParticleSystem>();
+            Nitro2 = gameObject.transform.Find("NascarNitroPartSys (1)").GetComponent<ParticleSystem>();
+            var myRend = gameObject.transform.Find("NascarCarMesh").GetComponent<SkinnedMeshRenderer>();
+
+            Material[] tempMats = myRend.materials;
+
+            int rndNo1 = Random.Range(0, colorMats.Count);
+            tempMats[0] = colorMats[rndNo1];
+
+            int rndNo2 = Random.Range(0, colorMats.Count);
+
+            while (rndNo1 == rndNo2)
+            {
+                rndNo2 = Random.Range(0, colorMats.Count);
+            }
+
+            tempMats[2] = colorMats[rndNo2];
+
+            myRend.materials = tempMats;
+
+        }
+
 
         //speed = 6;
         if (nascarCar)
@@ -71,24 +94,15 @@ public class CarScript : MonoBehaviour {
         //rend[7].SetPropertyBlock(_propBlock);
         //rend[8].SetPropertyBlock(_propBlock);
         
-        var myRend = gameObject.transform.Find("NascarCarMesh").GetComponent<SkinnedMeshRenderer>();
-        Material[] tempMats = myRend.materials;
-
-        int rndNo1 = Random.Range(0, colorMats.Count);
-        tempMats[0] = colorMats[rndNo1];
-
-        int rndNo2 = Random.Range(0, colorMats.Count);
-
-        while (rndNo1 == rndNo2)
+        if (tucTuc)
         {
-            rndNo2 = Random.Range(0, colorMats.Count);
+            StartCoroutine(carDespawn(20));
         }
-        
-        tempMats[2] = colorMats[rndNo2];
+        else
+        {
+            StartCoroutine(carDespawn(10));
+        }
 
-        myRend.materials = tempMats;
-
-        StartCoroutine(carDespawn(10));
 
     }
     private void Update()
@@ -103,10 +117,6 @@ public class CarScript : MonoBehaviour {
                     Nitro1.Stop();
                     Nitro2.Stop();
                     Debug.DrawRay(transform.position, Vector3.up * 5f, Color.green);
-                    if (hit.collider.tag == "Untagged")
-                    {
-                        Debug.LogWarning("Stop");
-                    }
                     speed = 0;
                     maxSpeed = 0;
                     acceleration = 0;
@@ -125,8 +135,6 @@ public class CarScript : MonoBehaviour {
                 }
                 else
                 {
-                    print(i);
-                    print("prkl");
                     transform.Rotate(0, Time.deltaTime * Random.Range(40,50), 0);
                 }
 
@@ -171,7 +179,6 @@ public class CarScript : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Untagged" && collision.gameObject.transform.root.tag != "Player" && collision.gameObject.transform.root.tag != "Weapon")
         {
-            print(collision.gameObject.name);
             StartCoroutine(carStop(0.2f));
         }
         if(collision.gameObject.tag == "Player" && speed > 5 && rb.velocity.magnitude > 1)

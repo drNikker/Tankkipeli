@@ -9,7 +9,6 @@ public class Votelight2 : MonoBehaviour {
     public Animator Mayhem;
     public Animator Clash;
     public float count = 0;
-    private float votes = 0;
 
     PlayerJoining joining;
 
