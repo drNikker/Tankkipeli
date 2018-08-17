@@ -166,7 +166,7 @@ public class CarScript : MonoBehaviour {
             }
 
             speed += acceleration;
-            rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
+            rb.MovePosition(transform.position + transform.forward * Time.fixedDeltaTime * speed);
             rb.AddForce(Vector3.down * 20000);
         }
         else
