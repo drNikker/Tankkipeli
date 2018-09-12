@@ -133,9 +133,12 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentState != PLAYER_STATE.DEAD)
         {
-            movement.StopAllCoroutines();
-            movement.edgeRecovery = false;
-            StartCoroutine(movement.RecoveryTimer(4));
+            if (movement != null)
+            {
+                movement.StopAllCoroutines();
+                movement.edgeRecovery = false;
+                StartCoroutine(movement.RecoveryTimer(4));
+            }
             currHealth -= damage;
             CheckHP(currHealth);
             if (currHealth <= 0)            //If out of hp, kill player
@@ -155,9 +158,12 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentState != PLAYER_STATE.DEAD)
         {
-            movement.edgeRecovery = false;
-            movement.StopAllCoroutines();
-            movement.RecoveryTimer(4);
+            if (movement != null)
+            {
+                movement.edgeRecovery = false;
+                movement.StopAllCoroutines();
+                movement.RecoveryTimer(4);
+            }
             if (hp <= 25 && lastStand == false)
             {
                 lastStand = true;
@@ -232,7 +238,14 @@ public class PlayerHealth : MonoBehaviour
         switch (currentState)
         {
             case PLAYER_STATE.ALIVE:
-                GetComponent<PhysicMovement1>().enabled = true;
+                if (movement != null)
+                {
+                    GetComponent<PhysicMovement1>().enabled = true;
+                }
+                else
+                {
+                    GetComponent<OtherAIMovement>().enabled = true;
+                }
                 foreach (HandControls hf in hands)
                 {
                     hf.enabled = true;
@@ -250,7 +263,14 @@ public class PlayerHealth : MonoBehaviour
 
             case PLAYER_STATE.DEAD:
 
-                GetComponent<PhysicMovement1>().enabled = false;
+                if (movement != null)
+                {
+                    GetComponent<PhysicMovement1>().enabled = false;
+                }
+                else
+                {
+                    GetComponent<OtherAIMovement>().enabled = false;
+                }
                 foreach (HandControls hf in hands)
                 {
                     hf.enabled = false;
