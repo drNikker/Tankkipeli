@@ -58,6 +58,18 @@ public class HandControls : MonoBehaviour {
         prevState = state;
         state = GamePad.GetState(playerIndex);
         KeyPresses();
+        p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0, state.ThumbSticks.Left.Y);
+        p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0, state.ThumbSticks.Right.Y);
+        if (Input.GetKeyDown("space"))
+        {
+            print("LX " + p1LeftHand.x);
+            print("LY " + p1LeftHand.y);
+            print("LZ " + p1LeftHand.z);
+            print("RX " + p1RightHand.x);
+            print("RY " + p1RightHand.y);
+            print("RZ " + p1RightHand.z);
+        }
+
     }
 
 

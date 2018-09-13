@@ -47,8 +47,12 @@ public class AIHands : MonoBehaviour
     //should the hand be moved infront of the player
     [HideInInspector] public bool guidingHand = false;
 
-    public float minimum = 0.1F;
-    public float maximum = 1.0F;
+    public float LXminimum = -1.0F;
+    public float LXmaximum = 0F;
+    public float RXminimum = 0F;
+    public float RXmaximum = 1.0F;
+    public float Zminimum = -1.0F;
+    public float Zmaximum = 1.0F;
 
     // starting value for the Lerp
     static float time = 0.0f;
@@ -62,8 +66,6 @@ public class AIHands : MonoBehaviour
 
     void Update()
     {
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
     }
 
 
@@ -75,19 +77,25 @@ public class AIHands : MonoBehaviour
         //p1LeftHand = new Vector3(state.ThumbSticks.Left.X, 0, state.ThumbSticks.Left.Y);
         //p1RightHand = new Vector3(state.ThumbSticks.Right.X, 0, state.ThumbSticks.Right.Y);
         // animate the position of the game object...
-        p1LeftHand = new Vector3(Mathf.Lerp(minimum, maximum, time), 0, 0);
-        p1RightHand = new Vector3(Mathf.Lerp(minimum, maximum, time), 0, 0);
+        p1LeftHand = new Vector3(Mathf.Lerp(LXmaximum, LXminimum, time), 0, Mathf.Lerp(Zmaximum, Zminimum, time));
+        p1RightHand = new Vector3(Mathf.Lerp(RXminimum, RXmaximum, time), 0, Mathf.Lerp(Zminimum, Zmaximum, time));
         // .. and increase the t interpolater
         time += 0.3f * Time.fixedDeltaTime;
 
         // now check if the interpolator has reached 1.0
         // and swap maximum and minimum so game object moves
         // in the opposite direction.
-        if (time > 0.2f)
+        if (time > 0.8f)
         {
-            float temp = maximum;
-            maximum = minimum;
-            minimum = temp;
+            float temp = LXmaximum;
+            LXmaximum = LXminimum;
+            LXminimum = temp;
+            float temp3 = RXmaximum;
+            RXmaximum = RXminimum;
+            RXminimum = temp3;
+            float temp2 = Zmaximum;
+            Zmaximum = Zminimum;
+            Zminimum = temp2;
             time = 0.0f;
         }
         front = playerObj.transform.forward;
